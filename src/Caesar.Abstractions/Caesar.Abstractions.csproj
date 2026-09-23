@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Caesar</RootNamespace>
+    <PackageId>Caesar.Abstractions</PackageId>
+    <Description>Contracts for the Caesar mediator: requests, notifications, streams, pipeline behaviors and processors. Reference this from your Application layer; it has no dependency on any container.</Description>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
+    <None Include="../../README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+
+</Project>

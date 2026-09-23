@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Caesar</RootNamespace>
+    <PackageId>Caesar</PackageId>
+    <Description>Caesar is a lightweight in-process mediator for .NET: request/response, commands, notifications with pluggable publish strategies, streaming requests, pipeline behaviors, pre/post processors and exception handling, wired through Microsoft.Extensions.DependencyInjection.</Description>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Caesar.Abstractions/Caesar.Abstractions.csproj" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" />
+    <None Include="../../README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Caesar.Tests" />
+  </ItemGroup>
+
+</Project>
