@@ -1,7 +1,8 @@
 name: Release
 
 # Two ways to publish:
-#   1. Actions > Release > "Run workflow": type the version (e.g. 10.0.1). Nothing in the repo needs to change.
+#   1. Actions > Release > "Run workflow": type the version (e.g. 10.0.1). VersionPrefix does not need to change;
+#      a stable version still needs its CHANGELOG.md section on main (see 3).
 #      Must be run on main; the run fails if that version is already on nuget.org.
 #   2. Merge to main: publishes <VersionPrefix> from Directory.Build.props. If that version already exists
 #      on nuget.org the push is skipped (`--skip-duplicate`), so ordinary merges are a safe no-op.

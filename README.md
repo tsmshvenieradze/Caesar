@@ -57,11 +57,7 @@ public sealed class CreateCustomerHandler(ICustomerRepository repository) : IReq
 Register Caesar in the composition root:
 
 ```csharp
-builder.Services.AddCaesar(cfg =>
-{
-    cfg.RegisterServicesFromAssemblyContaining<CreateCustomer>();
-    cfg.AddOpenBehavior(typeof(LoggingBehavior<,>));
-});
+builder.Services.AddCaesar(cfg => cfg.RegisterServicesFromAssemblyContaining<CreateCustomer>());
 ```
 
 Send it from anything that can inject `ISender`:
@@ -103,8 +99,9 @@ Releases are produced by the [Release workflow](.github/workflows/release.yml), 
 packages attached. There are two ways to trigger it:
 
 - **Manual (recommended).** Actions, Release, *Run workflow*, type the version (for example `10.0.1` or
-  `10.1.0-preview.1`) and run it on `main`. Nothing in the repository needs to change. The run fails early if that
-  version already exists on nuget.org.
+  `10.1.0-preview.1`) and run it on `main`. The version number does not need to be committed, but a stable version
+  needs its `CHANGELOG.md` section on `main` first (see below). The run fails early if that version already exists on
+  nuget.org.
 - **On merge.** Every merge to `main` also runs the workflow with `<VersionPrefix>` from `Directory.Build.props`.
   If that version is already published the push is skipped, so ordinary merges are a safe no-op. Bump the value in
   your pull request when you want the merge itself to ship.

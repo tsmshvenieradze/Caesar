@@ -44,6 +44,15 @@ public static class GettingStartedRegistration
 
         return services;
     }
+
+    public static IServiceCollection RegisterMinimal(IServiceCollection services)
+    {
+        #region register-minimal
+        services.AddCaesar(cfg => cfg.RegisterServicesFromAssemblyContaining<CreateCustomer>());
+        #endregion
+
+        return services;
+    }
 }
 
 #region send

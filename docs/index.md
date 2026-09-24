@@ -28,7 +28,7 @@ Define a request and its handler in the Application layer:
 
 Register Caesar in the composition root:
 
-[!code-csharp[](snippets/GettingStarted.cs#register)]
+[!code-csharp[](snippets/GettingStarted.cs#register-minimal)]
 
 Send it from anywhere that can inject <xref:Caesar.ISender>:
 
