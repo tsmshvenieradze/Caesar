@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;600;700&display=swap");
+
+:root {
+  --bs-font-sans-serif: "Space Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --bs-font-monospace: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  --bs-link-color: #00838F;
+  --bs-link-color-rgb: 0, 131, 143;
+  --bs-link-hover-color: #006064;
+  --bs-link-hover-color-rgb: 0, 96, 100;
+}
+
+[data-bs-theme="dark"] {
+  --bs-body-bg: #0A0A0F;
+  --bs-body-bg-rgb: 10, 10, 15;
+  --bs-body-color: #FFFFFF;
+  --bs-body-color-rgb: 255, 255, 255;
+  --bs-emphasis-color: #FFFFFF;
+  --bs-secondary-color: #7A7A85;
+  --bs-secondary-bg: #16161F;
+  --bs-tertiary-bg: #12121A;
+  --bs-border-color: #24242E;
+  --bs-link-color: #00E5FF;
+  --bs-link-color-rgb: 0, 229, 255;
+  --bs-link-hover-color: #7DF3FF;
+  --bs-link-hover-color-rgb: 125, 243, 255;
+  --bs-code-color: #7DF3FF;
+}
+
+.navbar {
+  border-bottom: 1px solid var(--bs-border-color);
+}
+
+.navbar-brand {
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.navbar-brand #logo,
+.navbar-brand svg {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 6px;
+}
+
+/* JetBrains Mono ligatures turn => into ⇒, which misleads in C# samples. */
+code,
+pre {
+  font-variant-ligatures: none;
+}
+
+/* Wide tables scroll inside themselves instead of widening the page on phones. */
+article table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.caesar-version {
+  width: auto;
+  margin-inline: 0.5rem 1rem;
+  font-family: var(--bs-font-monospace);
+}

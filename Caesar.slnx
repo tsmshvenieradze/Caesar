@@ -10,6 +10,9 @@
   <Folder Name="/samples/">
     <Project Path="samples/Caesar.Sample/Caesar.Sample.csproj" />
   </Folder>
+  <Folder Name="/docs/">
+    <Project Path="docs/snippets/Caesar.Docs.Snippets.csproj" />
+  </Folder>
   <Folder Name="/Solution Items/">
     <File Path="Directory.Build.props" />
     <File Path="Directory.Packages.props" />

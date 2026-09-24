@@ -1,0 +1,91 @@
+name: Docs
+
+# Publishes one minor version of the documentation to the gh-pages branch (served at caesar.tsezar.io).
+#   - Called by release.yml after a stable release, with ref vX.Y.Z.
+#   - Run by hand (Actions > Docs > Run workflow) to republish a version from any ref, e.g. main -> 10.1,
+#     for documentation-only fixes. Other versions on the site are never touched.
+
+on:
+  workflow_call:
+    inputs:
+      ref:
+        required: true
+        type: string
+      version:
+        required: true
+        type: string
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'Git ref to build (tag or branch), e.g. v10.1.1 or main'
+        required: true
+        default: main
+        type: string
+      version:
+        description: 'Docs version to publish, X.Y or X.Y.Z (e.g. 10.1)'
+        required: true
+        type: string
+
+concurrency:
+  group: docs
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      # Scripts come from the workflow's own commit; the site is built from the requested ref.
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+          path: site-src
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: site-src/global.json
+
+      - name: Build
+        working-directory: site-src
+        run: dotnet build Caesar.slnx --configuration Release
+
+      - name: Build docs
+        working-directory: site-src
+        run: |
+          dotnet tool restore
+          dotnet docfx docs/docfx.json --warningsAsErrors
+
+      - name: Check out gh-pages
+        run: |
+          if git ls-remote --exit-code --heads origin gh-pages >/dev/null; then
+            git fetch --depth 1 origin gh-pages
+            git worktree add -B gh-pages "$RUNNER_TEMP/pages" origin/gh-pages
+          else
+            git worktree add --orphan -b gh-pages "$RUNNER_TEMP/pages"
+          fi
+
+      - name: Publish version
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          MINOR=$(python3 .github/scripts/publish_version.py --site site-src/docs/_site --pages "$RUNNER_TEMP/pages" --version "$VERSION")
+          echo "MINOR=$MINOR" >> "$GITHUB_ENV"
+
+      - name: Commit and push
+        working-directory: ${{ runner.temp }}/pages
+        env:
+          REF: ${{ inputs.ref }}
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Docs $MINOR unchanged; nothing to publish."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "docs: publish $MINOR from $REF"
+          git push origin gh-pages
