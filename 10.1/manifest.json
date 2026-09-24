@@ -1,0 +1,930 @@
+{
+  "source_base_path": "/home/runner/work/Caesar/Caesar/site-src/docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.DependencyInjection.CaesarServiceConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.DependencyInjection.CaesarServiceConfiguration.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.DependencyInjection.CaesarServiceConfiguration",
+      "Summary": "<p sourcefile=\"api/Caesar.DependencyInjection.CaesarServiceConfiguration.yml\" sourcestartlinenumber=\"1\">Options for <code>AddCaesar</code>: which assemblies to scan, which behaviors to add, and how services are registered.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.DependencyInjection.RequestExceptionActionProcessorStrategy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.DependencyInjection.RequestExceptionActionProcessorStrategy.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.DependencyInjection.RequestExceptionActionProcessorStrategy",
+      "Summary": "<p sourcefile=\"api/Caesar.DependencyInjection.RequestExceptionActionProcessorStrategy.yml\" sourcestartlinenumber=\"1\">Controls where <xref href=\"Caesar.Pipeline.RequestExceptionActionProcessorBehavior%602\" data-throw-if-not-resolved=\"false\"></xref> sits relative to\n<xref href=\"Caesar.Pipeline.RequestExceptionProcessorBehavior%602\" data-throw-if-not-resolved=\"false\"></xref> in the pipeline.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.DependencyInjection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.DependencyInjection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.DependencyInjection",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.IBaseRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.IBaseRequest.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.IBaseRequest",
+      "Summary": "<p sourcefile=\"api/Caesar.IBaseRequest.yml\" sourcestartlinenumber=\"1\">Marker interface shared by every request that is dispatched through <xref href=\"Caesar.ISender\" data-throw-if-not-resolved=\"false\"></xref>.\nDo not implement this directly; use <xref href=\"Caesar.IRequest\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"Caesar.IRequest%601\" data-throw-if-not-resolved=\"false\"></xref>\nor <xref href=\"Caesar.IStreamRequest%601\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.IMediator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.IMediator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.IMediator",
+      "Summary": "<p sourcefile=\"api/Caesar.IMediator.yml\" sourcestartlinenumber=\"1\">Combines <xref href=\"Caesar.ISender\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"Caesar.IPublisher\" data-throw-if-not-resolved=\"false\"></xref>.\nPrefer injecting the narrower interface when a component only sends or only publishes.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.INotification.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.INotification.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.INotification",
+      "Summary": "<p sourcefile=\"api/Caesar.INotification.yml\" sourcestartlinenumber=\"1\">A notification (event) that is published to zero or more <xref href=\"Caesar.INotificationHandler%601\" data-throw-if-not-resolved=\"false\"></xref> instances.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.INotificationHandler-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.INotificationHandler-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.INotificationHandler<TNotification>",
+      "Summary": "<p sourcefile=\"api/Caesar.INotificationHandler-1.yml\" sourcestartlinenumber=\"1\">Handles a notification. Multiple handlers may exist for the same notification type.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.INotificationPublisher.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.INotificationPublisher.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.INotificationPublisher",
+      "Summary": "<p sourcefile=\"api/Caesar.INotificationPublisher.yml\" sourcestartlinenumber=\"1\">Strategy that decides how the handlers of a notification are invoked\n(sequentially, in parallel, fire-and-forget, ...).</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.IPipelineBehavior-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.IPipelineBehavior-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.IPipelineBehavior<TRequest, TResponse>",
+      "Summary": "<p sourcefile=\"api/Caesar.IPipelineBehavior-2.yml\" sourcestartlinenumber=\"1\">Wraps the handling of a request. Behaviors are executed in registration order and form a\nRussian-doll chain around the <xref href=\"Caesar.IRequestHandler%602\" data-throw-if-not-resolved=\"false\"></xref>.\nRegister an open-generic behavior to apply it to every request.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.IPublisher.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.IPublisher.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.IPublisher",
+      "Summary": "<p sourcefile=\"api/Caesar.IPublisher.yml\" sourcestartlinenumber=\"1\">Publishes notifications to every registered handler.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.IRequest-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.IRequest-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.IRequest<TResponse>",
+      "Summary": "<p sourcefile=\"api/Caesar.IRequest-1.yml\" sourcestartlinenumber=\"1\">A request that produces a response of type <code class=\"typeparamref\">TResponse</code>.\nExactly one <xref href=\"Caesar.IRequestHandler%602\" data-throw-if-not-resolved=\"false\"></xref> handles it.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.IRequest.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.IRequest.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.IRequest",
+      "Summary": "<p sourcefile=\"api/Caesar.IRequest.yml\" sourcestartlinenumber=\"1\">A request without a meaningful response (a command). Its response type is <xref href=\"Caesar.Unit\" data-throw-if-not-resolved=\"false\"></xref>.\nHandle it with <xref href=\"Caesar.IRequestHandler%601\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.IRequestHandler-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.IRequestHandler-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.IRequestHandler<TRequest>",
+      "Summary": "<p sourcefile=\"api/Caesar.IRequestHandler-1.yml\" sourcestartlinenumber=\"1\">Handles a request that has no response (a command).</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.IRequestHandler-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.IRequestHandler-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.IRequestHandler<TRequest, TResponse>",
+      "Summary": "<p sourcefile=\"api/Caesar.IRequestHandler-2.yml\" sourcestartlinenumber=\"1\">Handles a request that returns a response.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.ISender.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.ISender.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.ISender",
+      "Summary": "<p sourcefile=\"api/Caesar.ISender.yml\" sourcestartlinenumber=\"1\">Sends requests to their single handler and creates response streams.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.IStreamPipelineBehavior-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.IStreamPipelineBehavior-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.IStreamPipelineBehavior<TRequest, TResponse>",
+      "Summary": "<p sourcefile=\"api/Caesar.IStreamPipelineBehavior-2.yml\" sourcestartlinenumber=\"1\">Wraps the handling of a streaming request.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.IStreamRequest-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.IStreamRequest-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.IStreamRequest<TResponse>",
+      "Summary": "<p sourcefile=\"api/Caesar.IStreamRequest-1.yml\" sourcestartlinenumber=\"1\">A request whose handler produces a stream of <code class=\"typeparamref\">TResponse</code> items\nas an <xref href=\"System.Collections.Generic.IAsyncEnumerable%601\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.IStreamRequestHandler-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.IStreamRequestHandler-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.IStreamRequestHandler<TRequest, TResponse>",
+      "Summary": "<p sourcefile=\"api/Caesar.IStreamRequestHandler-2.yml\" sourcestartlinenumber=\"1\">Handles a streaming request.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.Mediator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.Mediator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.Mediator",
+      "Summary": "<p sourcefile=\"api/Caesar.Mediator.yml\" sourcestartlinenumber=\"1\">Default <xref href=\"Caesar.IMediator\" data-throw-if-not-resolved=\"false\"></xref> implementation. Resolves handlers and behaviors from an\n<xref href=\"System.IServiceProvider\" data-throw-if-not-resolved=\"false\"></xref> at call time, so it can be registered with any lifetime.\nHandler wrappers are stateless and cached per request type for the lifetime of the process.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.NotificationHandler-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.NotificationHandler-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.NotificationHandler<TNotification>",
+      "Summary": "<p sourcefile=\"api/Caesar.NotificationHandler-1.yml\" sourcestartlinenumber=\"1\">Convenience base class for synchronous notification handlers.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.NotificationHandlerExecutor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.NotificationHandlerExecutor.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.NotificationHandlerExecutor",
+      "Summary": "<p sourcefile=\"api/Caesar.NotificationHandlerExecutor.yml\" sourcestartlinenumber=\"1\">A resolved notification handler together with a callback that invokes it.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher",
+      "Summary": "<p sourcefile=\"api/Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher.yml\" sourcestartlinenumber=\"1\">Awaits handlers one after another like <xref href=\"Caesar.NotificationPublishers.ForeachAwaitPublisher\" data-throw-if-not-resolved=\"false\"></xref>, but keeps going after a\nfailing handler and throws an <xref href=\"System.AggregateException\" data-throw-if-not-resolved=\"false\"></xref> at the end if any handler failed.\nUseful when every subscriber must get the event even if one of them is broken.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.NotificationPublishers.ForeachAwaitPublisher.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.NotificationPublishers.ForeachAwaitPublisher.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.NotificationPublishers.ForeachAwaitPublisher",
+      "Summary": "<p sourcefile=\"api/Caesar.NotificationPublishers.ForeachAwaitPublisher.yml\" sourcestartlinenumber=\"1\">Default strategy: awaits each handler one after another in registration order.\nThe first exception stops the publish and propagates to the caller.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.NotificationPublishers.TaskWhenAllPublisher.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.NotificationPublishers.TaskWhenAllPublisher.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.NotificationPublishers.TaskWhenAllPublisher",
+      "Summary": "<p sourcefile=\"api/Caesar.NotificationPublishers.TaskWhenAllPublisher.yml\" sourcestartlinenumber=\"1\">Starts every handler immediately and awaits them all. Exceptions from all failing handlers are\ncollected into a single <xref href=\"System.AggregateException\" data-throw-if-not-resolved=\"false\"></xref> so no failure is lost.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.NotificationPublishers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.NotificationPublishers.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.NotificationPublishers",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.Pipeline.IRequestExceptionAction-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.Pipeline.IRequestExceptionAction-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.Pipeline.IRequestExceptionAction<TRequest>",
+      "Summary": "<p sourcefile=\"api/Caesar.Pipeline.IRequestExceptionAction-1.yml\" sourcestartlinenumber=\"1\">Shorthand for acting on every <xref href=\"System.Exception\" data-throw-if-not-resolved=\"false\"></xref> for a request.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.Pipeline.IRequestExceptionAction-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.Pipeline.IRequestExceptionAction-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.Pipeline.IRequestExceptionAction<TRequest, TException>",
+      "Summary": "<p sourcefile=\"api/Caesar.Pipeline.IRequestExceptionAction-2.yml\" sourcestartlinenumber=\"1\">Runs side effects (logging, metrics, compensation) when an exception of type <code class=\"typeparamref\">TException</code>\n(or a derived type) is thrown while handling <code class=\"typeparamref\">TRequest</code>. The exception is always rethrown afterwards.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.Pipeline.IRequestExceptionHandler-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.Pipeline.IRequestExceptionHandler-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.Pipeline.IRequestExceptionHandler<TRequest, TResponse>",
+      "Summary": "<p sourcefile=\"api/Caesar.Pipeline.IRequestExceptionHandler-2.yml\" sourcestartlinenumber=\"1\">Shorthand for handling every <xref href=\"System.Exception\" data-throw-if-not-resolved=\"false\"></xref> for a request.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.Pipeline.IRequestExceptionHandler-3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.Pipeline.IRequestExceptionHandler-3.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.Pipeline.IRequestExceptionHandler<TRequest, TResponse, TException>",
+      "Summary": "<p sourcefile=\"api/Caesar.Pipeline.IRequestExceptionHandler-3.yml\" sourcestartlinenumber=\"1\">Handles an exception of type <code class=\"typeparamref\">TException</code> (or a derived type) thrown while handling\n<code class=\"typeparamref\">TRequest</code>. Call <xref href=\"Caesar.Pipeline.RequestExceptionHandlerState%601.SetHandled(%600)\" data-throw-if-not-resolved=\"false\"></xref>\nto swallow the exception and supply a fallback response; otherwise the exception is rethrown.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.Pipeline.IRequestPostProcessor-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.Pipeline.IRequestPostProcessor-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.Pipeline.IRequestPostProcessor<TRequest, TResponse>",
+      "Summary": "<p sourcefile=\"api/Caesar.Pipeline.IRequestPostProcessor-2.yml\" sourcestartlinenumber=\"1\">Runs after the handler of <code class=\"typeparamref\">TRequest</code> has produced a response.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.Pipeline.IRequestPreProcessor-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.Pipeline.IRequestPreProcessor-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.Pipeline.IRequestPreProcessor<TRequest>",
+      "Summary": "<p sourcefile=\"api/Caesar.Pipeline.IRequestPreProcessor-1.yml\" sourcestartlinenumber=\"1\">Runs before the handler of <code class=\"typeparamref\">TRequest</code>. Cannot alter the response or short-circuit;\nuse an <xref href=\"Caesar.IPipelineBehavior%602\" data-throw-if-not-resolved=\"false\"></xref> for that.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.Pipeline.RequestExceptionActionProcessorBehavior-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.Pipeline.RequestExceptionActionProcessorBehavior-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.Pipeline.RequestExceptionActionProcessorBehavior<TRequest, TResponse>",
+      "Summary": "<p sourcefile=\"api/Caesar.Pipeline.RequestExceptionActionProcessorBehavior-2.yml\" sourcestartlinenumber=\"1\">Runs every matching <xref href=\"Caesar.Pipeline.IRequestExceptionAction%602\" data-throw-if-not-resolved=\"false\"></xref> when the inner pipeline throws,\nmost specific exception type first, then rethrows the original exception.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.Pipeline.RequestExceptionHandlerState-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.Pipeline.RequestExceptionHandlerState-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.Pipeline.RequestExceptionHandlerState<TResponse>",
+      "Summary": "<p sourcefile=\"api/Caesar.Pipeline.RequestExceptionHandlerState-1.yml\" sourcestartlinenumber=\"1\">Tracks whether an exception was handled and which response to return in its place.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.Pipeline.RequestExceptionProcessorBehavior-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.Pipeline.RequestExceptionProcessorBehavior-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.Pipeline.RequestExceptionProcessorBehavior<TRequest, TResponse>",
+      "Summary": "<p sourcefile=\"api/Caesar.Pipeline.RequestExceptionProcessorBehavior-2.yml\" sourcestartlinenumber=\"1\">Catches exceptions from the inner pipeline and dispatches them to the matching\n<xref href=\"Caesar.Pipeline.IRequestExceptionHandler%603\" data-throw-if-not-resolved=\"false\"></xref> instances, most specific exception type first.\nIf a handler marks the exception as handled, its response is returned; otherwise the exception is rethrown\nwith its original stack trace.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.Pipeline.RequestPostProcessorBehavior-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.Pipeline.RequestPostProcessorBehavior-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.Pipeline.RequestPostProcessorBehavior<TRequest, TResponse>",
+      "Summary": "<p sourcefile=\"api/Caesar.Pipeline.RequestPostProcessorBehavior-2.yml\" sourcestartlinenumber=\"1\">Runs every registered <xref href=\"Caesar.Pipeline.IRequestPostProcessor%602\" data-throw-if-not-resolved=\"false\"></xref> after the handler.\nRegistered automatically by <code>AddCaesar</code> when at least one post-processor exists.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.Pipeline.RequestPreProcessorBehavior-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.Pipeline.RequestPreProcessorBehavior-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.Pipeline.RequestPreProcessorBehavior<TRequest, TResponse>",
+      "Summary": "<p sourcefile=\"api/Caesar.Pipeline.RequestPreProcessorBehavior-2.yml\" sourcestartlinenumber=\"1\">Runs every registered <xref href=\"Caesar.Pipeline.IRequestPreProcessor%601\" data-throw-if-not-resolved=\"false\"></xref> before the handler.\nRegistered automatically by <code>AddCaesar</code> when at least one pre-processor exists.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.Pipeline.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.Pipeline.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.Pipeline",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.RequestHandlerDelegate-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.RequestHandlerDelegate-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.RequestHandlerDelegate<TResponse>",
+      "Summary": "<p sourcefile=\"api/Caesar.RequestHandlerDelegate-1.yml\" sourcestartlinenumber=\"1\">Continues the request pipeline: invokes the next behavior or, at the end, the handler.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.StreamHandlerDelegate-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.StreamHandlerDelegate-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.StreamHandlerDelegate<TResponse>",
+      "Summary": "<p sourcefile=\"api/Caesar.StreamHandlerDelegate-1.yml\" sourcestartlinenumber=\"1\">Continues the stream pipeline: invokes the next behavior or, at the end, the stream handler.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.Unit.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.Unit.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.Unit",
+      "Summary": "<p sourcefile=\"api/Caesar.Unit.yml\" sourcestartlinenumber=\"1\">Represents a void return type. Used as the response of <xref href=\"Caesar.IRequest\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.Wrappers.NotificationHandlerWrapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.Wrappers.NotificationHandlerWrapper.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.Wrappers.NotificationHandlerWrapper",
+      "Summary": "<p sourcefile=\"api/Caesar.Wrappers.NotificationHandlerWrapper.yml\" sourcestartlinenumber=\"1\">Non-generic entry point for publishing a notification whose type is only known at runtime.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.Wrappers.NotificationHandlerWrapperImpl-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.Wrappers.NotificationHandlerWrapperImpl-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.Wrappers.NotificationHandlerWrapperImpl<TNotification>",
+      "Summary": "<p sourcefile=\"api/Caesar.Wrappers.NotificationHandlerWrapperImpl-1.yml\" sourcestartlinenumber=\"1\">Resolves every <xref href=\"Caesar.INotificationHandler%601\" data-throw-if-not-resolved=\"false\"></xref> for <code class=\"typeparamref\">TNotification</code>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.Wrappers.RequestHandlerBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.Wrappers.RequestHandlerBase.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.Wrappers.RequestHandlerBase",
+      "Summary": "<p sourcefile=\"api/Caesar.Wrappers.RequestHandlerBase.yml\" sourcestartlinenumber=\"1\">Non-generic entry point for dispatching a request whose type is only known at runtime.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.Wrappers.RequestHandlerWrapper-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.Wrappers.RequestHandlerWrapper-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.Wrappers.RequestHandlerWrapper<TResponse>",
+      "Summary": "<p sourcefile=\"api/Caesar.Wrappers.RequestHandlerWrapper-1.yml\" sourcestartlinenumber=\"1\">Typed entry point for dispatching an <xref href=\"Caesar.IRequest%601\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.Wrappers.RequestHandlerWrapperImpl-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.Wrappers.RequestHandlerWrapperImpl-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.Wrappers.RequestHandlerWrapperImpl<TRequest>",
+      "Summary": "<p sourcefile=\"api/Caesar.Wrappers.RequestHandlerWrapperImpl-1.yml\" sourcestartlinenumber=\"1\">Dispatches a command (<xref href=\"Caesar.IRequest\" data-throw-if-not-resolved=\"false\"></xref>) to <xref href=\"Caesar.IRequestHandler%601\" data-throw-if-not-resolved=\"false\"></xref>, falling back to\n<xref href=\"Caesar.IRequestHandler%602\" data-throw-if-not-resolved=\"false\"></xref> with a <xref href=\"Caesar.Unit\" data-throw-if-not-resolved=\"false\"></xref> response when that is what was registered.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.Wrappers.RequestHandlerWrapperImpl-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.Wrappers.RequestHandlerWrapperImpl-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.Wrappers.RequestHandlerWrapperImpl<TRequest, TResponse>",
+      "Summary": "<p sourcefile=\"api/Caesar.Wrappers.RequestHandlerWrapperImpl-2.yml\" sourcestartlinenumber=\"1\">Dispatches <code class=\"typeparamref\">TRequest</code> to <xref href=\"Caesar.IRequestHandler%602\" data-throw-if-not-resolved=\"false\"></xref> through the behavior chain.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.Wrappers.StreamRequestHandlerBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.Wrappers.StreamRequestHandlerBase.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.Wrappers.StreamRequestHandlerBase",
+      "Summary": "<p sourcefile=\"api/Caesar.Wrappers.StreamRequestHandlerBase.yml\" sourcestartlinenumber=\"1\">Non-generic entry point for streaming a request whose type is only known at runtime.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.Wrappers.StreamRequestHandlerWrapper-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.Wrappers.StreamRequestHandlerWrapper-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.Wrappers.StreamRequestHandlerWrapper<TResponse>",
+      "Summary": "<p sourcefile=\"api/Caesar.Wrappers.StreamRequestHandlerWrapper-1.yml\" sourcestartlinenumber=\"1\">Typed entry point for streaming an <xref href=\"Caesar.IStreamRequest%601\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.Wrappers.StreamRequestHandlerWrapperImpl-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.Wrappers.StreamRequestHandlerWrapperImpl-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.Wrappers.StreamRequestHandlerWrapperImpl<TRequest, TResponse>",
+      "Summary": "<p sourcefile=\"api/Caesar.Wrappers.StreamRequestHandlerWrapperImpl-2.yml\" sourcestartlinenumber=\"1\">Dispatches <code class=\"typeparamref\">TRequest</code> to <xref href=\"Caesar.IStreamRequestHandler%602\" data-throw-if-not-resolved=\"false\"></xref> through the stream behavior chain.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.Wrappers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.Wrappers.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar.Wrappers",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Caesar.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Caesar.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Caesar",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Microsoft.Extensions.DependencyInjection.CaesarServiceCollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Microsoft.Extensions.DependencyInjection.CaesarServiceCollectionExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Microsoft.Extensions.DependencyInjection.CaesarServiceCollectionExtensions",
+      "Summary": "<p sourcefile=\"api/Microsoft.Extensions.DependencyInjection.CaesarServiceCollectionExtensions.yml\" sourcestartlinenumber=\"1\">Registers Caesar with <xref href=\"Microsoft.Extensions.DependencyInjection.IServiceCollection\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Microsoft.Extensions.DependencyInjection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Microsoft.Extensions.DependencyInjection.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Microsoft.Extensions.DependencyInjection",
+      "Summary": null
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "changelog.md",
+      "output": {
+        ".html": {
+          "relative_path": "changelog.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guide/clean-architecture.md",
+      "output": {
+        ".html": {
+          "relative_path": "guide/clean-architecture.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guide/configuration.md",
+      "output": {
+        ".html": {
+          "relative_path": "guide/configuration.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guide/exception-handling.md",
+      "output": {
+        ".html": {
+          "relative_path": "guide/exception-handling.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guide/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "guide/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guide/migrating-from-mediatr.md",
+      "output": {
+        ".html": {
+          "relative_path": "guide/migrating-from-mediatr.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guide/notifications.md",
+      "output": {
+        ".html": {
+          "relative_path": "guide/notifications.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guide/pipeline-behaviors.md",
+      "output": {
+        ".html": {
+          "relative_path": "guide/pipeline-behaviors.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guide/processors.md",
+      "output": {
+        ".html": {
+          "relative_path": "guide/processors.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guide/requests.md",
+      "output": {
+        ".html": {
+          "relative_path": "guide/requests.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "guide/streams.md",
+      "output": {
+        ".html": {
+          "relative_path": "guide/streams.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "guide/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "guide/toc.html"
+        },
+        ".json": {
+          "relative_path": "guide/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/logo.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/logo.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Requests | Caesar </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Requests | Caesar ">
+      
+      
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/tsmshvenieradze/Caesar/blob/main/docs/guide/requests.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="Caesar">
+            Caesar
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="requests">Requests</h1>
+
+<p>A request is a message that goes to exactly one handler and produces one response. Use requests for commands (change
+state) and queries (read state); Caesar treats both the same way.</p>
+<h2 id="requests-with-a-response">Requests with a response</h2>
+<p>Implement <a class="xref" href="../api/Caesar.IRequest-1.html">IRequest&lt;TResponse&gt;</a> and handle it with <a class="xref" href="../api/Caesar.IRequestHandler-2.html">IRequestHandler&lt;TRequest, TResponse&gt;</a>:</p>
+<pre><code class="lang-csharp">public sealed record GetCustomer(Guid Id) : IRequest&lt;Customer?&gt;;
+
+public sealed class GetCustomerHandler(ICustomerRepository repository) : IRequestHandler&lt;GetCustomer, Customer?&gt;
+{
+    public Task&lt;Customer?&gt; Handle(GetCustomer request, CancellationToken cancellationToken)
+        =&gt; repository.Find(request.Id, cancellationToken);
+}
+</code></pre>
+<p><code>sender.Send(new GetCustomer(id), cancellationToken)</code> returns <code>Task&lt;Customer?&gt;</code>; the response type is inferred from the
+request.</p>
+<h2 id="commands-without-a-response">Commands without a response</h2>
+<p>A command that returns nothing implements <a class="xref" href="../api/Caesar.IRequest.html">IRequest</a>, which is shorthand for <code>IRequest&lt;Unit&gt;</code>. Its handler
+implements <a class="xref" href="../api/Caesar.IRequestHandler-1.html">IRequestHandler&lt;TRequest&gt;</a> and returns a plain <code>Task</code>:</p>
+<pre><code class="lang-csharp">public sealed record DeactivateCustomer(Guid Id) : IRequest;
+
+public sealed class DeactivateCustomerHandler(ICustomerRepository repository) : IRequestHandler&lt;DeactivateCustomer&gt;
+{
+    public Task Handle(DeactivateCustomer request, CancellationToken cancellationToken)
+        =&gt; repository.Deactivate(request.Id, cancellationToken);
+}
+</code></pre>
+<p><a class="xref" href="../api/Caesar.Unit.html">Unit</a> is the &quot;no value&quot; response. You meet it when a behavior or post-processor sees every request,
+including commands: for a command, <code>TResponse</code> is <code>Unit</code>.</p>
+<h2 id="one-handler-per-request">One handler per request</h2>
+<p>Each request type resolves exactly one handler. If scanning finds more than one handler for the same request, the first
+one found wins. A handler you register yourself <strong>before</strong> calling <code>AddCaesar</code> takes precedence over anything scanning
+finds, which is useful for replacing a handler in tests.</p>
+<h2 id="runtime-typed-dispatch">Runtime-typed dispatch</h2>
+<p>When the request type is only known at runtime, for example after deserializing a message from a queue, use
+<code>Send(object)</code>:</p>
+<pre><code class="lang-csharp">// The request type is only known at runtime, e.g. deserialized from a message queue.
+public static async Task&lt;object?&gt; Dispatch(ISender sender, object message, CancellationToken cancellationToken)
+{
+    // Returns the handler's response, or Unit.Value for a command that implements IRequest.
+    return await sender.Send(message, cancellationToken);
+}
+</code></pre>
+<p>It returns the handler's response boxed as <code>object?</code>, or <code>Unit.Value</code> for a command. Passing an object that implements
+neither <code>IRequest</code> nor <code>IRequest&lt;T&gt;</code> throws <code>ArgumentException</code>. The same pattern exists for notifications
+(<code>Publish(object)</code>) and streams (<code>CreateStream(object)</code>).</p>
+<h2 id="performance">Performance</h2>
+<p>The first <code>Send</code> for a request type builds and caches a small wrapper for it. After that, dispatch does no reflection.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/tsmshvenieradze/Caesar/blob/main/docs/guide/requests.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © Tsezari Mshvenieradze · <a href="https://tsezar.io">tsezar.io</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class CaesarServiceConfiguration | Caesar </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class CaesarServiceConfiguration | Caesar ">
+      
+      <meta name="description" content="Options for AddCaesar: which assemblies to scan, which behaviors to add, and how services are registered.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="Caesar">
+            Caesar
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration">
+
+
+
+  <h1 id="Caesar_DependencyInjection_CaesarServiceConfiguration" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration" class="text-break">
+Class CaesarServiceConfiguration  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Caesar.html">Caesar</a>.<a class="xref" href="Caesar.DependencyInjection.html">DependencyInjection</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Caesar.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Options for <code>AddCaesar</code>: which assemblies to scan, which behaviors to add, and how services are registered.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class CaesarServiceConfiguration</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">CaesarServiceConfiguration</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration__ctor_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.#ctor*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration__ctor" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.#ctor">
+  CaesarServiceConfiguration()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CaesarServiceConfiguration()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_AssembliesToRegister_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AssembliesToRegister*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_AssembliesToRegister" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AssembliesToRegister">
+  AssembliesToRegister
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Assemblies that will be scanned for handlers.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;Assembly&gt; AssembliesToRegister { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.assembly">Assembly</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_AutoRegisterRequestProcessors_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AutoRegisterRequestProcessors*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_AutoRegisterRequestProcessors" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AutoRegisterRequestProcessors">
+  AutoRegisterRequestProcessors
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>When <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> (default) scanned <a class="xref" href="Caesar.Pipeline.IRequestPreProcessor-1.html">IRequestPreProcessor&lt;TRequest&gt;</a> and
+<a class="xref" href="Caesar.Pipeline.IRequestPostProcessor-2.html">IRequestPostProcessor&lt;TRequest, TResponse&gt;</a> implementations are registered automatically.
+Set to <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> to register processors only explicitly via <code>AddRequestPreProcessor</code> / <code>AddRequestPostProcessor</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool AutoRegisterRequestProcessors { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_Lifetime_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.Lifetime*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_Lifetime" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.Lifetime">
+  Lifetime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lifetime for every scanned handler, processor and exception handler. Default: <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime#microsoft-extensions-dependencyinjection-servicelifetime-transient">Transient</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ServiceLifetime Lifetime { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime">ServiceLifetime</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_MediatorImplementationType_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.MediatorImplementationType*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_MediatorImplementationType" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.MediatorImplementationType">
+  MediatorImplementationType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The <a class="xref" href="Caesar.IMediator.html">IMediator</a> implementation to register. Default: <a class="xref" href="Caesar.Mediator.html">Mediator</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Type MediatorImplementationType { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_MediatorLifetime_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.MediatorLifetime*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_MediatorLifetime" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.MediatorLifetime">
+  MediatorLifetime
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Lifetime for <a class="xref" href="Caesar.IMediator.html">IMediator</a>, <a class="xref" href="Caesar.ISender.html">ISender</a>, <a class="xref" href="Caesar.IPublisher.html">IPublisher</a> and
+<a class="xref" href="Caesar.INotificationPublisher.html">INotificationPublisher</a>. Default: <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime#microsoft-extensions-dependencyinjection-servicelifetime-scoped">Scoped</a>, so that a singleton
+capturing the mediator is reported by container validation at startup instead of failing on the first request.
+Set to <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime#microsoft-extensions-dependencyinjection-servicelifetime-transient">Transient</a> or <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime#microsoft-extensions-dependencyinjection-servicelifetime-singleton">Singleton</a> when the mediator
+must be resolvable straight from the root provider, for example in a console application.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ServiceLifetime MediatorLifetime { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime">ServiceLifetime</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_NotificationPublisher_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.NotificationPublisher*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_NotificationPublisher" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.NotificationPublisher">
+  NotificationPublisher
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A ready-made publisher instance. Takes precedence over <a class="xref" href="Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_NotificationPublisherType">NotificationPublisherType</a> when set.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public INotificationPublisher? NotificationPublisher { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Caesar.INotificationPublisher.html">INotificationPublisher</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_NotificationPublisherType_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.NotificationPublisherType*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_NotificationPublisherType" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.NotificationPublisherType">
+  NotificationPublisherType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The publisher type to register. Default: <a class="xref" href="Caesar.NotificationPublishers.ForeachAwaitPublisher.html">ForeachAwaitPublisher</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Type NotificationPublisherType { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_RequestExceptionActionProcessorStrategy_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.RequestExceptionActionProcessorStrategy*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_RequestExceptionActionProcessorStrategy" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.RequestExceptionActionProcessorStrategy">
+  RequestExceptionActionProcessorStrategy
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Where exception actions sit in the pipeline. Default: <a class="xref" href="Caesar.DependencyInjection.RequestExceptionActionProcessorStrategy.html#Caesar_DependencyInjection_RequestExceptionActionProcessorStrategy_ApplyForUnhandledExceptions">ApplyForUnhandledExceptions</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RequestExceptionActionProcessorStrategy RequestExceptionActionProcessorStrategy { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Caesar.DependencyInjection.RequestExceptionActionProcessorStrategy.html">RequestExceptionActionProcessorStrategy</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_TypeEvaluator_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.TypeEvaluator*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_TypeEvaluator" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.TypeEvaluator">
+  TypeEvaluator
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Filters the types found while scanning. Return <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a> to skip a type. Default: accept everything.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Func&lt;Type, bool&gt; TypeEvaluator { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddBehavior_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddBehavior*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddBehavior_System_Type_Microsoft_Extensions_DependencyInjection_ServiceLifetime_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddBehavior(System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+  AddBehavior(Type, ServiceLifetime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a closed behavior. The service type is every <a class="xref" href="Caesar.IPipelineBehavior-2.html">IPipelineBehavior&lt;TRequest, TResponse&gt;</a> it implements.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CaesarServiceConfiguration AddBehavior(Type implementationType, ServiceLifetime lifetime = ServiceLifetime.Transient)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>implementationType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+    <dt><code>lifetime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime">ServiceLifetime</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Caesar.DependencyInjection.CaesarServiceConfiguration.html">CaesarServiceConfiguration</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddBehavior_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddBehavior*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddBehavior_System_Type_System_Type_Microsoft_Extensions_DependencyInjection_ServiceLifetime_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddBehavior(System.Type,System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+  AddBehavior(Type, Type, ServiceLifetime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a closed behavior for one specific service type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CaesarServiceConfiguration AddBehavior(Type serviceType, Type implementationType, ServiceLifetime lifetime = ServiceLifetime.Transient)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>serviceType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+    <dt><code>implementationType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+    <dt><code>lifetime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime">ServiceLifetime</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Caesar.DependencyInjection.CaesarServiceConfiguration.html">CaesarServiceConfiguration</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddBehavior_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddBehavior*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddBehavior__1_Microsoft_Extensions_DependencyInjection_ServiceLifetime_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddBehavior``1(Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+  AddBehavior&lt;TImplementation&gt;(ServiceLifetime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a closed behavior. The service type is every <a class="xref" href="Caesar.IPipelineBehavior-2.html">IPipelineBehavior&lt;TRequest, TResponse&gt;</a> it implements.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CaesarServiceConfiguration AddBehavior&lt;TImplementation&gt;(ServiceLifetime lifetime = ServiceLifetime.Transient) where TImplementation : class</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>lifetime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime">ServiceLifetime</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Caesar.DependencyInjection.CaesarServiceConfiguration.html">CaesarServiceConfiguration</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TImplementation</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddBehavior_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddBehavior*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddBehavior__2_Microsoft_Extensions_DependencyInjection_ServiceLifetime_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddBehavior``2(Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+  AddBehavior&lt;TService, TImplementation&gt;(ServiceLifetime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a closed behavior for one specific service type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CaesarServiceConfiguration AddBehavior&lt;TService, TImplementation&gt;(ServiceLifetime lifetime = ServiceLifetime.Transient) where TService : class where TImplementation : class, TService</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>lifetime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime">ServiceLifetime</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Caesar.DependencyInjection.CaesarServiceConfiguration.html">CaesarServiceConfiguration</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TService</code></dt>
+    <dd></dd>
+    <dt><code>TImplementation</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddOpenBehavior_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenBehavior*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddOpenBehavior_System_Type_Microsoft_Extensions_DependencyInjection_ServiceLifetime_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenBehavior(System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+  AddOpenBehavior(Type, ServiceLifetime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds an open-generic behavior such as <code>typeof(LoggingBehavior&lt;,&gt;)</code> that applies to every request.
+The type must implement <a class="xref" href="Caesar.IPipelineBehavior-2.html">IPipelineBehavior&lt;TRequest, TResponse&gt;</a> with its own two type parameters.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CaesarServiceConfiguration AddOpenBehavior(Type openBehaviorType, ServiceLifetime lifetime = ServiceLifetime.Transient)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>openBehaviorType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+    <dt><code>lifetime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime">ServiceLifetime</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Caesar.DependencyInjection.CaesarServiceConfiguration.html">CaesarServiceConfiguration</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddOpenBehaviors_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenBehaviors*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddOpenBehaviors_System_Collections_Generic_IEnumerable_System_Type__Microsoft_Extensions_DependencyInjection_ServiceLifetime_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenBehaviors(System.Collections.Generic.IEnumerable{System.Type},Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+  AddOpenBehaviors(IEnumerable&lt;Type&gt;, ServiceLifetime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds several open-generic behaviors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CaesarServiceConfiguration AddOpenBehaviors(IEnumerable&lt;Type&gt; openBehaviorTypes, ServiceLifetime lifetime = ServiceLifetime.Transient)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>openBehaviorTypes</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>&gt;</dt>
+    <dd></dd>
+    <dt><code>lifetime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime">ServiceLifetime</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Caesar.DependencyInjection.CaesarServiceConfiguration.html">CaesarServiceConfiguration</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddOpenRequestPostProcessor_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenRequestPostProcessor*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddOpenRequestPostProcessor_System_Type_Microsoft_Extensions_DependencyInjection_ServiceLifetime_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenRequestPostProcessor(System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+  AddOpenRequestPostProcessor(Type, ServiceLifetime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds an open-generic post-processor that applies to every request.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CaesarServiceConfiguration AddOpenRequestPostProcessor(Type openProcessorType, ServiceLifetime lifetime = ServiceLifetime.Transient)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>openProcessorType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+    <dt><code>lifetime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime">ServiceLifetime</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Caesar.DependencyInjection.CaesarServiceConfiguration.html">CaesarServiceConfiguration</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddOpenRequestPreProcessor_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenRequestPreProcessor*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddOpenRequestPreProcessor_System_Type_Microsoft_Extensions_DependencyInjection_ServiceLifetime_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenRequestPreProcessor(System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+  AddOpenRequestPreProcessor(Type, ServiceLifetime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds an open-generic pre-processor that applies to every request.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CaesarServiceConfiguration AddOpenRequestPreProcessor(Type openProcessorType, ServiceLifetime lifetime = ServiceLifetime.Transient)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>openProcessorType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+    <dt><code>lifetime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime">ServiceLifetime</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Caesar.DependencyInjection.CaesarServiceConfiguration.html">CaesarServiceConfiguration</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddOpenStreamBehavior_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenStreamBehavior*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddOpenStreamBehavior_System_Type_Microsoft_Extensions_DependencyInjection_ServiceLifetime_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenStreamBehavior(System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+  AddOpenStreamBehavior(Type, ServiceLifetime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds an open-generic stream behavior that applies to every stream request.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CaesarServiceConfiguration AddOpenStreamBehavior(Type openBehaviorType, ServiceLifetime lifetime = ServiceLifetime.Transient)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>openBehaviorType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+    <dt><code>lifetime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime">ServiceLifetime</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Caesar.DependencyInjection.CaesarServiceConfiguration.html">CaesarServiceConfiguration</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddRequestPostProcessor_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPostProcessor*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddRequestPostProcessor_System_Type_Microsoft_Extensions_DependencyInjection_ServiceLifetime_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPostProcessor(System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+  AddRequestPostProcessor(Type, ServiceLifetime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a closed post-processor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CaesarServiceConfiguration AddRequestPostProcessor(Type implementationType, ServiceLifetime lifetime = ServiceLifetime.Transient)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>implementationType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+    <dt><code>lifetime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime">ServiceLifetime</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Caesar.DependencyInjection.CaesarServiceConfiguration.html">CaesarServiceConfiguration</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddRequestPostProcessor_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPostProcessor*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddRequestPostProcessor_System_Type_System_Type_Microsoft_Extensions_DependencyInjection_ServiceLifetime_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPostProcessor(System.Type,System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+  AddRequestPostProcessor(Type, Type, ServiceLifetime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a closed post-processor for one specific service type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CaesarServiceConfiguration AddRequestPostProcessor(Type serviceType, Type implementationType, ServiceLifetime lifetime = ServiceLifetime.Transient)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>serviceType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+    <dt><code>implementationType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+    <dt><code>lifetime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime">ServiceLifetime</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Caesar.DependencyInjection.CaesarServiceConfiguration.html">CaesarServiceConfiguration</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddRequestPostProcessor_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPostProcessor*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddRequestPostProcessor__1_Microsoft_Extensions_DependencyInjection_ServiceLifetime_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPostProcessor``1(Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+  AddRequestPostProcessor&lt;TImplementation&gt;(ServiceLifetime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a closed post-processor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CaesarServiceConfiguration AddRequestPostProcessor&lt;TImplementation&gt;(ServiceLifetime lifetime = ServiceLifetime.Transient) where TImplementation : class</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>lifetime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime">ServiceLifetime</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Caesar.DependencyInjection.CaesarServiceConfiguration.html">CaesarServiceConfiguration</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TImplementation</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddRequestPreProcessor_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPreProcessor*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddRequestPreProcessor_System_Type_Microsoft_Extensions_DependencyInjection_ServiceLifetime_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPreProcessor(System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+  AddRequestPreProcessor(Type, ServiceLifetime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a closed pre-processor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CaesarServiceConfiguration AddRequestPreProcessor(Type implementationType, ServiceLifetime lifetime = ServiceLifetime.Transient)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>implementationType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+    <dt><code>lifetime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime">ServiceLifetime</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Caesar.DependencyInjection.CaesarServiceConfiguration.html">CaesarServiceConfiguration</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddRequestPreProcessor_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPreProcessor*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddRequestPreProcessor_System_Type_System_Type_Microsoft_Extensions_DependencyInjection_ServiceLifetime_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPreProcessor(System.Type,System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+  AddRequestPreProcessor(Type, Type, ServiceLifetime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a closed pre-processor for one specific service type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CaesarServiceConfiguration AddRequestPreProcessor(Type serviceType, Type implementationType, ServiceLifetime lifetime = ServiceLifetime.Transient)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>serviceType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+    <dt><code>implementationType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+    <dt><code>lifetime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime">ServiceLifetime</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Caesar.DependencyInjection.CaesarServiceConfiguration.html">CaesarServiceConfiguration</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddRequestPreProcessor_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPreProcessor*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddRequestPreProcessor__1_Microsoft_Extensions_DependencyInjection_ServiceLifetime_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPreProcessor``1(Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+  AddRequestPreProcessor&lt;TImplementation&gt;(ServiceLifetime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a closed pre-processor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CaesarServiceConfiguration AddRequestPreProcessor&lt;TImplementation&gt;(ServiceLifetime lifetime = ServiceLifetime.Transient) where TImplementation : class</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>lifetime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime">ServiceLifetime</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Caesar.DependencyInjection.CaesarServiceConfiguration.html">CaesarServiceConfiguration</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TImplementation</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddStreamBehavior_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddStreamBehavior*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddStreamBehavior_System_Type_Microsoft_Extensions_DependencyInjection_ServiceLifetime_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddStreamBehavior(System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+  AddStreamBehavior(Type, ServiceLifetime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a closed stream behavior.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CaesarServiceConfiguration AddStreamBehavior(Type implementationType, ServiceLifetime lifetime = ServiceLifetime.Transient)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>implementationType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+    <dt><code>lifetime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime">ServiceLifetime</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Caesar.DependencyInjection.CaesarServiceConfiguration.html">CaesarServiceConfiguration</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddStreamBehavior_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddStreamBehavior*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddStreamBehavior_System_Type_System_Type_Microsoft_Extensions_DependencyInjection_ServiceLifetime_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddStreamBehavior(System.Type,System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+  AddStreamBehavior(Type, Type, ServiceLifetime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a closed stream behavior for one specific service type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CaesarServiceConfiguration AddStreamBehavior(Type serviceType, Type implementationType, ServiceLifetime lifetime = ServiceLifetime.Transient)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>serviceType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+    <dt><code>implementationType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+    <dt><code>lifetime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime">ServiceLifetime</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Caesar.DependencyInjection.CaesarServiceConfiguration.html">CaesarServiceConfiguration</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddStreamBehavior_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddStreamBehavior*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_AddStreamBehavior__1_Microsoft_Extensions_DependencyInjection_ServiceLifetime_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.AddStreamBehavior``1(Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+  AddStreamBehavior&lt;TImplementation&gt;(ServiceLifetime)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a closed stream behavior.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CaesarServiceConfiguration AddStreamBehavior&lt;TImplementation&gt;(ServiceLifetime lifetime = ServiceLifetime.Transient) where TImplementation : class</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>lifetime</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.servicelifetime">ServiceLifetime</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Caesar.DependencyInjection.CaesarServiceConfiguration.html">CaesarServiceConfiguration</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>TImplementation</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_RegisterServicesFromAssemblies_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssemblies*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_RegisterServicesFromAssemblies_System_Collections_Generic_IEnumerable_System_Reflection_Assembly__" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssemblies(System.Collections.Generic.IEnumerable{System.Reflection.Assembly})">
+  RegisterServicesFromAssemblies(params IEnumerable&lt;Assembly&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds several assemblies to the scan list.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CaesarServiceConfiguration RegisterServicesFromAssemblies(params IEnumerable&lt;Assembly&gt; assemblies)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>assemblies</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.assembly">Assembly</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Caesar.DependencyInjection.CaesarServiceConfiguration.html">CaesarServiceConfiguration</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_RegisterServicesFromAssembly_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssembly*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_RegisterServicesFromAssembly_System_Reflection_Assembly_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssembly(System.Reflection.Assembly)">
+  RegisterServicesFromAssembly(Assembly)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds <code class="paramref">assembly</code> to the scan list.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CaesarServiceConfiguration RegisterServicesFromAssembly(Assembly assembly)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>assembly</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.reflection.assembly">Assembly</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Caesar.DependencyInjection.CaesarServiceConfiguration.html">CaesarServiceConfiguration</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_RegisterServicesFromAssemblyContaining_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssemblyContaining*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_RegisterServicesFromAssemblyContaining_System_Type_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssemblyContaining(System.Type)">
+  RegisterServicesFromAssemblyContaining(Type)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the assembly that contains <code class="paramref">type</code> to the scan list.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CaesarServiceConfiguration RegisterServicesFromAssemblyContaining(Type type)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>type</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Caesar.DependencyInjection.CaesarServiceConfiguration.html">CaesarServiceConfiguration</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Caesar_DependencyInjection_CaesarServiceConfiguration_RegisterServicesFromAssemblyContaining_" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssemblyContaining*"></a>
+
+  <h3 id="Caesar_DependencyInjection_CaesarServiceConfiguration_RegisterServicesFromAssemblyContaining__1" data-uid="Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssemblyContaining``1">
+  RegisterServicesFromAssemblyContaining&lt;T&gt;()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds the assembly that contains <code class="typeparamref">T</code> to the scan list.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CaesarServiceConfiguration RegisterServicesFromAssemblyContaining&lt;T&gt;()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Caesar.DependencyInjection.CaesarServiceConfiguration.html">CaesarServiceConfiguration</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar/DependencyInjection/CaesarServiceConfiguration.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © Tsezari Mshvenieradze · <a href="https://tsezar.io">tsezar.io</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

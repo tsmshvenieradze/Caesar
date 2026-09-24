@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Pipeline behaviors | Caesar </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Pipeline behaviors | Caesar ">
+      
+      
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/tsmshvenieradze/Caesar/blob/main/docs/guide/pipeline-behaviors.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="Caesar">
+            Caesar
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="pipeline-behaviors">Pipeline behaviors</h1>
+
+<p>A pipeline behavior wraps the handler of a request. It runs code before and after the handler, and it can replace the
+result or skip the handler entirely. Behaviors are where cross-cutting concerns live: logging, validation,
+authorization, caching, transactions, metrics.</p>
+<h2 id="writing-a-behavior">Writing a behavior</h2>
+<p>Implement <a class="xref" href="../api/Caesar.IPipelineBehavior-2.html">IPipelineBehavior&lt;TRequest, TResponse&gt;</a>. Call <code>next</code> to continue down the pipeline:</p>
+<pre><code class="lang-csharp">public sealed partial class LoggingBehavior&lt;TRequest, TResponse&gt;(ILogger&lt;LoggingBehavior&lt;TRequest, TResponse&gt;&gt; logger)
+    : IPipelineBehavior&lt;TRequest, TResponse&gt;
+    where TRequest : notnull
+{
+    public async Task&lt;TResponse&gt; Handle(TRequest request, RequestHandlerDelegate&lt;TResponse&gt; next, CancellationToken cancellationToken)
+    {
+        LogHandling(typeof(TRequest).Name);
+        var response = await next(cancellationToken);
+        LogHandled(typeof(TRequest).Name);
+        return response;
+    }
+
+    [LoggerMessage(Level = LogLevel.Information, Message = &quot;Handling {Request}&quot;)]
+    private partial void LogHandling(string request);
+
+    [LoggerMessage(Level = LogLevel.Information, Message = &quot;Handled {Request}&quot;)]
+    private partial void LogHandled(string request);
+}
+</code></pre>
+<p><code>next</code> is a <a class="xref" href="../api/Caesar.RequestHandlerDelegate-1.html">RequestHandlerDelegate&lt;TResponse&gt;</a>. <code>next()</code> without a token keeps the token currently flowing;
+<code>next(otherToken)</code> replaces it for the rest of the chain, for example to add a timeout.</p>
+<h2 id="short-circuiting">Short-circuiting</h2>
+<p>Not calling <code>next</code> stops the pipeline: the handler never runs. That is how validation, authorization and caching
+behaviors work:</p>
+<pre><code class="lang-csharp">// Not calling next() short-circuits the pipeline: the handler never runs.
+public sealed class ValidationBehavior&lt;TRequest, TResponse&gt;(IEnumerable&lt;IValidator&lt;TRequest&gt;&gt; validators)
+    : IPipelineBehavior&lt;TRequest, TResponse&gt;
+    where TRequest : notnull
+{
+    public Task&lt;TResponse&gt; Handle(TRequest request, RequestHandlerDelegate&lt;TResponse&gt; next, CancellationToken cancellationToken)
+    {
+        var errors = validators.SelectMany(v =&gt; v.Validate(request)).ToList();
+        return errors.Count == 0 ? next(cancellationToken) : throw new ValidationException(errors);
+    }
+}
+</code></pre><h2 id="open-and-closed-behaviors">Open and closed behaviors</h2>
+<p>An <strong>open</strong> behavior is a generic type definition that applies to every request, added with <code>AddOpenBehavior</code>. A
+<strong>closed</strong> behavior implements <code>IPipelineBehavior&lt;TRequest, TResponse&gt;</code> for specific types and applies only to those,
+added with <code>AddBehavior</code>:</p>
+<pre><code class="lang-csharp">// Applies only to CreateCustomer. Register with cfg.AddBehavior&lt;NormalizeEmail&gt;().
+public sealed class NormalizeEmail : IPipelineBehavior&lt;CreateCustomer, Guid&gt;
+{
+    public Task&lt;Guid&gt; Handle(CreateCustomer request, RequestHandlerDelegate&lt;Guid&gt; next, CancellationToken cancellationToken)
+        =&gt; request.Email == request.Email.Trim() ? next(cancellationToken) : throw new ValidationException([&quot;Email has surrounding whitespace.&quot;]);
+}
+</code></pre>
+<p>An open behavior must implement the interface with its own type parameters in the same order,
+<code>class X&lt;TRequest, TResponse&gt; : IPipelineBehavior&lt;TRequest, TResponse&gt;</code>; <code>AddOpenBehavior</code> throws otherwise.</p>
+<h2 id="order">Order</h2>
+<p>Registration order is execution order: the first behavior added is the outermost.</p>
+<pre><code class="lang-csharp">services.AddCaesar(cfg =&gt;
+{
+    cfg.RegisterServicesFromAssemblyContaining&lt;CreateCustomer&gt;();
+
+    // Registration order is execution order: the first behavior is the outermost.
+    cfg.AddOpenBehavior(typeof(LoggingBehavior&lt;,&gt;));
+    cfg.AddOpenBehavior(typeof(ValidationBehavior&lt;,&gt;));
+    cfg.AddBehavior&lt;NormalizeEmail&gt;();
+
+    cfg.AddOpenStreamBehavior(typeof(CountItemsBehavior&lt;,&gt;));
+});
+</code></pre>
+<p>Caesar adds its own behaviors only when the matching handler type exists in the container. The complete order,
+outermost first, is:</p>
+<ol>
+<li><a class="xref" href="../api/Caesar.Pipeline.RequestExceptionActionProcessorBehavior-2.html">RequestExceptionActionProcessorBehavior&lt;TRequest, TResponse&gt;</a> (or after step 2, see
+<a href="exception-handling.html#when-actions-run">Exception handling</a>)</li>
+<li><a class="xref" href="../api/Caesar.Pipeline.RequestExceptionProcessorBehavior-2.html">RequestExceptionProcessorBehavior&lt;TRequest, TResponse&gt;</a></li>
+<li><a class="xref" href="../api/Caesar.Pipeline.RequestPreProcessorBehavior-2.html">RequestPreProcessorBehavior&lt;TRequest, TResponse&gt;</a></li>
+<li><a class="xref" href="../api/Caesar.Pipeline.RequestPostProcessorBehavior-2.html">RequestPostProcessorBehavior&lt;TRequest, TResponse&gt;</a></li>
+<li>Behaviors you added with <code>AddBehavior</code> / <code>AddOpenBehavior</code></li>
+<li>The handler</li>
+</ol>
+<p>So exception handlers see failures from your behaviors, and pre-processors run before your behaviors.</p>
+<h2 id="stream-behaviors">Stream behaviors</h2>
+<p>Streaming requests have their own pipeline. Implement <a class="xref" href="../api/Caesar.IStreamPipelineBehavior-2.html">IStreamPipelineBehavior&lt;TRequest, TResponse&gt;</a> and add it with
+<code>AddStreamBehavior</code> / <code>AddOpenStreamBehavior</code>:</p>
+<pre><code class="lang-csharp">public sealed class CountItemsBehavior&lt;TRequest, TResponse&gt; : IStreamPipelineBehavior&lt;TRequest, TResponse&gt;
+    where TRequest : notnull
+{
+    public async IAsyncEnumerable&lt;TResponse&gt; Handle(TRequest request, StreamHandlerDelegate&lt;TResponse&gt; next,
+        [EnumeratorCancellation] CancellationToken cancellationToken)
+    {
+        var count = 0;
+        await foreach (var item in next().WithCancellation(cancellationToken))
+        {
+            count++;
+            yield return item;
+        }
+
+        Console.WriteLine($&quot;{typeof(TRequest).Name} streamed {count} item(s)&quot;);
+    }
+}
+</code></pre>
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/tsmshvenieradze/Caesar/blob/main/docs/guide/pipeline-behaviors.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © Tsezari Mshvenieradze · <a href="https://tsezar.io">tsezar.io</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

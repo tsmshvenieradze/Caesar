@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Notifications | Caesar </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Notifications | Caesar ">
+      
+      
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/tsmshvenieradze/Caesar/blob/main/docs/guide/notifications.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="Caesar">
+            Caesar
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="notifications">Notifications</h1>
+
+<p>A notification announces that something happened. It goes to every handler registered for it, zero or more, and has no
+response. Use notifications for side effects that should not be coupled to the code that caused them: sending an email,
+updating a read model, notifying another module.</p>
+<h2 id="define-and-handle">Define and handle</h2>
+<p>Implement <a class="xref" href="../api/Caesar.INotification.html">INotification</a> and one <a class="xref" href="../api/Caesar.INotificationHandler-1.html">INotificationHandler&lt;TNotification&gt;</a> per reaction:</p>
+<pre><code class="lang-csharp">public sealed record CustomerCreated(Guid CustomerId) : INotification;
+
+public sealed class SendWelcomeEmail : INotificationHandler&lt;CustomerCreated&gt;
+{
+    public Task Handle(CustomerCreated notification, CancellationToken cancellationToken) =&gt; Task.CompletedTask;
+}
+
+public sealed class UpdateCrm : INotificationHandler&lt;CustomerCreated&gt;
+{
+    public Task Handle(CustomerCreated notification, CancellationToken cancellationToken) =&gt; Task.CompletedTask;
+}
+</code></pre><h2 id="publish">Publish</h2>
+<p>Inject <a class="xref" href="../api/Caesar.IPublisher.html">IPublisher</a> (or <a class="xref" href="../api/Caesar.IMediator.html">IMediator</a>) and publish:</p>
+<pre><code class="lang-csharp">await publisher.Publish(new CustomerCreated(id), cancellationToken);
+</code></pre>
+<p>Publishing a notification with no handlers is not an error; it completes immediately. <code>Publish(object)</code> accepts a
+notification whose type is only known at runtime and throws <code>ArgumentException</code> for an object that does not implement
+<code>INotification</code>.</p>
+<h2 id="publish-strategies">Publish strategies</h2>
+<p>How the handlers run is decided by the notification publisher. Pick one with <code>cfg.NotificationPublisherType</code>, or pass an
+instance with <code>cfg.NotificationPublisher</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../api/Caesar.NotificationPublishers.ForeachAwaitPublisher.html">ForeachAwaitPublisher</a> (default)</td>
+<td>Handlers run one after another; the first exception stops the publish.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../api/Caesar.NotificationPublishers.TaskWhenAllPublisher.html">TaskWhenAllPublisher</a></td>
+<td>Handlers start together; all exceptions are collected into an <code>AggregateException</code>.</td>
+</tr>
+<tr>
+<td><a class="xref" href="../api/Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher.html">ForeachAwaitContinueOnFailurePublisher</a></td>
+<td>Handlers run one after another; every handler runs even if one fails, then failures are thrown together.</td>
+</tr>
+</tbody>
+</table>
+<p>With the last two, a single failure is rethrown as-is; two or more are rethrown as an <code>AggregateException</code>.
+<code>ForeachAwaitContinueOnFailurePublisher</code> does not collect an <code>OperationCanceledException</code> caused by the publish token:
+cancellation stops the publish immediately.</p>
+<h2 id="synchronous-handlers">Synchronous handlers</h2>
+<p>For a handler with no asynchronous work, derive from <a class="xref" href="../api/Caesar.NotificationHandler-1.html">NotificationHandler&lt;TNotification&gt;</a> and override the <code>void</code>
+method:</p>
+<pre><code class="lang-csharp">public sealed class CountCustomers : NotificationHandler&lt;CustomerCreated&gt;
+{
+    public int Count { get; private set; }
+
+    protected override void Handle(CustomerCreated notification) =&gt; Count++;
+}
+</code></pre><h2 id="a-custom-publisher">A custom publisher</h2>
+<p>Implement <a class="xref" href="../api/Caesar.INotificationPublisher.html">INotificationPublisher</a> for anything else: fire-and-forget, a channel, a transactional outbox.
+Each <a class="xref" href="../api/Caesar.NotificationHandlerExecutor.html">NotificationHandlerExecutor</a> gives you the handler instance and a callback that runs it:</p>
+<pre><code class="lang-csharp">// Runs handlers one after another and logs how long each one took.
+public sealed partial class TimedPublisher(ILogger&lt;TimedPublisher&gt; logger) : INotificationPublisher
+{
+    public async Task Publish(IEnumerable&lt;NotificationHandlerExecutor&gt; handlerExecutors, INotification notification, CancellationToken cancellationToken)
+    {
+        foreach (var executor in handlerExecutors)
+        {
+            var started = TimeProvider.System.GetTimestamp();
+            await executor.HandlerCallback(notification, cancellationToken);
+            LogHandled(executor.HandlerInstance.GetType().Name, TimeProvider.System.GetElapsedTime(started).TotalMilliseconds);
+        }
+    }
+
+    [LoggerMessage(Level = LogLevel.Information, Message = &quot;{Handler} took {Elapsed} ms&quot;)]
+    private partial void LogHandled(string handler, double elapsed);
+}
+</code></pre>
+<p>Register it with <code>cfg.NotificationPublisherType = typeof(TimedPublisher)</code>. The publisher is resolved from the container,
+so it can take dependencies such as a logger.</p>
+<h2 id="intercepting-publishes">Intercepting publishes</h2>
+<p>To act on every publish centrally, for example to persist notifications to an outbox, subclass
+<a class="xref" href="../api/Caesar.Mediator.html">Mediator</a> and override <code>PublishCore</code>:</p>
+<pre><code class="lang-csharp">// Register with cfg.MediatorImplementationType = typeof(OutboxMediator).
+public sealed class OutboxMediator(IServiceProvider serviceProvider, INotificationPublisher publisher)
+    : Mediator(serviceProvider, publisher)
+{
+    protected override Task PublishCore(IEnumerable&lt;NotificationHandlerExecutor&gt; handlerExecutors, INotification notification, CancellationToken cancellationToken)
+    {
+        // Inspect, reorder or persist the notification here, then publish as usual.
+        return base.PublishCore(handlerExecutors, notification, cancellationToken);
+    }
+}
+</code></pre>
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/tsmshvenieradze/Caesar/blob/main/docs/guide/notifications.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © Tsezari Mshvenieradze · <a href="https://tsezar.io">tsezar.io</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

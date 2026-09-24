@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Getting started | Caesar </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Getting started | Caesar ">
+      
+      
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/tsmshvenieradze/Caesar/blob/main/docs/guide/getting-started.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="Caesar">
+            Caesar
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="getting-started">Getting started</h1>
+
+<p>This page takes you from an empty solution to a request that is sent, handled and returns a result. It assumes a
+layered solution with an Application project and a host (API, worker or console) project, but everything works in a
+single project too.</p>
+<h2 id="install">Install</h2>
+<p>Reference the contracts from the Application layer and the implementation from the host:</p>
+<pre><code class="lang-bash">dotnet add src/MyApp.Application package Caesar.Abstractions
+dotnet add src/MyApp.Api package Caesar
+</code></pre>
+<p><code>Caesar.Abstractions</code> has no dependencies, so the Application layer stays free of infrastructure. <code>Caesar</code> depends only
+on <code>Microsoft.Extensions.DependencyInjection.Abstractions</code>.</p>
+<h2 id="define-a-request-and-its-handler">Define a request and its handler</h2>
+<p>A request is a message with exactly one handler. Implement <a class="xref" href="../api/Caesar.IRequest-1.html">IRequest&lt;TResponse&gt;</a> with the response type, and
+<a class="xref" href="../api/Caesar.IRequestHandler-2.html">IRequestHandler&lt;TRequest, TResponse&gt;</a> to handle it:</p>
+<pre><code class="lang-csharp">public sealed record CreateCustomer(string Name, string Email) : IRequest&lt;Guid&gt;;
+
+public sealed class CreateCustomerHandler(ICustomerRepository repository) : IRequestHandler&lt;CreateCustomer, Guid&gt;
+{
+    public async Task&lt;Guid&gt; Handle(CreateCustomer request, CancellationToken cancellationToken)
+    {
+        var customer = new Customer(Guid.NewGuid(), request.Name, request.Email);
+        await repository.Save(customer, cancellationToken);
+        return customer.Id;
+    }
+}
+</code></pre>
+<p>A command that returns nothing implements <a class="xref" href="../api/Caesar.IRequest.html">IRequest</a> and is handled by <a class="xref" href="../api/Caesar.IRequestHandler-1.html">IRequestHandler&lt;TRequest&gt;</a>:</p>
+<pre><code class="lang-csharp">public sealed record DeactivateCustomer(Guid Id) : IRequest;
+
+public sealed class DeactivateCustomerHandler(ICustomerRepository repository) : IRequestHandler&lt;DeactivateCustomer&gt;
+{
+    public Task Handle(DeactivateCustomer request, CancellationToken cancellationToken)
+        =&gt; repository.Deactivate(request.Id, cancellationToken);
+}
+</code></pre><h2 id="register-caesar">Register Caesar</h2>
+<p>Call <code>AddCaesar</code> in the composition root and point it at the assemblies that contain your handlers. Scanning finds
+handlers, notification handlers, processors and exception handlers; behaviors are added explicitly because their order
+matters.</p>
+<pre><code class="lang-csharp">services.AddCaesar(cfg =&gt;
+{
+    cfg.RegisterServicesFromAssemblyContaining&lt;CreateCustomer&gt;();
+    cfg.NotificationPublisherType = typeof(TaskWhenAllPublisher);
+
+    cfg.AddOpenBehavior(typeof(LoggingBehavior&lt;,&gt;));    // outermost
+    cfg.AddOpenBehavior(typeof(ValidationBehavior&lt;,&gt;));
+});
+</code></pre>
+<p>Every option is described in <a href="configuration.html">Configuration</a>.</p>
+<h2 id="send">Send</h2>
+<pre><code class="lang-csharp">public sealed class CustomerEndpoints(ISender sender)
+{
+    public Task&lt;Guid&gt; Create(CreateCustomer command, CancellationToken cancellationToken)
+        =&gt; sender.Send(command, cancellationToken);
+
+    public Task Deactivate(Guid id, CancellationToken cancellationToken)
+        =&gt; sender.Send(new DeactivateCustomer(id), cancellationToken);
+}
+</code></pre>
+<p>Inject the narrowest interface a component needs:</p>
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Use it when the component</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref" href="../api/Caesar.ISender.html">ISender</a></td>
+<td>only sends requests or creates streams</td>
+</tr>
+<tr>
+<td><a class="xref" href="../api/Caesar.IPublisher.html">IPublisher</a></td>
+<td>only publishes notifications</td>
+</tr>
+<tr>
+<td><a class="xref" href="../api/Caesar.IMediator.html">IMediator</a></td>
+<td>does both</td>
+</tr>
+</tbody>
+</table>
+<h2 id="resolve-inside-a-scope">Resolve inside a scope</h2>
+<p>The mediator is registered as <strong>scoped</strong> by default, so it is resolved from a request scope, which ASP.NET Core
+creates for you. Outside a request, for example in a console app or a test, create the scope yourself:</p>
+<pre><code class="lang-csharp">using var scope = host.Services.CreateScope();
+var sender = scope.ServiceProvider.GetRequiredService&lt;ISender&gt;();
+await sender.Send(new DeactivateCustomer(Guid.NewGuid()));
+</code></pre>
+<p><a href="configuration.html#lifetimes">Configuration → Lifetimes</a> explains why, and how to change it.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/tsmshvenieradze/Caesar/blob/main/docs/guide/getting-started.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © Tsezari Mshvenieradze · <a href="https://tsezar.io">tsezar.io</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

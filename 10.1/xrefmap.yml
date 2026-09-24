@@ -1,0 +1,2340 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: Caesar
+  name: Caesar
+  href: api/Caesar.html
+  commentId: N:Caesar
+  fullName: Caesar
+  nameWithType: Caesar
+- uid: Caesar.DependencyInjection
+  name: Caesar.DependencyInjection
+  href: api/Caesar.DependencyInjection.html
+  commentId: N:Caesar.DependencyInjection
+  fullName: Caesar.DependencyInjection
+  nameWithType: Caesar.DependencyInjection
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration
+  name: CaesarServiceConfiguration
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html
+  commentId: T:Caesar.DependencyInjection.CaesarServiceConfiguration
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration
+  nameWithType: CaesarServiceConfiguration
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.#ctor
+  name: CaesarServiceConfiguration()
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration__ctor
+  commentId: M:Caesar.DependencyInjection.CaesarServiceConfiguration.#ctor
+  name.vb: New()
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.CaesarServiceConfiguration()
+  fullName.vb: Caesar.DependencyInjection.CaesarServiceConfiguration.New()
+  nameWithType: CaesarServiceConfiguration.CaesarServiceConfiguration()
+  nameWithType.vb: CaesarServiceConfiguration.New()
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.#ctor*
+  name: CaesarServiceConfiguration
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration__ctor_
+  commentId: Overload:Caesar.DependencyInjection.CaesarServiceConfiguration.#ctor
+  name.vb: New
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.CaesarServiceConfiguration
+  fullName.vb: Caesar.DependencyInjection.CaesarServiceConfiguration.New
+  nameWithType: CaesarServiceConfiguration.CaesarServiceConfiguration
+  nameWithType.vb: CaesarServiceConfiguration.New
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddBehavior(System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  name: AddBehavior(Type, ServiceLifetime)
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddBehavior_System_Type_Microsoft_Extensions_DependencyInjection_ServiceLifetime_
+  commentId: M:Caesar.DependencyInjection.CaesarServiceConfiguration.AddBehavior(System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddBehavior(System.Type, Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  nameWithType: CaesarServiceConfiguration.AddBehavior(Type, ServiceLifetime)
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddBehavior(System.Type,System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  name: AddBehavior(Type, Type, ServiceLifetime)
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddBehavior_System_Type_System_Type_Microsoft_Extensions_DependencyInjection_ServiceLifetime_
+  commentId: M:Caesar.DependencyInjection.CaesarServiceConfiguration.AddBehavior(System.Type,System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddBehavior(System.Type, System.Type, Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  nameWithType: CaesarServiceConfiguration.AddBehavior(Type, Type, ServiceLifetime)
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddBehavior*
+  name: AddBehavior
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddBehavior_
+  commentId: Overload:Caesar.DependencyInjection.CaesarServiceConfiguration.AddBehavior
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddBehavior
+  nameWithType: CaesarServiceConfiguration.AddBehavior
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddBehavior``1(Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  name: AddBehavior<TImplementation>(ServiceLifetime)
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddBehavior__1_Microsoft_Extensions_DependencyInjection_ServiceLifetime_
+  commentId: M:Caesar.DependencyInjection.CaesarServiceConfiguration.AddBehavior``1(Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  name.vb: AddBehavior(Of TImplementation)(ServiceLifetime)
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddBehavior<TImplementation>(Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  fullName.vb: Caesar.DependencyInjection.CaesarServiceConfiguration.AddBehavior(Of TImplementation)(Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  nameWithType: CaesarServiceConfiguration.AddBehavior<TImplementation>(ServiceLifetime)
+  nameWithType.vb: CaesarServiceConfiguration.AddBehavior(Of TImplementation)(ServiceLifetime)
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddBehavior``2(Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  name: AddBehavior<TService, TImplementation>(ServiceLifetime)
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddBehavior__2_Microsoft_Extensions_DependencyInjection_ServiceLifetime_
+  commentId: M:Caesar.DependencyInjection.CaesarServiceConfiguration.AddBehavior``2(Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  name.vb: AddBehavior(Of TService, TImplementation)(ServiceLifetime)
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddBehavior<TService, TImplementation>(Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  fullName.vb: Caesar.DependencyInjection.CaesarServiceConfiguration.AddBehavior(Of TService, TImplementation)(Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  nameWithType: CaesarServiceConfiguration.AddBehavior<TService, TImplementation>(ServiceLifetime)
+  nameWithType.vb: CaesarServiceConfiguration.AddBehavior(Of TService, TImplementation)(ServiceLifetime)
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenBehavior(System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  name: AddOpenBehavior(Type, ServiceLifetime)
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddOpenBehavior_System_Type_Microsoft_Extensions_DependencyInjection_ServiceLifetime_
+  commentId: M:Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenBehavior(System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenBehavior(System.Type, Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  nameWithType: CaesarServiceConfiguration.AddOpenBehavior(Type, ServiceLifetime)
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenBehavior*
+  name: AddOpenBehavior
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddOpenBehavior_
+  commentId: Overload:Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenBehavior
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenBehavior
+  nameWithType: CaesarServiceConfiguration.AddOpenBehavior
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenBehaviors(System.Collections.Generic.IEnumerable{System.Type},Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  name: AddOpenBehaviors(IEnumerable<Type>, ServiceLifetime)
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddOpenBehaviors_System_Collections_Generic_IEnumerable_System_Type__Microsoft_Extensions_DependencyInjection_ServiceLifetime_
+  commentId: M:Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenBehaviors(System.Collections.Generic.IEnumerable{System.Type},Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  name.vb: AddOpenBehaviors(IEnumerable(Of Type), ServiceLifetime)
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenBehaviors(System.Collections.Generic.IEnumerable<System.Type>, Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  fullName.vb: Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenBehaviors(System.Collections.Generic.IEnumerable(Of System.Type), Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  nameWithType: CaesarServiceConfiguration.AddOpenBehaviors(IEnumerable<Type>, ServiceLifetime)
+  nameWithType.vb: CaesarServiceConfiguration.AddOpenBehaviors(IEnumerable(Of Type), ServiceLifetime)
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenBehaviors*
+  name: AddOpenBehaviors
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddOpenBehaviors_
+  commentId: Overload:Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenBehaviors
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenBehaviors
+  nameWithType: CaesarServiceConfiguration.AddOpenBehaviors
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenRequestPostProcessor(System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  name: AddOpenRequestPostProcessor(Type, ServiceLifetime)
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddOpenRequestPostProcessor_System_Type_Microsoft_Extensions_DependencyInjection_ServiceLifetime_
+  commentId: M:Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenRequestPostProcessor(System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenRequestPostProcessor(System.Type, Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  nameWithType: CaesarServiceConfiguration.AddOpenRequestPostProcessor(Type, ServiceLifetime)
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenRequestPostProcessor*
+  name: AddOpenRequestPostProcessor
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddOpenRequestPostProcessor_
+  commentId: Overload:Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenRequestPostProcessor
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenRequestPostProcessor
+  nameWithType: CaesarServiceConfiguration.AddOpenRequestPostProcessor
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenRequestPreProcessor(System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  name: AddOpenRequestPreProcessor(Type, ServiceLifetime)
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddOpenRequestPreProcessor_System_Type_Microsoft_Extensions_DependencyInjection_ServiceLifetime_
+  commentId: M:Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenRequestPreProcessor(System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenRequestPreProcessor(System.Type, Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  nameWithType: CaesarServiceConfiguration.AddOpenRequestPreProcessor(Type, ServiceLifetime)
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenRequestPreProcessor*
+  name: AddOpenRequestPreProcessor
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddOpenRequestPreProcessor_
+  commentId: Overload:Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenRequestPreProcessor
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenRequestPreProcessor
+  nameWithType: CaesarServiceConfiguration.AddOpenRequestPreProcessor
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenStreamBehavior(System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  name: AddOpenStreamBehavior(Type, ServiceLifetime)
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddOpenStreamBehavior_System_Type_Microsoft_Extensions_DependencyInjection_ServiceLifetime_
+  commentId: M:Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenStreamBehavior(System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenStreamBehavior(System.Type, Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  nameWithType: CaesarServiceConfiguration.AddOpenStreamBehavior(Type, ServiceLifetime)
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenStreamBehavior*
+  name: AddOpenStreamBehavior
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddOpenStreamBehavior_
+  commentId: Overload:Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenStreamBehavior
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddOpenStreamBehavior
+  nameWithType: CaesarServiceConfiguration.AddOpenStreamBehavior
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPostProcessor(System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  name: AddRequestPostProcessor(Type, ServiceLifetime)
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddRequestPostProcessor_System_Type_Microsoft_Extensions_DependencyInjection_ServiceLifetime_
+  commentId: M:Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPostProcessor(System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPostProcessor(System.Type, Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  nameWithType: CaesarServiceConfiguration.AddRequestPostProcessor(Type, ServiceLifetime)
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPostProcessor(System.Type,System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  name: AddRequestPostProcessor(Type, Type, ServiceLifetime)
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddRequestPostProcessor_System_Type_System_Type_Microsoft_Extensions_DependencyInjection_ServiceLifetime_
+  commentId: M:Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPostProcessor(System.Type,System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPostProcessor(System.Type, System.Type, Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  nameWithType: CaesarServiceConfiguration.AddRequestPostProcessor(Type, Type, ServiceLifetime)
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPostProcessor*
+  name: AddRequestPostProcessor
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddRequestPostProcessor_
+  commentId: Overload:Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPostProcessor
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPostProcessor
+  nameWithType: CaesarServiceConfiguration.AddRequestPostProcessor
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPostProcessor``1(Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  name: AddRequestPostProcessor<TImplementation>(ServiceLifetime)
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddRequestPostProcessor__1_Microsoft_Extensions_DependencyInjection_ServiceLifetime_
+  commentId: M:Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPostProcessor``1(Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  name.vb: AddRequestPostProcessor(Of TImplementation)(ServiceLifetime)
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPostProcessor<TImplementation>(Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  fullName.vb: Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPostProcessor(Of TImplementation)(Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  nameWithType: CaesarServiceConfiguration.AddRequestPostProcessor<TImplementation>(ServiceLifetime)
+  nameWithType.vb: CaesarServiceConfiguration.AddRequestPostProcessor(Of TImplementation)(ServiceLifetime)
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPreProcessor(System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  name: AddRequestPreProcessor(Type, ServiceLifetime)
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddRequestPreProcessor_System_Type_Microsoft_Extensions_DependencyInjection_ServiceLifetime_
+  commentId: M:Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPreProcessor(System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPreProcessor(System.Type, Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  nameWithType: CaesarServiceConfiguration.AddRequestPreProcessor(Type, ServiceLifetime)
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPreProcessor(System.Type,System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  name: AddRequestPreProcessor(Type, Type, ServiceLifetime)
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddRequestPreProcessor_System_Type_System_Type_Microsoft_Extensions_DependencyInjection_ServiceLifetime_
+  commentId: M:Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPreProcessor(System.Type,System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPreProcessor(System.Type, System.Type, Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  nameWithType: CaesarServiceConfiguration.AddRequestPreProcessor(Type, Type, ServiceLifetime)
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPreProcessor*
+  name: AddRequestPreProcessor
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddRequestPreProcessor_
+  commentId: Overload:Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPreProcessor
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPreProcessor
+  nameWithType: CaesarServiceConfiguration.AddRequestPreProcessor
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPreProcessor``1(Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  name: AddRequestPreProcessor<TImplementation>(ServiceLifetime)
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddRequestPreProcessor__1_Microsoft_Extensions_DependencyInjection_ServiceLifetime_
+  commentId: M:Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPreProcessor``1(Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  name.vb: AddRequestPreProcessor(Of TImplementation)(ServiceLifetime)
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPreProcessor<TImplementation>(Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  fullName.vb: Caesar.DependencyInjection.CaesarServiceConfiguration.AddRequestPreProcessor(Of TImplementation)(Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  nameWithType: CaesarServiceConfiguration.AddRequestPreProcessor<TImplementation>(ServiceLifetime)
+  nameWithType.vb: CaesarServiceConfiguration.AddRequestPreProcessor(Of TImplementation)(ServiceLifetime)
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddStreamBehavior(System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  name: AddStreamBehavior(Type, ServiceLifetime)
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddStreamBehavior_System_Type_Microsoft_Extensions_DependencyInjection_ServiceLifetime_
+  commentId: M:Caesar.DependencyInjection.CaesarServiceConfiguration.AddStreamBehavior(System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddStreamBehavior(System.Type, Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  nameWithType: CaesarServiceConfiguration.AddStreamBehavior(Type, ServiceLifetime)
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddStreamBehavior(System.Type,System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  name: AddStreamBehavior(Type, Type, ServiceLifetime)
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddStreamBehavior_System_Type_System_Type_Microsoft_Extensions_DependencyInjection_ServiceLifetime_
+  commentId: M:Caesar.DependencyInjection.CaesarServiceConfiguration.AddStreamBehavior(System.Type,System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddStreamBehavior(System.Type, System.Type, Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  nameWithType: CaesarServiceConfiguration.AddStreamBehavior(Type, Type, ServiceLifetime)
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddStreamBehavior*
+  name: AddStreamBehavior
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddStreamBehavior_
+  commentId: Overload:Caesar.DependencyInjection.CaesarServiceConfiguration.AddStreamBehavior
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddStreamBehavior
+  nameWithType: CaesarServiceConfiguration.AddStreamBehavior
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AddStreamBehavior``1(Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  name: AddStreamBehavior<TImplementation>(ServiceLifetime)
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AddStreamBehavior__1_Microsoft_Extensions_DependencyInjection_ServiceLifetime_
+  commentId: M:Caesar.DependencyInjection.CaesarServiceConfiguration.AddStreamBehavior``1(Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  name.vb: AddStreamBehavior(Of TImplementation)(ServiceLifetime)
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AddStreamBehavior<TImplementation>(Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  fullName.vb: Caesar.DependencyInjection.CaesarServiceConfiguration.AddStreamBehavior(Of TImplementation)(Microsoft.Extensions.DependencyInjection.ServiceLifetime)
+  nameWithType: CaesarServiceConfiguration.AddStreamBehavior<TImplementation>(ServiceLifetime)
+  nameWithType.vb: CaesarServiceConfiguration.AddStreamBehavior(Of TImplementation)(ServiceLifetime)
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AssembliesToRegister
+  name: AssembliesToRegister
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AssembliesToRegister
+  commentId: P:Caesar.DependencyInjection.CaesarServiceConfiguration.AssembliesToRegister
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AssembliesToRegister
+  nameWithType: CaesarServiceConfiguration.AssembliesToRegister
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AssembliesToRegister*
+  name: AssembliesToRegister
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AssembliesToRegister_
+  commentId: Overload:Caesar.DependencyInjection.CaesarServiceConfiguration.AssembliesToRegister
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AssembliesToRegister
+  nameWithType: CaesarServiceConfiguration.AssembliesToRegister
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AutoRegisterRequestProcessors
+  name: AutoRegisterRequestProcessors
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AutoRegisterRequestProcessors
+  commentId: P:Caesar.DependencyInjection.CaesarServiceConfiguration.AutoRegisterRequestProcessors
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AutoRegisterRequestProcessors
+  nameWithType: CaesarServiceConfiguration.AutoRegisterRequestProcessors
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.AutoRegisterRequestProcessors*
+  name: AutoRegisterRequestProcessors
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_AutoRegisterRequestProcessors_
+  commentId: Overload:Caesar.DependencyInjection.CaesarServiceConfiguration.AutoRegisterRequestProcessors
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.AutoRegisterRequestProcessors
+  nameWithType: CaesarServiceConfiguration.AutoRegisterRequestProcessors
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.Lifetime
+  name: Lifetime
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_Lifetime
+  commentId: P:Caesar.DependencyInjection.CaesarServiceConfiguration.Lifetime
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.Lifetime
+  nameWithType: CaesarServiceConfiguration.Lifetime
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.Lifetime*
+  name: Lifetime
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_Lifetime_
+  commentId: Overload:Caesar.DependencyInjection.CaesarServiceConfiguration.Lifetime
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.Lifetime
+  nameWithType: CaesarServiceConfiguration.Lifetime
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.MediatorImplementationType
+  name: MediatorImplementationType
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_MediatorImplementationType
+  commentId: P:Caesar.DependencyInjection.CaesarServiceConfiguration.MediatorImplementationType
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.MediatorImplementationType
+  nameWithType: CaesarServiceConfiguration.MediatorImplementationType
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.MediatorImplementationType*
+  name: MediatorImplementationType
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_MediatorImplementationType_
+  commentId: Overload:Caesar.DependencyInjection.CaesarServiceConfiguration.MediatorImplementationType
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.MediatorImplementationType
+  nameWithType: CaesarServiceConfiguration.MediatorImplementationType
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.MediatorLifetime
+  name: MediatorLifetime
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_MediatorLifetime
+  commentId: P:Caesar.DependencyInjection.CaesarServiceConfiguration.MediatorLifetime
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.MediatorLifetime
+  nameWithType: CaesarServiceConfiguration.MediatorLifetime
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.MediatorLifetime*
+  name: MediatorLifetime
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_MediatorLifetime_
+  commentId: Overload:Caesar.DependencyInjection.CaesarServiceConfiguration.MediatorLifetime
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.MediatorLifetime
+  nameWithType: CaesarServiceConfiguration.MediatorLifetime
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.NotificationPublisher
+  name: NotificationPublisher
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_NotificationPublisher
+  commentId: P:Caesar.DependencyInjection.CaesarServiceConfiguration.NotificationPublisher
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.NotificationPublisher
+  nameWithType: CaesarServiceConfiguration.NotificationPublisher
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.NotificationPublisher*
+  name: NotificationPublisher
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_NotificationPublisher_
+  commentId: Overload:Caesar.DependencyInjection.CaesarServiceConfiguration.NotificationPublisher
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.NotificationPublisher
+  nameWithType: CaesarServiceConfiguration.NotificationPublisher
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.NotificationPublisherType
+  name: NotificationPublisherType
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_NotificationPublisherType
+  commentId: P:Caesar.DependencyInjection.CaesarServiceConfiguration.NotificationPublisherType
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.NotificationPublisherType
+  nameWithType: CaesarServiceConfiguration.NotificationPublisherType
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.NotificationPublisherType*
+  name: NotificationPublisherType
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_NotificationPublisherType_
+  commentId: Overload:Caesar.DependencyInjection.CaesarServiceConfiguration.NotificationPublisherType
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.NotificationPublisherType
+  nameWithType: CaesarServiceConfiguration.NotificationPublisherType
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssemblies(System.Collections.Generic.IEnumerable{System.Reflection.Assembly})
+  name: RegisterServicesFromAssemblies(params IEnumerable<Assembly>)
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_RegisterServicesFromAssemblies_System_Collections_Generic_IEnumerable_System_Reflection_Assembly__
+  commentId: M:Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssemblies(System.Collections.Generic.IEnumerable{System.Reflection.Assembly})
+  name.vb: RegisterServicesFromAssemblies(IEnumerable(Of Assembly))
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssemblies(params System.Collections.Generic.IEnumerable<System.Reflection.Assembly>)
+  fullName.vb: Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssemblies(System.Collections.Generic.IEnumerable(Of System.Reflection.Assembly))
+  nameWithType: CaesarServiceConfiguration.RegisterServicesFromAssemblies(params IEnumerable<Assembly>)
+  nameWithType.vb: CaesarServiceConfiguration.RegisterServicesFromAssemblies(IEnumerable(Of Assembly))
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssemblies*
+  name: RegisterServicesFromAssemblies
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_RegisterServicesFromAssemblies_
+  commentId: Overload:Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssemblies
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssemblies
+  nameWithType: CaesarServiceConfiguration.RegisterServicesFromAssemblies
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssembly(System.Reflection.Assembly)
+  name: RegisterServicesFromAssembly(Assembly)
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_RegisterServicesFromAssembly_System_Reflection_Assembly_
+  commentId: M:Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssembly(System.Reflection.Assembly)
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssembly(System.Reflection.Assembly)
+  nameWithType: CaesarServiceConfiguration.RegisterServicesFromAssembly(Assembly)
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssembly*
+  name: RegisterServicesFromAssembly
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_RegisterServicesFromAssembly_
+  commentId: Overload:Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssembly
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssembly
+  nameWithType: CaesarServiceConfiguration.RegisterServicesFromAssembly
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssemblyContaining(System.Type)
+  name: RegisterServicesFromAssemblyContaining(Type)
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_RegisterServicesFromAssemblyContaining_System_Type_
+  commentId: M:Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssemblyContaining(System.Type)
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssemblyContaining(System.Type)
+  nameWithType: CaesarServiceConfiguration.RegisterServicesFromAssemblyContaining(Type)
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssemblyContaining*
+  name: RegisterServicesFromAssemblyContaining
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_RegisterServicesFromAssemblyContaining_
+  commentId: Overload:Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssemblyContaining
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssemblyContaining
+  nameWithType: CaesarServiceConfiguration.RegisterServicesFromAssemblyContaining
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssemblyContaining``1
+  name: RegisterServicesFromAssemblyContaining<T>()
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_RegisterServicesFromAssemblyContaining__1
+  commentId: M:Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssemblyContaining``1
+  name.vb: RegisterServicesFromAssemblyContaining(Of T)()
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssemblyContaining<T>()
+  fullName.vb: Caesar.DependencyInjection.CaesarServiceConfiguration.RegisterServicesFromAssemblyContaining(Of T)()
+  nameWithType: CaesarServiceConfiguration.RegisterServicesFromAssemblyContaining<T>()
+  nameWithType.vb: CaesarServiceConfiguration.RegisterServicesFromAssemblyContaining(Of T)()
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.RequestExceptionActionProcessorStrategy
+  name: RequestExceptionActionProcessorStrategy
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_RequestExceptionActionProcessorStrategy
+  commentId: P:Caesar.DependencyInjection.CaesarServiceConfiguration.RequestExceptionActionProcessorStrategy
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.RequestExceptionActionProcessorStrategy
+  nameWithType: CaesarServiceConfiguration.RequestExceptionActionProcessorStrategy
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.RequestExceptionActionProcessorStrategy*
+  name: RequestExceptionActionProcessorStrategy
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_RequestExceptionActionProcessorStrategy_
+  commentId: Overload:Caesar.DependencyInjection.CaesarServiceConfiguration.RequestExceptionActionProcessorStrategy
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.RequestExceptionActionProcessorStrategy
+  nameWithType: CaesarServiceConfiguration.RequestExceptionActionProcessorStrategy
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.TypeEvaluator
+  name: TypeEvaluator
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_TypeEvaluator
+  commentId: P:Caesar.DependencyInjection.CaesarServiceConfiguration.TypeEvaluator
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.TypeEvaluator
+  nameWithType: CaesarServiceConfiguration.TypeEvaluator
+- uid: Caesar.DependencyInjection.CaesarServiceConfiguration.TypeEvaluator*
+  name: TypeEvaluator
+  href: api/Caesar.DependencyInjection.CaesarServiceConfiguration.html#Caesar_DependencyInjection_CaesarServiceConfiguration_TypeEvaluator_
+  commentId: Overload:Caesar.DependencyInjection.CaesarServiceConfiguration.TypeEvaluator
+  fullName: Caesar.DependencyInjection.CaesarServiceConfiguration.TypeEvaluator
+  nameWithType: CaesarServiceConfiguration.TypeEvaluator
+- uid: Caesar.DependencyInjection.RequestExceptionActionProcessorStrategy
+  name: RequestExceptionActionProcessorStrategy
+  href: api/Caesar.DependencyInjection.RequestExceptionActionProcessorStrategy.html
+  commentId: T:Caesar.DependencyInjection.RequestExceptionActionProcessorStrategy
+  fullName: Caesar.DependencyInjection.RequestExceptionActionProcessorStrategy
+  nameWithType: RequestExceptionActionProcessorStrategy
+- uid: Caesar.DependencyInjection.RequestExceptionActionProcessorStrategy.ApplyForAllExceptions
+  name: ApplyForAllExceptions
+  href: api/Caesar.DependencyInjection.RequestExceptionActionProcessorStrategy.html#Caesar_DependencyInjection_RequestExceptionActionProcessorStrategy_ApplyForAllExceptions
+  commentId: F:Caesar.DependencyInjection.RequestExceptionActionProcessorStrategy.ApplyForAllExceptions
+  fullName: Caesar.DependencyInjection.RequestExceptionActionProcessorStrategy.ApplyForAllExceptions
+  nameWithType: RequestExceptionActionProcessorStrategy.ApplyForAllExceptions
+- uid: Caesar.DependencyInjection.RequestExceptionActionProcessorStrategy.ApplyForUnhandledExceptions
+  name: ApplyForUnhandledExceptions
+  href: api/Caesar.DependencyInjection.RequestExceptionActionProcessorStrategy.html#Caesar_DependencyInjection_RequestExceptionActionProcessorStrategy_ApplyForUnhandledExceptions
+  commentId: F:Caesar.DependencyInjection.RequestExceptionActionProcessorStrategy.ApplyForUnhandledExceptions
+  fullName: Caesar.DependencyInjection.RequestExceptionActionProcessorStrategy.ApplyForUnhandledExceptions
+  nameWithType: RequestExceptionActionProcessorStrategy.ApplyForUnhandledExceptions
+- uid: Caesar.IBaseRequest
+  name: IBaseRequest
+  href: api/Caesar.IBaseRequest.html
+  commentId: T:Caesar.IBaseRequest
+  fullName: Caesar.IBaseRequest
+  nameWithType: IBaseRequest
+- uid: Caesar.IMediator
+  name: IMediator
+  href: api/Caesar.IMediator.html
+  commentId: T:Caesar.IMediator
+  fullName: Caesar.IMediator
+  nameWithType: IMediator
+- uid: Caesar.INotification
+  name: INotification
+  href: api/Caesar.INotification.html
+  commentId: T:Caesar.INotification
+  fullName: Caesar.INotification
+  nameWithType: INotification
+- uid: Caesar.INotificationHandler`1
+  name: INotificationHandler<TNotification>
+  href: api/Caesar.INotificationHandler-1.html
+  commentId: T:Caesar.INotificationHandler`1
+  name.vb: INotificationHandler(Of TNotification)
+  fullName: Caesar.INotificationHandler<TNotification>
+  fullName.vb: Caesar.INotificationHandler(Of TNotification)
+  nameWithType: INotificationHandler<TNotification>
+  nameWithType.vb: INotificationHandler(Of TNotification)
+- uid: Caesar.INotificationHandler`1.Handle(`0,System.Threading.CancellationToken)
+  name: Handle(TNotification, CancellationToken)
+  href: api/Caesar.INotificationHandler-1.html#Caesar_INotificationHandler_1_Handle__0_System_Threading_CancellationToken_
+  commentId: M:Caesar.INotificationHandler`1.Handle(`0,System.Threading.CancellationToken)
+  fullName: Caesar.INotificationHandler<TNotification>.Handle(TNotification, System.Threading.CancellationToken)
+  fullName.vb: Caesar.INotificationHandler(Of TNotification).Handle(TNotification, System.Threading.CancellationToken)
+  nameWithType: INotificationHandler<TNotification>.Handle(TNotification, CancellationToken)
+  nameWithType.vb: INotificationHandler(Of TNotification).Handle(TNotification, CancellationToken)
+- uid: Caesar.INotificationHandler`1.Handle*
+  name: Handle
+  href: api/Caesar.INotificationHandler-1.html#Caesar_INotificationHandler_1_Handle_
+  commentId: Overload:Caesar.INotificationHandler`1.Handle
+  fullName: Caesar.INotificationHandler<TNotification>.Handle
+  fullName.vb: Caesar.INotificationHandler(Of TNotification).Handle
+  nameWithType: INotificationHandler<TNotification>.Handle
+  nameWithType.vb: INotificationHandler(Of TNotification).Handle
+- uid: Caesar.INotificationPublisher
+  name: INotificationPublisher
+  href: api/Caesar.INotificationPublisher.html
+  commentId: T:Caesar.INotificationPublisher
+  fullName: Caesar.INotificationPublisher
+  nameWithType: INotificationPublisher
+- uid: Caesar.INotificationPublisher.Publish(System.Collections.Generic.IEnumerable{Caesar.NotificationHandlerExecutor},Caesar.INotification,System.Threading.CancellationToken)
+  name: Publish(IEnumerable<NotificationHandlerExecutor>, INotification, CancellationToken)
+  href: api/Caesar.INotificationPublisher.html#Caesar_INotificationPublisher_Publish_System_Collections_Generic_IEnumerable_Caesar_NotificationHandlerExecutor__Caesar_INotification_System_Threading_CancellationToken_
+  commentId: M:Caesar.INotificationPublisher.Publish(System.Collections.Generic.IEnumerable{Caesar.NotificationHandlerExecutor},Caesar.INotification,System.Threading.CancellationToken)
+  name.vb: Publish(IEnumerable(Of NotificationHandlerExecutor), INotification, CancellationToken)
+  fullName: Caesar.INotificationPublisher.Publish(System.Collections.Generic.IEnumerable<Caesar.NotificationHandlerExecutor>, Caesar.INotification, System.Threading.CancellationToken)
+  fullName.vb: Caesar.INotificationPublisher.Publish(System.Collections.Generic.IEnumerable(Of Caesar.NotificationHandlerExecutor), Caesar.INotification, System.Threading.CancellationToken)
+  nameWithType: INotificationPublisher.Publish(IEnumerable<NotificationHandlerExecutor>, INotification, CancellationToken)
+  nameWithType.vb: INotificationPublisher.Publish(IEnumerable(Of NotificationHandlerExecutor), INotification, CancellationToken)
+- uid: Caesar.INotificationPublisher.Publish*
+  name: Publish
+  href: api/Caesar.INotificationPublisher.html#Caesar_INotificationPublisher_Publish_
+  commentId: Overload:Caesar.INotificationPublisher.Publish
+  fullName: Caesar.INotificationPublisher.Publish
+  nameWithType: INotificationPublisher.Publish
+- uid: Caesar.IPipelineBehavior`2
+  name: IPipelineBehavior<TRequest, TResponse>
+  href: api/Caesar.IPipelineBehavior-2.html
+  commentId: T:Caesar.IPipelineBehavior`2
+  name.vb: IPipelineBehavior(Of TRequest, TResponse)
+  fullName: Caesar.IPipelineBehavior<TRequest, TResponse>
+  fullName.vb: Caesar.IPipelineBehavior(Of TRequest, TResponse)
+  nameWithType: IPipelineBehavior<TRequest, TResponse>
+  nameWithType.vb: IPipelineBehavior(Of TRequest, TResponse)
+- uid: Caesar.IPipelineBehavior`2.Handle(`0,Caesar.RequestHandlerDelegate{`1},System.Threading.CancellationToken)
+  name: Handle(TRequest, RequestHandlerDelegate<TResponse>, CancellationToken)
+  href: api/Caesar.IPipelineBehavior-2.html#Caesar_IPipelineBehavior_2_Handle__0_Caesar_RequestHandlerDelegate__1__System_Threading_CancellationToken_
+  commentId: M:Caesar.IPipelineBehavior`2.Handle(`0,Caesar.RequestHandlerDelegate{`1},System.Threading.CancellationToken)
+  name.vb: Handle(TRequest, RequestHandlerDelegate(Of TResponse), CancellationToken)
+  fullName: Caesar.IPipelineBehavior<TRequest, TResponse>.Handle(TRequest, Caesar.RequestHandlerDelegate<TResponse>, System.Threading.CancellationToken)
+  fullName.vb: Caesar.IPipelineBehavior(Of TRequest, TResponse).Handle(TRequest, Caesar.RequestHandlerDelegate(Of TResponse), System.Threading.CancellationToken)
+  nameWithType: IPipelineBehavior<TRequest, TResponse>.Handle(TRequest, RequestHandlerDelegate<TResponse>, CancellationToken)
+  nameWithType.vb: IPipelineBehavior(Of TRequest, TResponse).Handle(TRequest, RequestHandlerDelegate(Of TResponse), CancellationToken)
+- uid: Caesar.IPipelineBehavior`2.Handle*
+  name: Handle
+  href: api/Caesar.IPipelineBehavior-2.html#Caesar_IPipelineBehavior_2_Handle_
+  commentId: Overload:Caesar.IPipelineBehavior`2.Handle
+  fullName: Caesar.IPipelineBehavior<TRequest, TResponse>.Handle
+  fullName.vb: Caesar.IPipelineBehavior(Of TRequest, TResponse).Handle
+  nameWithType: IPipelineBehavior<TRequest, TResponse>.Handle
+  nameWithType.vb: IPipelineBehavior(Of TRequest, TResponse).Handle
+- uid: Caesar.IPublisher
+  name: IPublisher
+  href: api/Caesar.IPublisher.html
+  commentId: T:Caesar.IPublisher
+  fullName: Caesar.IPublisher
+  nameWithType: IPublisher
+- uid: Caesar.IPublisher.Publish(System.Object,System.Threading.CancellationToken)
+  name: Publish(object, CancellationToken)
+  href: api/Caesar.IPublisher.html#Caesar_IPublisher_Publish_System_Object_System_Threading_CancellationToken_
+  commentId: M:Caesar.IPublisher.Publish(System.Object,System.Threading.CancellationToken)
+  name.vb: Publish(Object, CancellationToken)
+  fullName: Caesar.IPublisher.Publish(object, System.Threading.CancellationToken)
+  fullName.vb: Caesar.IPublisher.Publish(Object, System.Threading.CancellationToken)
+  nameWithType: IPublisher.Publish(object, CancellationToken)
+  nameWithType.vb: IPublisher.Publish(Object, CancellationToken)
+- uid: Caesar.IPublisher.Publish*
+  name: Publish
+  href: api/Caesar.IPublisher.html#Caesar_IPublisher_Publish_
+  commentId: Overload:Caesar.IPublisher.Publish
+  fullName: Caesar.IPublisher.Publish
+  nameWithType: IPublisher.Publish
+- uid: Caesar.IPublisher.Publish``1(``0,System.Threading.CancellationToken)
+  name: Publish<TNotification>(TNotification, CancellationToken)
+  href: api/Caesar.IPublisher.html#Caesar_IPublisher_Publish__1___0_System_Threading_CancellationToken_
+  commentId: M:Caesar.IPublisher.Publish``1(``0,System.Threading.CancellationToken)
+  name.vb: Publish(Of TNotification)(TNotification, CancellationToken)
+  fullName: Caesar.IPublisher.Publish<TNotification>(TNotification, System.Threading.CancellationToken)
+  fullName.vb: Caesar.IPublisher.Publish(Of TNotification)(TNotification, System.Threading.CancellationToken)
+  nameWithType: IPublisher.Publish<TNotification>(TNotification, CancellationToken)
+  nameWithType.vb: IPublisher.Publish(Of TNotification)(TNotification, CancellationToken)
+- uid: Caesar.IRequest
+  name: IRequest
+  href: api/Caesar.IRequest.html
+  commentId: T:Caesar.IRequest
+  fullName: Caesar.IRequest
+  nameWithType: IRequest
+- uid: Caesar.IRequestHandler`1
+  name: IRequestHandler<TRequest>
+  href: api/Caesar.IRequestHandler-1.html
+  commentId: T:Caesar.IRequestHandler`1
+  name.vb: IRequestHandler(Of TRequest)
+  fullName: Caesar.IRequestHandler<TRequest>
+  fullName.vb: Caesar.IRequestHandler(Of TRequest)
+  nameWithType: IRequestHandler<TRequest>
+  nameWithType.vb: IRequestHandler(Of TRequest)
+- uid: Caesar.IRequestHandler`1.Handle(`0,System.Threading.CancellationToken)
+  name: Handle(TRequest, CancellationToken)
+  href: api/Caesar.IRequestHandler-1.html#Caesar_IRequestHandler_1_Handle__0_System_Threading_CancellationToken_
+  commentId: M:Caesar.IRequestHandler`1.Handle(`0,System.Threading.CancellationToken)
+  fullName: Caesar.IRequestHandler<TRequest>.Handle(TRequest, System.Threading.CancellationToken)
+  fullName.vb: Caesar.IRequestHandler(Of TRequest).Handle(TRequest, System.Threading.CancellationToken)
+  nameWithType: IRequestHandler<TRequest>.Handle(TRequest, CancellationToken)
+  nameWithType.vb: IRequestHandler(Of TRequest).Handle(TRequest, CancellationToken)
+- uid: Caesar.IRequestHandler`1.Handle*
+  name: Handle
+  href: api/Caesar.IRequestHandler-1.html#Caesar_IRequestHandler_1_Handle_
+  commentId: Overload:Caesar.IRequestHandler`1.Handle
+  fullName: Caesar.IRequestHandler<TRequest>.Handle
+  fullName.vb: Caesar.IRequestHandler(Of TRequest).Handle
+  nameWithType: IRequestHandler<TRequest>.Handle
+  nameWithType.vb: IRequestHandler(Of TRequest).Handle
+- uid: Caesar.IRequestHandler`2
+  name: IRequestHandler<TRequest, TResponse>
+  href: api/Caesar.IRequestHandler-2.html
+  commentId: T:Caesar.IRequestHandler`2
+  name.vb: IRequestHandler(Of TRequest, TResponse)
+  fullName: Caesar.IRequestHandler<TRequest, TResponse>
+  fullName.vb: Caesar.IRequestHandler(Of TRequest, TResponse)
+  nameWithType: IRequestHandler<TRequest, TResponse>
+  nameWithType.vb: IRequestHandler(Of TRequest, TResponse)
+- uid: Caesar.IRequestHandler`2.Handle(`0,System.Threading.CancellationToken)
+  name: Handle(TRequest, CancellationToken)
+  href: api/Caesar.IRequestHandler-2.html#Caesar_IRequestHandler_2_Handle__0_System_Threading_CancellationToken_
+  commentId: M:Caesar.IRequestHandler`2.Handle(`0,System.Threading.CancellationToken)
+  fullName: Caesar.IRequestHandler<TRequest, TResponse>.Handle(TRequest, System.Threading.CancellationToken)
+  fullName.vb: Caesar.IRequestHandler(Of TRequest, TResponse).Handle(TRequest, System.Threading.CancellationToken)
+  nameWithType: IRequestHandler<TRequest, TResponse>.Handle(TRequest, CancellationToken)
+  nameWithType.vb: IRequestHandler(Of TRequest, TResponse).Handle(TRequest, CancellationToken)
+- uid: Caesar.IRequestHandler`2.Handle*
+  name: Handle
+  href: api/Caesar.IRequestHandler-2.html#Caesar_IRequestHandler_2_Handle_
+  commentId: Overload:Caesar.IRequestHandler`2.Handle
+  fullName: Caesar.IRequestHandler<TRequest, TResponse>.Handle
+  fullName.vb: Caesar.IRequestHandler(Of TRequest, TResponse).Handle
+  nameWithType: IRequestHandler<TRequest, TResponse>.Handle
+  nameWithType.vb: IRequestHandler(Of TRequest, TResponse).Handle
+- uid: Caesar.IRequest`1
+  name: IRequest<TResponse>
+  href: api/Caesar.IRequest-1.html
+  commentId: T:Caesar.IRequest`1
+  name.vb: IRequest(Of TResponse)
+  fullName: Caesar.IRequest<TResponse>
+  fullName.vb: Caesar.IRequest(Of TResponse)
+  nameWithType: IRequest<TResponse>
+  nameWithType.vb: IRequest(Of TResponse)
+- uid: Caesar.ISender
+  name: ISender
+  href: api/Caesar.ISender.html
+  commentId: T:Caesar.ISender
+  fullName: Caesar.ISender
+  nameWithType: ISender
+- uid: Caesar.ISender.CreateStream(System.Object,System.Threading.CancellationToken)
+  name: CreateStream(object, CancellationToken)
+  href: api/Caesar.ISender.html#Caesar_ISender_CreateStream_System_Object_System_Threading_CancellationToken_
+  commentId: M:Caesar.ISender.CreateStream(System.Object,System.Threading.CancellationToken)
+  name.vb: CreateStream(Object, CancellationToken)
+  fullName: Caesar.ISender.CreateStream(object, System.Threading.CancellationToken)
+  fullName.vb: Caesar.ISender.CreateStream(Object, System.Threading.CancellationToken)
+  nameWithType: ISender.CreateStream(object, CancellationToken)
+  nameWithType.vb: ISender.CreateStream(Object, CancellationToken)
+- uid: Caesar.ISender.CreateStream*
+  name: CreateStream
+  href: api/Caesar.ISender.html#Caesar_ISender_CreateStream_
+  commentId: Overload:Caesar.ISender.CreateStream
+  fullName: Caesar.ISender.CreateStream
+  nameWithType: ISender.CreateStream
+- uid: Caesar.ISender.CreateStream``1(Caesar.IStreamRequest{``0},System.Threading.CancellationToken)
+  name: CreateStream<TResponse>(IStreamRequest<TResponse>, CancellationToken)
+  href: api/Caesar.ISender.html#Caesar_ISender_CreateStream__1_Caesar_IStreamRequest___0__System_Threading_CancellationToken_
+  commentId: M:Caesar.ISender.CreateStream``1(Caesar.IStreamRequest{``0},System.Threading.CancellationToken)
+  name.vb: CreateStream(Of TResponse)(IStreamRequest(Of TResponse), CancellationToken)
+  fullName: Caesar.ISender.CreateStream<TResponse>(Caesar.IStreamRequest<TResponse>, System.Threading.CancellationToken)
+  fullName.vb: Caesar.ISender.CreateStream(Of TResponse)(Caesar.IStreamRequest(Of TResponse), System.Threading.CancellationToken)
+  nameWithType: ISender.CreateStream<TResponse>(IStreamRequest<TResponse>, CancellationToken)
+  nameWithType.vb: ISender.CreateStream(Of TResponse)(IStreamRequest(Of TResponse), CancellationToken)
+- uid: Caesar.ISender.Send(System.Object,System.Threading.CancellationToken)
+  name: Send(object, CancellationToken)
+  href: api/Caesar.ISender.html#Caesar_ISender_Send_System_Object_System_Threading_CancellationToken_
+  commentId: M:Caesar.ISender.Send(System.Object,System.Threading.CancellationToken)
+  name.vb: Send(Object, CancellationToken)
+  fullName: Caesar.ISender.Send(object, System.Threading.CancellationToken)
+  fullName.vb: Caesar.ISender.Send(Object, System.Threading.CancellationToken)
+  nameWithType: ISender.Send(object, CancellationToken)
+  nameWithType.vb: ISender.Send(Object, CancellationToken)
+- uid: Caesar.ISender.Send*
+  name: Send
+  href: api/Caesar.ISender.html#Caesar_ISender_Send_
+  commentId: Overload:Caesar.ISender.Send
+  fullName: Caesar.ISender.Send
+  nameWithType: ISender.Send
+- uid: Caesar.ISender.Send``1(Caesar.IRequest{``0},System.Threading.CancellationToken)
+  name: Send<TResponse>(IRequest<TResponse>, CancellationToken)
+  href: api/Caesar.ISender.html#Caesar_ISender_Send__1_Caesar_IRequest___0__System_Threading_CancellationToken_
+  commentId: M:Caesar.ISender.Send``1(Caesar.IRequest{``0},System.Threading.CancellationToken)
+  name.vb: Send(Of TResponse)(IRequest(Of TResponse), CancellationToken)
+  fullName: Caesar.ISender.Send<TResponse>(Caesar.IRequest<TResponse>, System.Threading.CancellationToken)
+  fullName.vb: Caesar.ISender.Send(Of TResponse)(Caesar.IRequest(Of TResponse), System.Threading.CancellationToken)
+  nameWithType: ISender.Send<TResponse>(IRequest<TResponse>, CancellationToken)
+  nameWithType.vb: ISender.Send(Of TResponse)(IRequest(Of TResponse), CancellationToken)
+- uid: Caesar.ISender.Send``1(``0,System.Threading.CancellationToken)
+  name: Send<TRequest>(TRequest, CancellationToken)
+  href: api/Caesar.ISender.html#Caesar_ISender_Send__1___0_System_Threading_CancellationToken_
+  commentId: M:Caesar.ISender.Send``1(``0,System.Threading.CancellationToken)
+  name.vb: Send(Of TRequest)(TRequest, CancellationToken)
+  fullName: Caesar.ISender.Send<TRequest>(TRequest, System.Threading.CancellationToken)
+  fullName.vb: Caesar.ISender.Send(Of TRequest)(TRequest, System.Threading.CancellationToken)
+  nameWithType: ISender.Send<TRequest>(TRequest, CancellationToken)
+  nameWithType.vb: ISender.Send(Of TRequest)(TRequest, CancellationToken)
+- uid: Caesar.IStreamPipelineBehavior`2
+  name: IStreamPipelineBehavior<TRequest, TResponse>
+  href: api/Caesar.IStreamPipelineBehavior-2.html
+  commentId: T:Caesar.IStreamPipelineBehavior`2
+  name.vb: IStreamPipelineBehavior(Of TRequest, TResponse)
+  fullName: Caesar.IStreamPipelineBehavior<TRequest, TResponse>
+  fullName.vb: Caesar.IStreamPipelineBehavior(Of TRequest, TResponse)
+  nameWithType: IStreamPipelineBehavior<TRequest, TResponse>
+  nameWithType.vb: IStreamPipelineBehavior(Of TRequest, TResponse)
+- uid: Caesar.IStreamPipelineBehavior`2.Handle(`0,Caesar.StreamHandlerDelegate{`1},System.Threading.CancellationToken)
+  name: Handle(TRequest, StreamHandlerDelegate<TResponse>, CancellationToken)
+  href: api/Caesar.IStreamPipelineBehavior-2.html#Caesar_IStreamPipelineBehavior_2_Handle__0_Caesar_StreamHandlerDelegate__1__System_Threading_CancellationToken_
+  commentId: M:Caesar.IStreamPipelineBehavior`2.Handle(`0,Caesar.StreamHandlerDelegate{`1},System.Threading.CancellationToken)
+  name.vb: Handle(TRequest, StreamHandlerDelegate(Of TResponse), CancellationToken)
+  fullName: Caesar.IStreamPipelineBehavior<TRequest, TResponse>.Handle(TRequest, Caesar.StreamHandlerDelegate<TResponse>, System.Threading.CancellationToken)
+  fullName.vb: Caesar.IStreamPipelineBehavior(Of TRequest, TResponse).Handle(TRequest, Caesar.StreamHandlerDelegate(Of TResponse), System.Threading.CancellationToken)
+  nameWithType: IStreamPipelineBehavior<TRequest, TResponse>.Handle(TRequest, StreamHandlerDelegate<TResponse>, CancellationToken)
+  nameWithType.vb: IStreamPipelineBehavior(Of TRequest, TResponse).Handle(TRequest, StreamHandlerDelegate(Of TResponse), CancellationToken)
+- uid: Caesar.IStreamPipelineBehavior`2.Handle*
+  name: Handle
+  href: api/Caesar.IStreamPipelineBehavior-2.html#Caesar_IStreamPipelineBehavior_2_Handle_
+  commentId: Overload:Caesar.IStreamPipelineBehavior`2.Handle
+  fullName: Caesar.IStreamPipelineBehavior<TRequest, TResponse>.Handle
+  fullName.vb: Caesar.IStreamPipelineBehavior(Of TRequest, TResponse).Handle
+  nameWithType: IStreamPipelineBehavior<TRequest, TResponse>.Handle
+  nameWithType.vb: IStreamPipelineBehavior(Of TRequest, TResponse).Handle
+- uid: Caesar.IStreamRequestHandler`2
+  name: IStreamRequestHandler<TRequest, TResponse>
+  href: api/Caesar.IStreamRequestHandler-2.html
+  commentId: T:Caesar.IStreamRequestHandler`2
+  name.vb: IStreamRequestHandler(Of TRequest, TResponse)
+  fullName: Caesar.IStreamRequestHandler<TRequest, TResponse>
+  fullName.vb: Caesar.IStreamRequestHandler(Of TRequest, TResponse)
+  nameWithType: IStreamRequestHandler<TRequest, TResponse>
+  nameWithType.vb: IStreamRequestHandler(Of TRequest, TResponse)
+- uid: Caesar.IStreamRequestHandler`2.Handle(`0,System.Threading.CancellationToken)
+  name: Handle(TRequest, CancellationToken)
+  href: api/Caesar.IStreamRequestHandler-2.html#Caesar_IStreamRequestHandler_2_Handle__0_System_Threading_CancellationToken_
+  commentId: M:Caesar.IStreamRequestHandler`2.Handle(`0,System.Threading.CancellationToken)
+  fullName: Caesar.IStreamRequestHandler<TRequest, TResponse>.Handle(TRequest, System.Threading.CancellationToken)
+  fullName.vb: Caesar.IStreamRequestHandler(Of TRequest, TResponse).Handle(TRequest, System.Threading.CancellationToken)
+  nameWithType: IStreamRequestHandler<TRequest, TResponse>.Handle(TRequest, CancellationToken)
+  nameWithType.vb: IStreamRequestHandler(Of TRequest, TResponse).Handle(TRequest, CancellationToken)
+- uid: Caesar.IStreamRequestHandler`2.Handle*
+  name: Handle
+  href: api/Caesar.IStreamRequestHandler-2.html#Caesar_IStreamRequestHandler_2_Handle_
+  commentId: Overload:Caesar.IStreamRequestHandler`2.Handle
+  fullName: Caesar.IStreamRequestHandler<TRequest, TResponse>.Handle
+  fullName.vb: Caesar.IStreamRequestHandler(Of TRequest, TResponse).Handle
+  nameWithType: IStreamRequestHandler<TRequest, TResponse>.Handle
+  nameWithType.vb: IStreamRequestHandler(Of TRequest, TResponse).Handle
+- uid: Caesar.IStreamRequest`1
+  name: IStreamRequest<TResponse>
+  href: api/Caesar.IStreamRequest-1.html
+  commentId: T:Caesar.IStreamRequest`1
+  name.vb: IStreamRequest(Of TResponse)
+  fullName: Caesar.IStreamRequest<TResponse>
+  fullName.vb: Caesar.IStreamRequest(Of TResponse)
+  nameWithType: IStreamRequest<TResponse>
+  nameWithType.vb: IStreamRequest(Of TResponse)
+- uid: Caesar.Mediator
+  name: Mediator
+  href: api/Caesar.Mediator.html
+  commentId: T:Caesar.Mediator
+  fullName: Caesar.Mediator
+  nameWithType: Mediator
+- uid: Caesar.Mediator.#ctor(System.IServiceProvider)
+  name: Mediator(IServiceProvider)
+  href: api/Caesar.Mediator.html#Caesar_Mediator__ctor_System_IServiceProvider_
+  commentId: M:Caesar.Mediator.#ctor(System.IServiceProvider)
+  name.vb: New(IServiceProvider)
+  fullName: Caesar.Mediator.Mediator(System.IServiceProvider)
+  fullName.vb: Caesar.Mediator.New(System.IServiceProvider)
+  nameWithType: Mediator.Mediator(IServiceProvider)
+  nameWithType.vb: Mediator.New(IServiceProvider)
+- uid: Caesar.Mediator.#ctor(System.IServiceProvider,Caesar.INotificationPublisher)
+  name: Mediator(IServiceProvider, INotificationPublisher)
+  href: api/Caesar.Mediator.html#Caesar_Mediator__ctor_System_IServiceProvider_Caesar_INotificationPublisher_
+  commentId: M:Caesar.Mediator.#ctor(System.IServiceProvider,Caesar.INotificationPublisher)
+  name.vb: New(IServiceProvider, INotificationPublisher)
+  fullName: Caesar.Mediator.Mediator(System.IServiceProvider, Caesar.INotificationPublisher)
+  fullName.vb: Caesar.Mediator.New(System.IServiceProvider, Caesar.INotificationPublisher)
+  nameWithType: Mediator.Mediator(IServiceProvider, INotificationPublisher)
+  nameWithType.vb: Mediator.New(IServiceProvider, INotificationPublisher)
+- uid: Caesar.Mediator.#ctor*
+  name: Mediator
+  href: api/Caesar.Mediator.html#Caesar_Mediator__ctor_
+  commentId: Overload:Caesar.Mediator.#ctor
+  name.vb: New
+  fullName: Caesar.Mediator.Mediator
+  fullName.vb: Caesar.Mediator.New
+  nameWithType: Mediator.Mediator
+  nameWithType.vb: Mediator.New
+- uid: Caesar.Mediator.CreateStream(System.Object,System.Threading.CancellationToken)
+  name: CreateStream(object, CancellationToken)
+  href: api/Caesar.Mediator.html#Caesar_Mediator_CreateStream_System_Object_System_Threading_CancellationToken_
+  commentId: M:Caesar.Mediator.CreateStream(System.Object,System.Threading.CancellationToken)
+  name.vb: CreateStream(Object, CancellationToken)
+  fullName: Caesar.Mediator.CreateStream(object, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Mediator.CreateStream(Object, System.Threading.CancellationToken)
+  nameWithType: Mediator.CreateStream(object, CancellationToken)
+  nameWithType.vb: Mediator.CreateStream(Object, CancellationToken)
+- uid: Caesar.Mediator.CreateStream*
+  name: CreateStream
+  href: api/Caesar.Mediator.html#Caesar_Mediator_CreateStream_
+  commentId: Overload:Caesar.Mediator.CreateStream
+  fullName: Caesar.Mediator.CreateStream
+  nameWithType: Mediator.CreateStream
+- uid: Caesar.Mediator.CreateStream``1(Caesar.IStreamRequest{``0},System.Threading.CancellationToken)
+  name: CreateStream<TResponse>(IStreamRequest<TResponse>, CancellationToken)
+  href: api/Caesar.Mediator.html#Caesar_Mediator_CreateStream__1_Caesar_IStreamRequest___0__System_Threading_CancellationToken_
+  commentId: M:Caesar.Mediator.CreateStream``1(Caesar.IStreamRequest{``0},System.Threading.CancellationToken)
+  name.vb: CreateStream(Of TResponse)(IStreamRequest(Of TResponse), CancellationToken)
+  fullName: Caesar.Mediator.CreateStream<TResponse>(Caesar.IStreamRequest<TResponse>, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Mediator.CreateStream(Of TResponse)(Caesar.IStreamRequest(Of TResponse), System.Threading.CancellationToken)
+  nameWithType: Mediator.CreateStream<TResponse>(IStreamRequest<TResponse>, CancellationToken)
+  nameWithType.vb: Mediator.CreateStream(Of TResponse)(IStreamRequest(Of TResponse), CancellationToken)
+- uid: Caesar.Mediator.Publish(System.Object,System.Threading.CancellationToken)
+  name: Publish(object, CancellationToken)
+  href: api/Caesar.Mediator.html#Caesar_Mediator_Publish_System_Object_System_Threading_CancellationToken_
+  commentId: M:Caesar.Mediator.Publish(System.Object,System.Threading.CancellationToken)
+  name.vb: Publish(Object, CancellationToken)
+  fullName: Caesar.Mediator.Publish(object, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Mediator.Publish(Object, System.Threading.CancellationToken)
+  nameWithType: Mediator.Publish(object, CancellationToken)
+  nameWithType.vb: Mediator.Publish(Object, CancellationToken)
+- uid: Caesar.Mediator.Publish*
+  name: Publish
+  href: api/Caesar.Mediator.html#Caesar_Mediator_Publish_
+  commentId: Overload:Caesar.Mediator.Publish
+  fullName: Caesar.Mediator.Publish
+  nameWithType: Mediator.Publish
+- uid: Caesar.Mediator.PublishCore(System.Collections.Generic.IEnumerable{Caesar.NotificationHandlerExecutor},Caesar.INotification,System.Threading.CancellationToken)
+  name: PublishCore(IEnumerable<NotificationHandlerExecutor>, INotification, CancellationToken)
+  href: api/Caesar.Mediator.html#Caesar_Mediator_PublishCore_System_Collections_Generic_IEnumerable_Caesar_NotificationHandlerExecutor__Caesar_INotification_System_Threading_CancellationToken_
+  commentId: M:Caesar.Mediator.PublishCore(System.Collections.Generic.IEnumerable{Caesar.NotificationHandlerExecutor},Caesar.INotification,System.Threading.CancellationToken)
+  name.vb: PublishCore(IEnumerable(Of NotificationHandlerExecutor), INotification, CancellationToken)
+  fullName: Caesar.Mediator.PublishCore(System.Collections.Generic.IEnumerable<Caesar.NotificationHandlerExecutor>, Caesar.INotification, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Mediator.PublishCore(System.Collections.Generic.IEnumerable(Of Caesar.NotificationHandlerExecutor), Caesar.INotification, System.Threading.CancellationToken)
+  nameWithType: Mediator.PublishCore(IEnumerable<NotificationHandlerExecutor>, INotification, CancellationToken)
+  nameWithType.vb: Mediator.PublishCore(IEnumerable(Of NotificationHandlerExecutor), INotification, CancellationToken)
+- uid: Caesar.Mediator.PublishCore*
+  name: PublishCore
+  href: api/Caesar.Mediator.html#Caesar_Mediator_PublishCore_
+  commentId: Overload:Caesar.Mediator.PublishCore
+  fullName: Caesar.Mediator.PublishCore
+  nameWithType: Mediator.PublishCore
+- uid: Caesar.Mediator.Publish``1(``0,System.Threading.CancellationToken)
+  name: Publish<TNotification>(TNotification, CancellationToken)
+  href: api/Caesar.Mediator.html#Caesar_Mediator_Publish__1___0_System_Threading_CancellationToken_
+  commentId: M:Caesar.Mediator.Publish``1(``0,System.Threading.CancellationToken)
+  name.vb: Publish(Of TNotification)(TNotification, CancellationToken)
+  fullName: Caesar.Mediator.Publish<TNotification>(TNotification, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Mediator.Publish(Of TNotification)(TNotification, System.Threading.CancellationToken)
+  nameWithType: Mediator.Publish<TNotification>(TNotification, CancellationToken)
+  nameWithType.vb: Mediator.Publish(Of TNotification)(TNotification, CancellationToken)
+- uid: Caesar.Mediator.Send(System.Object,System.Threading.CancellationToken)
+  name: Send(object, CancellationToken)
+  href: api/Caesar.Mediator.html#Caesar_Mediator_Send_System_Object_System_Threading_CancellationToken_
+  commentId: M:Caesar.Mediator.Send(System.Object,System.Threading.CancellationToken)
+  name.vb: Send(Object, CancellationToken)
+  fullName: Caesar.Mediator.Send(object, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Mediator.Send(Object, System.Threading.CancellationToken)
+  nameWithType: Mediator.Send(object, CancellationToken)
+  nameWithType.vb: Mediator.Send(Object, CancellationToken)
+- uid: Caesar.Mediator.Send*
+  name: Send
+  href: api/Caesar.Mediator.html#Caesar_Mediator_Send_
+  commentId: Overload:Caesar.Mediator.Send
+  fullName: Caesar.Mediator.Send
+  nameWithType: Mediator.Send
+- uid: Caesar.Mediator.Send``1(Caesar.IRequest{``0},System.Threading.CancellationToken)
+  name: Send<TResponse>(IRequest<TResponse>, CancellationToken)
+  href: api/Caesar.Mediator.html#Caesar_Mediator_Send__1_Caesar_IRequest___0__System_Threading_CancellationToken_
+  commentId: M:Caesar.Mediator.Send``1(Caesar.IRequest{``0},System.Threading.CancellationToken)
+  name.vb: Send(Of TResponse)(IRequest(Of TResponse), CancellationToken)
+  fullName: Caesar.Mediator.Send<TResponse>(Caesar.IRequest<TResponse>, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Mediator.Send(Of TResponse)(Caesar.IRequest(Of TResponse), System.Threading.CancellationToken)
+  nameWithType: Mediator.Send<TResponse>(IRequest<TResponse>, CancellationToken)
+  nameWithType.vb: Mediator.Send(Of TResponse)(IRequest(Of TResponse), CancellationToken)
+- uid: Caesar.Mediator.Send``1(``0,System.Threading.CancellationToken)
+  name: Send<TRequest>(TRequest, CancellationToken)
+  href: api/Caesar.Mediator.html#Caesar_Mediator_Send__1___0_System_Threading_CancellationToken_
+  commentId: M:Caesar.Mediator.Send``1(``0,System.Threading.CancellationToken)
+  name.vb: Send(Of TRequest)(TRequest, CancellationToken)
+  fullName: Caesar.Mediator.Send<TRequest>(TRequest, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Mediator.Send(Of TRequest)(TRequest, System.Threading.CancellationToken)
+  nameWithType: Mediator.Send<TRequest>(TRequest, CancellationToken)
+  nameWithType.vb: Mediator.Send(Of TRequest)(TRequest, CancellationToken)
+- uid: Caesar.NotificationHandlerExecutor
+  name: NotificationHandlerExecutor
+  href: api/Caesar.NotificationHandlerExecutor.html
+  commentId: T:Caesar.NotificationHandlerExecutor
+  fullName: Caesar.NotificationHandlerExecutor
+  nameWithType: NotificationHandlerExecutor
+- uid: Caesar.NotificationHandlerExecutor.#ctor(System.Object,System.Func{Caesar.INotification,System.Threading.CancellationToken,System.Threading.Tasks.Task})
+  name: NotificationHandlerExecutor(object, Func<INotification, CancellationToken, Task>)
+  href: api/Caesar.NotificationHandlerExecutor.html#Caesar_NotificationHandlerExecutor__ctor_System_Object_System_Func_Caesar_INotification_System_Threading_CancellationToken_System_Threading_Tasks_Task__
+  commentId: M:Caesar.NotificationHandlerExecutor.#ctor(System.Object,System.Func{Caesar.INotification,System.Threading.CancellationToken,System.Threading.Tasks.Task})
+  name.vb: New(Object, Func(Of INotification, CancellationToken, Task))
+  fullName: Caesar.NotificationHandlerExecutor.NotificationHandlerExecutor(object, System.Func<Caesar.INotification, System.Threading.CancellationToken, System.Threading.Tasks.Task>)
+  fullName.vb: Caesar.NotificationHandlerExecutor.New(Object, System.Func(Of Caesar.INotification, System.Threading.CancellationToken, System.Threading.Tasks.Task))
+  nameWithType: NotificationHandlerExecutor.NotificationHandlerExecutor(object, Func<INotification, CancellationToken, Task>)
+  nameWithType.vb: NotificationHandlerExecutor.New(Object, Func(Of INotification, CancellationToken, Task))
+- uid: Caesar.NotificationHandlerExecutor.#ctor*
+  name: NotificationHandlerExecutor
+  href: api/Caesar.NotificationHandlerExecutor.html#Caesar_NotificationHandlerExecutor__ctor_
+  commentId: Overload:Caesar.NotificationHandlerExecutor.#ctor
+  name.vb: New
+  fullName: Caesar.NotificationHandlerExecutor.NotificationHandlerExecutor
+  fullName.vb: Caesar.NotificationHandlerExecutor.New
+  nameWithType: NotificationHandlerExecutor.NotificationHandlerExecutor
+  nameWithType.vb: NotificationHandlerExecutor.New
+- uid: Caesar.NotificationHandlerExecutor.Deconstruct(System.Object@,System.Func{Caesar.INotification,System.Threading.CancellationToken,System.Threading.Tasks.Task}@)
+  name: Deconstruct(out object, out Func<INotification, CancellationToken, Task>)
+  href: api/Caesar.NotificationHandlerExecutor.html#Caesar_NotificationHandlerExecutor_Deconstruct_System_Object__System_Func_Caesar_INotification_System_Threading_CancellationToken_System_Threading_Tasks_Task___
+  commentId: M:Caesar.NotificationHandlerExecutor.Deconstruct(System.Object@,System.Func{Caesar.INotification,System.Threading.CancellationToken,System.Threading.Tasks.Task}@)
+  name.vb: Deconstruct(Object, Func(Of INotification, CancellationToken, Task))
+  fullName: Caesar.NotificationHandlerExecutor.Deconstruct(out object, out System.Func<Caesar.INotification, System.Threading.CancellationToken, System.Threading.Tasks.Task>)
+  fullName.vb: Caesar.NotificationHandlerExecutor.Deconstruct(Object, System.Func(Of Caesar.INotification, System.Threading.CancellationToken, System.Threading.Tasks.Task))
+  nameWithType: NotificationHandlerExecutor.Deconstruct(out object, out Func<INotification, CancellationToken, Task>)
+  nameWithType.vb: NotificationHandlerExecutor.Deconstruct(Object, Func(Of INotification, CancellationToken, Task))
+- uid: Caesar.NotificationHandlerExecutor.Deconstruct*
+  name: Deconstruct
+  href: api/Caesar.NotificationHandlerExecutor.html#Caesar_NotificationHandlerExecutor_Deconstruct_
+  commentId: Overload:Caesar.NotificationHandlerExecutor.Deconstruct
+  fullName: Caesar.NotificationHandlerExecutor.Deconstruct
+  nameWithType: NotificationHandlerExecutor.Deconstruct
+- uid: Caesar.NotificationHandlerExecutor.Equals(Caesar.NotificationHandlerExecutor)
+  name: Equals(NotificationHandlerExecutor?)
+  href: api/Caesar.NotificationHandlerExecutor.html#Caesar_NotificationHandlerExecutor_Equals_Caesar_NotificationHandlerExecutor_
+  commentId: M:Caesar.NotificationHandlerExecutor.Equals(Caesar.NotificationHandlerExecutor)
+  name.vb: Equals(NotificationHandlerExecutor)
+  fullName: Caesar.NotificationHandlerExecutor.Equals(Caesar.NotificationHandlerExecutor?)
+  fullName.vb: Caesar.NotificationHandlerExecutor.Equals(Caesar.NotificationHandlerExecutor)
+  nameWithType: NotificationHandlerExecutor.Equals(NotificationHandlerExecutor?)
+  nameWithType.vb: NotificationHandlerExecutor.Equals(NotificationHandlerExecutor)
+- uid: Caesar.NotificationHandlerExecutor.Equals(System.Object)
+  name: Equals(object?)
+  href: api/Caesar.NotificationHandlerExecutor.html#Caesar_NotificationHandlerExecutor_Equals_System_Object_
+  commentId: M:Caesar.NotificationHandlerExecutor.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: Caesar.NotificationHandlerExecutor.Equals(object?)
+  fullName.vb: Caesar.NotificationHandlerExecutor.Equals(Object)
+  nameWithType: NotificationHandlerExecutor.Equals(object?)
+  nameWithType.vb: NotificationHandlerExecutor.Equals(Object)
+- uid: Caesar.NotificationHandlerExecutor.Equals*
+  name: Equals
+  href: api/Caesar.NotificationHandlerExecutor.html#Caesar_NotificationHandlerExecutor_Equals_
+  commentId: Overload:Caesar.NotificationHandlerExecutor.Equals
+  fullName: Caesar.NotificationHandlerExecutor.Equals
+  nameWithType: NotificationHandlerExecutor.Equals
+- uid: Caesar.NotificationHandlerExecutor.GetHashCode
+  name: GetHashCode()
+  href: api/Caesar.NotificationHandlerExecutor.html#Caesar_NotificationHandlerExecutor_GetHashCode
+  commentId: M:Caesar.NotificationHandlerExecutor.GetHashCode
+  fullName: Caesar.NotificationHandlerExecutor.GetHashCode()
+  nameWithType: NotificationHandlerExecutor.GetHashCode()
+- uid: Caesar.NotificationHandlerExecutor.GetHashCode*
+  name: GetHashCode
+  href: api/Caesar.NotificationHandlerExecutor.html#Caesar_NotificationHandlerExecutor_GetHashCode_
+  commentId: Overload:Caesar.NotificationHandlerExecutor.GetHashCode
+  fullName: Caesar.NotificationHandlerExecutor.GetHashCode
+  nameWithType: NotificationHandlerExecutor.GetHashCode
+- uid: Caesar.NotificationHandlerExecutor.HandlerCallback
+  name: HandlerCallback
+  href: api/Caesar.NotificationHandlerExecutor.html#Caesar_NotificationHandlerExecutor_HandlerCallback
+  commentId: P:Caesar.NotificationHandlerExecutor.HandlerCallback
+  fullName: Caesar.NotificationHandlerExecutor.HandlerCallback
+  nameWithType: NotificationHandlerExecutor.HandlerCallback
+- uid: Caesar.NotificationHandlerExecutor.HandlerCallback*
+  name: HandlerCallback
+  href: api/Caesar.NotificationHandlerExecutor.html#Caesar_NotificationHandlerExecutor_HandlerCallback_
+  commentId: Overload:Caesar.NotificationHandlerExecutor.HandlerCallback
+  fullName: Caesar.NotificationHandlerExecutor.HandlerCallback
+  nameWithType: NotificationHandlerExecutor.HandlerCallback
+- uid: Caesar.NotificationHandlerExecutor.HandlerInstance
+  name: HandlerInstance
+  href: api/Caesar.NotificationHandlerExecutor.html#Caesar_NotificationHandlerExecutor_HandlerInstance
+  commentId: P:Caesar.NotificationHandlerExecutor.HandlerInstance
+  fullName: Caesar.NotificationHandlerExecutor.HandlerInstance
+  nameWithType: NotificationHandlerExecutor.HandlerInstance
+- uid: Caesar.NotificationHandlerExecutor.HandlerInstance*
+  name: HandlerInstance
+  href: api/Caesar.NotificationHandlerExecutor.html#Caesar_NotificationHandlerExecutor_HandlerInstance_
+  commentId: Overload:Caesar.NotificationHandlerExecutor.HandlerInstance
+  fullName: Caesar.NotificationHandlerExecutor.HandlerInstance
+  nameWithType: NotificationHandlerExecutor.HandlerInstance
+- uid: Caesar.NotificationHandlerExecutor.ToString
+  name: ToString()
+  href: api/Caesar.NotificationHandlerExecutor.html#Caesar_NotificationHandlerExecutor_ToString
+  commentId: M:Caesar.NotificationHandlerExecutor.ToString
+  fullName: Caesar.NotificationHandlerExecutor.ToString()
+  nameWithType: NotificationHandlerExecutor.ToString()
+- uid: Caesar.NotificationHandlerExecutor.ToString*
+  name: ToString
+  href: api/Caesar.NotificationHandlerExecutor.html#Caesar_NotificationHandlerExecutor_ToString_
+  commentId: Overload:Caesar.NotificationHandlerExecutor.ToString
+  fullName: Caesar.NotificationHandlerExecutor.ToString
+  nameWithType: NotificationHandlerExecutor.ToString
+- uid: Caesar.NotificationHandlerExecutor.op_Equality(Caesar.NotificationHandlerExecutor,Caesar.NotificationHandlerExecutor)
+  name: operator ==(NotificationHandlerExecutor?, NotificationHandlerExecutor?)
+  href: api/Caesar.NotificationHandlerExecutor.html#Caesar_NotificationHandlerExecutor_op_Equality_Caesar_NotificationHandlerExecutor_Caesar_NotificationHandlerExecutor_
+  commentId: M:Caesar.NotificationHandlerExecutor.op_Equality(Caesar.NotificationHandlerExecutor,Caesar.NotificationHandlerExecutor)
+  name.vb: =(NotificationHandlerExecutor, NotificationHandlerExecutor)
+  fullName: Caesar.NotificationHandlerExecutor.operator ==(Caesar.NotificationHandlerExecutor?, Caesar.NotificationHandlerExecutor?)
+  fullName.vb: Caesar.NotificationHandlerExecutor.=(Caesar.NotificationHandlerExecutor, Caesar.NotificationHandlerExecutor)
+  nameWithType: NotificationHandlerExecutor.operator ==(NotificationHandlerExecutor?, NotificationHandlerExecutor?)
+  nameWithType.vb: NotificationHandlerExecutor.=(NotificationHandlerExecutor, NotificationHandlerExecutor)
+- uid: Caesar.NotificationHandlerExecutor.op_Equality*
+  name: operator ==
+  href: api/Caesar.NotificationHandlerExecutor.html#Caesar_NotificationHandlerExecutor_op_Equality_
+  commentId: Overload:Caesar.NotificationHandlerExecutor.op_Equality
+  name.vb: =
+  fullName: Caesar.NotificationHandlerExecutor.operator ==
+  fullName.vb: Caesar.NotificationHandlerExecutor.=
+  nameWithType: NotificationHandlerExecutor.operator ==
+  nameWithType.vb: NotificationHandlerExecutor.=
+- uid: Caesar.NotificationHandlerExecutor.op_Inequality(Caesar.NotificationHandlerExecutor,Caesar.NotificationHandlerExecutor)
+  name: operator !=(NotificationHandlerExecutor?, NotificationHandlerExecutor?)
+  href: api/Caesar.NotificationHandlerExecutor.html#Caesar_NotificationHandlerExecutor_op_Inequality_Caesar_NotificationHandlerExecutor_Caesar_NotificationHandlerExecutor_
+  commentId: M:Caesar.NotificationHandlerExecutor.op_Inequality(Caesar.NotificationHandlerExecutor,Caesar.NotificationHandlerExecutor)
+  name.vb: <>(NotificationHandlerExecutor, NotificationHandlerExecutor)
+  fullName: Caesar.NotificationHandlerExecutor.operator !=(Caesar.NotificationHandlerExecutor?, Caesar.NotificationHandlerExecutor?)
+  fullName.vb: Caesar.NotificationHandlerExecutor.<>(Caesar.NotificationHandlerExecutor, Caesar.NotificationHandlerExecutor)
+  nameWithType: NotificationHandlerExecutor.operator !=(NotificationHandlerExecutor?, NotificationHandlerExecutor?)
+  nameWithType.vb: NotificationHandlerExecutor.<>(NotificationHandlerExecutor, NotificationHandlerExecutor)
+- uid: Caesar.NotificationHandlerExecutor.op_Inequality*
+  name: operator !=
+  href: api/Caesar.NotificationHandlerExecutor.html#Caesar_NotificationHandlerExecutor_op_Inequality_
+  commentId: Overload:Caesar.NotificationHandlerExecutor.op_Inequality
+  name.vb: <>
+  fullName: Caesar.NotificationHandlerExecutor.operator !=
+  fullName.vb: Caesar.NotificationHandlerExecutor.<>
+  nameWithType: NotificationHandlerExecutor.operator !=
+  nameWithType.vb: NotificationHandlerExecutor.<>
+- uid: Caesar.NotificationHandler`1
+  name: NotificationHandler<TNotification>
+  href: api/Caesar.NotificationHandler-1.html
+  commentId: T:Caesar.NotificationHandler`1
+  name.vb: NotificationHandler(Of TNotification)
+  fullName: Caesar.NotificationHandler<TNotification>
+  fullName.vb: Caesar.NotificationHandler(Of TNotification)
+  nameWithType: NotificationHandler<TNotification>
+  nameWithType.vb: NotificationHandler(Of TNotification)
+- uid: Caesar.NotificationHandler`1.#ctor
+  name: NotificationHandler()
+  href: api/Caesar.NotificationHandler-1.html#Caesar_NotificationHandler_1__ctor
+  commentId: M:Caesar.NotificationHandler`1.#ctor
+  name.vb: New()
+  fullName: Caesar.NotificationHandler<TNotification>.NotificationHandler()
+  fullName.vb: Caesar.NotificationHandler(Of TNotification).New()
+  nameWithType: NotificationHandler<TNotification>.NotificationHandler()
+  nameWithType.vb: NotificationHandler(Of TNotification).New()
+- uid: Caesar.NotificationHandler`1.#ctor*
+  name: NotificationHandler
+  href: api/Caesar.NotificationHandler-1.html#Caesar_NotificationHandler_1__ctor_
+  commentId: Overload:Caesar.NotificationHandler`1.#ctor
+  name.vb: New
+  fullName: Caesar.NotificationHandler<TNotification>.NotificationHandler
+  fullName.vb: Caesar.NotificationHandler(Of TNotification).New
+  nameWithType: NotificationHandler<TNotification>.NotificationHandler
+  nameWithType.vb: NotificationHandler(Of TNotification).New
+- uid: Caesar.NotificationHandler`1.Handle(`0)
+  name: Handle(TNotification)
+  href: api/Caesar.NotificationHandler-1.html#Caesar_NotificationHandler_1_Handle__0_
+  commentId: M:Caesar.NotificationHandler`1.Handle(`0)
+  fullName: Caesar.NotificationHandler<TNotification>.Handle(TNotification)
+  fullName.vb: Caesar.NotificationHandler(Of TNotification).Handle(TNotification)
+  nameWithType: NotificationHandler<TNotification>.Handle(TNotification)
+  nameWithType.vb: NotificationHandler(Of TNotification).Handle(TNotification)
+- uid: Caesar.NotificationHandler`1.Handle*
+  name: Handle
+  href: api/Caesar.NotificationHandler-1.html#Caesar_NotificationHandler_1_Handle_
+  commentId: Overload:Caesar.NotificationHandler`1.Handle
+  fullName: Caesar.NotificationHandler<TNotification>.Handle
+  fullName.vb: Caesar.NotificationHandler(Of TNotification).Handle
+  nameWithType: NotificationHandler<TNotification>.Handle
+  nameWithType.vb: NotificationHandler(Of TNotification).Handle
+- uid: Caesar.NotificationPublishers
+  name: Caesar.NotificationPublishers
+  href: api/Caesar.NotificationPublishers.html
+  commentId: N:Caesar.NotificationPublishers
+  fullName: Caesar.NotificationPublishers
+  nameWithType: Caesar.NotificationPublishers
+- uid: Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher
+  name: ForeachAwaitContinueOnFailurePublisher
+  href: api/Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher.html
+  commentId: T:Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher
+  fullName: Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher
+  nameWithType: ForeachAwaitContinueOnFailurePublisher
+- uid: Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher.#ctor
+  name: ForeachAwaitContinueOnFailurePublisher()
+  href: api/Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher.html#Caesar_NotificationPublishers_ForeachAwaitContinueOnFailurePublisher__ctor
+  commentId: M:Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher.#ctor
+  name.vb: New()
+  fullName: Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher.ForeachAwaitContinueOnFailurePublisher()
+  fullName.vb: Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher.New()
+  nameWithType: ForeachAwaitContinueOnFailurePublisher.ForeachAwaitContinueOnFailurePublisher()
+  nameWithType.vb: ForeachAwaitContinueOnFailurePublisher.New()
+- uid: Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher.#ctor*
+  name: ForeachAwaitContinueOnFailurePublisher
+  href: api/Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher.html#Caesar_NotificationPublishers_ForeachAwaitContinueOnFailurePublisher__ctor_
+  commentId: Overload:Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher.#ctor
+  name.vb: New
+  fullName: Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher.ForeachAwaitContinueOnFailurePublisher
+  fullName.vb: Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher.New
+  nameWithType: ForeachAwaitContinueOnFailurePublisher.ForeachAwaitContinueOnFailurePublisher
+  nameWithType.vb: ForeachAwaitContinueOnFailurePublisher.New
+- uid: Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher.Publish(System.Collections.Generic.IEnumerable{Caesar.NotificationHandlerExecutor},Caesar.INotification,System.Threading.CancellationToken)
+  name: Publish(IEnumerable<NotificationHandlerExecutor>, INotification, CancellationToken)
+  href: api/Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher.html#Caesar_NotificationPublishers_ForeachAwaitContinueOnFailurePublisher_Publish_System_Collections_Generic_IEnumerable_Caesar_NotificationHandlerExecutor__Caesar_INotification_System_Threading_CancellationToken_
+  commentId: M:Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher.Publish(System.Collections.Generic.IEnumerable{Caesar.NotificationHandlerExecutor},Caesar.INotification,System.Threading.CancellationToken)
+  name.vb: Publish(IEnumerable(Of NotificationHandlerExecutor), INotification, CancellationToken)
+  fullName: Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher.Publish(System.Collections.Generic.IEnumerable<Caesar.NotificationHandlerExecutor>, Caesar.INotification, System.Threading.CancellationToken)
+  fullName.vb: Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher.Publish(System.Collections.Generic.IEnumerable(Of Caesar.NotificationHandlerExecutor), Caesar.INotification, System.Threading.CancellationToken)
+  nameWithType: ForeachAwaitContinueOnFailurePublisher.Publish(IEnumerable<NotificationHandlerExecutor>, INotification, CancellationToken)
+  nameWithType.vb: ForeachAwaitContinueOnFailurePublisher.Publish(IEnumerable(Of NotificationHandlerExecutor), INotification, CancellationToken)
+- uid: Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher.Publish*
+  name: Publish
+  href: api/Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher.html#Caesar_NotificationPublishers_ForeachAwaitContinueOnFailurePublisher_Publish_
+  commentId: Overload:Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher.Publish
+  fullName: Caesar.NotificationPublishers.ForeachAwaitContinueOnFailurePublisher.Publish
+  nameWithType: ForeachAwaitContinueOnFailurePublisher.Publish
+- uid: Caesar.NotificationPublishers.ForeachAwaitPublisher
+  name: ForeachAwaitPublisher
+  href: api/Caesar.NotificationPublishers.ForeachAwaitPublisher.html
+  commentId: T:Caesar.NotificationPublishers.ForeachAwaitPublisher
+  fullName: Caesar.NotificationPublishers.ForeachAwaitPublisher
+  nameWithType: ForeachAwaitPublisher
+- uid: Caesar.NotificationPublishers.ForeachAwaitPublisher.#ctor
+  name: ForeachAwaitPublisher()
+  href: api/Caesar.NotificationPublishers.ForeachAwaitPublisher.html#Caesar_NotificationPublishers_ForeachAwaitPublisher__ctor
+  commentId: M:Caesar.NotificationPublishers.ForeachAwaitPublisher.#ctor
+  name.vb: New()
+  fullName: Caesar.NotificationPublishers.ForeachAwaitPublisher.ForeachAwaitPublisher()
+  fullName.vb: Caesar.NotificationPublishers.ForeachAwaitPublisher.New()
+  nameWithType: ForeachAwaitPublisher.ForeachAwaitPublisher()
+  nameWithType.vb: ForeachAwaitPublisher.New()
+- uid: Caesar.NotificationPublishers.ForeachAwaitPublisher.#ctor*
+  name: ForeachAwaitPublisher
+  href: api/Caesar.NotificationPublishers.ForeachAwaitPublisher.html#Caesar_NotificationPublishers_ForeachAwaitPublisher__ctor_
+  commentId: Overload:Caesar.NotificationPublishers.ForeachAwaitPublisher.#ctor
+  name.vb: New
+  fullName: Caesar.NotificationPublishers.ForeachAwaitPublisher.ForeachAwaitPublisher
+  fullName.vb: Caesar.NotificationPublishers.ForeachAwaitPublisher.New
+  nameWithType: ForeachAwaitPublisher.ForeachAwaitPublisher
+  nameWithType.vb: ForeachAwaitPublisher.New
+- uid: Caesar.NotificationPublishers.ForeachAwaitPublisher.Publish(System.Collections.Generic.IEnumerable{Caesar.NotificationHandlerExecutor},Caesar.INotification,System.Threading.CancellationToken)
+  name: Publish(IEnumerable<NotificationHandlerExecutor>, INotification, CancellationToken)
+  href: api/Caesar.NotificationPublishers.ForeachAwaitPublisher.html#Caesar_NotificationPublishers_ForeachAwaitPublisher_Publish_System_Collections_Generic_IEnumerable_Caesar_NotificationHandlerExecutor__Caesar_INotification_System_Threading_CancellationToken_
+  commentId: M:Caesar.NotificationPublishers.ForeachAwaitPublisher.Publish(System.Collections.Generic.IEnumerable{Caesar.NotificationHandlerExecutor},Caesar.INotification,System.Threading.CancellationToken)
+  name.vb: Publish(IEnumerable(Of NotificationHandlerExecutor), INotification, CancellationToken)
+  fullName: Caesar.NotificationPublishers.ForeachAwaitPublisher.Publish(System.Collections.Generic.IEnumerable<Caesar.NotificationHandlerExecutor>, Caesar.INotification, System.Threading.CancellationToken)
+  fullName.vb: Caesar.NotificationPublishers.ForeachAwaitPublisher.Publish(System.Collections.Generic.IEnumerable(Of Caesar.NotificationHandlerExecutor), Caesar.INotification, System.Threading.CancellationToken)
+  nameWithType: ForeachAwaitPublisher.Publish(IEnumerable<NotificationHandlerExecutor>, INotification, CancellationToken)
+  nameWithType.vb: ForeachAwaitPublisher.Publish(IEnumerable(Of NotificationHandlerExecutor), INotification, CancellationToken)
+- uid: Caesar.NotificationPublishers.ForeachAwaitPublisher.Publish*
+  name: Publish
+  href: api/Caesar.NotificationPublishers.ForeachAwaitPublisher.html#Caesar_NotificationPublishers_ForeachAwaitPublisher_Publish_
+  commentId: Overload:Caesar.NotificationPublishers.ForeachAwaitPublisher.Publish
+  fullName: Caesar.NotificationPublishers.ForeachAwaitPublisher.Publish
+  nameWithType: ForeachAwaitPublisher.Publish
+- uid: Caesar.NotificationPublishers.TaskWhenAllPublisher
+  name: TaskWhenAllPublisher
+  href: api/Caesar.NotificationPublishers.TaskWhenAllPublisher.html
+  commentId: T:Caesar.NotificationPublishers.TaskWhenAllPublisher
+  fullName: Caesar.NotificationPublishers.TaskWhenAllPublisher
+  nameWithType: TaskWhenAllPublisher
+- uid: Caesar.NotificationPublishers.TaskWhenAllPublisher.#ctor
+  name: TaskWhenAllPublisher()
+  href: api/Caesar.NotificationPublishers.TaskWhenAllPublisher.html#Caesar_NotificationPublishers_TaskWhenAllPublisher__ctor
+  commentId: M:Caesar.NotificationPublishers.TaskWhenAllPublisher.#ctor
+  name.vb: New()
+  fullName: Caesar.NotificationPublishers.TaskWhenAllPublisher.TaskWhenAllPublisher()
+  fullName.vb: Caesar.NotificationPublishers.TaskWhenAllPublisher.New()
+  nameWithType: TaskWhenAllPublisher.TaskWhenAllPublisher()
+  nameWithType.vb: TaskWhenAllPublisher.New()
+- uid: Caesar.NotificationPublishers.TaskWhenAllPublisher.#ctor*
+  name: TaskWhenAllPublisher
+  href: api/Caesar.NotificationPublishers.TaskWhenAllPublisher.html#Caesar_NotificationPublishers_TaskWhenAllPublisher__ctor_
+  commentId: Overload:Caesar.NotificationPublishers.TaskWhenAllPublisher.#ctor
+  name.vb: New
+  fullName: Caesar.NotificationPublishers.TaskWhenAllPublisher.TaskWhenAllPublisher
+  fullName.vb: Caesar.NotificationPublishers.TaskWhenAllPublisher.New
+  nameWithType: TaskWhenAllPublisher.TaskWhenAllPublisher
+  nameWithType.vb: TaskWhenAllPublisher.New
+- uid: Caesar.NotificationPublishers.TaskWhenAllPublisher.Publish(System.Collections.Generic.IEnumerable{Caesar.NotificationHandlerExecutor},Caesar.INotification,System.Threading.CancellationToken)
+  name: Publish(IEnumerable<NotificationHandlerExecutor>, INotification, CancellationToken)
+  href: api/Caesar.NotificationPublishers.TaskWhenAllPublisher.html#Caesar_NotificationPublishers_TaskWhenAllPublisher_Publish_System_Collections_Generic_IEnumerable_Caesar_NotificationHandlerExecutor__Caesar_INotification_System_Threading_CancellationToken_
+  commentId: M:Caesar.NotificationPublishers.TaskWhenAllPublisher.Publish(System.Collections.Generic.IEnumerable{Caesar.NotificationHandlerExecutor},Caesar.INotification,System.Threading.CancellationToken)
+  name.vb: Publish(IEnumerable(Of NotificationHandlerExecutor), INotification, CancellationToken)
+  fullName: Caesar.NotificationPublishers.TaskWhenAllPublisher.Publish(System.Collections.Generic.IEnumerable<Caesar.NotificationHandlerExecutor>, Caesar.INotification, System.Threading.CancellationToken)
+  fullName.vb: Caesar.NotificationPublishers.TaskWhenAllPublisher.Publish(System.Collections.Generic.IEnumerable(Of Caesar.NotificationHandlerExecutor), Caesar.INotification, System.Threading.CancellationToken)
+  nameWithType: TaskWhenAllPublisher.Publish(IEnumerable<NotificationHandlerExecutor>, INotification, CancellationToken)
+  nameWithType.vb: TaskWhenAllPublisher.Publish(IEnumerable(Of NotificationHandlerExecutor), INotification, CancellationToken)
+- uid: Caesar.NotificationPublishers.TaskWhenAllPublisher.Publish*
+  name: Publish
+  href: api/Caesar.NotificationPublishers.TaskWhenAllPublisher.html#Caesar_NotificationPublishers_TaskWhenAllPublisher_Publish_
+  commentId: Overload:Caesar.NotificationPublishers.TaskWhenAllPublisher.Publish
+  fullName: Caesar.NotificationPublishers.TaskWhenAllPublisher.Publish
+  nameWithType: TaskWhenAllPublisher.Publish
+- uid: Caesar.Pipeline
+  name: Caesar.Pipeline
+  href: api/Caesar.Pipeline.html
+  commentId: N:Caesar.Pipeline
+  fullName: Caesar.Pipeline
+  nameWithType: Caesar.Pipeline
+- uid: Caesar.Pipeline.IRequestExceptionAction`1
+  name: IRequestExceptionAction<TRequest>
+  href: api/Caesar.Pipeline.IRequestExceptionAction-1.html
+  commentId: T:Caesar.Pipeline.IRequestExceptionAction`1
+  name.vb: IRequestExceptionAction(Of TRequest)
+  fullName: Caesar.Pipeline.IRequestExceptionAction<TRequest>
+  fullName.vb: Caesar.Pipeline.IRequestExceptionAction(Of TRequest)
+  nameWithType: IRequestExceptionAction<TRequest>
+  nameWithType.vb: IRequestExceptionAction(Of TRequest)
+- uid: Caesar.Pipeline.IRequestExceptionAction`2
+  name: IRequestExceptionAction<TRequest, TException>
+  href: api/Caesar.Pipeline.IRequestExceptionAction-2.html
+  commentId: T:Caesar.Pipeline.IRequestExceptionAction`2
+  name.vb: IRequestExceptionAction(Of TRequest, TException)
+  fullName: Caesar.Pipeline.IRequestExceptionAction<TRequest, TException>
+  fullName.vb: Caesar.Pipeline.IRequestExceptionAction(Of TRequest, TException)
+  nameWithType: IRequestExceptionAction<TRequest, TException>
+  nameWithType.vb: IRequestExceptionAction(Of TRequest, TException)
+- uid: Caesar.Pipeline.IRequestExceptionAction`2.Execute(`0,`1,System.Threading.CancellationToken)
+  name: Execute(TRequest, TException, CancellationToken)
+  href: api/Caesar.Pipeline.IRequestExceptionAction-2.html#Caesar_Pipeline_IRequestExceptionAction_2_Execute__0__1_System_Threading_CancellationToken_
+  commentId: M:Caesar.Pipeline.IRequestExceptionAction`2.Execute(`0,`1,System.Threading.CancellationToken)
+  fullName: Caesar.Pipeline.IRequestExceptionAction<TRequest, TException>.Execute(TRequest, TException, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Pipeline.IRequestExceptionAction(Of TRequest, TException).Execute(TRequest, TException, System.Threading.CancellationToken)
+  nameWithType: IRequestExceptionAction<TRequest, TException>.Execute(TRequest, TException, CancellationToken)
+  nameWithType.vb: IRequestExceptionAction(Of TRequest, TException).Execute(TRequest, TException, CancellationToken)
+- uid: Caesar.Pipeline.IRequestExceptionAction`2.Execute*
+  name: Execute
+  href: api/Caesar.Pipeline.IRequestExceptionAction-2.html#Caesar_Pipeline_IRequestExceptionAction_2_Execute_
+  commentId: Overload:Caesar.Pipeline.IRequestExceptionAction`2.Execute
+  fullName: Caesar.Pipeline.IRequestExceptionAction<TRequest, TException>.Execute
+  fullName.vb: Caesar.Pipeline.IRequestExceptionAction(Of TRequest, TException).Execute
+  nameWithType: IRequestExceptionAction<TRequest, TException>.Execute
+  nameWithType.vb: IRequestExceptionAction(Of TRequest, TException).Execute
+- uid: Caesar.Pipeline.IRequestExceptionHandler`2
+  name: IRequestExceptionHandler<TRequest, TResponse>
+  href: api/Caesar.Pipeline.IRequestExceptionHandler-2.html
+  commentId: T:Caesar.Pipeline.IRequestExceptionHandler`2
+  name.vb: IRequestExceptionHandler(Of TRequest, TResponse)
+  fullName: Caesar.Pipeline.IRequestExceptionHandler<TRequest, TResponse>
+  fullName.vb: Caesar.Pipeline.IRequestExceptionHandler(Of TRequest, TResponse)
+  nameWithType: IRequestExceptionHandler<TRequest, TResponse>
+  nameWithType.vb: IRequestExceptionHandler(Of TRequest, TResponse)
+- uid: Caesar.Pipeline.IRequestExceptionHandler`3
+  name: IRequestExceptionHandler<TRequest, TResponse, TException>
+  href: api/Caesar.Pipeline.IRequestExceptionHandler-3.html
+  commentId: T:Caesar.Pipeline.IRequestExceptionHandler`3
+  name.vb: IRequestExceptionHandler(Of TRequest, TResponse, TException)
+  fullName: Caesar.Pipeline.IRequestExceptionHandler<TRequest, TResponse, TException>
+  fullName.vb: Caesar.Pipeline.IRequestExceptionHandler(Of TRequest, TResponse, TException)
+  nameWithType: IRequestExceptionHandler<TRequest, TResponse, TException>
+  nameWithType.vb: IRequestExceptionHandler(Of TRequest, TResponse, TException)
+- uid: Caesar.Pipeline.IRequestExceptionHandler`3.Handle(`0,`2,Caesar.Pipeline.RequestExceptionHandlerState{`1},System.Threading.CancellationToken)
+  name: Handle(TRequest, TException, RequestExceptionHandlerState<TResponse>, CancellationToken)
+  href: api/Caesar.Pipeline.IRequestExceptionHandler-3.html#Caesar_Pipeline_IRequestExceptionHandler_3_Handle__0__2_Caesar_Pipeline_RequestExceptionHandlerState__1__System_Threading_CancellationToken_
+  commentId: M:Caesar.Pipeline.IRequestExceptionHandler`3.Handle(`0,`2,Caesar.Pipeline.RequestExceptionHandlerState{`1},System.Threading.CancellationToken)
+  name.vb: Handle(TRequest, TException, RequestExceptionHandlerState(Of TResponse), CancellationToken)
+  fullName: Caesar.Pipeline.IRequestExceptionHandler<TRequest, TResponse, TException>.Handle(TRequest, TException, Caesar.Pipeline.RequestExceptionHandlerState<TResponse>, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Pipeline.IRequestExceptionHandler(Of TRequest, TResponse, TException).Handle(TRequest, TException, Caesar.Pipeline.RequestExceptionHandlerState(Of TResponse), System.Threading.CancellationToken)
+  nameWithType: IRequestExceptionHandler<TRequest, TResponse, TException>.Handle(TRequest, TException, RequestExceptionHandlerState<TResponse>, CancellationToken)
+  nameWithType.vb: IRequestExceptionHandler(Of TRequest, TResponse, TException).Handle(TRequest, TException, RequestExceptionHandlerState(Of TResponse), CancellationToken)
+- uid: Caesar.Pipeline.IRequestExceptionHandler`3.Handle*
+  name: Handle
+  href: api/Caesar.Pipeline.IRequestExceptionHandler-3.html#Caesar_Pipeline_IRequestExceptionHandler_3_Handle_
+  commentId: Overload:Caesar.Pipeline.IRequestExceptionHandler`3.Handle
+  fullName: Caesar.Pipeline.IRequestExceptionHandler<TRequest, TResponse, TException>.Handle
+  fullName.vb: Caesar.Pipeline.IRequestExceptionHandler(Of TRequest, TResponse, TException).Handle
+  nameWithType: IRequestExceptionHandler<TRequest, TResponse, TException>.Handle
+  nameWithType.vb: IRequestExceptionHandler(Of TRequest, TResponse, TException).Handle
+- uid: Caesar.Pipeline.IRequestPostProcessor`2
+  name: IRequestPostProcessor<TRequest, TResponse>
+  href: api/Caesar.Pipeline.IRequestPostProcessor-2.html
+  commentId: T:Caesar.Pipeline.IRequestPostProcessor`2
+  name.vb: IRequestPostProcessor(Of TRequest, TResponse)
+  fullName: Caesar.Pipeline.IRequestPostProcessor<TRequest, TResponse>
+  fullName.vb: Caesar.Pipeline.IRequestPostProcessor(Of TRequest, TResponse)
+  nameWithType: IRequestPostProcessor<TRequest, TResponse>
+  nameWithType.vb: IRequestPostProcessor(Of TRequest, TResponse)
+- uid: Caesar.Pipeline.IRequestPostProcessor`2.Process(`0,`1,System.Threading.CancellationToken)
+  name: Process(TRequest, TResponse, CancellationToken)
+  href: api/Caesar.Pipeline.IRequestPostProcessor-2.html#Caesar_Pipeline_IRequestPostProcessor_2_Process__0__1_System_Threading_CancellationToken_
+  commentId: M:Caesar.Pipeline.IRequestPostProcessor`2.Process(`0,`1,System.Threading.CancellationToken)
+  fullName: Caesar.Pipeline.IRequestPostProcessor<TRequest, TResponse>.Process(TRequest, TResponse, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Pipeline.IRequestPostProcessor(Of TRequest, TResponse).Process(TRequest, TResponse, System.Threading.CancellationToken)
+  nameWithType: IRequestPostProcessor<TRequest, TResponse>.Process(TRequest, TResponse, CancellationToken)
+  nameWithType.vb: IRequestPostProcessor(Of TRequest, TResponse).Process(TRequest, TResponse, CancellationToken)
+- uid: Caesar.Pipeline.IRequestPostProcessor`2.Process*
+  name: Process
+  href: api/Caesar.Pipeline.IRequestPostProcessor-2.html#Caesar_Pipeline_IRequestPostProcessor_2_Process_
+  commentId: Overload:Caesar.Pipeline.IRequestPostProcessor`2.Process
+  fullName: Caesar.Pipeline.IRequestPostProcessor<TRequest, TResponse>.Process
+  fullName.vb: Caesar.Pipeline.IRequestPostProcessor(Of TRequest, TResponse).Process
+  nameWithType: IRequestPostProcessor<TRequest, TResponse>.Process
+  nameWithType.vb: IRequestPostProcessor(Of TRequest, TResponse).Process
+- uid: Caesar.Pipeline.IRequestPreProcessor`1
+  name: IRequestPreProcessor<TRequest>
+  href: api/Caesar.Pipeline.IRequestPreProcessor-1.html
+  commentId: T:Caesar.Pipeline.IRequestPreProcessor`1
+  name.vb: IRequestPreProcessor(Of TRequest)
+  fullName: Caesar.Pipeline.IRequestPreProcessor<TRequest>
+  fullName.vb: Caesar.Pipeline.IRequestPreProcessor(Of TRequest)
+  nameWithType: IRequestPreProcessor<TRequest>
+  nameWithType.vb: IRequestPreProcessor(Of TRequest)
+- uid: Caesar.Pipeline.IRequestPreProcessor`1.Process(`0,System.Threading.CancellationToken)
+  name: Process(TRequest, CancellationToken)
+  href: api/Caesar.Pipeline.IRequestPreProcessor-1.html#Caesar_Pipeline_IRequestPreProcessor_1_Process__0_System_Threading_CancellationToken_
+  commentId: M:Caesar.Pipeline.IRequestPreProcessor`1.Process(`0,System.Threading.CancellationToken)
+  fullName: Caesar.Pipeline.IRequestPreProcessor<TRequest>.Process(TRequest, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Pipeline.IRequestPreProcessor(Of TRequest).Process(TRequest, System.Threading.CancellationToken)
+  nameWithType: IRequestPreProcessor<TRequest>.Process(TRequest, CancellationToken)
+  nameWithType.vb: IRequestPreProcessor(Of TRequest).Process(TRequest, CancellationToken)
+- uid: Caesar.Pipeline.IRequestPreProcessor`1.Process*
+  name: Process
+  href: api/Caesar.Pipeline.IRequestPreProcessor-1.html#Caesar_Pipeline_IRequestPreProcessor_1_Process_
+  commentId: Overload:Caesar.Pipeline.IRequestPreProcessor`1.Process
+  fullName: Caesar.Pipeline.IRequestPreProcessor<TRequest>.Process
+  fullName.vb: Caesar.Pipeline.IRequestPreProcessor(Of TRequest).Process
+  nameWithType: IRequestPreProcessor<TRequest>.Process
+  nameWithType.vb: IRequestPreProcessor(Of TRequest).Process
+- uid: Caesar.Pipeline.RequestExceptionActionProcessorBehavior`2
+  name: RequestExceptionActionProcessorBehavior<TRequest, TResponse>
+  href: api/Caesar.Pipeline.RequestExceptionActionProcessorBehavior-2.html
+  commentId: T:Caesar.Pipeline.RequestExceptionActionProcessorBehavior`2
+  name.vb: RequestExceptionActionProcessorBehavior(Of TRequest, TResponse)
+  fullName: Caesar.Pipeline.RequestExceptionActionProcessorBehavior<TRequest, TResponse>
+  fullName.vb: Caesar.Pipeline.RequestExceptionActionProcessorBehavior(Of TRequest, TResponse)
+  nameWithType: RequestExceptionActionProcessorBehavior<TRequest, TResponse>
+  nameWithType.vb: RequestExceptionActionProcessorBehavior(Of TRequest, TResponse)
+- uid: Caesar.Pipeline.RequestExceptionActionProcessorBehavior`2.#ctor(System.IServiceProvider)
+  name: RequestExceptionActionProcessorBehavior(IServiceProvider)
+  href: api/Caesar.Pipeline.RequestExceptionActionProcessorBehavior-2.html#Caesar_Pipeline_RequestExceptionActionProcessorBehavior_2__ctor_System_IServiceProvider_
+  commentId: M:Caesar.Pipeline.RequestExceptionActionProcessorBehavior`2.#ctor(System.IServiceProvider)
+  name.vb: New(IServiceProvider)
+  fullName: Caesar.Pipeline.RequestExceptionActionProcessorBehavior<TRequest, TResponse>.RequestExceptionActionProcessorBehavior(System.IServiceProvider)
+  fullName.vb: Caesar.Pipeline.RequestExceptionActionProcessorBehavior(Of TRequest, TResponse).New(System.IServiceProvider)
+  nameWithType: RequestExceptionActionProcessorBehavior<TRequest, TResponse>.RequestExceptionActionProcessorBehavior(IServiceProvider)
+  nameWithType.vb: RequestExceptionActionProcessorBehavior(Of TRequest, TResponse).New(IServiceProvider)
+- uid: Caesar.Pipeline.RequestExceptionActionProcessorBehavior`2.#ctor*
+  name: RequestExceptionActionProcessorBehavior
+  href: api/Caesar.Pipeline.RequestExceptionActionProcessorBehavior-2.html#Caesar_Pipeline_RequestExceptionActionProcessorBehavior_2__ctor_
+  commentId: Overload:Caesar.Pipeline.RequestExceptionActionProcessorBehavior`2.#ctor
+  name.vb: New
+  fullName: Caesar.Pipeline.RequestExceptionActionProcessorBehavior<TRequest, TResponse>.RequestExceptionActionProcessorBehavior
+  fullName.vb: Caesar.Pipeline.RequestExceptionActionProcessorBehavior(Of TRequest, TResponse).New
+  nameWithType: RequestExceptionActionProcessorBehavior<TRequest, TResponse>.RequestExceptionActionProcessorBehavior
+  nameWithType.vb: RequestExceptionActionProcessorBehavior(Of TRequest, TResponse).New
+- uid: Caesar.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(`0,Caesar.RequestHandlerDelegate{`1},System.Threading.CancellationToken)
+  name: Handle(TRequest, RequestHandlerDelegate<TResponse>, CancellationToken)
+  href: api/Caesar.Pipeline.RequestExceptionActionProcessorBehavior-2.html#Caesar_Pipeline_RequestExceptionActionProcessorBehavior_2_Handle__0_Caesar_RequestHandlerDelegate__1__System_Threading_CancellationToken_
+  commentId: M:Caesar.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle(`0,Caesar.RequestHandlerDelegate{`1},System.Threading.CancellationToken)
+  name.vb: Handle(TRequest, RequestHandlerDelegate(Of TResponse), CancellationToken)
+  fullName: Caesar.Pipeline.RequestExceptionActionProcessorBehavior<TRequest, TResponse>.Handle(TRequest, Caesar.RequestHandlerDelegate<TResponse>, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Pipeline.RequestExceptionActionProcessorBehavior(Of TRequest, TResponse).Handle(TRequest, Caesar.RequestHandlerDelegate(Of TResponse), System.Threading.CancellationToken)
+  nameWithType: RequestExceptionActionProcessorBehavior<TRequest, TResponse>.Handle(TRequest, RequestHandlerDelegate<TResponse>, CancellationToken)
+  nameWithType.vb: RequestExceptionActionProcessorBehavior(Of TRequest, TResponse).Handle(TRequest, RequestHandlerDelegate(Of TResponse), CancellationToken)
+- uid: Caesar.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle*
+  name: Handle
+  href: api/Caesar.Pipeline.RequestExceptionActionProcessorBehavior-2.html#Caesar_Pipeline_RequestExceptionActionProcessorBehavior_2_Handle_
+  commentId: Overload:Caesar.Pipeline.RequestExceptionActionProcessorBehavior`2.Handle
+  fullName: Caesar.Pipeline.RequestExceptionActionProcessorBehavior<TRequest, TResponse>.Handle
+  fullName.vb: Caesar.Pipeline.RequestExceptionActionProcessorBehavior(Of TRequest, TResponse).Handle
+  nameWithType: RequestExceptionActionProcessorBehavior<TRequest, TResponse>.Handle
+  nameWithType.vb: RequestExceptionActionProcessorBehavior(Of TRequest, TResponse).Handle
+- uid: Caesar.Pipeline.RequestExceptionHandlerState`1
+  name: RequestExceptionHandlerState<TResponse>
+  href: api/Caesar.Pipeline.RequestExceptionHandlerState-1.html
+  commentId: T:Caesar.Pipeline.RequestExceptionHandlerState`1
+  name.vb: RequestExceptionHandlerState(Of TResponse)
+  fullName: Caesar.Pipeline.RequestExceptionHandlerState<TResponse>
+  fullName.vb: Caesar.Pipeline.RequestExceptionHandlerState(Of TResponse)
+  nameWithType: RequestExceptionHandlerState<TResponse>
+  nameWithType.vb: RequestExceptionHandlerState(Of TResponse)
+- uid: Caesar.Pipeline.RequestExceptionHandlerState`1.#ctor
+  name: RequestExceptionHandlerState()
+  href: api/Caesar.Pipeline.RequestExceptionHandlerState-1.html#Caesar_Pipeline_RequestExceptionHandlerState_1__ctor
+  commentId: M:Caesar.Pipeline.RequestExceptionHandlerState`1.#ctor
+  name.vb: New()
+  fullName: Caesar.Pipeline.RequestExceptionHandlerState<TResponse>.RequestExceptionHandlerState()
+  fullName.vb: Caesar.Pipeline.RequestExceptionHandlerState(Of TResponse).New()
+  nameWithType: RequestExceptionHandlerState<TResponse>.RequestExceptionHandlerState()
+  nameWithType.vb: RequestExceptionHandlerState(Of TResponse).New()
+- uid: Caesar.Pipeline.RequestExceptionHandlerState`1.#ctor*
+  name: RequestExceptionHandlerState
+  href: api/Caesar.Pipeline.RequestExceptionHandlerState-1.html#Caesar_Pipeline_RequestExceptionHandlerState_1__ctor_
+  commentId: Overload:Caesar.Pipeline.RequestExceptionHandlerState`1.#ctor
+  name.vb: New
+  fullName: Caesar.Pipeline.RequestExceptionHandlerState<TResponse>.RequestExceptionHandlerState
+  fullName.vb: Caesar.Pipeline.RequestExceptionHandlerState(Of TResponse).New
+  nameWithType: RequestExceptionHandlerState<TResponse>.RequestExceptionHandlerState
+  nameWithType.vb: RequestExceptionHandlerState(Of TResponse).New
+- uid: Caesar.Pipeline.RequestExceptionHandlerState`1.Handled
+  name: Handled
+  href: api/Caesar.Pipeline.RequestExceptionHandlerState-1.html#Caesar_Pipeline_RequestExceptionHandlerState_1_Handled
+  commentId: P:Caesar.Pipeline.RequestExceptionHandlerState`1.Handled
+  fullName: Caesar.Pipeline.RequestExceptionHandlerState<TResponse>.Handled
+  fullName.vb: Caesar.Pipeline.RequestExceptionHandlerState(Of TResponse).Handled
+  nameWithType: RequestExceptionHandlerState<TResponse>.Handled
+  nameWithType.vb: RequestExceptionHandlerState(Of TResponse).Handled
+- uid: Caesar.Pipeline.RequestExceptionHandlerState`1.Handled*
+  name: Handled
+  href: api/Caesar.Pipeline.RequestExceptionHandlerState-1.html#Caesar_Pipeline_RequestExceptionHandlerState_1_Handled_
+  commentId: Overload:Caesar.Pipeline.RequestExceptionHandlerState`1.Handled
+  fullName: Caesar.Pipeline.RequestExceptionHandlerState<TResponse>.Handled
+  fullName.vb: Caesar.Pipeline.RequestExceptionHandlerState(Of TResponse).Handled
+  nameWithType: RequestExceptionHandlerState<TResponse>.Handled
+  nameWithType.vb: RequestExceptionHandlerState(Of TResponse).Handled
+- uid: Caesar.Pipeline.RequestExceptionHandlerState`1.Response
+  name: Response
+  href: api/Caesar.Pipeline.RequestExceptionHandlerState-1.html#Caesar_Pipeline_RequestExceptionHandlerState_1_Response
+  commentId: P:Caesar.Pipeline.RequestExceptionHandlerState`1.Response
+  fullName: Caesar.Pipeline.RequestExceptionHandlerState<TResponse>.Response
+  fullName.vb: Caesar.Pipeline.RequestExceptionHandlerState(Of TResponse).Response
+  nameWithType: RequestExceptionHandlerState<TResponse>.Response
+  nameWithType.vb: RequestExceptionHandlerState(Of TResponse).Response
+- uid: Caesar.Pipeline.RequestExceptionHandlerState`1.Response*
+  name: Response
+  href: api/Caesar.Pipeline.RequestExceptionHandlerState-1.html#Caesar_Pipeline_RequestExceptionHandlerState_1_Response_
+  commentId: Overload:Caesar.Pipeline.RequestExceptionHandlerState`1.Response
+  fullName: Caesar.Pipeline.RequestExceptionHandlerState<TResponse>.Response
+  fullName.vb: Caesar.Pipeline.RequestExceptionHandlerState(Of TResponse).Response
+  nameWithType: RequestExceptionHandlerState<TResponse>.Response
+  nameWithType.vb: RequestExceptionHandlerState(Of TResponse).Response
+- uid: Caesar.Pipeline.RequestExceptionHandlerState`1.SetHandled(`0)
+  name: SetHandled(TResponse)
+  href: api/Caesar.Pipeline.RequestExceptionHandlerState-1.html#Caesar_Pipeline_RequestExceptionHandlerState_1_SetHandled__0_
+  commentId: M:Caesar.Pipeline.RequestExceptionHandlerState`1.SetHandled(`0)
+  fullName: Caesar.Pipeline.RequestExceptionHandlerState<TResponse>.SetHandled(TResponse)
+  fullName.vb: Caesar.Pipeline.RequestExceptionHandlerState(Of TResponse).SetHandled(TResponse)
+  nameWithType: RequestExceptionHandlerState<TResponse>.SetHandled(TResponse)
+  nameWithType.vb: RequestExceptionHandlerState(Of TResponse).SetHandled(TResponse)
+- uid: Caesar.Pipeline.RequestExceptionHandlerState`1.SetHandled*
+  name: SetHandled
+  href: api/Caesar.Pipeline.RequestExceptionHandlerState-1.html#Caesar_Pipeline_RequestExceptionHandlerState_1_SetHandled_
+  commentId: Overload:Caesar.Pipeline.RequestExceptionHandlerState`1.SetHandled
+  fullName: Caesar.Pipeline.RequestExceptionHandlerState<TResponse>.SetHandled
+  fullName.vb: Caesar.Pipeline.RequestExceptionHandlerState(Of TResponse).SetHandled
+  nameWithType: RequestExceptionHandlerState<TResponse>.SetHandled
+  nameWithType.vb: RequestExceptionHandlerState(Of TResponse).SetHandled
+- uid: Caesar.Pipeline.RequestExceptionProcessorBehavior`2
+  name: RequestExceptionProcessorBehavior<TRequest, TResponse>
+  href: api/Caesar.Pipeline.RequestExceptionProcessorBehavior-2.html
+  commentId: T:Caesar.Pipeline.RequestExceptionProcessorBehavior`2
+  name.vb: RequestExceptionProcessorBehavior(Of TRequest, TResponse)
+  fullName: Caesar.Pipeline.RequestExceptionProcessorBehavior<TRequest, TResponse>
+  fullName.vb: Caesar.Pipeline.RequestExceptionProcessorBehavior(Of TRequest, TResponse)
+  nameWithType: RequestExceptionProcessorBehavior<TRequest, TResponse>
+  nameWithType.vb: RequestExceptionProcessorBehavior(Of TRequest, TResponse)
+- uid: Caesar.Pipeline.RequestExceptionProcessorBehavior`2.#ctor(System.IServiceProvider)
+  name: RequestExceptionProcessorBehavior(IServiceProvider)
+  href: api/Caesar.Pipeline.RequestExceptionProcessorBehavior-2.html#Caesar_Pipeline_RequestExceptionProcessorBehavior_2__ctor_System_IServiceProvider_
+  commentId: M:Caesar.Pipeline.RequestExceptionProcessorBehavior`2.#ctor(System.IServiceProvider)
+  name.vb: New(IServiceProvider)
+  fullName: Caesar.Pipeline.RequestExceptionProcessorBehavior<TRequest, TResponse>.RequestExceptionProcessorBehavior(System.IServiceProvider)
+  fullName.vb: Caesar.Pipeline.RequestExceptionProcessorBehavior(Of TRequest, TResponse).New(System.IServiceProvider)
+  nameWithType: RequestExceptionProcessorBehavior<TRequest, TResponse>.RequestExceptionProcessorBehavior(IServiceProvider)
+  nameWithType.vb: RequestExceptionProcessorBehavior(Of TRequest, TResponse).New(IServiceProvider)
+- uid: Caesar.Pipeline.RequestExceptionProcessorBehavior`2.#ctor*
+  name: RequestExceptionProcessorBehavior
+  href: api/Caesar.Pipeline.RequestExceptionProcessorBehavior-2.html#Caesar_Pipeline_RequestExceptionProcessorBehavior_2__ctor_
+  commentId: Overload:Caesar.Pipeline.RequestExceptionProcessorBehavior`2.#ctor
+  name.vb: New
+  fullName: Caesar.Pipeline.RequestExceptionProcessorBehavior<TRequest, TResponse>.RequestExceptionProcessorBehavior
+  fullName.vb: Caesar.Pipeline.RequestExceptionProcessorBehavior(Of TRequest, TResponse).New
+  nameWithType: RequestExceptionProcessorBehavior<TRequest, TResponse>.RequestExceptionProcessorBehavior
+  nameWithType.vb: RequestExceptionProcessorBehavior(Of TRequest, TResponse).New
+- uid: Caesar.Pipeline.RequestExceptionProcessorBehavior`2.Handle(`0,Caesar.RequestHandlerDelegate{`1},System.Threading.CancellationToken)
+  name: Handle(TRequest, RequestHandlerDelegate<TResponse>, CancellationToken)
+  href: api/Caesar.Pipeline.RequestExceptionProcessorBehavior-2.html#Caesar_Pipeline_RequestExceptionProcessorBehavior_2_Handle__0_Caesar_RequestHandlerDelegate__1__System_Threading_CancellationToken_
+  commentId: M:Caesar.Pipeline.RequestExceptionProcessorBehavior`2.Handle(`0,Caesar.RequestHandlerDelegate{`1},System.Threading.CancellationToken)
+  name.vb: Handle(TRequest, RequestHandlerDelegate(Of TResponse), CancellationToken)
+  fullName: Caesar.Pipeline.RequestExceptionProcessorBehavior<TRequest, TResponse>.Handle(TRequest, Caesar.RequestHandlerDelegate<TResponse>, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Pipeline.RequestExceptionProcessorBehavior(Of TRequest, TResponse).Handle(TRequest, Caesar.RequestHandlerDelegate(Of TResponse), System.Threading.CancellationToken)
+  nameWithType: RequestExceptionProcessorBehavior<TRequest, TResponse>.Handle(TRequest, RequestHandlerDelegate<TResponse>, CancellationToken)
+  nameWithType.vb: RequestExceptionProcessorBehavior(Of TRequest, TResponse).Handle(TRequest, RequestHandlerDelegate(Of TResponse), CancellationToken)
+- uid: Caesar.Pipeline.RequestExceptionProcessorBehavior`2.Handle*
+  name: Handle
+  href: api/Caesar.Pipeline.RequestExceptionProcessorBehavior-2.html#Caesar_Pipeline_RequestExceptionProcessorBehavior_2_Handle_
+  commentId: Overload:Caesar.Pipeline.RequestExceptionProcessorBehavior`2.Handle
+  fullName: Caesar.Pipeline.RequestExceptionProcessorBehavior<TRequest, TResponse>.Handle
+  fullName.vb: Caesar.Pipeline.RequestExceptionProcessorBehavior(Of TRequest, TResponse).Handle
+  nameWithType: RequestExceptionProcessorBehavior<TRequest, TResponse>.Handle
+  nameWithType.vb: RequestExceptionProcessorBehavior(Of TRequest, TResponse).Handle
+- uid: Caesar.Pipeline.RequestPostProcessorBehavior`2
+  name: RequestPostProcessorBehavior<TRequest, TResponse>
+  href: api/Caesar.Pipeline.RequestPostProcessorBehavior-2.html
+  commentId: T:Caesar.Pipeline.RequestPostProcessorBehavior`2
+  name.vb: RequestPostProcessorBehavior(Of TRequest, TResponse)
+  fullName: Caesar.Pipeline.RequestPostProcessorBehavior<TRequest, TResponse>
+  fullName.vb: Caesar.Pipeline.RequestPostProcessorBehavior(Of TRequest, TResponse)
+  nameWithType: RequestPostProcessorBehavior<TRequest, TResponse>
+  nameWithType.vb: RequestPostProcessorBehavior(Of TRequest, TResponse)
+- uid: Caesar.Pipeline.RequestPostProcessorBehavior`2.#ctor(System.Collections.Generic.IEnumerable{Caesar.Pipeline.IRequestPostProcessor{`0,`1}})
+  name: RequestPostProcessorBehavior(IEnumerable<IRequestPostProcessor<TRequest, TResponse>>)
+  href: api/Caesar.Pipeline.RequestPostProcessorBehavior-2.html#Caesar_Pipeline_RequestPostProcessorBehavior_2__ctor_System_Collections_Generic_IEnumerable_Caesar_Pipeline_IRequestPostProcessor__0__1___
+  commentId: M:Caesar.Pipeline.RequestPostProcessorBehavior`2.#ctor(System.Collections.Generic.IEnumerable{Caesar.Pipeline.IRequestPostProcessor{`0,`1}})
+  name.vb: New(IEnumerable(Of IRequestPostProcessor(Of TRequest, TResponse)))
+  fullName: Caesar.Pipeline.RequestPostProcessorBehavior<TRequest, TResponse>.RequestPostProcessorBehavior(System.Collections.Generic.IEnumerable<Caesar.Pipeline.IRequestPostProcessor<TRequest, TResponse>>)
+  fullName.vb: Caesar.Pipeline.RequestPostProcessorBehavior(Of TRequest, TResponse).New(System.Collections.Generic.IEnumerable(Of Caesar.Pipeline.IRequestPostProcessor(Of TRequest, TResponse)))
+  nameWithType: RequestPostProcessorBehavior<TRequest, TResponse>.RequestPostProcessorBehavior(IEnumerable<IRequestPostProcessor<TRequest, TResponse>>)
+  nameWithType.vb: RequestPostProcessorBehavior(Of TRequest, TResponse).New(IEnumerable(Of IRequestPostProcessor(Of TRequest, TResponse)))
+- uid: Caesar.Pipeline.RequestPostProcessorBehavior`2.#ctor*
+  name: RequestPostProcessorBehavior
+  href: api/Caesar.Pipeline.RequestPostProcessorBehavior-2.html#Caesar_Pipeline_RequestPostProcessorBehavior_2__ctor_
+  commentId: Overload:Caesar.Pipeline.RequestPostProcessorBehavior`2.#ctor
+  name.vb: New
+  fullName: Caesar.Pipeline.RequestPostProcessorBehavior<TRequest, TResponse>.RequestPostProcessorBehavior
+  fullName.vb: Caesar.Pipeline.RequestPostProcessorBehavior(Of TRequest, TResponse).New
+  nameWithType: RequestPostProcessorBehavior<TRequest, TResponse>.RequestPostProcessorBehavior
+  nameWithType.vb: RequestPostProcessorBehavior(Of TRequest, TResponse).New
+- uid: Caesar.Pipeline.RequestPostProcessorBehavior`2.Handle(`0,Caesar.RequestHandlerDelegate{`1},System.Threading.CancellationToken)
+  name: Handle(TRequest, RequestHandlerDelegate<TResponse>, CancellationToken)
+  href: api/Caesar.Pipeline.RequestPostProcessorBehavior-2.html#Caesar_Pipeline_RequestPostProcessorBehavior_2_Handle__0_Caesar_RequestHandlerDelegate__1__System_Threading_CancellationToken_
+  commentId: M:Caesar.Pipeline.RequestPostProcessorBehavior`2.Handle(`0,Caesar.RequestHandlerDelegate{`1},System.Threading.CancellationToken)
+  name.vb: Handle(TRequest, RequestHandlerDelegate(Of TResponse), CancellationToken)
+  fullName: Caesar.Pipeline.RequestPostProcessorBehavior<TRequest, TResponse>.Handle(TRequest, Caesar.RequestHandlerDelegate<TResponse>, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Pipeline.RequestPostProcessorBehavior(Of TRequest, TResponse).Handle(TRequest, Caesar.RequestHandlerDelegate(Of TResponse), System.Threading.CancellationToken)
+  nameWithType: RequestPostProcessorBehavior<TRequest, TResponse>.Handle(TRequest, RequestHandlerDelegate<TResponse>, CancellationToken)
+  nameWithType.vb: RequestPostProcessorBehavior(Of TRequest, TResponse).Handle(TRequest, RequestHandlerDelegate(Of TResponse), CancellationToken)
+- uid: Caesar.Pipeline.RequestPostProcessorBehavior`2.Handle*
+  name: Handle
+  href: api/Caesar.Pipeline.RequestPostProcessorBehavior-2.html#Caesar_Pipeline_RequestPostProcessorBehavior_2_Handle_
+  commentId: Overload:Caesar.Pipeline.RequestPostProcessorBehavior`2.Handle
+  fullName: Caesar.Pipeline.RequestPostProcessorBehavior<TRequest, TResponse>.Handle
+  fullName.vb: Caesar.Pipeline.RequestPostProcessorBehavior(Of TRequest, TResponse).Handle
+  nameWithType: RequestPostProcessorBehavior<TRequest, TResponse>.Handle
+  nameWithType.vb: RequestPostProcessorBehavior(Of TRequest, TResponse).Handle
+- uid: Caesar.Pipeline.RequestPreProcessorBehavior`2
+  name: RequestPreProcessorBehavior<TRequest, TResponse>
+  href: api/Caesar.Pipeline.RequestPreProcessorBehavior-2.html
+  commentId: T:Caesar.Pipeline.RequestPreProcessorBehavior`2
+  name.vb: RequestPreProcessorBehavior(Of TRequest, TResponse)
+  fullName: Caesar.Pipeline.RequestPreProcessorBehavior<TRequest, TResponse>
+  fullName.vb: Caesar.Pipeline.RequestPreProcessorBehavior(Of TRequest, TResponse)
+  nameWithType: RequestPreProcessorBehavior<TRequest, TResponse>
+  nameWithType.vb: RequestPreProcessorBehavior(Of TRequest, TResponse)
+- uid: Caesar.Pipeline.RequestPreProcessorBehavior`2.#ctor(System.Collections.Generic.IEnumerable{Caesar.Pipeline.IRequestPreProcessor{`0}})
+  name: RequestPreProcessorBehavior(IEnumerable<IRequestPreProcessor<TRequest>>)
+  href: api/Caesar.Pipeline.RequestPreProcessorBehavior-2.html#Caesar_Pipeline_RequestPreProcessorBehavior_2__ctor_System_Collections_Generic_IEnumerable_Caesar_Pipeline_IRequestPreProcessor__0___
+  commentId: M:Caesar.Pipeline.RequestPreProcessorBehavior`2.#ctor(System.Collections.Generic.IEnumerable{Caesar.Pipeline.IRequestPreProcessor{`0}})
+  name.vb: New(IEnumerable(Of IRequestPreProcessor(Of TRequest)))
+  fullName: Caesar.Pipeline.RequestPreProcessorBehavior<TRequest, TResponse>.RequestPreProcessorBehavior(System.Collections.Generic.IEnumerable<Caesar.Pipeline.IRequestPreProcessor<TRequest>>)
+  fullName.vb: Caesar.Pipeline.RequestPreProcessorBehavior(Of TRequest, TResponse).New(System.Collections.Generic.IEnumerable(Of Caesar.Pipeline.IRequestPreProcessor(Of TRequest)))
+  nameWithType: RequestPreProcessorBehavior<TRequest, TResponse>.RequestPreProcessorBehavior(IEnumerable<IRequestPreProcessor<TRequest>>)
+  nameWithType.vb: RequestPreProcessorBehavior(Of TRequest, TResponse).New(IEnumerable(Of IRequestPreProcessor(Of TRequest)))
+- uid: Caesar.Pipeline.RequestPreProcessorBehavior`2.#ctor*
+  name: RequestPreProcessorBehavior
+  href: api/Caesar.Pipeline.RequestPreProcessorBehavior-2.html#Caesar_Pipeline_RequestPreProcessorBehavior_2__ctor_
+  commentId: Overload:Caesar.Pipeline.RequestPreProcessorBehavior`2.#ctor
+  name.vb: New
+  fullName: Caesar.Pipeline.RequestPreProcessorBehavior<TRequest, TResponse>.RequestPreProcessorBehavior
+  fullName.vb: Caesar.Pipeline.RequestPreProcessorBehavior(Of TRequest, TResponse).New
+  nameWithType: RequestPreProcessorBehavior<TRequest, TResponse>.RequestPreProcessorBehavior
+  nameWithType.vb: RequestPreProcessorBehavior(Of TRequest, TResponse).New
+- uid: Caesar.Pipeline.RequestPreProcessorBehavior`2.Handle(`0,Caesar.RequestHandlerDelegate{`1},System.Threading.CancellationToken)
+  name: Handle(TRequest, RequestHandlerDelegate<TResponse>, CancellationToken)
+  href: api/Caesar.Pipeline.RequestPreProcessorBehavior-2.html#Caesar_Pipeline_RequestPreProcessorBehavior_2_Handle__0_Caesar_RequestHandlerDelegate__1__System_Threading_CancellationToken_
+  commentId: M:Caesar.Pipeline.RequestPreProcessorBehavior`2.Handle(`0,Caesar.RequestHandlerDelegate{`1},System.Threading.CancellationToken)
+  name.vb: Handle(TRequest, RequestHandlerDelegate(Of TResponse), CancellationToken)
+  fullName: Caesar.Pipeline.RequestPreProcessorBehavior<TRequest, TResponse>.Handle(TRequest, Caesar.RequestHandlerDelegate<TResponse>, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Pipeline.RequestPreProcessorBehavior(Of TRequest, TResponse).Handle(TRequest, Caesar.RequestHandlerDelegate(Of TResponse), System.Threading.CancellationToken)
+  nameWithType: RequestPreProcessorBehavior<TRequest, TResponse>.Handle(TRequest, RequestHandlerDelegate<TResponse>, CancellationToken)
+  nameWithType.vb: RequestPreProcessorBehavior(Of TRequest, TResponse).Handle(TRequest, RequestHandlerDelegate(Of TResponse), CancellationToken)
+- uid: Caesar.Pipeline.RequestPreProcessorBehavior`2.Handle*
+  name: Handle
+  href: api/Caesar.Pipeline.RequestPreProcessorBehavior-2.html#Caesar_Pipeline_RequestPreProcessorBehavior_2_Handle_
+  commentId: Overload:Caesar.Pipeline.RequestPreProcessorBehavior`2.Handle
+  fullName: Caesar.Pipeline.RequestPreProcessorBehavior<TRequest, TResponse>.Handle
+  fullName.vb: Caesar.Pipeline.RequestPreProcessorBehavior(Of TRequest, TResponse).Handle
+  nameWithType: RequestPreProcessorBehavior<TRequest, TResponse>.Handle
+  nameWithType.vb: RequestPreProcessorBehavior(Of TRequest, TResponse).Handle
+- uid: Caesar.RequestHandlerDelegate`1
+  name: RequestHandlerDelegate<TResponse>
+  href: api/Caesar.RequestHandlerDelegate-1.html
+  commentId: T:Caesar.RequestHandlerDelegate`1
+  name.vb: RequestHandlerDelegate(Of TResponse)
+  fullName: Caesar.RequestHandlerDelegate<TResponse>
+  fullName.vb: Caesar.RequestHandlerDelegate(Of TResponse)
+  nameWithType: RequestHandlerDelegate<TResponse>
+  nameWithType.vb: RequestHandlerDelegate(Of TResponse)
+- uid: Caesar.RequestHandlerDelegate`1.#ctor(System.Object,System.IntPtr)
+  name: RequestHandlerDelegate(object, nint)
+  href: api/Caesar.RequestHandlerDelegate-1.html#Caesar_RequestHandlerDelegate_1__ctor_System_Object_System_IntPtr_
+  commentId: M:Caesar.RequestHandlerDelegate`1.#ctor(System.Object,System.IntPtr)
+  name.vb: New(Object, IntPtr)
+  fullName: Caesar.RequestHandlerDelegate<TResponse>.RequestHandlerDelegate(object, nint)
+  fullName.vb: Caesar.RequestHandlerDelegate(Of TResponse).New(Object, System.IntPtr)
+  nameWithType: RequestHandlerDelegate<TResponse>.RequestHandlerDelegate(object, nint)
+  nameWithType.vb: RequestHandlerDelegate(Of TResponse).New(Object, IntPtr)
+- uid: Caesar.RequestHandlerDelegate`1.#ctor*
+  name: RequestHandlerDelegate
+  href: api/Caesar.RequestHandlerDelegate-1.html#Caesar_RequestHandlerDelegate_1__ctor_
+  commentId: Overload:Caesar.RequestHandlerDelegate`1.#ctor
+  name.vb: New
+  fullName: Caesar.RequestHandlerDelegate<TResponse>.RequestHandlerDelegate
+  fullName.vb: Caesar.RequestHandlerDelegate(Of TResponse).New
+  nameWithType: RequestHandlerDelegate<TResponse>.RequestHandlerDelegate
+  nameWithType.vb: RequestHandlerDelegate(Of TResponse).New
+- uid: Caesar.RequestHandlerDelegate`1.BeginInvoke(System.Threading.CancellationToken,System.AsyncCallback,System.Object)
+  name: BeginInvoke(CancellationToken, AsyncCallback, object)
+  href: api/Caesar.RequestHandlerDelegate-1.html#Caesar_RequestHandlerDelegate_1_BeginInvoke_System_Threading_CancellationToken_System_AsyncCallback_System_Object_
+  commentId: M:Caesar.RequestHandlerDelegate`1.BeginInvoke(System.Threading.CancellationToken,System.AsyncCallback,System.Object)
+  name.vb: BeginInvoke(CancellationToken, AsyncCallback, Object)
+  fullName: Caesar.RequestHandlerDelegate<TResponse>.BeginInvoke(System.Threading.CancellationToken, System.AsyncCallback, object)
+  fullName.vb: Caesar.RequestHandlerDelegate(Of TResponse).BeginInvoke(System.Threading.CancellationToken, System.AsyncCallback, Object)
+  nameWithType: RequestHandlerDelegate<TResponse>.BeginInvoke(CancellationToken, AsyncCallback, object)
+  nameWithType.vb: RequestHandlerDelegate(Of TResponse).BeginInvoke(CancellationToken, AsyncCallback, Object)
+- uid: Caesar.RequestHandlerDelegate`1.BeginInvoke*
+  name: BeginInvoke
+  href: api/Caesar.RequestHandlerDelegate-1.html#Caesar_RequestHandlerDelegate_1_BeginInvoke_
+  commentId: Overload:Caesar.RequestHandlerDelegate`1.BeginInvoke
+  fullName: Caesar.RequestHandlerDelegate<TResponse>.BeginInvoke
+  fullName.vb: Caesar.RequestHandlerDelegate(Of TResponse).BeginInvoke
+  nameWithType: RequestHandlerDelegate<TResponse>.BeginInvoke
+  nameWithType.vb: RequestHandlerDelegate(Of TResponse).BeginInvoke
+- uid: Caesar.RequestHandlerDelegate`1.EndInvoke(System.IAsyncResult)
+  name: EndInvoke(IAsyncResult)
+  href: api/Caesar.RequestHandlerDelegate-1.html#Caesar_RequestHandlerDelegate_1_EndInvoke_System_IAsyncResult_
+  commentId: M:Caesar.RequestHandlerDelegate`1.EndInvoke(System.IAsyncResult)
+  fullName: Caesar.RequestHandlerDelegate<TResponse>.EndInvoke(System.IAsyncResult)
+  fullName.vb: Caesar.RequestHandlerDelegate(Of TResponse).EndInvoke(System.IAsyncResult)
+  nameWithType: RequestHandlerDelegate<TResponse>.EndInvoke(IAsyncResult)
+  nameWithType.vb: RequestHandlerDelegate(Of TResponse).EndInvoke(IAsyncResult)
+- uid: Caesar.RequestHandlerDelegate`1.EndInvoke*
+  name: EndInvoke
+  href: api/Caesar.RequestHandlerDelegate-1.html#Caesar_RequestHandlerDelegate_1_EndInvoke_
+  commentId: Overload:Caesar.RequestHandlerDelegate`1.EndInvoke
+  fullName: Caesar.RequestHandlerDelegate<TResponse>.EndInvoke
+  fullName.vb: Caesar.RequestHandlerDelegate(Of TResponse).EndInvoke
+  nameWithType: RequestHandlerDelegate<TResponse>.EndInvoke
+  nameWithType.vb: RequestHandlerDelegate(Of TResponse).EndInvoke
+- uid: Caesar.RequestHandlerDelegate`1.Invoke(System.Threading.CancellationToken)
+  name: Invoke(CancellationToken)
+  href: api/Caesar.RequestHandlerDelegate-1.html#Caesar_RequestHandlerDelegate_1_Invoke_System_Threading_CancellationToken_
+  commentId: M:Caesar.RequestHandlerDelegate`1.Invoke(System.Threading.CancellationToken)
+  fullName: Caesar.RequestHandlerDelegate<TResponse>.Invoke(System.Threading.CancellationToken)
+  fullName.vb: Caesar.RequestHandlerDelegate(Of TResponse).Invoke(System.Threading.CancellationToken)
+  nameWithType: RequestHandlerDelegate<TResponse>.Invoke(CancellationToken)
+  nameWithType.vb: RequestHandlerDelegate(Of TResponse).Invoke(CancellationToken)
+- uid: Caesar.RequestHandlerDelegate`1.Invoke*
+  name: Invoke
+  href: api/Caesar.RequestHandlerDelegate-1.html#Caesar_RequestHandlerDelegate_1_Invoke_
+  commentId: Overload:Caesar.RequestHandlerDelegate`1.Invoke
+  fullName: Caesar.RequestHandlerDelegate<TResponse>.Invoke
+  fullName.vb: Caesar.RequestHandlerDelegate(Of TResponse).Invoke
+  nameWithType: RequestHandlerDelegate<TResponse>.Invoke
+  nameWithType.vb: RequestHandlerDelegate(Of TResponse).Invoke
+- uid: Caesar.StreamHandlerDelegate`1
+  name: StreamHandlerDelegate<TResponse>
+  href: api/Caesar.StreamHandlerDelegate-1.html
+  commentId: T:Caesar.StreamHandlerDelegate`1
+  name.vb: StreamHandlerDelegate(Of TResponse)
+  fullName: Caesar.StreamHandlerDelegate<TResponse>
+  fullName.vb: Caesar.StreamHandlerDelegate(Of TResponse)
+  nameWithType: StreamHandlerDelegate<TResponse>
+  nameWithType.vb: StreamHandlerDelegate(Of TResponse)
+- uid: Caesar.StreamHandlerDelegate`1.#ctor(System.Object,System.IntPtr)
+  name: StreamHandlerDelegate(object, nint)
+  href: api/Caesar.StreamHandlerDelegate-1.html#Caesar_StreamHandlerDelegate_1__ctor_System_Object_System_IntPtr_
+  commentId: M:Caesar.StreamHandlerDelegate`1.#ctor(System.Object,System.IntPtr)
+  name.vb: New(Object, IntPtr)
+  fullName: Caesar.StreamHandlerDelegate<TResponse>.StreamHandlerDelegate(object, nint)
+  fullName.vb: Caesar.StreamHandlerDelegate(Of TResponse).New(Object, System.IntPtr)
+  nameWithType: StreamHandlerDelegate<TResponse>.StreamHandlerDelegate(object, nint)
+  nameWithType.vb: StreamHandlerDelegate(Of TResponse).New(Object, IntPtr)
+- uid: Caesar.StreamHandlerDelegate`1.#ctor*
+  name: StreamHandlerDelegate
+  href: api/Caesar.StreamHandlerDelegate-1.html#Caesar_StreamHandlerDelegate_1__ctor_
+  commentId: Overload:Caesar.StreamHandlerDelegate`1.#ctor
+  name.vb: New
+  fullName: Caesar.StreamHandlerDelegate<TResponse>.StreamHandlerDelegate
+  fullName.vb: Caesar.StreamHandlerDelegate(Of TResponse).New
+  nameWithType: StreamHandlerDelegate<TResponse>.StreamHandlerDelegate
+  nameWithType.vb: StreamHandlerDelegate(Of TResponse).New
+- uid: Caesar.StreamHandlerDelegate`1.BeginInvoke(System.AsyncCallback,System.Object)
+  name: BeginInvoke(AsyncCallback, object)
+  href: api/Caesar.StreamHandlerDelegate-1.html#Caesar_StreamHandlerDelegate_1_BeginInvoke_System_AsyncCallback_System_Object_
+  commentId: M:Caesar.StreamHandlerDelegate`1.BeginInvoke(System.AsyncCallback,System.Object)
+  name.vb: BeginInvoke(AsyncCallback, Object)
+  fullName: Caesar.StreamHandlerDelegate<TResponse>.BeginInvoke(System.AsyncCallback, object)
+  fullName.vb: Caesar.StreamHandlerDelegate(Of TResponse).BeginInvoke(System.AsyncCallback, Object)
+  nameWithType: StreamHandlerDelegate<TResponse>.BeginInvoke(AsyncCallback, object)
+  nameWithType.vb: StreamHandlerDelegate(Of TResponse).BeginInvoke(AsyncCallback, Object)
+- uid: Caesar.StreamHandlerDelegate`1.BeginInvoke*
+  name: BeginInvoke
+  href: api/Caesar.StreamHandlerDelegate-1.html#Caesar_StreamHandlerDelegate_1_BeginInvoke_
+  commentId: Overload:Caesar.StreamHandlerDelegate`1.BeginInvoke
+  fullName: Caesar.StreamHandlerDelegate<TResponse>.BeginInvoke
+  fullName.vb: Caesar.StreamHandlerDelegate(Of TResponse).BeginInvoke
+  nameWithType: StreamHandlerDelegate<TResponse>.BeginInvoke
+  nameWithType.vb: StreamHandlerDelegate(Of TResponse).BeginInvoke
+- uid: Caesar.StreamHandlerDelegate`1.EndInvoke(System.IAsyncResult)
+  name: EndInvoke(IAsyncResult)
+  href: api/Caesar.StreamHandlerDelegate-1.html#Caesar_StreamHandlerDelegate_1_EndInvoke_System_IAsyncResult_
+  commentId: M:Caesar.StreamHandlerDelegate`1.EndInvoke(System.IAsyncResult)
+  fullName: Caesar.StreamHandlerDelegate<TResponse>.EndInvoke(System.IAsyncResult)
+  fullName.vb: Caesar.StreamHandlerDelegate(Of TResponse).EndInvoke(System.IAsyncResult)
+  nameWithType: StreamHandlerDelegate<TResponse>.EndInvoke(IAsyncResult)
+  nameWithType.vb: StreamHandlerDelegate(Of TResponse).EndInvoke(IAsyncResult)
+- uid: Caesar.StreamHandlerDelegate`1.EndInvoke*
+  name: EndInvoke
+  href: api/Caesar.StreamHandlerDelegate-1.html#Caesar_StreamHandlerDelegate_1_EndInvoke_
+  commentId: Overload:Caesar.StreamHandlerDelegate`1.EndInvoke
+  fullName: Caesar.StreamHandlerDelegate<TResponse>.EndInvoke
+  fullName.vb: Caesar.StreamHandlerDelegate(Of TResponse).EndInvoke
+  nameWithType: StreamHandlerDelegate<TResponse>.EndInvoke
+  nameWithType.vb: StreamHandlerDelegate(Of TResponse).EndInvoke
+- uid: Caesar.StreamHandlerDelegate`1.Invoke
+  name: Invoke()
+  href: api/Caesar.StreamHandlerDelegate-1.html#Caesar_StreamHandlerDelegate_1_Invoke
+  commentId: M:Caesar.StreamHandlerDelegate`1.Invoke
+  fullName: Caesar.StreamHandlerDelegate<TResponse>.Invoke()
+  fullName.vb: Caesar.StreamHandlerDelegate(Of TResponse).Invoke()
+  nameWithType: StreamHandlerDelegate<TResponse>.Invoke()
+  nameWithType.vb: StreamHandlerDelegate(Of TResponse).Invoke()
+- uid: Caesar.StreamHandlerDelegate`1.Invoke*
+  name: Invoke
+  href: api/Caesar.StreamHandlerDelegate-1.html#Caesar_StreamHandlerDelegate_1_Invoke_
+  commentId: Overload:Caesar.StreamHandlerDelegate`1.Invoke
+  fullName: Caesar.StreamHandlerDelegate<TResponse>.Invoke
+  fullName.vb: Caesar.StreamHandlerDelegate(Of TResponse).Invoke
+  nameWithType: StreamHandlerDelegate<TResponse>.Invoke
+  nameWithType.vb: StreamHandlerDelegate(Of TResponse).Invoke
+- uid: Caesar.Unit
+  name: Unit
+  href: api/Caesar.Unit.html
+  commentId: T:Caesar.Unit
+  fullName: Caesar.Unit
+  nameWithType: Unit
+- uid: Caesar.Unit.CompareTo(Caesar.Unit)
+  name: CompareTo(Unit)
+  href: api/Caesar.Unit.html#Caesar_Unit_CompareTo_Caesar_Unit_
+  commentId: M:Caesar.Unit.CompareTo(Caesar.Unit)
+  fullName: Caesar.Unit.CompareTo(Caesar.Unit)
+  nameWithType: Unit.CompareTo(Unit)
+- uid: Caesar.Unit.CompareTo*
+  name: CompareTo
+  href: api/Caesar.Unit.html#Caesar_Unit_CompareTo_
+  commentId: Overload:Caesar.Unit.CompareTo
+  fullName: Caesar.Unit.CompareTo
+  nameWithType: Unit.CompareTo
+- uid: Caesar.Unit.Equals(Caesar.Unit)
+  name: Equals(Unit)
+  href: api/Caesar.Unit.html#Caesar_Unit_Equals_Caesar_Unit_
+  commentId: M:Caesar.Unit.Equals(Caesar.Unit)
+  fullName: Caesar.Unit.Equals(Caesar.Unit)
+  nameWithType: Unit.Equals(Unit)
+- uid: Caesar.Unit.Equals(System.Object)
+  name: Equals(object?)
+  href: api/Caesar.Unit.html#Caesar_Unit_Equals_System_Object_
+  commentId: M:Caesar.Unit.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: Caesar.Unit.Equals(object?)
+  fullName.vb: Caesar.Unit.Equals(Object)
+  nameWithType: Unit.Equals(object?)
+  nameWithType.vb: Unit.Equals(Object)
+- uid: Caesar.Unit.Equals*
+  name: Equals
+  href: api/Caesar.Unit.html#Caesar_Unit_Equals_
+  commentId: Overload:Caesar.Unit.Equals
+  fullName: Caesar.Unit.Equals
+  nameWithType: Unit.Equals
+- uid: Caesar.Unit.GetHashCode
+  name: GetHashCode()
+  href: api/Caesar.Unit.html#Caesar_Unit_GetHashCode
+  commentId: M:Caesar.Unit.GetHashCode
+  fullName: Caesar.Unit.GetHashCode()
+  nameWithType: Unit.GetHashCode()
+- uid: Caesar.Unit.GetHashCode*
+  name: GetHashCode
+  href: api/Caesar.Unit.html#Caesar_Unit_GetHashCode_
+  commentId: Overload:Caesar.Unit.GetHashCode
+  fullName: Caesar.Unit.GetHashCode
+  nameWithType: Unit.GetHashCode
+- uid: Caesar.Unit.Task
+  name: Task
+  href: api/Caesar.Unit.html#Caesar_Unit_Task
+  commentId: F:Caesar.Unit.Task
+  fullName: Caesar.Unit.Task
+  nameWithType: Unit.Task
+- uid: Caesar.Unit.ToString
+  name: ToString()
+  href: api/Caesar.Unit.html#Caesar_Unit_ToString
+  commentId: M:Caesar.Unit.ToString
+  fullName: Caesar.Unit.ToString()
+  nameWithType: Unit.ToString()
+- uid: Caesar.Unit.ToString*
+  name: ToString
+  href: api/Caesar.Unit.html#Caesar_Unit_ToString_
+  commentId: Overload:Caesar.Unit.ToString
+  fullName: Caesar.Unit.ToString
+  nameWithType: Unit.ToString
+- uid: Caesar.Unit.Value
+  name: Value
+  href: api/Caesar.Unit.html#Caesar_Unit_Value
+  commentId: F:Caesar.Unit.Value
+  fullName: Caesar.Unit.Value
+  nameWithType: Unit.Value
+- uid: Caesar.Unit.op_Equality(Caesar.Unit,Caesar.Unit)
+  name: operator ==(Unit, Unit)
+  href: api/Caesar.Unit.html#Caesar_Unit_op_Equality_Caesar_Unit_Caesar_Unit_
+  commentId: M:Caesar.Unit.op_Equality(Caesar.Unit,Caesar.Unit)
+  name.vb: =(Unit, Unit)
+  fullName: Caesar.Unit.operator ==(Caesar.Unit, Caesar.Unit)
+  fullName.vb: Caesar.Unit.=(Caesar.Unit, Caesar.Unit)
+  nameWithType: Unit.operator ==(Unit, Unit)
+  nameWithType.vb: Unit.=(Unit, Unit)
+- uid: Caesar.Unit.op_Equality*
+  name: operator ==
+  href: api/Caesar.Unit.html#Caesar_Unit_op_Equality_
+  commentId: Overload:Caesar.Unit.op_Equality
+  name.vb: =
+  fullName: Caesar.Unit.operator ==
+  fullName.vb: Caesar.Unit.=
+  nameWithType: Unit.operator ==
+  nameWithType.vb: Unit.=
+- uid: Caesar.Unit.op_GreaterThan(Caesar.Unit,Caesar.Unit)
+  name: operator >(Unit, Unit)
+  href: api/Caesar.Unit.html#Caesar_Unit_op_GreaterThan_Caesar_Unit_Caesar_Unit_
+  commentId: M:Caesar.Unit.op_GreaterThan(Caesar.Unit,Caesar.Unit)
+  name.vb: '>(Unit, Unit)'
+  fullName: Caesar.Unit.operator >(Caesar.Unit, Caesar.Unit)
+  fullName.vb: Caesar.Unit.>(Caesar.Unit, Caesar.Unit)
+  nameWithType: Unit.operator >(Unit, Unit)
+  nameWithType.vb: Unit.>(Unit, Unit)
+- uid: Caesar.Unit.op_GreaterThan*
+  name: operator >
+  href: api/Caesar.Unit.html#Caesar_Unit_op_GreaterThan_
+  commentId: Overload:Caesar.Unit.op_GreaterThan
+  name.vb: '>'
+  fullName: Caesar.Unit.operator >
+  fullName.vb: Caesar.Unit.>
+  nameWithType: Unit.operator >
+  nameWithType.vb: Unit.>
+- uid: Caesar.Unit.op_GreaterThanOrEqual(Caesar.Unit,Caesar.Unit)
+  name: operator >=(Unit, Unit)
+  href: api/Caesar.Unit.html#Caesar_Unit_op_GreaterThanOrEqual_Caesar_Unit_Caesar_Unit_
+  commentId: M:Caesar.Unit.op_GreaterThanOrEqual(Caesar.Unit,Caesar.Unit)
+  name.vb: '>=(Unit, Unit)'
+  fullName: Caesar.Unit.operator >=(Caesar.Unit, Caesar.Unit)
+  fullName.vb: Caesar.Unit.>=(Caesar.Unit, Caesar.Unit)
+  nameWithType: Unit.operator >=(Unit, Unit)
+  nameWithType.vb: Unit.>=(Unit, Unit)
+- uid: Caesar.Unit.op_GreaterThanOrEqual*
+  name: operator >=
+  href: api/Caesar.Unit.html#Caesar_Unit_op_GreaterThanOrEqual_
+  commentId: Overload:Caesar.Unit.op_GreaterThanOrEqual
+  name.vb: '>='
+  fullName: Caesar.Unit.operator >=
+  fullName.vb: Caesar.Unit.>=
+  nameWithType: Unit.operator >=
+  nameWithType.vb: Unit.>=
+- uid: Caesar.Unit.op_Inequality(Caesar.Unit,Caesar.Unit)
+  name: operator !=(Unit, Unit)
+  href: api/Caesar.Unit.html#Caesar_Unit_op_Inequality_Caesar_Unit_Caesar_Unit_
+  commentId: M:Caesar.Unit.op_Inequality(Caesar.Unit,Caesar.Unit)
+  name.vb: <>(Unit, Unit)
+  fullName: Caesar.Unit.operator !=(Caesar.Unit, Caesar.Unit)
+  fullName.vb: Caesar.Unit.<>(Caesar.Unit, Caesar.Unit)
+  nameWithType: Unit.operator !=(Unit, Unit)
+  nameWithType.vb: Unit.<>(Unit, Unit)
+- uid: Caesar.Unit.op_Inequality*
+  name: operator !=
+  href: api/Caesar.Unit.html#Caesar_Unit_op_Inequality_
+  commentId: Overload:Caesar.Unit.op_Inequality
+  name.vb: <>
+  fullName: Caesar.Unit.operator !=
+  fullName.vb: Caesar.Unit.<>
+  nameWithType: Unit.operator !=
+  nameWithType.vb: Unit.<>
+- uid: Caesar.Unit.op_LessThan(Caesar.Unit,Caesar.Unit)
+  name: operator <(Unit, Unit)
+  href: api/Caesar.Unit.html#Caesar_Unit_op_LessThan_Caesar_Unit_Caesar_Unit_
+  commentId: M:Caesar.Unit.op_LessThan(Caesar.Unit,Caesar.Unit)
+  name.vb: <(Unit, Unit)
+  fullName: Caesar.Unit.operator <(Caesar.Unit, Caesar.Unit)
+  fullName.vb: Caesar.Unit.<(Caesar.Unit, Caesar.Unit)
+  nameWithType: Unit.operator <(Unit, Unit)
+  nameWithType.vb: Unit.<(Unit, Unit)
+- uid: Caesar.Unit.op_LessThan*
+  name: operator <
+  href: api/Caesar.Unit.html#Caesar_Unit_op_LessThan_
+  commentId: Overload:Caesar.Unit.op_LessThan
+  name.vb: <
+  fullName: Caesar.Unit.operator <
+  fullName.vb: Caesar.Unit.<
+  nameWithType: Unit.operator <
+  nameWithType.vb: Unit.<
+- uid: Caesar.Unit.op_LessThanOrEqual(Caesar.Unit,Caesar.Unit)
+  name: operator <=(Unit, Unit)
+  href: api/Caesar.Unit.html#Caesar_Unit_op_LessThanOrEqual_Caesar_Unit_Caesar_Unit_
+  commentId: M:Caesar.Unit.op_LessThanOrEqual(Caesar.Unit,Caesar.Unit)
+  name.vb: <=(Unit, Unit)
+  fullName: Caesar.Unit.operator <=(Caesar.Unit, Caesar.Unit)
+  fullName.vb: Caesar.Unit.<=(Caesar.Unit, Caesar.Unit)
+  nameWithType: Unit.operator <=(Unit, Unit)
+  nameWithType.vb: Unit.<=(Unit, Unit)
+- uid: Caesar.Unit.op_LessThanOrEqual*
+  name: operator <=
+  href: api/Caesar.Unit.html#Caesar_Unit_op_LessThanOrEqual_
+  commentId: Overload:Caesar.Unit.op_LessThanOrEqual
+  name.vb: <=
+  fullName: Caesar.Unit.operator <=
+  fullName.vb: Caesar.Unit.<=
+  nameWithType: Unit.operator <=
+  nameWithType.vb: Unit.<=
+- uid: Caesar.Wrappers
+  name: Caesar.Wrappers
+  href: api/Caesar.Wrappers.html
+  commentId: N:Caesar.Wrappers
+  fullName: Caesar.Wrappers
+  nameWithType: Caesar.Wrappers
+- uid: Caesar.Wrappers.NotificationHandlerWrapper
+  name: NotificationHandlerWrapper
+  href: api/Caesar.Wrappers.NotificationHandlerWrapper.html
+  commentId: T:Caesar.Wrappers.NotificationHandlerWrapper
+  fullName: Caesar.Wrappers.NotificationHandlerWrapper
+  nameWithType: NotificationHandlerWrapper
+- uid: Caesar.Wrappers.NotificationHandlerWrapper.#ctor
+  name: NotificationHandlerWrapper()
+  href: api/Caesar.Wrappers.NotificationHandlerWrapper.html#Caesar_Wrappers_NotificationHandlerWrapper__ctor
+  commentId: M:Caesar.Wrappers.NotificationHandlerWrapper.#ctor
+  name.vb: New()
+  fullName: Caesar.Wrappers.NotificationHandlerWrapper.NotificationHandlerWrapper()
+  fullName.vb: Caesar.Wrappers.NotificationHandlerWrapper.New()
+  nameWithType: NotificationHandlerWrapper.NotificationHandlerWrapper()
+  nameWithType.vb: NotificationHandlerWrapper.New()
+- uid: Caesar.Wrappers.NotificationHandlerWrapper.#ctor*
+  name: NotificationHandlerWrapper
+  href: api/Caesar.Wrappers.NotificationHandlerWrapper.html#Caesar_Wrappers_NotificationHandlerWrapper__ctor_
+  commentId: Overload:Caesar.Wrappers.NotificationHandlerWrapper.#ctor
+  name.vb: New
+  fullName: Caesar.Wrappers.NotificationHandlerWrapper.NotificationHandlerWrapper
+  fullName.vb: Caesar.Wrappers.NotificationHandlerWrapper.New
+  nameWithType: NotificationHandlerWrapper.NotificationHandlerWrapper
+  nameWithType.vb: NotificationHandlerWrapper.New
+- uid: Caesar.Wrappers.NotificationHandlerWrapper.Handle(Caesar.INotification,System.IServiceProvider,System.Func{System.Collections.Generic.IEnumerable{Caesar.NotificationHandlerExecutor},Caesar.INotification,System.Threading.CancellationToken,System.Threading.Tasks.Task},System.Threading.CancellationToken)
+  name: Handle(INotification, IServiceProvider, Func<IEnumerable<NotificationHandlerExecutor>, INotification, CancellationToken, Task>, CancellationToken)
+  href: api/Caesar.Wrappers.NotificationHandlerWrapper.html#Caesar_Wrappers_NotificationHandlerWrapper_Handle_Caesar_INotification_System_IServiceProvider_System_Func_System_Collections_Generic_IEnumerable_Caesar_NotificationHandlerExecutor__Caesar_INotification_System_Threading_CancellationToken_System_Threading_Tasks_Task__System_Threading_CancellationToken_
+  commentId: M:Caesar.Wrappers.NotificationHandlerWrapper.Handle(Caesar.INotification,System.IServiceProvider,System.Func{System.Collections.Generic.IEnumerable{Caesar.NotificationHandlerExecutor},Caesar.INotification,System.Threading.CancellationToken,System.Threading.Tasks.Task},System.Threading.CancellationToken)
+  name.vb: Handle(INotification, IServiceProvider, Func(Of IEnumerable(Of NotificationHandlerExecutor), INotification, CancellationToken, Task), CancellationToken)
+  fullName: Caesar.Wrappers.NotificationHandlerWrapper.Handle(Caesar.INotification, System.IServiceProvider, System.Func<System.Collections.Generic.IEnumerable<Caesar.NotificationHandlerExecutor>, Caesar.INotification, System.Threading.CancellationToken, System.Threading.Tasks.Task>, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Wrappers.NotificationHandlerWrapper.Handle(Caesar.INotification, System.IServiceProvider, System.Func(Of System.Collections.Generic.IEnumerable(Of Caesar.NotificationHandlerExecutor), Caesar.INotification, System.Threading.CancellationToken, System.Threading.Tasks.Task), System.Threading.CancellationToken)
+  nameWithType: NotificationHandlerWrapper.Handle(INotification, IServiceProvider, Func<IEnumerable<NotificationHandlerExecutor>, INotification, CancellationToken, Task>, CancellationToken)
+  nameWithType.vb: NotificationHandlerWrapper.Handle(INotification, IServiceProvider, Func(Of IEnumerable(Of NotificationHandlerExecutor), INotification, CancellationToken, Task), CancellationToken)
+- uid: Caesar.Wrappers.NotificationHandlerWrapper.Handle*
+  name: Handle
+  href: api/Caesar.Wrappers.NotificationHandlerWrapper.html#Caesar_Wrappers_NotificationHandlerWrapper_Handle_
+  commentId: Overload:Caesar.Wrappers.NotificationHandlerWrapper.Handle
+  fullName: Caesar.Wrappers.NotificationHandlerWrapper.Handle
+  nameWithType: NotificationHandlerWrapper.Handle
+- uid: Caesar.Wrappers.NotificationHandlerWrapperImpl`1
+  name: NotificationHandlerWrapperImpl<TNotification>
+  href: api/Caesar.Wrappers.NotificationHandlerWrapperImpl-1.html
+  commentId: T:Caesar.Wrappers.NotificationHandlerWrapperImpl`1
+  name.vb: NotificationHandlerWrapperImpl(Of TNotification)
+  fullName: Caesar.Wrappers.NotificationHandlerWrapperImpl<TNotification>
+  fullName.vb: Caesar.Wrappers.NotificationHandlerWrapperImpl(Of TNotification)
+  nameWithType: NotificationHandlerWrapperImpl<TNotification>
+  nameWithType.vb: NotificationHandlerWrapperImpl(Of TNotification)
+- uid: Caesar.Wrappers.NotificationHandlerWrapperImpl`1.#ctor
+  name: NotificationHandlerWrapperImpl()
+  href: api/Caesar.Wrappers.NotificationHandlerWrapperImpl-1.html#Caesar_Wrappers_NotificationHandlerWrapperImpl_1__ctor
+  commentId: M:Caesar.Wrappers.NotificationHandlerWrapperImpl`1.#ctor
+  name.vb: New()
+  fullName: Caesar.Wrappers.NotificationHandlerWrapperImpl<TNotification>.NotificationHandlerWrapperImpl()
+  fullName.vb: Caesar.Wrappers.NotificationHandlerWrapperImpl(Of TNotification).New()
+  nameWithType: NotificationHandlerWrapperImpl<TNotification>.NotificationHandlerWrapperImpl()
+  nameWithType.vb: NotificationHandlerWrapperImpl(Of TNotification).New()
+- uid: Caesar.Wrappers.NotificationHandlerWrapperImpl`1.#ctor*
+  name: NotificationHandlerWrapperImpl
+  href: api/Caesar.Wrappers.NotificationHandlerWrapperImpl-1.html#Caesar_Wrappers_NotificationHandlerWrapperImpl_1__ctor_
+  commentId: Overload:Caesar.Wrappers.NotificationHandlerWrapperImpl`1.#ctor
+  name.vb: New
+  fullName: Caesar.Wrappers.NotificationHandlerWrapperImpl<TNotification>.NotificationHandlerWrapperImpl
+  fullName.vb: Caesar.Wrappers.NotificationHandlerWrapperImpl(Of TNotification).New
+  nameWithType: NotificationHandlerWrapperImpl<TNotification>.NotificationHandlerWrapperImpl
+  nameWithType.vb: NotificationHandlerWrapperImpl(Of TNotification).New
+- uid: Caesar.Wrappers.NotificationHandlerWrapperImpl`1.Handle(Caesar.INotification,System.IServiceProvider,System.Func{System.Collections.Generic.IEnumerable{Caesar.NotificationHandlerExecutor},Caesar.INotification,System.Threading.CancellationToken,System.Threading.Tasks.Task},System.Threading.CancellationToken)
+  name: Handle(INotification, IServiceProvider, Func<IEnumerable<NotificationHandlerExecutor>, INotification, CancellationToken, Task>, CancellationToken)
+  href: api/Caesar.Wrappers.NotificationHandlerWrapperImpl-1.html#Caesar_Wrappers_NotificationHandlerWrapperImpl_1_Handle_Caesar_INotification_System_IServiceProvider_System_Func_System_Collections_Generic_IEnumerable_Caesar_NotificationHandlerExecutor__Caesar_INotification_System_Threading_CancellationToken_System_Threading_Tasks_Task__System_Threading_CancellationToken_
+  commentId: M:Caesar.Wrappers.NotificationHandlerWrapperImpl`1.Handle(Caesar.INotification,System.IServiceProvider,System.Func{System.Collections.Generic.IEnumerable{Caesar.NotificationHandlerExecutor},Caesar.INotification,System.Threading.CancellationToken,System.Threading.Tasks.Task},System.Threading.CancellationToken)
+  name.vb: Handle(INotification, IServiceProvider, Func(Of IEnumerable(Of NotificationHandlerExecutor), INotification, CancellationToken, Task), CancellationToken)
+  fullName: Caesar.Wrappers.NotificationHandlerWrapperImpl<TNotification>.Handle(Caesar.INotification, System.IServiceProvider, System.Func<System.Collections.Generic.IEnumerable<Caesar.NotificationHandlerExecutor>, Caesar.INotification, System.Threading.CancellationToken, System.Threading.Tasks.Task>, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Wrappers.NotificationHandlerWrapperImpl(Of TNotification).Handle(Caesar.INotification, System.IServiceProvider, System.Func(Of System.Collections.Generic.IEnumerable(Of Caesar.NotificationHandlerExecutor), Caesar.INotification, System.Threading.CancellationToken, System.Threading.Tasks.Task), System.Threading.CancellationToken)
+  nameWithType: NotificationHandlerWrapperImpl<TNotification>.Handle(INotification, IServiceProvider, Func<IEnumerable<NotificationHandlerExecutor>, INotification, CancellationToken, Task>, CancellationToken)
+  nameWithType.vb: NotificationHandlerWrapperImpl(Of TNotification).Handle(INotification, IServiceProvider, Func(Of IEnumerable(Of NotificationHandlerExecutor), INotification, CancellationToken, Task), CancellationToken)
+- uid: Caesar.Wrappers.NotificationHandlerWrapperImpl`1.Handle*
+  name: Handle
+  href: api/Caesar.Wrappers.NotificationHandlerWrapperImpl-1.html#Caesar_Wrappers_NotificationHandlerWrapperImpl_1_Handle_
+  commentId: Overload:Caesar.Wrappers.NotificationHandlerWrapperImpl`1.Handle
+  fullName: Caesar.Wrappers.NotificationHandlerWrapperImpl<TNotification>.Handle
+  fullName.vb: Caesar.Wrappers.NotificationHandlerWrapperImpl(Of TNotification).Handle
+  nameWithType: NotificationHandlerWrapperImpl<TNotification>.Handle
+  nameWithType.vb: NotificationHandlerWrapperImpl(Of TNotification).Handle
+- uid: Caesar.Wrappers.RequestHandlerBase
+  name: RequestHandlerBase
+  href: api/Caesar.Wrappers.RequestHandlerBase.html
+  commentId: T:Caesar.Wrappers.RequestHandlerBase
+  fullName: Caesar.Wrappers.RequestHandlerBase
+  nameWithType: RequestHandlerBase
+- uid: Caesar.Wrappers.RequestHandlerBase.#ctor
+  name: RequestHandlerBase()
+  href: api/Caesar.Wrappers.RequestHandlerBase.html#Caesar_Wrappers_RequestHandlerBase__ctor
+  commentId: M:Caesar.Wrappers.RequestHandlerBase.#ctor
+  name.vb: New()
+  fullName: Caesar.Wrappers.RequestHandlerBase.RequestHandlerBase()
+  fullName.vb: Caesar.Wrappers.RequestHandlerBase.New()
+  nameWithType: RequestHandlerBase.RequestHandlerBase()
+  nameWithType.vb: RequestHandlerBase.New()
+- uid: Caesar.Wrappers.RequestHandlerBase.#ctor*
+  name: RequestHandlerBase
+  href: api/Caesar.Wrappers.RequestHandlerBase.html#Caesar_Wrappers_RequestHandlerBase__ctor_
+  commentId: Overload:Caesar.Wrappers.RequestHandlerBase.#ctor
+  name.vb: New
+  fullName: Caesar.Wrappers.RequestHandlerBase.RequestHandlerBase
+  fullName.vb: Caesar.Wrappers.RequestHandlerBase.New
+  nameWithType: RequestHandlerBase.RequestHandlerBase
+  nameWithType.vb: RequestHandlerBase.New
+- uid: Caesar.Wrappers.RequestHandlerBase.GetHandler*
+  name: GetHandler
+  href: api/Caesar.Wrappers.RequestHandlerBase.html#Caesar_Wrappers_RequestHandlerBase_GetHandler_
+  commentId: Overload:Caesar.Wrappers.RequestHandlerBase.GetHandler
+  fullName: Caesar.Wrappers.RequestHandlerBase.GetHandler
+  nameWithType: RequestHandlerBase.GetHandler
+- uid: Caesar.Wrappers.RequestHandlerBase.GetHandler``1(System.IServiceProvider)
+  name: GetHandler<THandler>(IServiceProvider)
+  href: api/Caesar.Wrappers.RequestHandlerBase.html#Caesar_Wrappers_RequestHandlerBase_GetHandler__1_System_IServiceProvider_
+  commentId: M:Caesar.Wrappers.RequestHandlerBase.GetHandler``1(System.IServiceProvider)
+  name.vb: GetHandler(Of THandler)(IServiceProvider)
+  fullName: Caesar.Wrappers.RequestHandlerBase.GetHandler<THandler>(System.IServiceProvider)
+  fullName.vb: Caesar.Wrappers.RequestHandlerBase.GetHandler(Of THandler)(System.IServiceProvider)
+  nameWithType: RequestHandlerBase.GetHandler<THandler>(IServiceProvider)
+  nameWithType.vb: RequestHandlerBase.GetHandler(Of THandler)(IServiceProvider)
+- uid: Caesar.Wrappers.RequestHandlerBase.Handle(System.Object,System.IServiceProvider,System.Threading.CancellationToken)
+  name: Handle(object, IServiceProvider, CancellationToken)
+  href: api/Caesar.Wrappers.RequestHandlerBase.html#Caesar_Wrappers_RequestHandlerBase_Handle_System_Object_System_IServiceProvider_System_Threading_CancellationToken_
+  commentId: M:Caesar.Wrappers.RequestHandlerBase.Handle(System.Object,System.IServiceProvider,System.Threading.CancellationToken)
+  name.vb: Handle(Object, IServiceProvider, CancellationToken)
+  fullName: Caesar.Wrappers.RequestHandlerBase.Handle(object, System.IServiceProvider, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Wrappers.RequestHandlerBase.Handle(Object, System.IServiceProvider, System.Threading.CancellationToken)
+  nameWithType: RequestHandlerBase.Handle(object, IServiceProvider, CancellationToken)
+  nameWithType.vb: RequestHandlerBase.Handle(Object, IServiceProvider, CancellationToken)
+- uid: Caesar.Wrappers.RequestHandlerBase.Handle*
+  name: Handle
+  href: api/Caesar.Wrappers.RequestHandlerBase.html#Caesar_Wrappers_RequestHandlerBase_Handle_
+  commentId: Overload:Caesar.Wrappers.RequestHandlerBase.Handle
+  fullName: Caesar.Wrappers.RequestHandlerBase.Handle
+  nameWithType: RequestHandlerBase.Handle
+- uid: Caesar.Wrappers.RequestHandlerWrapperImpl`1
+  name: RequestHandlerWrapperImpl<TRequest>
+  href: api/Caesar.Wrappers.RequestHandlerWrapperImpl-1.html
+  commentId: T:Caesar.Wrappers.RequestHandlerWrapperImpl`1
+  name.vb: RequestHandlerWrapperImpl(Of TRequest)
+  fullName: Caesar.Wrappers.RequestHandlerWrapperImpl<TRequest>
+  fullName.vb: Caesar.Wrappers.RequestHandlerWrapperImpl(Of TRequest)
+  nameWithType: RequestHandlerWrapperImpl<TRequest>
+  nameWithType.vb: RequestHandlerWrapperImpl(Of TRequest)
+- uid: Caesar.Wrappers.RequestHandlerWrapperImpl`1.#ctor
+  name: RequestHandlerWrapperImpl()
+  href: api/Caesar.Wrappers.RequestHandlerWrapperImpl-1.html#Caesar_Wrappers_RequestHandlerWrapperImpl_1__ctor
+  commentId: M:Caesar.Wrappers.RequestHandlerWrapperImpl`1.#ctor
+  name.vb: New()
+  fullName: Caesar.Wrappers.RequestHandlerWrapperImpl<TRequest>.RequestHandlerWrapperImpl()
+  fullName.vb: Caesar.Wrappers.RequestHandlerWrapperImpl(Of TRequest).New()
+  nameWithType: RequestHandlerWrapperImpl<TRequest>.RequestHandlerWrapperImpl()
+  nameWithType.vb: RequestHandlerWrapperImpl(Of TRequest).New()
+- uid: Caesar.Wrappers.RequestHandlerWrapperImpl`1.#ctor*
+  name: RequestHandlerWrapperImpl
+  href: api/Caesar.Wrappers.RequestHandlerWrapperImpl-1.html#Caesar_Wrappers_RequestHandlerWrapperImpl_1__ctor_
+  commentId: Overload:Caesar.Wrappers.RequestHandlerWrapperImpl`1.#ctor
+  name.vb: New
+  fullName: Caesar.Wrappers.RequestHandlerWrapperImpl<TRequest>.RequestHandlerWrapperImpl
+  fullName.vb: Caesar.Wrappers.RequestHandlerWrapperImpl(Of TRequest).New
+  nameWithType: RequestHandlerWrapperImpl<TRequest>.RequestHandlerWrapperImpl
+  nameWithType.vb: RequestHandlerWrapperImpl(Of TRequest).New
+- uid: Caesar.Wrappers.RequestHandlerWrapperImpl`1.Handle(Caesar.IRequest{Caesar.Unit},System.IServiceProvider,System.Threading.CancellationToken)
+  name: Handle(IRequest<Unit>, IServiceProvider, CancellationToken)
+  href: api/Caesar.Wrappers.RequestHandlerWrapperImpl-1.html#Caesar_Wrappers_RequestHandlerWrapperImpl_1_Handle_Caesar_IRequest_Caesar_Unit__System_IServiceProvider_System_Threading_CancellationToken_
+  commentId: M:Caesar.Wrappers.RequestHandlerWrapperImpl`1.Handle(Caesar.IRequest{Caesar.Unit},System.IServiceProvider,System.Threading.CancellationToken)
+  name.vb: Handle(IRequest(Of Unit), IServiceProvider, CancellationToken)
+  fullName: Caesar.Wrappers.RequestHandlerWrapperImpl<TRequest>.Handle(Caesar.IRequest<Caesar.Unit>, System.IServiceProvider, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Wrappers.RequestHandlerWrapperImpl(Of TRequest).Handle(Caesar.IRequest(Of Caesar.Unit), System.IServiceProvider, System.Threading.CancellationToken)
+  nameWithType: RequestHandlerWrapperImpl<TRequest>.Handle(IRequest<Unit>, IServiceProvider, CancellationToken)
+  nameWithType.vb: RequestHandlerWrapperImpl(Of TRequest).Handle(IRequest(Of Unit), IServiceProvider, CancellationToken)
+- uid: Caesar.Wrappers.RequestHandlerWrapperImpl`1.Handle(System.Object,System.IServiceProvider,System.Threading.CancellationToken)
+  name: Handle(object, IServiceProvider, CancellationToken)
+  href: api/Caesar.Wrappers.RequestHandlerWrapperImpl-1.html#Caesar_Wrappers_RequestHandlerWrapperImpl_1_Handle_System_Object_System_IServiceProvider_System_Threading_CancellationToken_
+  commentId: M:Caesar.Wrappers.RequestHandlerWrapperImpl`1.Handle(System.Object,System.IServiceProvider,System.Threading.CancellationToken)
+  name.vb: Handle(Object, IServiceProvider, CancellationToken)
+  fullName: Caesar.Wrappers.RequestHandlerWrapperImpl<TRequest>.Handle(object, System.IServiceProvider, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Wrappers.RequestHandlerWrapperImpl(Of TRequest).Handle(Object, System.IServiceProvider, System.Threading.CancellationToken)
+  nameWithType: RequestHandlerWrapperImpl<TRequest>.Handle(object, IServiceProvider, CancellationToken)
+  nameWithType.vb: RequestHandlerWrapperImpl(Of TRequest).Handle(Object, IServiceProvider, CancellationToken)
+- uid: Caesar.Wrappers.RequestHandlerWrapperImpl`1.Handle*
+  name: Handle
+  href: api/Caesar.Wrappers.RequestHandlerWrapperImpl-1.html#Caesar_Wrappers_RequestHandlerWrapperImpl_1_Handle_
+  commentId: Overload:Caesar.Wrappers.RequestHandlerWrapperImpl`1.Handle
+  fullName: Caesar.Wrappers.RequestHandlerWrapperImpl<TRequest>.Handle
+  fullName.vb: Caesar.Wrappers.RequestHandlerWrapperImpl(Of TRequest).Handle
+  nameWithType: RequestHandlerWrapperImpl<TRequest>.Handle
+  nameWithType.vb: RequestHandlerWrapperImpl(Of TRequest).Handle
+- uid: Caesar.Wrappers.RequestHandlerWrapperImpl`2
+  name: RequestHandlerWrapperImpl<TRequest, TResponse>
+  href: api/Caesar.Wrappers.RequestHandlerWrapperImpl-2.html
+  commentId: T:Caesar.Wrappers.RequestHandlerWrapperImpl`2
+  name.vb: RequestHandlerWrapperImpl(Of TRequest, TResponse)
+  fullName: Caesar.Wrappers.RequestHandlerWrapperImpl<TRequest, TResponse>
+  fullName.vb: Caesar.Wrappers.RequestHandlerWrapperImpl(Of TRequest, TResponse)
+  nameWithType: RequestHandlerWrapperImpl<TRequest, TResponse>
+  nameWithType.vb: RequestHandlerWrapperImpl(Of TRequest, TResponse)
+- uid: Caesar.Wrappers.RequestHandlerWrapperImpl`2.#ctor
+  name: RequestHandlerWrapperImpl()
+  href: api/Caesar.Wrappers.RequestHandlerWrapperImpl-2.html#Caesar_Wrappers_RequestHandlerWrapperImpl_2__ctor
+  commentId: M:Caesar.Wrappers.RequestHandlerWrapperImpl`2.#ctor
+  name.vb: New()
+  fullName: Caesar.Wrappers.RequestHandlerWrapperImpl<TRequest, TResponse>.RequestHandlerWrapperImpl()
+  fullName.vb: Caesar.Wrappers.RequestHandlerWrapperImpl(Of TRequest, TResponse).New()
+  nameWithType: RequestHandlerWrapperImpl<TRequest, TResponse>.RequestHandlerWrapperImpl()
+  nameWithType.vb: RequestHandlerWrapperImpl(Of TRequest, TResponse).New()
+- uid: Caesar.Wrappers.RequestHandlerWrapperImpl`2.#ctor*
+  name: RequestHandlerWrapperImpl
+  href: api/Caesar.Wrappers.RequestHandlerWrapperImpl-2.html#Caesar_Wrappers_RequestHandlerWrapperImpl_2__ctor_
+  commentId: Overload:Caesar.Wrappers.RequestHandlerWrapperImpl`2.#ctor
+  name.vb: New
+  fullName: Caesar.Wrappers.RequestHandlerWrapperImpl<TRequest, TResponse>.RequestHandlerWrapperImpl
+  fullName.vb: Caesar.Wrappers.RequestHandlerWrapperImpl(Of TRequest, TResponse).New
+  nameWithType: RequestHandlerWrapperImpl<TRequest, TResponse>.RequestHandlerWrapperImpl
+  nameWithType.vb: RequestHandlerWrapperImpl(Of TRequest, TResponse).New
+- uid: Caesar.Wrappers.RequestHandlerWrapperImpl`2.Handle(Caesar.IRequest{`1},System.IServiceProvider,System.Threading.CancellationToken)
+  name: Handle(IRequest<TResponse>, IServiceProvider, CancellationToken)
+  href: api/Caesar.Wrappers.RequestHandlerWrapperImpl-2.html#Caesar_Wrappers_RequestHandlerWrapperImpl_2_Handle_Caesar_IRequest__1__System_IServiceProvider_System_Threading_CancellationToken_
+  commentId: M:Caesar.Wrappers.RequestHandlerWrapperImpl`2.Handle(Caesar.IRequest{`1},System.IServiceProvider,System.Threading.CancellationToken)
+  name.vb: Handle(IRequest(Of TResponse), IServiceProvider, CancellationToken)
+  fullName: Caesar.Wrappers.RequestHandlerWrapperImpl<TRequest, TResponse>.Handle(Caesar.IRequest<TResponse>, System.IServiceProvider, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Wrappers.RequestHandlerWrapperImpl(Of TRequest, TResponse).Handle(Caesar.IRequest(Of TResponse), System.IServiceProvider, System.Threading.CancellationToken)
+  nameWithType: RequestHandlerWrapperImpl<TRequest, TResponse>.Handle(IRequest<TResponse>, IServiceProvider, CancellationToken)
+  nameWithType.vb: RequestHandlerWrapperImpl(Of TRequest, TResponse).Handle(IRequest(Of TResponse), IServiceProvider, CancellationToken)
+- uid: Caesar.Wrappers.RequestHandlerWrapperImpl`2.Handle(System.Object,System.IServiceProvider,System.Threading.CancellationToken)
+  name: Handle(object, IServiceProvider, CancellationToken)
+  href: api/Caesar.Wrappers.RequestHandlerWrapperImpl-2.html#Caesar_Wrappers_RequestHandlerWrapperImpl_2_Handle_System_Object_System_IServiceProvider_System_Threading_CancellationToken_
+  commentId: M:Caesar.Wrappers.RequestHandlerWrapperImpl`2.Handle(System.Object,System.IServiceProvider,System.Threading.CancellationToken)
+  name.vb: Handle(Object, IServiceProvider, CancellationToken)
+  fullName: Caesar.Wrappers.RequestHandlerWrapperImpl<TRequest, TResponse>.Handle(object, System.IServiceProvider, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Wrappers.RequestHandlerWrapperImpl(Of TRequest, TResponse).Handle(Object, System.IServiceProvider, System.Threading.CancellationToken)
+  nameWithType: RequestHandlerWrapperImpl<TRequest, TResponse>.Handle(object, IServiceProvider, CancellationToken)
+  nameWithType.vb: RequestHandlerWrapperImpl(Of TRequest, TResponse).Handle(Object, IServiceProvider, CancellationToken)
+- uid: Caesar.Wrappers.RequestHandlerWrapperImpl`2.Handle*
+  name: Handle
+  href: api/Caesar.Wrappers.RequestHandlerWrapperImpl-2.html#Caesar_Wrappers_RequestHandlerWrapperImpl_2_Handle_
+  commentId: Overload:Caesar.Wrappers.RequestHandlerWrapperImpl`2.Handle
+  fullName: Caesar.Wrappers.RequestHandlerWrapperImpl<TRequest, TResponse>.Handle
+  fullName.vb: Caesar.Wrappers.RequestHandlerWrapperImpl(Of TRequest, TResponse).Handle
+  nameWithType: RequestHandlerWrapperImpl<TRequest, TResponse>.Handle
+  nameWithType.vb: RequestHandlerWrapperImpl(Of TRequest, TResponse).Handle
+- uid: Caesar.Wrappers.RequestHandlerWrapper`1
+  name: RequestHandlerWrapper<TResponse>
+  href: api/Caesar.Wrappers.RequestHandlerWrapper-1.html
+  commentId: T:Caesar.Wrappers.RequestHandlerWrapper`1
+  name.vb: RequestHandlerWrapper(Of TResponse)
+  fullName: Caesar.Wrappers.RequestHandlerWrapper<TResponse>
+  fullName.vb: Caesar.Wrappers.RequestHandlerWrapper(Of TResponse)
+  nameWithType: RequestHandlerWrapper<TResponse>
+  nameWithType.vb: RequestHandlerWrapper(Of TResponse)
+- uid: Caesar.Wrappers.RequestHandlerWrapper`1.#ctor
+  name: RequestHandlerWrapper()
+  href: api/Caesar.Wrappers.RequestHandlerWrapper-1.html#Caesar_Wrappers_RequestHandlerWrapper_1__ctor
+  commentId: M:Caesar.Wrappers.RequestHandlerWrapper`1.#ctor
+  name.vb: New()
+  fullName: Caesar.Wrappers.RequestHandlerWrapper<TResponse>.RequestHandlerWrapper()
+  fullName.vb: Caesar.Wrappers.RequestHandlerWrapper(Of TResponse).New()
+  nameWithType: RequestHandlerWrapper<TResponse>.RequestHandlerWrapper()
+  nameWithType.vb: RequestHandlerWrapper(Of TResponse).New()
+- uid: Caesar.Wrappers.RequestHandlerWrapper`1.#ctor*
+  name: RequestHandlerWrapper
+  href: api/Caesar.Wrappers.RequestHandlerWrapper-1.html#Caesar_Wrappers_RequestHandlerWrapper_1__ctor_
+  commentId: Overload:Caesar.Wrappers.RequestHandlerWrapper`1.#ctor
+  name.vb: New
+  fullName: Caesar.Wrappers.RequestHandlerWrapper<TResponse>.RequestHandlerWrapper
+  fullName.vb: Caesar.Wrappers.RequestHandlerWrapper(Of TResponse).New
+  nameWithType: RequestHandlerWrapper<TResponse>.RequestHandlerWrapper
+  nameWithType.vb: RequestHandlerWrapper(Of TResponse).New
+- uid: Caesar.Wrappers.RequestHandlerWrapper`1.Handle(Caesar.IRequest{`0},System.IServiceProvider,System.Threading.CancellationToken)
+  name: Handle(IRequest<TResponse>, IServiceProvider, CancellationToken)
+  href: api/Caesar.Wrappers.RequestHandlerWrapper-1.html#Caesar_Wrappers_RequestHandlerWrapper_1_Handle_Caesar_IRequest__0__System_IServiceProvider_System_Threading_CancellationToken_
+  commentId: M:Caesar.Wrappers.RequestHandlerWrapper`1.Handle(Caesar.IRequest{`0},System.IServiceProvider,System.Threading.CancellationToken)
+  name.vb: Handle(IRequest(Of TResponse), IServiceProvider, CancellationToken)
+  fullName: Caesar.Wrappers.RequestHandlerWrapper<TResponse>.Handle(Caesar.IRequest<TResponse>, System.IServiceProvider, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Wrappers.RequestHandlerWrapper(Of TResponse).Handle(Caesar.IRequest(Of TResponse), System.IServiceProvider, System.Threading.CancellationToken)
+  nameWithType: RequestHandlerWrapper<TResponse>.Handle(IRequest<TResponse>, IServiceProvider, CancellationToken)
+  nameWithType.vb: RequestHandlerWrapper(Of TResponse).Handle(IRequest(Of TResponse), IServiceProvider, CancellationToken)
+- uid: Caesar.Wrappers.RequestHandlerWrapper`1.Handle*
+  name: Handle
+  href: api/Caesar.Wrappers.RequestHandlerWrapper-1.html#Caesar_Wrappers_RequestHandlerWrapper_1_Handle_
+  commentId: Overload:Caesar.Wrappers.RequestHandlerWrapper`1.Handle
+  fullName: Caesar.Wrappers.RequestHandlerWrapper<TResponse>.Handle
+  fullName.vb: Caesar.Wrappers.RequestHandlerWrapper(Of TResponse).Handle
+  nameWithType: RequestHandlerWrapper<TResponse>.Handle
+  nameWithType.vb: RequestHandlerWrapper(Of TResponse).Handle
+- uid: Caesar.Wrappers.StreamRequestHandlerBase
+  name: StreamRequestHandlerBase
+  href: api/Caesar.Wrappers.StreamRequestHandlerBase.html
+  commentId: T:Caesar.Wrappers.StreamRequestHandlerBase
+  fullName: Caesar.Wrappers.StreamRequestHandlerBase
+  nameWithType: StreamRequestHandlerBase
+- uid: Caesar.Wrappers.StreamRequestHandlerBase.#ctor
+  name: StreamRequestHandlerBase()
+  href: api/Caesar.Wrappers.StreamRequestHandlerBase.html#Caesar_Wrappers_StreamRequestHandlerBase__ctor
+  commentId: M:Caesar.Wrappers.StreamRequestHandlerBase.#ctor
+  name.vb: New()
+  fullName: Caesar.Wrappers.StreamRequestHandlerBase.StreamRequestHandlerBase()
+  fullName.vb: Caesar.Wrappers.StreamRequestHandlerBase.New()
+  nameWithType: StreamRequestHandlerBase.StreamRequestHandlerBase()
+  nameWithType.vb: StreamRequestHandlerBase.New()
+- uid: Caesar.Wrappers.StreamRequestHandlerBase.#ctor*
+  name: StreamRequestHandlerBase
+  href: api/Caesar.Wrappers.StreamRequestHandlerBase.html#Caesar_Wrappers_StreamRequestHandlerBase__ctor_
+  commentId: Overload:Caesar.Wrappers.StreamRequestHandlerBase.#ctor
+  name.vb: New
+  fullName: Caesar.Wrappers.StreamRequestHandlerBase.StreamRequestHandlerBase
+  fullName.vb: Caesar.Wrappers.StreamRequestHandlerBase.New
+  nameWithType: StreamRequestHandlerBase.StreamRequestHandlerBase
+  nameWithType.vb: StreamRequestHandlerBase.New
+- uid: Caesar.Wrappers.StreamRequestHandlerBase.GetHandler*
+  name: GetHandler
+  href: api/Caesar.Wrappers.StreamRequestHandlerBase.html#Caesar_Wrappers_StreamRequestHandlerBase_GetHandler_
+  commentId: Overload:Caesar.Wrappers.StreamRequestHandlerBase.GetHandler
+  fullName: Caesar.Wrappers.StreamRequestHandlerBase.GetHandler
+  nameWithType: StreamRequestHandlerBase.GetHandler
+- uid: Caesar.Wrappers.StreamRequestHandlerBase.GetHandler``1(System.IServiceProvider)
+  name: GetHandler<THandler>(IServiceProvider)
+  href: api/Caesar.Wrappers.StreamRequestHandlerBase.html#Caesar_Wrappers_StreamRequestHandlerBase_GetHandler__1_System_IServiceProvider_
+  commentId: M:Caesar.Wrappers.StreamRequestHandlerBase.GetHandler``1(System.IServiceProvider)
+  name.vb: GetHandler(Of THandler)(IServiceProvider)
+  fullName: Caesar.Wrappers.StreamRequestHandlerBase.GetHandler<THandler>(System.IServiceProvider)
+  fullName.vb: Caesar.Wrappers.StreamRequestHandlerBase.GetHandler(Of THandler)(System.IServiceProvider)
+  nameWithType: StreamRequestHandlerBase.GetHandler<THandler>(IServiceProvider)
+  nameWithType.vb: StreamRequestHandlerBase.GetHandler(Of THandler)(IServiceProvider)
+- uid: Caesar.Wrappers.StreamRequestHandlerBase.Handle(System.Object,System.IServiceProvider,System.Threading.CancellationToken)
+  name: Handle(object, IServiceProvider, CancellationToken)
+  href: api/Caesar.Wrappers.StreamRequestHandlerBase.html#Caesar_Wrappers_StreamRequestHandlerBase_Handle_System_Object_System_IServiceProvider_System_Threading_CancellationToken_
+  commentId: M:Caesar.Wrappers.StreamRequestHandlerBase.Handle(System.Object,System.IServiceProvider,System.Threading.CancellationToken)
+  name.vb: Handle(Object, IServiceProvider, CancellationToken)
+  fullName: Caesar.Wrappers.StreamRequestHandlerBase.Handle(object, System.IServiceProvider, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Wrappers.StreamRequestHandlerBase.Handle(Object, System.IServiceProvider, System.Threading.CancellationToken)
+  nameWithType: StreamRequestHandlerBase.Handle(object, IServiceProvider, CancellationToken)
+  nameWithType.vb: StreamRequestHandlerBase.Handle(Object, IServiceProvider, CancellationToken)
+- uid: Caesar.Wrappers.StreamRequestHandlerBase.Handle*
+  name: Handle
+  href: api/Caesar.Wrappers.StreamRequestHandlerBase.html#Caesar_Wrappers_StreamRequestHandlerBase_Handle_
+  commentId: Overload:Caesar.Wrappers.StreamRequestHandlerBase.Handle
+  fullName: Caesar.Wrappers.StreamRequestHandlerBase.Handle
+  nameWithType: StreamRequestHandlerBase.Handle
+- uid: Caesar.Wrappers.StreamRequestHandlerWrapperImpl`2
+  name: StreamRequestHandlerWrapperImpl<TRequest, TResponse>
+  href: api/Caesar.Wrappers.StreamRequestHandlerWrapperImpl-2.html
+  commentId: T:Caesar.Wrappers.StreamRequestHandlerWrapperImpl`2
+  name.vb: StreamRequestHandlerWrapperImpl(Of TRequest, TResponse)
+  fullName: Caesar.Wrappers.StreamRequestHandlerWrapperImpl<TRequest, TResponse>
+  fullName.vb: Caesar.Wrappers.StreamRequestHandlerWrapperImpl(Of TRequest, TResponse)
+  nameWithType: StreamRequestHandlerWrapperImpl<TRequest, TResponse>
+  nameWithType.vb: StreamRequestHandlerWrapperImpl(Of TRequest, TResponse)
+- uid: Caesar.Wrappers.StreamRequestHandlerWrapperImpl`2.#ctor
+  name: StreamRequestHandlerWrapperImpl()
+  href: api/Caesar.Wrappers.StreamRequestHandlerWrapperImpl-2.html#Caesar_Wrappers_StreamRequestHandlerWrapperImpl_2__ctor
+  commentId: M:Caesar.Wrappers.StreamRequestHandlerWrapperImpl`2.#ctor
+  name.vb: New()
+  fullName: Caesar.Wrappers.StreamRequestHandlerWrapperImpl<TRequest, TResponse>.StreamRequestHandlerWrapperImpl()
+  fullName.vb: Caesar.Wrappers.StreamRequestHandlerWrapperImpl(Of TRequest, TResponse).New()
+  nameWithType: StreamRequestHandlerWrapperImpl<TRequest, TResponse>.StreamRequestHandlerWrapperImpl()
+  nameWithType.vb: StreamRequestHandlerWrapperImpl(Of TRequest, TResponse).New()
+- uid: Caesar.Wrappers.StreamRequestHandlerWrapperImpl`2.#ctor*
+  name: StreamRequestHandlerWrapperImpl
+  href: api/Caesar.Wrappers.StreamRequestHandlerWrapperImpl-2.html#Caesar_Wrappers_StreamRequestHandlerWrapperImpl_2__ctor_
+  commentId: Overload:Caesar.Wrappers.StreamRequestHandlerWrapperImpl`2.#ctor
+  name.vb: New
+  fullName: Caesar.Wrappers.StreamRequestHandlerWrapperImpl<TRequest, TResponse>.StreamRequestHandlerWrapperImpl
+  fullName.vb: Caesar.Wrappers.StreamRequestHandlerWrapperImpl(Of TRequest, TResponse).New
+  nameWithType: StreamRequestHandlerWrapperImpl<TRequest, TResponse>.StreamRequestHandlerWrapperImpl
+  nameWithType.vb: StreamRequestHandlerWrapperImpl(Of TRequest, TResponse).New
+- uid: Caesar.Wrappers.StreamRequestHandlerWrapperImpl`2.Handle(Caesar.IStreamRequest{`1},System.IServiceProvider,System.Threading.CancellationToken)
+  name: Handle(IStreamRequest<TResponse>, IServiceProvider, CancellationToken)
+  href: api/Caesar.Wrappers.StreamRequestHandlerWrapperImpl-2.html#Caesar_Wrappers_StreamRequestHandlerWrapperImpl_2_Handle_Caesar_IStreamRequest__1__System_IServiceProvider_System_Threading_CancellationToken_
+  commentId: M:Caesar.Wrappers.StreamRequestHandlerWrapperImpl`2.Handle(Caesar.IStreamRequest{`1},System.IServiceProvider,System.Threading.CancellationToken)
+  name.vb: Handle(IStreamRequest(Of TResponse), IServiceProvider, CancellationToken)
+  fullName: Caesar.Wrappers.StreamRequestHandlerWrapperImpl<TRequest, TResponse>.Handle(Caesar.IStreamRequest<TResponse>, System.IServiceProvider, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Wrappers.StreamRequestHandlerWrapperImpl(Of TRequest, TResponse).Handle(Caesar.IStreamRequest(Of TResponse), System.IServiceProvider, System.Threading.CancellationToken)
+  nameWithType: StreamRequestHandlerWrapperImpl<TRequest, TResponse>.Handle(IStreamRequest<TResponse>, IServiceProvider, CancellationToken)
+  nameWithType.vb: StreamRequestHandlerWrapperImpl(Of TRequest, TResponse).Handle(IStreamRequest(Of TResponse), IServiceProvider, CancellationToken)
+- uid: Caesar.Wrappers.StreamRequestHandlerWrapperImpl`2.Handle(System.Object,System.IServiceProvider,System.Threading.CancellationToken)
+  name: Handle(object, IServiceProvider, CancellationToken)
+  href: api/Caesar.Wrappers.StreamRequestHandlerWrapperImpl-2.html#Caesar_Wrappers_StreamRequestHandlerWrapperImpl_2_Handle_System_Object_System_IServiceProvider_System_Threading_CancellationToken_
+  commentId: M:Caesar.Wrappers.StreamRequestHandlerWrapperImpl`2.Handle(System.Object,System.IServiceProvider,System.Threading.CancellationToken)
+  name.vb: Handle(Object, IServiceProvider, CancellationToken)
+  fullName: Caesar.Wrappers.StreamRequestHandlerWrapperImpl<TRequest, TResponse>.Handle(object, System.IServiceProvider, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Wrappers.StreamRequestHandlerWrapperImpl(Of TRequest, TResponse).Handle(Object, System.IServiceProvider, System.Threading.CancellationToken)
+  nameWithType: StreamRequestHandlerWrapperImpl<TRequest, TResponse>.Handle(object, IServiceProvider, CancellationToken)
+  nameWithType.vb: StreamRequestHandlerWrapperImpl(Of TRequest, TResponse).Handle(Object, IServiceProvider, CancellationToken)
+- uid: Caesar.Wrappers.StreamRequestHandlerWrapperImpl`2.Handle*
+  name: Handle
+  href: api/Caesar.Wrappers.StreamRequestHandlerWrapperImpl-2.html#Caesar_Wrappers_StreamRequestHandlerWrapperImpl_2_Handle_
+  commentId: Overload:Caesar.Wrappers.StreamRequestHandlerWrapperImpl`2.Handle
+  fullName: Caesar.Wrappers.StreamRequestHandlerWrapperImpl<TRequest, TResponse>.Handle
+  fullName.vb: Caesar.Wrappers.StreamRequestHandlerWrapperImpl(Of TRequest, TResponse).Handle
+  nameWithType: StreamRequestHandlerWrapperImpl<TRequest, TResponse>.Handle
+  nameWithType.vb: StreamRequestHandlerWrapperImpl(Of TRequest, TResponse).Handle
+- uid: Caesar.Wrappers.StreamRequestHandlerWrapper`1
+  name: StreamRequestHandlerWrapper<TResponse>
+  href: api/Caesar.Wrappers.StreamRequestHandlerWrapper-1.html
+  commentId: T:Caesar.Wrappers.StreamRequestHandlerWrapper`1
+  name.vb: StreamRequestHandlerWrapper(Of TResponse)
+  fullName: Caesar.Wrappers.StreamRequestHandlerWrapper<TResponse>
+  fullName.vb: Caesar.Wrappers.StreamRequestHandlerWrapper(Of TResponse)
+  nameWithType: StreamRequestHandlerWrapper<TResponse>
+  nameWithType.vb: StreamRequestHandlerWrapper(Of TResponse)
+- uid: Caesar.Wrappers.StreamRequestHandlerWrapper`1.#ctor
+  name: StreamRequestHandlerWrapper()
+  href: api/Caesar.Wrappers.StreamRequestHandlerWrapper-1.html#Caesar_Wrappers_StreamRequestHandlerWrapper_1__ctor
+  commentId: M:Caesar.Wrappers.StreamRequestHandlerWrapper`1.#ctor
+  name.vb: New()
+  fullName: Caesar.Wrappers.StreamRequestHandlerWrapper<TResponse>.StreamRequestHandlerWrapper()
+  fullName.vb: Caesar.Wrappers.StreamRequestHandlerWrapper(Of TResponse).New()
+  nameWithType: StreamRequestHandlerWrapper<TResponse>.StreamRequestHandlerWrapper()
+  nameWithType.vb: StreamRequestHandlerWrapper(Of TResponse).New()
+- uid: Caesar.Wrappers.StreamRequestHandlerWrapper`1.#ctor*
+  name: StreamRequestHandlerWrapper
+  href: api/Caesar.Wrappers.StreamRequestHandlerWrapper-1.html#Caesar_Wrappers_StreamRequestHandlerWrapper_1__ctor_
+  commentId: Overload:Caesar.Wrappers.StreamRequestHandlerWrapper`1.#ctor
+  name.vb: New
+  fullName: Caesar.Wrappers.StreamRequestHandlerWrapper<TResponse>.StreamRequestHandlerWrapper
+  fullName.vb: Caesar.Wrappers.StreamRequestHandlerWrapper(Of TResponse).New
+  nameWithType: StreamRequestHandlerWrapper<TResponse>.StreamRequestHandlerWrapper
+  nameWithType.vb: StreamRequestHandlerWrapper(Of TResponse).New
+- uid: Caesar.Wrappers.StreamRequestHandlerWrapper`1.Handle(Caesar.IStreamRequest{`0},System.IServiceProvider,System.Threading.CancellationToken)
+  name: Handle(IStreamRequest<TResponse>, IServiceProvider, CancellationToken)
+  href: api/Caesar.Wrappers.StreamRequestHandlerWrapper-1.html#Caesar_Wrappers_StreamRequestHandlerWrapper_1_Handle_Caesar_IStreamRequest__0__System_IServiceProvider_System_Threading_CancellationToken_
+  commentId: M:Caesar.Wrappers.StreamRequestHandlerWrapper`1.Handle(Caesar.IStreamRequest{`0},System.IServiceProvider,System.Threading.CancellationToken)
+  name.vb: Handle(IStreamRequest(Of TResponse), IServiceProvider, CancellationToken)
+  fullName: Caesar.Wrappers.StreamRequestHandlerWrapper<TResponse>.Handle(Caesar.IStreamRequest<TResponse>, System.IServiceProvider, System.Threading.CancellationToken)
+  fullName.vb: Caesar.Wrappers.StreamRequestHandlerWrapper(Of TResponse).Handle(Caesar.IStreamRequest(Of TResponse), System.IServiceProvider, System.Threading.CancellationToken)
+  nameWithType: StreamRequestHandlerWrapper<TResponse>.Handle(IStreamRequest<TResponse>, IServiceProvider, CancellationToken)
+  nameWithType.vb: StreamRequestHandlerWrapper(Of TResponse).Handle(IStreamRequest(Of TResponse), IServiceProvider, CancellationToken)
+- uid: Caesar.Wrappers.StreamRequestHandlerWrapper`1.Handle*
+  name: Handle
+  href: api/Caesar.Wrappers.StreamRequestHandlerWrapper-1.html#Caesar_Wrappers_StreamRequestHandlerWrapper_1_Handle_
+  commentId: Overload:Caesar.Wrappers.StreamRequestHandlerWrapper`1.Handle
+  fullName: Caesar.Wrappers.StreamRequestHandlerWrapper<TResponse>.Handle
+  fullName.vb: Caesar.Wrappers.StreamRequestHandlerWrapper(Of TResponse).Handle
+  nameWithType: StreamRequestHandlerWrapper<TResponse>.Handle
+  nameWithType.vb: StreamRequestHandlerWrapper(Of TResponse).Handle
+- uid: Microsoft.Extensions.DependencyInjection
+  name: Microsoft.Extensions.DependencyInjection
+  href: api/Microsoft.Extensions.DependencyInjection.html
+  commentId: N:Microsoft.Extensions.DependencyInjection
+  fullName: Microsoft.Extensions.DependencyInjection
+  nameWithType: Microsoft.Extensions.DependencyInjection
+- uid: Microsoft.Extensions.DependencyInjection.CaesarServiceCollectionExtensions
+  name: CaesarServiceCollectionExtensions
+  href: api/Microsoft.Extensions.DependencyInjection.CaesarServiceCollectionExtensions.html
+  commentId: T:Microsoft.Extensions.DependencyInjection.CaesarServiceCollectionExtensions
+  fullName: Microsoft.Extensions.DependencyInjection.CaesarServiceCollectionExtensions
+  nameWithType: CaesarServiceCollectionExtensions
+- uid: Microsoft.Extensions.DependencyInjection.CaesarServiceCollectionExtensions.AddCaesar(Microsoft.Extensions.DependencyInjection.IServiceCollection,Caesar.DependencyInjection.CaesarServiceConfiguration)
+  name: AddCaesar(IServiceCollection, CaesarServiceConfiguration)
+  href: api/Microsoft.Extensions.DependencyInjection.CaesarServiceCollectionExtensions.html#Microsoft_Extensions_DependencyInjection_CaesarServiceCollectionExtensions_AddCaesar_Microsoft_Extensions_DependencyInjection_IServiceCollection_Caesar_DependencyInjection_CaesarServiceConfiguration_
+  commentId: M:Microsoft.Extensions.DependencyInjection.CaesarServiceCollectionExtensions.AddCaesar(Microsoft.Extensions.DependencyInjection.IServiceCollection,Caesar.DependencyInjection.CaesarServiceConfiguration)
+  fullName: Microsoft.Extensions.DependencyInjection.CaesarServiceCollectionExtensions.AddCaesar(Microsoft.Extensions.DependencyInjection.IServiceCollection, Caesar.DependencyInjection.CaesarServiceConfiguration)
+  nameWithType: CaesarServiceCollectionExtensions.AddCaesar(IServiceCollection, CaesarServiceConfiguration)
+- uid: Microsoft.Extensions.DependencyInjection.CaesarServiceCollectionExtensions.AddCaesar(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Caesar.DependencyInjection.CaesarServiceConfiguration})
+  name: AddCaesar(IServiceCollection, Action<CaesarServiceConfiguration>)
+  href: api/Microsoft.Extensions.DependencyInjection.CaesarServiceCollectionExtensions.html#Microsoft_Extensions_DependencyInjection_CaesarServiceCollectionExtensions_AddCaesar_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Action_Caesar_DependencyInjection_CaesarServiceConfiguration__
+  commentId: M:Microsoft.Extensions.DependencyInjection.CaesarServiceCollectionExtensions.AddCaesar(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{Caesar.DependencyInjection.CaesarServiceConfiguration})
+  name.vb: AddCaesar(IServiceCollection, Action(Of CaesarServiceConfiguration))
+  fullName: Microsoft.Extensions.DependencyInjection.CaesarServiceCollectionExtensions.AddCaesar(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action<Caesar.DependencyInjection.CaesarServiceConfiguration>)
+  fullName.vb: Microsoft.Extensions.DependencyInjection.CaesarServiceCollectionExtensions.AddCaesar(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Action(Of Caesar.DependencyInjection.CaesarServiceConfiguration))
+  nameWithType: CaesarServiceCollectionExtensions.AddCaesar(IServiceCollection, Action<CaesarServiceConfiguration>)
+  nameWithType.vb: CaesarServiceCollectionExtensions.AddCaesar(IServiceCollection, Action(Of CaesarServiceConfiguration))
+- uid: Microsoft.Extensions.DependencyInjection.CaesarServiceCollectionExtensions.AddCaesar(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Collections.Generic.IEnumerable{System.Reflection.Assembly})
+  name: AddCaesar(IServiceCollection, params IEnumerable<Assembly>)
+  href: api/Microsoft.Extensions.DependencyInjection.CaesarServiceCollectionExtensions.html#Microsoft_Extensions_DependencyInjection_CaesarServiceCollectionExtensions_AddCaesar_Microsoft_Extensions_DependencyInjection_IServiceCollection_System_Collections_Generic_IEnumerable_System_Reflection_Assembly__
+  commentId: M:Microsoft.Extensions.DependencyInjection.CaesarServiceCollectionExtensions.AddCaesar(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Collections.Generic.IEnumerable{System.Reflection.Assembly})
+  name.vb: AddCaesar(IServiceCollection, IEnumerable(Of Assembly))
+  fullName: Microsoft.Extensions.DependencyInjection.CaesarServiceCollectionExtensions.AddCaesar(Microsoft.Extensions.DependencyInjection.IServiceCollection, params System.Collections.Generic.IEnumerable<System.Reflection.Assembly>)
+  fullName.vb: Microsoft.Extensions.DependencyInjection.CaesarServiceCollectionExtensions.AddCaesar(Microsoft.Extensions.DependencyInjection.IServiceCollection, System.Collections.Generic.IEnumerable(Of System.Reflection.Assembly))
+  nameWithType: CaesarServiceCollectionExtensions.AddCaesar(IServiceCollection, params IEnumerable<Assembly>)
+  nameWithType.vb: CaesarServiceCollectionExtensions.AddCaesar(IServiceCollection, IEnumerable(Of Assembly))
+- uid: Microsoft.Extensions.DependencyInjection.CaesarServiceCollectionExtensions.AddCaesar*
+  name: AddCaesar
+  href: api/Microsoft.Extensions.DependencyInjection.CaesarServiceCollectionExtensions.html#Microsoft_Extensions_DependencyInjection_CaesarServiceCollectionExtensions_AddCaesar_
+  commentId: Overload:Microsoft.Extensions.DependencyInjection.CaesarServiceCollectionExtensions.AddCaesar
+  fullName: Microsoft.Extensions.DependencyInjection.CaesarServiceCollectionExtensions.AddCaesar
+  nameWithType: CaesarServiceCollectionExtensions.AddCaesar

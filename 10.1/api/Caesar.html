@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Namespace Caesar | Caesar </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Namespace Caesar | Caesar ">
+      
+      
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="Caesar">
+            Caesar
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Caesar">
+
+  <h1 id="Caesar" data-uid="Caesar" class="text-break">Namespace Caesar</h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+
+    <h3 id="classes">
+Classes
+</h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Caesar.Mediator.html">Mediator</a></dt>
+      <dd><p>Default <a class="xref" href="Caesar.IMediator.html">IMediator</a> implementation. Resolves handlers and behaviors from an
+<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iserviceprovider">IServiceProvider</a> at call time, so it can be registered with any lifetime.
+Handler wrappers are stateless and cached per request type for the lifetime of the process.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Caesar.NotificationHandlerExecutor.html">NotificationHandlerExecutor</a></dt>
+      <dd><p>A resolved notification handler together with a callback that invokes it.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Caesar.NotificationHandler-1.html">NotificationHandler&lt;TNotification&gt;</a></dt>
+      <dd><p>Convenience base class for synchronous notification handlers.</p>
+</dd>
+    </dl>
+    <h3 id="structs">
+Structs
+</h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Caesar.Unit.html">Unit</a></dt>
+      <dd><p>Represents a void return type. Used as the response of <a class="xref" href="Caesar.IRequest.html">IRequest</a>.</p>
+</dd>
+    </dl>
+    <h3 id="interfaces">
+Interfaces
+</h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Caesar.IBaseRequest.html">IBaseRequest</a></dt>
+      <dd><p>Marker interface shared by every request that is dispatched through <a class="xref" href="Caesar.ISender.html">ISender</a>.
+Do not implement this directly; use <a class="xref" href="Caesar.IRequest.html">IRequest</a>, <a class="xref" href="Caesar.IRequest-1.html">IRequest&lt;TResponse&gt;</a>
+or <a class="xref" href="Caesar.IStreamRequest-1.html">IStreamRequest&lt;TResponse&gt;</a>.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Caesar.IMediator.html">IMediator</a></dt>
+      <dd><p>Combines <a class="xref" href="Caesar.ISender.html">ISender</a> and <a class="xref" href="Caesar.IPublisher.html">IPublisher</a>.
+Prefer injecting the narrower interface when a component only sends or only publishes.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Caesar.INotification.html">INotification</a></dt>
+      <dd><p>A notification (event) that is published to zero or more <a class="xref" href="Caesar.INotificationHandler-1.html">INotificationHandler&lt;TNotification&gt;</a> instances.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Caesar.INotificationHandler-1.html">INotificationHandler&lt;TNotification&gt;</a></dt>
+      <dd><p>Handles a notification. Multiple handlers may exist for the same notification type.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Caesar.INotificationPublisher.html">INotificationPublisher</a></dt>
+      <dd><p>Strategy that decides how the handlers of a notification are invoked
+(sequentially, in parallel, fire-and-forget, ...).</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Caesar.IPipelineBehavior-2.html">IPipelineBehavior&lt;TRequest, TResponse&gt;</a></dt>
+      <dd><p>Wraps the handling of a request. Behaviors are executed in registration order and form a
+Russian-doll chain around the <a class="xref" href="Caesar.IRequestHandler-2.html">IRequestHandler&lt;TRequest, TResponse&gt;</a>.
+Register an open-generic behavior to apply it to every request.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Caesar.IPublisher.html">IPublisher</a></dt>
+      <dd><p>Publishes notifications to every registered handler.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Caesar.IRequest.html">IRequest</a></dt>
+      <dd><p>A request without a meaningful response (a command). Its response type is <a class="xref" href="Caesar.Unit.html">Unit</a>.
+Handle it with <a class="xref" href="Caesar.IRequestHandler-1.html">IRequestHandler&lt;TRequest&gt;</a>.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Caesar.IRequestHandler-1.html">IRequestHandler&lt;TRequest&gt;</a></dt>
+      <dd><p>Handles a request that has no response (a command).</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Caesar.IRequestHandler-2.html">IRequestHandler&lt;TRequest, TResponse&gt;</a></dt>
+      <dd><p>Handles a request that returns a response.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Caesar.IRequest-1.html">IRequest&lt;TResponse&gt;</a></dt>
+      <dd><p>A request that produces a response of type <code class="typeparamref">TResponse</code>.
+Exactly one <a class="xref" href="Caesar.IRequestHandler-2.html">IRequestHandler&lt;TRequest, TResponse&gt;</a> handles it.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Caesar.ISender.html">ISender</a></dt>
+      <dd><p>Sends requests to their single handler and creates response streams.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Caesar.IStreamPipelineBehavior-2.html">IStreamPipelineBehavior&lt;TRequest, TResponse&gt;</a></dt>
+      <dd><p>Wraps the handling of a streaming request.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Caesar.IStreamRequestHandler-2.html">IStreamRequestHandler&lt;TRequest, TResponse&gt;</a></dt>
+      <dd><p>Handles a streaming request.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Caesar.IStreamRequest-1.html">IStreamRequest&lt;TResponse&gt;</a></dt>
+      <dd><p>A request whose handler produces a stream of <code class="typeparamref">TResponse</code> items
+as an <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.iasyncenumerable-1">IAsyncEnumerable&lt;T&gt;</a>.</p>
+</dd>
+    </dl>
+    <h3 id="delegates">
+Delegates
+</h3>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Caesar.RequestHandlerDelegate-1.html">RequestHandlerDelegate&lt;TResponse&gt;</a></dt>
+      <dd><p>Continues the request pipeline: invokes the next behavior or, at the end, the handler.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="Caesar.StreamHandlerDelegate-1.html">StreamHandlerDelegate&lt;TResponse&gt;</a></dt>
+      <dd><p>Continues the stream pipeline: invokes the next behavior or, at the end, the stream handler.</p>
+</dd>
+    </dl>
+
+
+</article>
+
+        <div class="contribution d-print-none">
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © Tsezari Mshvenieradze · <a href="https://tsezar.io">tsezar.io</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

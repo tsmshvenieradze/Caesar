@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Streams | Caesar </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Streams | Caesar ">
+      
+      
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/tsmshvenieradze/Caesar/blob/main/docs/guide/streams.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="Caesar">
+            Caesar
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="streams">Streams</h1>
+
+<p>A stream request returns a sequence instead of a single response, as an <code>IAsyncEnumerable&lt;T&gt;</code>. Use it for exports,
+paging through large result sets, or any producer that yields items over time, without buffering everything in memory.</p>
+<h2 id="define-and-handle">Define and handle</h2>
+<p>Implement <a class="xref" href="../api/Caesar.IStreamRequest-1.html">IStreamRequest&lt;TResponse&gt;</a> and <a class="xref" href="../api/Caesar.IStreamRequestHandler-2.html">IStreamRequestHandler&lt;TRequest, TResponse&gt;</a>. Mark the token parameter with
+<code>[EnumeratorCancellation]</code> so that a token passed to <code>WithCancellation</code> by the consumer reaches the handler:</p>
+<pre><code class="lang-csharp">public sealed record ExportCustomers(int PageSize) : IStreamRequest&lt;IReadOnlyList&lt;Customer&gt;&gt;;
+
+public sealed class ExportCustomersHandler(ICustomerRepository repository)
+    : IStreamRequestHandler&lt;ExportCustomers, IReadOnlyList&lt;Customer&gt;&gt;
+{
+    public async IAsyncEnumerable&lt;IReadOnlyList&lt;Customer&gt;&gt; Handle(ExportCustomers request,
+        [EnumeratorCancellation] CancellationToken cancellationToken)
+    {
+        var page = new List&lt;Customer&gt;(request.PageSize);
+        await foreach (var customer in repository.All(cancellationToken))
+        {
+            page.Add(customer);
+            if (page.Count == request.PageSize)
+            {
+                yield return page;
+                page = new List&lt;Customer&gt;(request.PageSize);
+            }
+        }
+
+        if (page.Count &gt; 0)
+        {
+            yield return page;
+        }
+    }
+}
+</code></pre><h2 id="consume">Consume</h2>
+<pre><code class="lang-csharp">await foreach (var page in sender.CreateStream(new ExportCustomers(PageSize: 100), cancellationToken))
+{
+    Console.WriteLine($&quot;Exported {page.Count} customer(s)&quot;);
+}
+</code></pre>
+<p>The handler starts when enumeration starts, not when <code>CreateStream</code> is called. <code>CreateStream(object)</code> accepts a request
+whose type is only known at runtime and yields <code>object?</code> items.</p>
+<h2 id="stream-behaviors">Stream behaviors</h2>
+<p>Stream requests do not go through request behaviors; they have their own pipeline of
+<a class="xref" href="../api/Caesar.IStreamPipelineBehavior-2.html">IStreamPipelineBehavior&lt;TRequest, TResponse&gt;</a>. See <a href="pipeline-behaviors.html#stream-behaviors">Pipeline behaviors → Stream behaviors</a>.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/tsmshvenieradze/Caesar/blob/main/docs/guide/streams.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © Tsezari Mshvenieradze · <a href="https://tsezar.io">tsezar.io</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

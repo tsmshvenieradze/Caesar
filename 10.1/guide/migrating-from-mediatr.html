@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Migrating from MediatR | Caesar </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Migrating from MediatR | Caesar ">
+      
+      
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/tsmshvenieradze/Caesar/blob/main/docs/guide/migrating-from-mediatr.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="Caesar">
+            Caesar
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="migrating-from-mediatr">Migrating from MediatR</h1>
+
+<p>Caesar follows MediatR's programming model, so most code moves over by changing namespaces and the registration call.</p>
+<h2 id="steps">Steps</h2>
+<ol>
+<li>Replace the packages: <code>MediatR.Contracts</code> becomes <code>Caesar.Abstractions</code> in the Application layer, and <code>MediatR</code>
+becomes <code>Caesar</code> in the host.</li>
+<li>Replace <code>using MediatR;</code> with <code>using Caesar;</code>. Processors and exception handling types live in <code>Caesar.Pipeline</code>,
+and publishers in <code>Caesar.NotificationPublishers</code>.</li>
+<li>Replace <code>services.AddMediatR(cfg =&gt; ...)</code> with <code>services.AddCaesar(cfg =&gt; ...)</code>.</li>
+<li>Check where the mediator is resolved. Caesar registers it as <strong>scoped</strong> by default, while MediatR registers it as
+transient: resolve it inside a scope, or set <code>cfg.MediatorLifetime = ServiceLifetime.Transient</code>. See
+<a href="configuration.html#lifetimes">Lifetimes</a>.</li>
+<li>Build. Open-generic handlers the container cannot close now fail at <code>AddCaesar</code> instead of at the first request; see
+<a href="configuration.html#open-generic-handlers">Open-generic handlers</a>.</li>
+</ol>
+<h2 id="type-map">Type map</h2>
+<table>
+<thead>
+<tr>
+<th>MediatR</th>
+<th>Caesar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>using MediatR;</code></td>
+<td><code>using Caesar;</code> (processors and exception types live in <code>Caesar.Pipeline</code>)</td>
+</tr>
+<tr>
+<td><code>services.AddMediatR(cfg =&gt; ...)</code></td>
+<td><code>services.AddCaesar(cfg =&gt; ...)</code></td>
+</tr>
+<tr>
+<td><code>MediatRServiceConfiguration</code></td>
+<td><code>CaesarServiceConfiguration</code></td>
+</tr>
+<tr>
+<td><code>IRequest</code>, <code>IRequest&lt;T&gt;</code>, <code>INotification</code>, <code>IStreamRequest&lt;T&gt;</code></td>
+<td>same</td>
+</tr>
+<tr>
+<td><code>IRequestHandler&lt;,&gt;</code>, <code>IRequestHandler&lt;&gt;</code>, <code>INotificationHandler&lt;&gt;</code>, <code>IStreamRequestHandler&lt;,&gt;</code></td>
+<td>same</td>
+</tr>
+<tr>
+<td><code>IPipelineBehavior&lt;,&gt;</code>, <code>RequestHandlerDelegate&lt;T&gt;</code></td>
+<td>same; <code>next</code> optionally takes a <code>CancellationToken</code></td>
+</tr>
+<tr>
+<td><code>IRequestPreProcessor&lt;&gt;</code>, <code>IRequestPostProcessor&lt;,&gt;</code>, <code>IRequestExceptionHandler&lt;,,&gt;</code>, <code>IRequestExceptionAction&lt;,&gt;</code></td>
+<td>same (<code>Caesar.Pipeline</code>)</td>
+</tr>
+<tr>
+<td><code>ForeachAwaitPublisher</code>, <code>TaskWhenAllPublisher</code></td>
+<td>same (<code>Caesar.NotificationPublishers</code>), plus <code>ForeachAwaitContinueOnFailurePublisher</code></td>
+</tr>
+<tr>
+<td><code>Unit</code>, <code>ISender</code>, <code>IPublisher</code>, <code>IMediator</code></td>
+<td>same</td>
+</tr>
+</tbody>
+</table>
+<h2 id="running-both-side-by-side">Running both side by side</h2>
+<p>During a gradual migration a project can reference both packages. The container keeps them apart, since
+<code>MediatR.IMediator</code> and <code>Caesar.IMediator</code> are different types, but a file with both <code>using MediatR;</code> and
+<code>using Caesar;</code> gets <code>CS0104</code> ambiguous-reference errors on names such as <code>IRequest</code> and <code>Unit</code>. Keep each file on one
+of them, or use an alias (<code>using CaesarRequest = Caesar.IRequest;</code>).</p>
+<p>Handlers are not shared: Caesar only scans for its own interfaces, so a handler must be moved to Caesar's interfaces to
+be found. Third-party packages built on MediatR's interfaces need a Caesar equivalent.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/tsmshvenieradze/Caesar/blob/main/docs/guide/migrating-from-mediatr.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © Tsezari Mshvenieradze · <a href="https://tsezar.io">tsezar.io</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
