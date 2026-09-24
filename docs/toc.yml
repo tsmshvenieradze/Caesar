@@ -1,2 +1,6 @@
+- name: Guide
+  href: guide/
 - name: API
   href: api/
+- name: NuGet
+  href: https://www.nuget.org/packages/Caesar
