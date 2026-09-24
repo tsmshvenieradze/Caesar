@@ -18,14 +18,13 @@ public sealed class CustomerNotFoundHandler : IRequestExceptionHandler<GetCustom
 #endregion
 
 #region exception-action
-// Side effects only: the exception is rethrown afterwards with its original stack trace.
-public sealed class ReportFailures<TRequest, TException> : IRequestExceptionAction<TRequest, TException>
-    where TRequest : notnull
-    where TException : Exception
+// Runs once for every exception GetCustomer throws. Side effects only: the exception is rethrown afterwards
+// with its original stack trace.
+public sealed class ReportGetCustomerFailures : IRequestExceptionAction<GetCustomer>
 {
-    public Task Execute(TRequest request, TException exception, CancellationToken cancellationToken)
+    public Task Execute(GetCustomer request, Exception exception, CancellationToken cancellationToken)
     {
-        Console.Error.WriteLine($"{typeof(TRequest).Name} failed: {exception.Message}");
+        Console.Error.WriteLine($"GetCustomer({request.Id}) failed: {exception.Message}");
         return Task.CompletedTask;
     }
 }

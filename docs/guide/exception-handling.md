@@ -27,7 +27,16 @@ Handlers and actions are resolved for the thrown exception type first, then for 
 `CustomerNotFoundException` runs before one for `Exception`, so a handler for `Exception` acts as a catch-all.
 
 `IRequestExceptionHandler<TRequest, TResponse>` and `IRequestExceptionAction<TRequest>` are shorthands for the
-`Exception` case.
+`Exception` case. Implement the shorthand on a closed class, like `ReportGetCustomerFailures` above, when you want an
+action that runs exactly once for any failure of a request.
+
+> [!WARNING]
+> An open generic over the exception type, such as `ReportFailures<TRequest, TException> : IRequestExceptionAction<TRequest, TException>`,
+> is closed by the container for **every** type in the hierarchy. It runs once per level: an `ArgumentNullException`
+> triggers it for `ArgumentNullException`, `ArgumentException`, `SystemException` and `Exception`, so a logger built
+> this way writes four entries for one failure. A one-parameter open generic such as
+> `ReportAll<TRequest> : IRequestExceptionAction<TRequest>` cannot be closed by the container and is rejected by
+> `AddCaesar` (see [Open-generic handlers](configuration.md#open-generic-handlers)).
 
 An exception nobody recovers from is rethrown with its original stack trace, so logs point at the line that failed, not
 at Caesar.
@@ -45,5 +54,5 @@ at Caesar.
 
 ## Registration
 
-Exception handlers and actions are found by scanning, including open generics such as `ReportFailures<,>` above. The
-built-in behaviors that run them are added only when at least one handler or action exists.
+Exception handlers and actions are found by scanning. The built-in behaviors that run them are added when `AddCaesar`
+runs and at least one handler or action is registered by then.
