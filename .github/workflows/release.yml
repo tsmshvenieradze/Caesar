@@ -5,6 +5,8 @@ name: Release
 #      Must be run on main; the run fails if that version is already on nuget.org.
 #   2. Merge to main: publishes <VersionPrefix> from Directory.Build.props. If that version already exists
 #      on nuget.org the push is skipped (`--skip-duplicate`), so ordinary merges are a safe no-op.
+#   3. A stable release also publishes its docs (docs.yml) and takes its GitHub Release notes from CHANGELOG.md,
+#      which must have a `## [X.Y.Z]` section. Prerelease versions skip both.
 #
 # Authentication uses nuget.org Trusted Publishing (GitHub OIDC), so no long-lived API key is stored.
 # On nuget.org: Account > Trusted Publishing > Add, with
@@ -34,6 +36,9 @@ jobs:
   release:
     runs-on: ubuntu-latest
     environment: nuget.org
+    outputs:
+      released: ${{ steps.tag.outputs.released }}
+      version: ${{ steps.version.outputs.version }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -64,6 +69,24 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "manual=$([ -n "$INPUT_VERSION" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
           echo "Package version: $VERSION (from $SOURCE)"
+
+      - name: Require a changelog entry for a new stable version
+        id: changelog
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          if git ls-remote --exit-code --tags origin "v$VERSION" >/dev/null 2>&1; then
+            echo "Tag v$VERSION already exists; no new release, changelog not required."
+            exit 0
+          fi
+          case "$VERSION" in
+            *-*) echo "Prerelease $VERSION: changelog entry optional, notes are generated."; exit 0 ;;
+          esac
+          if ! python3 .github/scripts/changelog_section.py CHANGELOG.md "$VERSION" > "$RUNNER_TEMP/release-notes.md"; then
+            echo "CHANGELOG.md needs a '## [$VERSION]' section before $VERSION can be released." >&2
+            exit 1
+          fi
+          echo "notes=$RUNNER_TEMP/release-notes.md" >> "$GITHUB_OUTPUT"
 
       - name: Fail if a manual version is already on nuget.org
         if: steps.version.outputs.manual == 'true'
@@ -114,9 +137,11 @@ jobs:
             --skip-duplicate
 
       - name: Tag and create GitHub release
+        id: tag
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VERSION: ${{ steps.version.outputs.version }}
+          NOTES: ${{ steps.changelog.outputs.notes }}
         run: |
           TAG="v$VERSION"
           if git rev-parse -q --verify "refs/tags/$TAG" >/dev/null || git ls-remote --exit-code --tags origin "$TAG" >/dev/null 2>&1; then
@@ -127,11 +152,24 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git tag -a "$TAG" -m "Caesar $VERSION"
           git push origin "$TAG"
+          if [ -n "$NOTES" ]; then NOTES_ARGS=(--notes-file "$NOTES"); else NOTES_ARGS=(--generate-notes); fi
           gh release create "$TAG" artifacts/packages/*.nupkg artifacts/packages/*.snupkg \
             --title "Caesar $VERSION" \
-            --generate-notes
+            "${NOTES_ARGS[@]}"
+          echo "released=true" >> "$GITHUB_OUTPUT"
 
       - uses: actions/upload-artifact@v4
         with:
           name: packages-${{ steps.version.outputs.version }}
           path: artifacts/packages
+
+  docs:
+    needs: release
+    # A tag pushed with GITHUB_TOKEN does not trigger other workflows, so publish the docs explicitly.
+    if: needs.release.outputs.released == 'true' && !contains(needs.release.outputs.version, '-')
+    uses: ./.github/workflows/docs.yml
+    with:
+      ref: v${{ needs.release.outputs.version }}
+      version: ${{ needs.release.outputs.version }}
+    permissions:
+      contents: write
