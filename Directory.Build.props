@@ -23,7 +23,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/tsmshvenieradze/Caesar</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/tsmshvenieradze/Caesar</PackageProjectUrl>
+    <PackageProjectUrl>https://caesar.tsezar.io</PackageProjectUrl>
     <PackageTags>mediator;cqrs;pipeline;behaviors;notifications;streams;clean-architecture</PackageTags>
     <VersionPrefix>10.1.1</VersionPrefix>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
