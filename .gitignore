@@ -10,3 +10,5 @@ TestResults/
 .DS_Store
 *.nupkg
 *.snupkg
+docs/_site/
+docs/api/

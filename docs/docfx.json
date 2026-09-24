@@ -1,0 +1,37 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dotnet/docfx/main/schemas/docfx.schema.json",
+  "metadata": [
+    {
+      "src": [
+        {
+          "src": "../src",
+          "files": [
+            "Caesar.Abstractions/bin/Release/net10.0/Caesar.Abstractions.dll",
+            "Caesar/bin/Release/net10.0/Caesar.dll"
+          ]
+        }
+      ],
+      "dest": "api"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": ["index.md", "toc.yml", "api/**.yml"]
+      }
+    ],
+    "resource": [
+      {
+        "files": ["images/**"]
+      }
+    ],
+    "xref": ["https://learn.microsoft.com/en-us/dotnet/.xrefmap.json"],
+    "template": ["default", "modern"],
+    "output": "_site",
+    "globalMetadata": {
+      "_appTitle": "Caesar",
+      "_appName": "Caesar",
+      "_enableSearch": true
+    }
+  }
+}
