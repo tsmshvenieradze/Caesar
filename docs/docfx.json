@@ -17,7 +17,7 @@
   "build": {
     "content": [
       {
-        "files": ["index.md", "toc.yml", "guide/**.md", "guide/toc.yml", "api/**.yml"]
+        "files": ["index.md", "toc.yml", "guide/**.md", "guide/toc.yml", "changelog.md", "api/**.yml"]
       }
     ],
     "resource": [

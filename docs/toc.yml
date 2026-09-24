@@ -2,5 +2,7 @@
   href: guide/
 - name: API
   href: api/
+- name: Changelog
+  href: changelog.md
 - name: NuGet
   href: https://www.nuget.org/packages/Caesar
