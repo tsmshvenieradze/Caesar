@@ -38,3 +38,24 @@ jobs:
         with:
           name: artifacts
           path: artifacts
+
+  docs:
+    name: Docs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Script tests
+        run: python3 -m unittest discover -s .github/scripts -p "test_*.py" -v
+
+      - name: Build
+        run: dotnet build Caesar.slnx --configuration Release
+
+      - name: Build docs
+        run: |
+          dotnet tool restore
+          dotnet docfx docs/docfx.json --warningsAsErrors
