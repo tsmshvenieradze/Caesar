@@ -12,3 +12,4 @@ TestResults/
 *.snupkg
 docs/_site/
 docs/api/
+__pycache__/
