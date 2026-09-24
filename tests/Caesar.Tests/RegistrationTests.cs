@@ -246,6 +246,23 @@ public class RegistrationTests
     }
 
     [Fact]
+    public void Singleton_capturing_ISender_is_not_reported_without_scope_validation()
+    {
+        // The configuration guide says the startup report needs ValidateScopes as well as ValidateOnBuild.
+        var services = new ServiceCollection();
+        services.AddCaesar(cfg =>
+        {
+            cfg.RegisterServicesFromAssemblyContaining<RegistrationTests>();
+            cfg.TypeEvaluator = t => t.Namespace == typeof(RegistrationTests).Namespace;
+        });
+        services.AddSingleton<SingletonCaptor>();
+
+        using var provider = services.BuildServiceProvider(new ServiceProviderOptions { ValidateOnBuild = true, ValidateScopes = false });
+
+        Assert.NotNull(provider.GetRequiredService<SingletonCaptor>().Sender);
+    }
+
+    [Fact]
     public void MediatorLifetime_overrides_the_scoped_default()
     {
         var services = new ServiceCollection();

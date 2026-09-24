@@ -11,8 +11,9 @@ All notable changes to Caesar are documented here. The format follows
 ### Added
 
 - `CaesarServiceConfiguration.MediatorLifetime` (default `Scoped`) controls the lifetime of `IMediator`, `ISender`,
-  `IPublisher` and `INotificationPublisher`. A singleton that captures `ISender` is now reported by
-  `ValidateOnBuild` at startup instead of failing on the first request that needs a scoped dependency.
+  `IPublisher` and `INotificationPublisher`. A singleton that captures `ISender` is now reported at
+  startup by container validation (`ValidateScopes` + `ValidateOnBuild`, on by default in Development) instead of
+  failing on the first request that needs a scoped dependency.
 - `AddCaesar` throws when a scanned open-generic type implements a Caesar interface in a shape the container can
   never close (different arity or reordered type parameters), instead of failing on the first request.
 

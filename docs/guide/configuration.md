@@ -38,9 +38,11 @@ Everything is configured in the `AddCaesar` callback, through <xref:Caesar.Depen
 Handlers default to `Transient`: they are stateless, and two `Send` calls in one scope should not share an instance.
 
 The mediator defaults to `Scoped`. A transient `ISender` can be injected into a singleton without the container
-objecting, and the captured mediator then holds the **root** provider, so the first request needing a scoped
-dependency such as a `DbContext` fails at runtime, far from the constructor that caused it. With a scoped mediator,
-`ValidateOnBuild` reports that singleton at startup instead.
+objecting, and the captured mediator then holds the **root** provider. With scope validation on, the first request
+needing a scoped dependency such as a `DbContext` then fails at runtime, far from the constructor that caused it;
+with it off, that `DbContext` is silently resolved from the root and lives for the whole application. With a scoped
+mediator, the container reports the capturing singleton at startup instead, provided both `ValidateScopes` and
+`ValidateOnBuild` are enabled. ASP.NET Core and the generic host enable both in the Development environment.
 
 The cost is that `ISender` is no longer resolvable straight from the root provider. Resolve it inside a scope:
 
