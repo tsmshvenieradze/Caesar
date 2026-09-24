@@ -26,12 +26,19 @@
       }
     ],
     "xref": ["https://learn.microsoft.com/en-us/dotnet/.xrefmap.json"],
-    "template": ["default", "modern"],
+    "template": ["default", "modern", "template"],
     "output": "_site",
     "globalMetadata": {
       "_appTitle": "Caesar",
       "_appName": "Caesar",
-      "_enableSearch": true
+      "_appLogoPath": "images/logo.svg",
+      "_appFaviconPath": "images/logo.svg",
+      "_appFooter": "© Tsezari Mshvenieradze · <a href=\"https://tsezar.io\">tsezar.io</a>",
+      "_enableSearch": true,
+      "_gitContribute": {
+        "repo": "https://github.com/tsmshvenieradze/Caesar",
+        "branch": "main"
+      }
     }
   }
 }
