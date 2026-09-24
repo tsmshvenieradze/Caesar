@@ -3,6 +3,6 @@
 - name: API
   href: api/
 - name: Changelog
-  href: changelog.md
+  href: https://caesar.tsezar.io/latest/changelog.html
 - name: NuGet
   href: https://www.nuget.org/packages/Caesar
