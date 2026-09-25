@@ -33,10 +33,10 @@ solutions where the Application layer must stay free of infrastructure concerns.
 
 ```xml
 <!-- Application project -->
-<PackageReference Include="Caesar.Abstractions" Version="10.1.1" />
+<PackageReference Include="Caesar.Abstractions" Version="10.2.0" />
 
 <!-- API / Host project -->
-<PackageReference Include="Caesar" Version="10.1.1" />
+<PackageReference Include="Caesar" Version="10.2.0" />
 ```
 
 ## Quick start

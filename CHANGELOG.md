@@ -6,6 +6,8 @@ All notable changes to Caesar are documented here. The format follows
 
 ## [Unreleased]
 
+## [10.2.0] - 2026-09-25
+
 ### Breaking changes
 
 These can change what an existing application sees after upgrading; the entries below give the details.
@@ -203,5 +205,6 @@ These can change what an existing application sees after upgrading; the entries 
   or set `MediatorLifetime = ServiceLifetime.Transient`.
 - Package authorship metadata now names Tsezari Mshvenieradze.
 
-[Unreleased]: https://github.com/tsmshvenieradze/Caesar/compare/v10.1.1...HEAD
+[Unreleased]: https://github.com/tsmshvenieradze/Caesar/compare/v10.2.0...HEAD
+[10.2.0]: https://github.com/tsmshvenieradze/Caesar/releases/tag/v10.2.0
 [10.1.1]: https://github.com/tsmshvenieradze/Caesar/releases/tag/v10.1.1
