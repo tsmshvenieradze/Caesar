@@ -11,7 +11,7 @@ API reference. The site also carries the project changelog.
 
 Success criteria:
 
-- `https://caesar.tsezar.io` serves the docs over valid HTTPS and redirects to `/latest/`.
+- `https://caesar.tsezar.io` serves the docs over valid HTTPS; its root is a landing page linking to `/latest/`.
 - Guides cover every feature the README covers today, with code examples that are compiled in CI.
 - Every public type in `Caesar.Abstractions` and `Caesar` has a generated API page.
 - Each minor version has its own frozen docs folder, selectable from a version dropdown.
@@ -92,7 +92,8 @@ DocFX `modern` template plus `docs/template` overrides, matching tsezar.io:
 Published site layout (served from the `gh-pages` branch root):
 
 ```
-/index.html        redirect to /latest/
+/index.html        landing page linking to /latest/; no automatic redirect, which on a new host is a
+                   phishing-kit pattern (Safe Browsing flagged the first deploy as deceptive)
 /CNAME             caesar.tsezar.io
 /.nojekyll
 /versions.json     [{ "version": "10.1", "latest": true }, ...] newest first
@@ -125,7 +126,7 @@ Steps:
 3. Derive `X.Y` from `version`; validate it matches `^[0-9]+\.[0-9]+$` after derivation.
 4. Check out `gh-pages` into a second directory (create it as an orphan branch if missing).
 5. Replace `X.Y/` with `_site`; update `versions.json`; if `X.Y` is the highest, replace `latest/` too.
-6. Ensure `index.html` redirect, `CNAME`, `.nojekyll` exist.
+6. Ensure the `index.html` landing page, `CNAME`, `.nojekyll` exist.
 7. Commit (`docs: publish X.Y from <ref>`) and push only if something changed.
 
 GitHub Pages is configured as "Deploy from a branch: `gh-pages` / root".
@@ -177,8 +178,8 @@ version `10.1` after this work merges. Later releases publish automatically.
 - Local: strict `docfx` build passes; snippets project compiles; `--serve` check of guides, API pages, search,
   version dropdown, dark/light toggle, phone width.
 - CI: docs job green on the PR.
-- After first deploy: `https://caesar.tsezar.io` redirects to `/latest/`; `/10.1/`, `/latest/changelog.html` and
-  `/versions.json` return 200; the `ISender` API page exists; certificate valid.
+- After first deploy: `https://caesar.tsezar.io` shows the landing page linking to `/latest/`; `/10.1/`,
+  `/latest/changelog.html` and `/versions.json` return 200; the `ISender` API page exists; certificate valid.
 - Idempotence: a second manual deploy of the same ref produces no `gh-pages` commit, and other version folders are
   unchanged.
 
