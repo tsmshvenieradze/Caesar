@@ -25,7 +25,7 @@
     <RepositoryUrl>https://github.com/tsmshvenieradze/Caesar</RepositoryUrl>
     <PackageProjectUrl>https://caesar.tsezar.io</PackageProjectUrl>
     <PackageTags>mediator;cqrs;pipeline;behaviors;notifications;streams;clean-architecture</PackageTags>
-    <VersionPrefix>10.1.1</VersionPrefix>
+    <VersionPrefix>10.2.0</VersionPrefix>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <IncludeSymbols>true</IncludeSymbols>
