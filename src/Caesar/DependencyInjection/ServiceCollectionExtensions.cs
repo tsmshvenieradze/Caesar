@@ -39,7 +39,14 @@ public static class CaesarServiceCollectionExtensions
     /// </summary>
     /// <param name="services">The service collection.</param>
     /// <param name="configuration">The configuration.</param>
-    /// <exception cref="ArgumentException">No assembly was registered for scanning.</exception>
+    /// <exception cref="ArgumentException">
+    /// No assembly was registered for scanning, or <see cref="CaesarServiceConfiguration.MediatorImplementationType"/> or
+    /// <see cref="CaesarServiceConfiguration.NotificationPublisherType"/> is not a concrete class (not an interface, abstract or an open generic) that implements its interface.
+    /// </exception>
+    /// <exception cref="InvalidOperationException">
+    /// A scanned open-generic handler implements a Caesar interface in a shape the container cannot close, or two different
+    /// scanned open generics implement the same single-handler interface.
+    /// </exception>
     public static IServiceCollection AddCaesar(this IServiceCollection services, CaesarServiceConfiguration configuration)
     {
         ArgumentNullException.ThrowIfNull(services);
@@ -52,17 +59,21 @@ public static class CaesarServiceCollectionExtensions
                 nameof(configuration));
         }
 
-        if (!typeof(IMediator).IsAssignableFrom(configuration.MediatorImplementationType))
+        if (FindImplementationTypeProblem(configuration.MediatorImplementationType, typeof(IMediator)) is { } mediatorProblem)
         {
             throw new ArgumentException(
-                $"{configuration.MediatorImplementationType.FullName} must implement {typeof(IMediator).FullName}.",
+                $"{nameof(CaesarServiceConfiguration)}.{nameof(CaesarServiceConfiguration.MediatorImplementationType)} must be a concrete "
+                + $"class that implements {typeof(IMediator).FullName}, but {mediatorProblem}.",
                 nameof(configuration));
         }
 
-        if (configuration.NotificationPublisher is null && !typeof(INotificationPublisher).IsAssignableFrom(configuration.NotificationPublisherType))
+        // A ready-made publisher instance takes precedence, so the type is not used and not validated.
+        if (configuration.NotificationPublisher is null
+            && FindImplementationTypeProblem(configuration.NotificationPublisherType, typeof(INotificationPublisher)) is { } publisherProblem)
         {
             throw new ArgumentException(
-                $"{configuration.NotificationPublisherType.FullName} must implement {typeof(INotificationPublisher).FullName}.",
+                $"{nameof(CaesarServiceConfiguration)}.{nameof(CaesarServiceConfiguration.NotificationPublisherType)} must be a concrete "
+                + $"class that implements {typeof(INotificationPublisher).FullName}, but {publisherProblem}.",
                 nameof(configuration));
         }
 
@@ -71,4 +82,19 @@ public static class CaesarServiceCollectionExtensions
 
         return services;
     }
+
+    /// <summary>
+    /// Says why the container could not construct <paramref name="implementationType"/> as <paramref name="serviceType"/>,
+    /// or returns <see langword="null"/> when it can.
+    /// </summary>
+    private static string? FindImplementationTypeProblem(Type? implementationType, Type serviceType) => implementationType switch
+    {
+        null => "it is null",
+        { IsInterface: true } => $"{implementationType.DisplayName()} is an interface",
+        { IsAbstract: true } => $"{implementationType.DisplayName()} is abstract",
+        { ContainsGenericParameters: true } => $"{implementationType.DisplayName()} is an open generic type",
+        { IsClass: false } => $"{implementationType.DisplayName()} is not a class",
+        _ when !serviceType.IsAssignableFrom(implementationType) => $"{implementationType.DisplayName()} does not implement it",
+        _ => null,
+    };
 }

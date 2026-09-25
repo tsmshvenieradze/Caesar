@@ -12,31 +12,92 @@ public sealed class CaesarServiceConfiguration
 {
     private readonly List<Assembly> _assemblies = [];
 
+    // Global options apply to the whole container, not to one AddCaesar call. Their setters record that they were
+    // set, so that a later AddCaesar call can tell a deliberate, conflicting value from one merely left at its default.
+    private Type _mediatorImplementationType = typeof(Mediator);
+    private INotificationPublisher? _notificationPublisher;
+    private Type _notificationPublisherType = typeof(ForeachAwaitPublisher);
+    private ServiceLifetime _mediatorLifetime = ServiceLifetime.Scoped;
+    private RequestExceptionActionProcessorStrategy _requestExceptionActionProcessorStrategy = RequestExceptionActionProcessorStrategy.ApplyForUnhandledExceptions;
+    private bool _bypassExceptionHandlingOnCallerCancellation;
+
     /// <summary>Filters the types found while scanning. Return <see langword="false"/> to skip a type. Default: accept everything.</summary>
     public Func<Type, bool> TypeEvaluator { get; set; } = static _ => true;
 
-    /// <summary>The <see cref="IMediator"/> implementation to register. Default: <see cref="Mediator"/>.</summary>
-    public Type MediatorImplementationType { get; set; } = typeof(Mediator);
+    /// <summary>
+    /// The <see cref="IMediator"/> implementation to register. Default: <see cref="Mediator"/>.
+    /// A global option: when <c>AddCaesar</c> is called more than once, a later call may not set a different value.
+    /// </summary>
+    public Type MediatorImplementationType
+    {
+        get => _mediatorImplementationType;
+        set
+        {
+            _mediatorImplementationType = value;
+            ExplicitGlobalOptions |= GlobalOptions.MediatorImplementationType;
+        }
+    }
 
     /// <summary>
     /// A ready-made publisher instance. Takes precedence over <see cref="NotificationPublisherType"/> when set.
+    /// A global option: when <c>AddCaesar</c> is called more than once, a later call may not set a different value.
     /// </summary>
-    public INotificationPublisher? NotificationPublisher { get; set; }
+    public INotificationPublisher? NotificationPublisher
+    {
+        get => _notificationPublisher;
+        set
+        {
+            _notificationPublisher = value;
+            ExplicitGlobalOptions |= GlobalOptions.NotificationPublisher;
+        }
+    }
 
-    /// <summary>The publisher type to register. Default: <see cref="ForeachAwaitPublisher"/>.</summary>
-    public Type NotificationPublisherType { get; set; } = typeof(ForeachAwaitPublisher);
+    /// <summary>
+    /// The publisher type to register. Default: <see cref="ForeachAwaitPublisher"/>.
+    /// A global option: when <c>AddCaesar</c> is called more than once, a later call may not set a different value.
+    /// </summary>
+    public Type NotificationPublisherType
+    {
+        get => _notificationPublisherType;
+        set
+        {
+            _notificationPublisherType = value;
+            ExplicitGlobalOptions |= GlobalOptions.NotificationPublisherType;
+        }
+    }
 
-    /// <summary>Lifetime for every scanned handler, processor and exception handler. Default: <see cref="ServiceLifetime.Transient"/>.</summary>
+    /// <summary>
+    /// Lifetime for every scanned handler, processor, exception handler and exception action. Default:
+    /// <see cref="ServiceLifetime.Transient"/>. A processor also added with <c>AddRequestPreProcessor</c> or
+    /// <c>AddRequestPostProcessor</c> keeps the lifetime given there.
+    /// </summary>
     public ServiceLifetime Lifetime { get; set; } = ServiceLifetime.Transient;
 
     /// <summary>
     /// Lifetime for <see cref="IMediator"/>, <see cref="ISender"/>, <see cref="IPublisher"/> and
     /// <see cref="INotificationPublisher"/>. Default: <see cref="ServiceLifetime.Scoped"/>, so that a singleton
     /// capturing the mediator is reported by container validation at startup instead of failing on the first request.
-    /// Set to <see cref="ServiceLifetime.Transient"/> or <see cref="ServiceLifetime.Singleton"/> when the mediator
-    /// must be resolvable straight from the root provider, for example in a console application.
+    /// Set to <see cref="ServiceLifetime.Transient"/> when the mediator must be resolvable straight from the root
+    /// provider, for example in a short console application with no scoped dependencies.
+    /// A global option: when <c>AddCaesar</c> is called more than once, a later call may not set a different value.
     /// </summary>
-    public ServiceLifetime MediatorLifetime { get; set; } = ServiceLifetime.Scoped;
+    /// <remarks>
+    /// Avoid <see cref="ServiceLifetime.Singleton"/> in an application that uses scopes, such as a web application. A
+    /// singleton mediator resolves every handler and its dependencies from the root provider, even when
+    /// <see cref="ISender"/> is injected inside a scope: scoped services such as a <c>DbContext</c> or the current user
+    /// are then shared by every request and every user, and disposable transient handlers are kept by the root provider
+    /// until the application shuts down. A singleton that needs to send requests should inject
+    /// <see cref="IServiceScopeFactory"/> and resolve <see cref="ISender"/> from a scope it creates.
+    /// </remarks>
+    public ServiceLifetime MediatorLifetime
+    {
+        get => _mediatorLifetime;
+        set
+        {
+            _mediatorLifetime = value;
+            ExplicitGlobalOptions |= GlobalOptions.MediatorLifetime;
+        }
+    }
 
     /// <summary>
     /// When <see langword="true"/> (default) scanned <see cref="IRequestPreProcessor{TRequest}"/> and
@@ -45,12 +106,43 @@ public sealed class CaesarServiceConfiguration
     /// </summary>
     public bool AutoRegisterRequestProcessors { get; set; } = true;
 
-    /// <summary>Where exception actions sit in the pipeline. Default: <see cref="RequestExceptionActionProcessorStrategy.ApplyForUnhandledExceptions"/>.</summary>
-    public RequestExceptionActionProcessorStrategy RequestExceptionActionProcessorStrategy { get; set; }
-        = RequestExceptionActionProcessorStrategy.ApplyForUnhandledExceptions;
+    /// <summary>
+    /// Where exception actions sit in the pipeline. Default: <see cref="RequestExceptionActionProcessorStrategy.ApplyForUnhandledExceptions"/>.
+    /// A global option: when <c>AddCaesar</c> is called more than once, a later call may not set a different value.
+    /// </summary>
+    public RequestExceptionActionProcessorStrategy RequestExceptionActionProcessorStrategy
+    {
+        get => _requestExceptionActionProcessorStrategy;
+        set
+        {
+            _requestExceptionActionProcessorStrategy = value;
+            ExplicitGlobalOptions |= GlobalOptions.RequestExceptionActionProcessorStrategy;
+        }
+    }
+
+    /// <summary>
+    /// When <see langword="true"/>, an <see cref="OperationCanceledException"/> thrown while the caller's cancellation token
+    /// is cancelled propagates without reaching exception handlers or exception actions, so a catch-all handler cannot
+    /// turn an aborted request into a fallback response. Cancellation from any other token, such as a timeout a behavior
+    /// adds, is still routed. Default: <see langword="false"/>: cancellations reach handlers and actions like any other
+    /// exception, as in MediatR, and each handler receives the token to tell them apart itself.
+    /// A global option: when <c>AddCaesar</c> is called more than once, a later call may not set a different value.
+    /// </summary>
+    public bool BypassExceptionHandlingOnCallerCancellation
+    {
+        get => _bypassExceptionHandlingOnCallerCancellation;
+        set
+        {
+            _bypassExceptionHandlingOnCallerCancellation = value;
+            ExplicitGlobalOptions |= GlobalOptions.BypassExceptionHandlingOnCallerCancellation;
+        }
+    }
 
     /// <summary>Assemblies that will be scanned for handlers.</summary>
     public IReadOnlyList<Assembly> AssembliesToRegister => _assemblies;
+
+    /// <summary>The global options this configuration set explicitly, whatever the value.</summary>
+    internal GlobalOptions ExplicitGlobalOptions { get; private set; }
 
     /// <summary>Behaviors added explicitly, in the order they will run (first is outermost).</summary>
     internal List<ServiceDescriptor> BehaviorsToRegister { get; } = [];
