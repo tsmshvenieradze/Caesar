@@ -55,7 +55,16 @@ class PublishTests(unittest.TestCase):
         self.assertEqual(versions(self.pages), [{"version": "10.1", "latest": True}])
         self.assertEqual((self.pages / "CNAME").read_text(encoding="utf-8"), "caesar.tsezar.io\n")
         self.assertTrue((self.pages / ".nojekyll").exists())
-        self.assertIn('url=latest/', (self.pages / "index.html").read_text(encoding="utf-8"))
+        self.assertIn('href="latest/"', (self.pages / "index.html").read_text(encoding="utf-8"))
+
+    def test_root_page_does_not_redirect_automatically(self):
+        # An instant redirect on a new host is a phishing-kit pattern that Safe Browsing flags as deceptive.
+        publish(make_site(self.root, "a"), self.pages, "10.1")
+
+        root = (self.pages / "index.html").read_text(encoding="utf-8").lower()
+        self.assertNotIn("http-equiv", root)
+        self.assertNotIn("<script", root)
+        self.assertIn('href="latest/"', root)
 
     def test_newer_minor_replaces_latest_and_keeps_older_folder(self):
         publish(make_site(self.root, "a"), self.pages, "10.1")
