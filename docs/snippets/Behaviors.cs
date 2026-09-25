@@ -31,20 +31,47 @@ public sealed class ValidationBehavior<TRequest, TResponse>(IEnumerable<IValidat
     : IPipelineBehavior<TRequest, TResponse>
     where TRequest : notnull
 {
-    public Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
         var errors = validators.SelectMany(v => v.Validate(request)).ToList();
-        return errors.Count == 0 ? next(cancellationToken) : throw new ValidationException(errors);
+        if (errors.Count > 0)
+        {
+            throw new ValidationException(errors);   // an async method reports it through the returned task
+        }
+
+        return await next(cancellationToken);
     }
 }
 #endregion
 
 #region closed-behavior
 // Applies only to CreateCustomer. Register with cfg.AddBehavior<NormalizeEmail>().
+// Not async, so the failure is returned as a faulted task rather than thrown.
 public sealed class NormalizeEmail : IPipelineBehavior<CreateCustomer, Guid>
 {
     public Task<Guid> Handle(CreateCustomer request, RequestHandlerDelegate<Guid> next, CancellationToken cancellationToken)
-        => request.Email == request.Email.Trim() ? next(cancellationToken) : throw new ValidationException(["Email has surrounding whitespace."]);
+        => request.Email == request.Email.Trim()
+            ? next(cancellationToken)
+            : Task.FromException<Guid>(new ValidationException(["Email has surrounding whitespace."]));
+}
+#endregion
+
+#region detach-token
+// Lets a commit that has started finish even when the caller gives up. next(CancellationToken.None) would not:
+// None is the same value as default, so it keeps the caller's token.
+public sealed class CommitEvenIfCancelled<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    where TRequest : notnull
+{
+    public Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+        => next(Detached.Token);
+}
+
+// A token that is never cancelled but is not CancellationToken.None: its source is never cancelled or disposed.
+public static class Detached
+{
+    private static readonly CancellationTokenSource Source = new();
+
+    public static CancellationToken Token => Source.Token;
 }
 #endregion
 

@@ -1,5 +1,4 @@
 using Caesar;
-using Caesar.NotificationPublishers;
 using Caesar.Sample.Application.Behaviors;
 using Caesar.Sample.Application.Customers;
 using Caesar.Sample.Infrastructure;
@@ -18,7 +17,6 @@ builder.Services.AddCaesar(cfg =>
 {
     cfg.RegisterServicesFromAssemblyContaining<CreateCustomer>();
     cfg.Lifetime = ServiceLifetime.Scoped;
-    cfg.NotificationPublisherType = typeof(TaskWhenAllPublisher);
 
     // Outermost first. Pre/post processors and exception handlers found by scanning are wired automatically.
     cfg.AddOpenBehavior(typeof(LoggingBehavior<,>));

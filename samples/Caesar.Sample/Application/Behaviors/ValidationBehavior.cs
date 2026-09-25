@@ -16,9 +16,14 @@ public sealed class ValidationBehavior<TRequest, TResponse>(IEnumerable<IValidat
     : IPipelineBehavior<TRequest, TResponse>
     where TRequest : notnull
 {
-    public Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
         var errors = validators.SelectMany(v => v.Validate(request)).ToList();
-        return errors.Count > 0 ? throw new ValidationException(errors) : next(cancellationToken);
+        if (errors.Count > 0)
+        {
+            throw new ValidationException(errors);
+        }
+
+        return await next(cancellationToken);
     }
 }

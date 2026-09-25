@@ -1,4 +1,3 @@
-using Caesar.NotificationPublishers;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Caesar.Docs.Snippets;
@@ -35,7 +34,6 @@ public static class GettingStartedRegistration
         services.AddCaesar(cfg =>
         {
             cfg.RegisterServicesFromAssemblyContaining<CreateCustomer>();
-            cfg.NotificationPublisherType = typeof(TaskWhenAllPublisher);
 
             cfg.AddOpenBehavior(typeof(LoggingBehavior<,>));    // outermost
             cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
