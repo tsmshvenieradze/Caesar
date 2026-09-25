@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class NotificationHandlerExecutor | Caesar </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class NotificationHandlerExecutor | Caesar ">
+      
+      <meta name="description" content="A resolved notification handler together with a callback that invokes it.">
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="Caesar">
+            Caesar
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Caesar.NotificationHandlerExecutor">
+
+
+
+  <h1 id="Caesar_NotificationHandlerExecutor" data-uid="Caesar.NotificationHandlerExecutor" class="text-break">
+Class NotificationHandlerExecutor  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar.Abstractions/INotificationPublisher.cs"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Caesar.html">Caesar</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Caesar.Abstractions.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A resolved notification handler together with a callback that invokes it.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed record NotificationHandlerExecutor : IEquatable&lt;NotificationHandlerExecutor&gt;</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">NotificationHandlerExecutor</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="Caesar.NotificationHandlerExecutor.html">NotificationHandlerExecutor</a>&gt;</div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="Caesar_NotificationHandlerExecutor__ctor_" data-uid="Caesar.NotificationHandlerExecutor.#ctor*"></a>
+
+  <h3 id="Caesar_NotificationHandlerExecutor__ctor_System_Object_System_Func_Caesar_INotification_System_Threading_CancellationToken_System_Threading_Tasks_Task__" data-uid="Caesar.NotificationHandlerExecutor.#ctor(System.Object,System.Func{Caesar.INotification,System.Threading.CancellationToken,System.Threading.Tasks.Task})">
+  NotificationHandlerExecutor(object, Func&lt;INotification, CancellationToken, Task&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar.Abstractions/INotificationPublisher.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>A resolved notification handler together with a callback that invokes it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NotificationHandlerExecutor(object HandlerInstance, Func&lt;INotification, CancellationToken, Task&gt; HandlerCallback)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>HandlerInstance</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd><p>The handler instance (useful for logging or filtering).</p>
+</dd>
+    <dt><code>HandlerCallback</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;<a class="xref" href="Caesar.INotification.html">INotification</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
+    <dd><p>Invokes the handler for a notification.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="Caesar_NotificationHandlerExecutor_HandlerCallback_" data-uid="Caesar.NotificationHandlerExecutor.HandlerCallback*"></a>
+
+  <h3 id="Caesar_NotificationHandlerExecutor_HandlerCallback" data-uid="Caesar.NotificationHandlerExecutor.HandlerCallback">
+  HandlerCallback
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar.Abstractions/INotificationPublisher.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Invokes the handler for a notification.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Func&lt;INotification, CancellationToken, Task&gt; HandlerCallback { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;<a class="xref" href="Caesar.INotification.html">INotification</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="Caesar_NotificationHandlerExecutor_HandlerInstance_" data-uid="Caesar.NotificationHandlerExecutor.HandlerInstance*"></a>
+
+  <h3 id="Caesar_NotificationHandlerExecutor_HandlerInstance" data-uid="Caesar.NotificationHandlerExecutor.HandlerInstance">
+  HandlerInstance
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar.Abstractions/INotificationPublisher.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The handler instance (useful for logging or filtering).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object HandlerInstance { get; init; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="Caesar_NotificationHandlerExecutor_Deconstruct_" data-uid="Caesar.NotificationHandlerExecutor.Deconstruct*"></a>
+
+  <h3 id="Caesar_NotificationHandlerExecutor_Deconstruct_System_Object__System_Func_Caesar_INotification_System_Threading_CancellationToken_System_Threading_Tasks_Task___" data-uid="Caesar.NotificationHandlerExecutor.Deconstruct(System.Object@,System.Func{Caesar.INotification,System.Threading.CancellationToken,System.Threading.Tasks.Task}@)">
+  Deconstruct(out object, out Func&lt;INotification, CancellationToken, Task&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar.Abstractions/INotificationPublisher.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Deconstruct(out object HandlerInstance, out Func&lt;INotification, CancellationToken, Task&gt; HandlerCallback)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>HandlerInstance</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+    <dt><code>HandlerCallback</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-3">Func</a>&lt;<a class="xref" href="Caesar.INotification.html">INotification</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Caesar_NotificationHandlerExecutor_Equals_" data-uid="Caesar.NotificationHandlerExecutor.Equals*"></a>
+
+  <h3 id="Caesar_NotificationHandlerExecutor_Equals_Caesar_NotificationHandlerExecutor_" data-uid="Caesar.NotificationHandlerExecutor.Equals(Caesar.NotificationHandlerExecutor)">
+  Equals(NotificationHandlerExecutor?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar.Abstractions/INotificationPublisher.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(NotificationHandlerExecutor? other)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>other</code> <a class="xref" href="Caesar.NotificationHandlerExecutor.html">NotificationHandlerExecutor</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Caesar_NotificationHandlerExecutor_Equals_" data-uid="Caesar.NotificationHandlerExecutor.Equals*"></a>
+
+  <h3 id="Caesar_NotificationHandlerExecutor_Equals_System_Object_" data-uid="Caesar.NotificationHandlerExecutor.Equals(System.Object)">
+  Equals(object?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar.Abstractions/INotificationPublisher.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object? obj)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>obj</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Caesar_NotificationHandlerExecutor_GetHashCode_" data-uid="Caesar.NotificationHandlerExecutor.GetHashCode*"></a>
+
+  <h3 id="Caesar_NotificationHandlerExecutor_GetHashCode" data-uid="Caesar.NotificationHandlerExecutor.GetHashCode">
+  GetHashCode()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar.Abstractions/INotificationPublisher.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Caesar_NotificationHandlerExecutor_ToString_" data-uid="Caesar.NotificationHandlerExecutor.ToString*"></a>
+
+  <h3 id="Caesar_NotificationHandlerExecutor_ToString" data-uid="Caesar.NotificationHandlerExecutor.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar.Abstractions/INotificationPublisher.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="operators">Operators
+</h2>
+
+
+  <a id="Caesar_NotificationHandlerExecutor_op_Equality_" data-uid="Caesar.NotificationHandlerExecutor.op_Equality*"></a>
+
+  <h3 id="Caesar_NotificationHandlerExecutor_op_Equality_Caesar_NotificationHandlerExecutor_Caesar_NotificationHandlerExecutor_" data-uid="Caesar.NotificationHandlerExecutor.op_Equality(Caesar.NotificationHandlerExecutor,Caesar.NotificationHandlerExecutor)">
+  operator ==(NotificationHandlerExecutor?, NotificationHandlerExecutor?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar.Abstractions/INotificationPublisher.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(NotificationHandlerExecutor? left, NotificationHandlerExecutor? right)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>left</code> <a class="xref" href="Caesar.NotificationHandlerExecutor.html">NotificationHandlerExecutor</a></dt>
+    <dd></dd>
+    <dt><code>right</code> <a class="xref" href="Caesar.NotificationHandlerExecutor.html">NotificationHandlerExecutor</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="Caesar_NotificationHandlerExecutor_op_Inequality_" data-uid="Caesar.NotificationHandlerExecutor.op_Inequality*"></a>
+
+  <h3 id="Caesar_NotificationHandlerExecutor_op_Inequality_Caesar_NotificationHandlerExecutor_Caesar_NotificationHandlerExecutor_" data-uid="Caesar.NotificationHandlerExecutor.op_Inequality(Caesar.NotificationHandlerExecutor,Caesar.NotificationHandlerExecutor)">
+  operator !=(NotificationHandlerExecutor?, NotificationHandlerExecutor?)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar.Abstractions/INotificationPublisher.cs"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(NotificationHandlerExecutor? left, NotificationHandlerExecutor? right)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>left</code> <a class="xref" href="Caesar.NotificationHandlerExecutor.html">NotificationHandlerExecutor</a></dt>
+    <dd></dd>
+    <dt><code>right</code> <a class="xref" href="Caesar.NotificationHandlerExecutor.html">NotificationHandlerExecutor</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/tsmshvenieradze/Caesar/blob/main/src/Caesar.Abstractions/INotificationPublisher.cs" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © Tsezari Mshvenieradze · <a href="https://tsezar.io">tsezar.io</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

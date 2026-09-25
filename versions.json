@@ -1,6 +1,10 @@
 [
   {
-    "version": "10.1",
+    "version": "10.2",
     "latest": true
+  },
+  {
+    "version": "10.1",
+    "latest": false
   }
 ]
