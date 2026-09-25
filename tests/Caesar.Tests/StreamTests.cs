@@ -110,7 +110,10 @@ public class StreamTests
     {
         await using var provider = TestHost.Build<StreamTests>();
 
-        await Assert.ThrowsAsync<InvalidOperationException>(() => provider.GetRequiredService<ISender>().CreateStream(new Orphan()).ToListAsync().AsTask());
+        // Created outside the assertion, so a failure at the CreateStream call itself is not mistaken for one on enumeration.
+        var stream = provider.GetRequiredService<ISender>().CreateStream(new Orphan());
+
+        await Assert.ThrowsAsync<InvalidOperationException>(() => stream.ToListAsync().AsTask());
     }
 
     [Fact]

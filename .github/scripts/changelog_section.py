@@ -7,21 +7,52 @@ import sys
 from pathlib import Path
 
 _ANY_SECTION = re.compile(r"^## \[")
-_LINK_REFERENCE = re.compile(r"^\[[^\]]+\]:\s")
+_LINK_REFERENCE = re.compile(r"^\[[^\]]+\]:")
+_FENCE = re.compile(r"^ {0,3}(`{3,}|~{3,})")
+
+
+def _outside_fences(lines: list[str]) -> list[bool]:
+    """For each line, whether it is outside a fenced code block (fence lines themselves count as inside)."""
+    result: list[bool] = []
+    fence: str | None = None
+    for line in lines:
+        match = _FENCE.match(line)
+        if fence is None:
+            if match:
+                fence = match.group(1)
+                result.append(False)
+            else:
+                result.append(True)
+        else:
+            result.append(False)
+            closing = re.match(rf"^ {{0,3}}{re.escape(fence[0])}{{{len(fence)},}}\s*$", line)
+            if closing:
+                fence = None
+    return result
 
 
 def extract(text: str, version: str) -> str | None:
-    heading = re.compile(rf"^## \[{re.escape(version)}\](\s|$)")
+    # "## [X.Y.Z]", optionally linked "## [X.Y.Z](url)", then a space (e.g. " - date") or the end of the line.
+    heading = re.compile(rf"^## \[{re.escape(version)}\](\([^)]*\))?(\s|$)")
     lines = text.splitlines()
-    start = next((i for i, line in enumerate(lines) if heading.match(line)), None)
+    outside = _outside_fences(lines)
+    start = next((i for i, line in enumerate(lines) if outside[i] and heading.match(line)), None)
     if start is None:
         return None
 
     body: list[str] = []
-    for line in lines[start + 1:]:
-        if _ANY_SECTION.match(line) or _LINK_REFERENCE.match(line):
+    reached_end_of_file = True
+    for i in range(start + 1, len(lines)):
+        if outside[i] and _ANY_SECTION.match(lines[i]):
+            reached_end_of_file = False
             break
-        body.append(line)
+        body.append(lines[i])
+
+    if reached_end_of_file:
+        # The last section is followed by the file's link reference definitions ([X.Y.Z]: url), which are not
+        # part of it. References inside a section, or before the next heading, are kept so its links still resolve.
+        while body and (not body[-1].strip() or _LINK_REFERENCE.match(body[-1])):
+            body.pop()
 
     section = "\n".join(body).strip()
     return section or None

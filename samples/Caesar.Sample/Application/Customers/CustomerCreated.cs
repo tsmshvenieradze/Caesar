@@ -21,3 +21,16 @@ public sealed class UpdateCrm(ILogger<UpdateCrm> logger) : INotificationHandler<
         return Task.CompletedTask;
     }
 }
+
+/// <summary>
+/// Handles every notification: <see cref="INotificationHandler{TNotification}"/> is contravariant, so Caesar also runs
+/// the handlers registered for a notification's base classes and interfaces, after those for its own type.
+/// </summary>
+public sealed class AuditNotifications(ILogger<AuditNotifications> logger) : INotificationHandler<INotification>
+{
+    public Task Handle(INotification notification, CancellationToken cancellationToken)
+    {
+        logger.LogInformation("Audit: {Notification} published", notification.GetType().Name);
+        return Task.CompletedTask;
+    }
+}

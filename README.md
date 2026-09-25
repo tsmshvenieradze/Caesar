@@ -16,13 +16,18 @@ solutions where the Application layer must stay free of infrastructure concerns.
 
 - Request / response (`IRequest<TResponse>`) and commands without a response (`IRequest`).
 - Notifications with pluggable publish strategies: sequential, parallel (`Task.WhenAll`), or sequential continue-on-failure.
+  Handlers registered for a notification's base classes and interfaces run too.
 - Streaming requests (`IStreamRequest<T>`) returning `IAsyncEnumerable<T>` with their own behavior pipeline.
-- Pipeline behaviors (open generic or per request), pre-processors, post-processors.
+- Pipeline behaviors (open generic or per request), pre-processors, post-processors. The built-in stages are added
+  per request type, only where something is registered for them, always in the same order.
 - Exception handlers that can recover with a fallback response, and exception actions for side effects, resolved by exception type hierarchy.
 - Runtime-typed dispatch: `Send(object)`, `Publish(object)`, `CreateStream(object)`.
 - Assembly scanning with lifetime control, type filtering, open-generic handler support and idempotent registration;
-  an open-generic handler the container could never close is reported at `AddCaesar`, not on the first request.
-- Cached handler wrappers; no reflection on the hot path after the first call for a request type.
+  an open-generic handler the container could never close, or a second open-generic handler for the same request
+  interface, is reported at `AddCaesar`, not on the first request.
+- Apart from argument checks, failures from `Send` and `Publish` always come back through the returned task.
+- Cached handler wrappers: after the first call for a message type, dispatch does no reflection, except that exception
+  handling reflects once for each request and exception type it meets.
 
 ## Installation
 
@@ -101,10 +106,14 @@ packages attached. There are two ways to trigger it:
 - **Manual (recommended).** Actions, Release, *Run workflow*, type the version (for example `10.0.1` or
   `10.1.0-preview.1`) and run it on `main`. The version number does not need to be committed, but a stable version
   needs its `CHANGELOG.md` section on `main` first (see below). The run fails early if that version already exists on
-  nuget.org.
+  nuget.org or tag `vX.Y.Z` already exists. A prerelease version is published as a GitHub prerelease and never marked
+  Latest.
 - **On merge.** Every merge to `main` also runs the workflow with `<VersionPrefix>` from `Directory.Build.props`.
-  If that version is already published the push is skipped, so ordinary merges are a safe no-op. Bump the value in
-  your pull request when you want the merge itself to ship.
+  If tag `v<VersionPrefix>` already exists, nothing is published, so ordinary merges are a safe no-op. Bump the value
+  in your pull request when you want the merge itself to ship. If that version is on nuget.org but the tag is missing,
+  the run fails until the version is bumped, or until the Release run of the commit it was built from is re-run
+  (*Re-run all jobs*), which finishes that release: tag, GitHub Release and docs. Re-running a run that stopped after
+  pushing is always safe.
 
 Before releasing a stable version, add a `## [X.Y.Z] - YYYY-MM-DD` section to [CHANGELOG.md](CHANGELOG.md). The
 Release workflow refuses a stable version without one, uses it as the GitHub Release notes, and publishes that
@@ -120,9 +129,21 @@ Publishing authenticates with nuget.org **Trusted Publishing** (GitHub OIDC), so
    (`tsmshvenieradze`); a policy owned by another account gets a key that is refused with 403. Repository owner
    `tsmshvenieradze`, repository `Caesar`, workflow file `release.yml`, environment `nuget.org`. The policy is bound to
    the repository's ID, so a deleted and recreated repository needs a new policy.
-2. On GitHub: Settings, Environments, create `nuget.org` and add `NUGET_USER` (variable or secret) set to your nuget.org username.
+2. On GitHub: Settings, Environments, create `nuget.org` and configure it:
+   - Add `NUGET_USER` (variable or secret) set to your nuget.org username.
+   - **Deployment branches and tags:** *Selected branches and tags*, with the single branch rule `main`. The workflow
+     never runs on tags, so no tag rule is needed. The Trusted Publishing policy does not check the branch, so this
+     rule is what stops a workflow on any other branch from getting a nuget.org key.
+   - **Required reviewers (recommended):** add yourself. Every release, including one triggered by a merge, then
+     waits for your approval before anything is pushed; merges with nothing new to release do not ask.
+   - Clear *Allow administrators to bypass configured protection rules* if the rules should apply to you as well.
+3. Protect `main` (a branch ruleset that requires a pull request and the **Build & Test** and **Docs** checks, and blocks
+   force pushes and deletion). Without it, anyone who can push can still publish through `main` itself. Requiring an
+   approving review, Code Owners included, needs a second maintainer: GitHub does not let authors approve their own
+   pull requests.
 
-The workflow requests a short-lived key at run time via `NuGet/login`; nothing expires and nothing needs rotating.
+The workflow requests a short-lived key at run time via `NuGet/login`, in a publish job that only receives the packages
+from the build job and runs none of the build or test code; nothing expires and nothing needs rotating.
 
 ## License
 

@@ -69,7 +69,9 @@ public class OpenGenericValidationTests
             cfg.RegisterServicesFromAssembly(Fixtures);
             cfg.TypeEvaluator = t => t != typeof(ArityMismatchHandler<>)
                 && t != typeof(ReversedParametersHandler<,>)
-                && t != typeof(EnvelopeHandler<>);
+                && t != typeof(EnvelopeHandler<>)
+                // Registration fixtures (RegistrationFixtures.cs) throw by design as well; the regression tests scan them one scenario at a time.
+                && t.Namespace?.StartsWith("Caesar.Tests.Fixtures.Registration", StringComparison.Ordinal) != true;
         });
 
         Assert.Contains(services, d => d.ServiceType == typeof(IMediator));

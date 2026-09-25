@@ -26,6 +26,29 @@ public static class PublishExample
     }
 }
 
+#region base-type-handler
+// A base class shared by several notifications.
+public abstract record CustomerEvent(Guid CustomerId) : INotification;
+
+public sealed record CustomerDeactivated(Guid CustomerId) : CustomerEvent(CustomerId);
+
+// Runs for CustomerDeactivated and for every other notification derived from CustomerEvent.
+public sealed class ProjectCustomerEvents : INotificationHandler<CustomerEvent>
+{
+    public Task Handle(CustomerEvent notification, CancellationToken cancellationToken) => Task.CompletedTask;
+}
+
+// Runs for every notification, after the handlers for its own type and its base classes.
+public sealed class AuditAllNotifications : INotificationHandler<INotification>
+{
+    public Task Handle(INotification notification, CancellationToken cancellationToken)
+    {
+        Console.WriteLine($"Published {notification.GetType().Name}");
+        return Task.CompletedTask;
+    }
+}
+#endregion
+
 #region sync-handler
 public sealed class CountCustomers : NotificationHandler<CustomerCreated>
 {

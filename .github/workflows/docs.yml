@@ -2,8 +2,10 @@ name: Docs
 
 # Publishes one minor version of the documentation to the gh-pages branch (served at caesar.tsezar.io).
 #   - Called by release.yml after a stable release, with ref vX.Y.Z.
-#   - Run by hand (Actions > Docs > Run workflow) to republish a version from any ref, e.g. main -> 10.1,
+#   - Run by hand (Actions > Docs > Run workflow) to republish a version from any branch or tag, e.g. main -> 10.1,
 #     for documentation-only fixes. Other versions on the site are never touched.
+# The site is built from the requested ref with a read-only token; only the publish job, which runs nothing but the
+# workflow's own publishing script, can push to gh-pages.
 
 on:
   workflow_call:
@@ -31,33 +33,66 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  publish:
+  build:
+    name: Build site
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
-      # Scripts come from the workflow's own commit; the site is built from the requested ref.
-      - uses: actions/checkout@v4
+      - name: Check the ref
+        env:
+          REF: ${{ inputs.ref }}
+        run: |
+          case "$REF" in
+            refs/pull/*|pull/*)
+              printf 'Refusing to publish docs from pull request ref %q; merge it first.\n' "$REF" >&2
+              exit 1
+              ;;
+          esac
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           ref: ${{ inputs.ref }}
-          path: site-src
+          persist-credentials: false
 
-      - uses: actions/setup-dotnet@v4
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
         with:
-          global-json-file: site-src/global.json
+          global-json-file: global.json
 
       - name: Build
-        working-directory: site-src
         run: dotnet build Caesar.slnx --configuration Release
 
       - name: Build docs
-        working-directory: site-src
         run: |
           dotnet tool restore
           dotnet docfx docs/docfx.json --warningsAsErrors
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: docs-site
+          path: docs/_site
+          if-no-files-found: error
+          include-hidden-files: true
+          overwrite: true
+
+  publish:
+    name: Publish to gh-pages
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # push to gh-pages
+    steps:
+      # The publishing script comes from the workflow's own commit. This checkout keeps its credentials because the
+      # gh-pages push below uses them; nothing from the requested ref runs in this job.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: docs-site
+          path: ${{ runner.temp }}/site
 
       - name: Check out gh-pages
         run: |
@@ -72,7 +107,7 @@ jobs:
         env:
           VERSION: ${{ inputs.version }}
         run: |
-          MINOR=$(python3 .github/scripts/publish_version.py --site site-src/docs/_site --pages "$RUNNER_TEMP/pages" --version "$VERSION")
+          MINOR=$(python3 .github/scripts/publish_version.py --site "$RUNNER_TEMP/site" --pages "$RUNNER_TEMP/pages" --version "$VERSION")
           echo "MINOR=$MINOR" >> "$GITHUB_ENV"
 
       - name: Commit and push

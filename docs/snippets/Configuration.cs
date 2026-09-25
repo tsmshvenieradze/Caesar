@@ -21,6 +21,7 @@ public static class ConfigurationExamples
             cfg.NotificationPublisherType = typeof(ForeachAwaitPublisher);
             cfg.AutoRegisterRequestProcessors = true;
             cfg.RequestExceptionActionProcessorStrategy = RequestExceptionActionProcessorStrategy.ApplyForUnhandledExceptions;
+            cfg.BypassExceptionHandlingOnCallerCancellation = false;
         });
         #endregion
     }

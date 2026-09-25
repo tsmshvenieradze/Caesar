@@ -3,17 +3,24 @@ name: Release
 # Two ways to publish:
 #   1. Actions > Release > "Run workflow": type the version (e.g. 10.0.1). VersionPrefix does not need to change;
 #      a stable version still needs its CHANGELOG.md section on main (see 3).
-#      Must be run on main; the run fails if that version is already on nuget.org.
-#   2. Merge to main: publishes <VersionPrefix> from Directory.Build.props. If that version already exists
-#      on nuget.org the push is skipped (`--skip-duplicate`), so ordinary merges are a safe no-op.
+#      Must be run on main; the run fails if that version is already on nuget.org or already tagged.
+#   2. Merge to main: publishes <VersionPrefix> from Directory.Build.props. If tag v<VersionPrefix> already exists
+#      on another commit, nothing is published, so ordinary merges are a safe no-op. If that version is on nuget.org
+#      but untagged (a release that stopped half way), the run fails instead of tagging a different commit.
 #   3. A stable release also publishes its docs (docs.yml) and takes its GitHub Release notes from CHANGELOG.md,
 #      which must have a `## [X.Y.Z]` section. Prerelease versions skip both.
+# Re-running a run that failed part way (after the push, or after the tag) finishes the release: packages already
+# pushed from the same commit are skipped, and a missing GitHub Release is created.
+#
+# The build job restores, builds, tests and packs with a read-only token. Only the publish job, which runs none of
+# that code, can request the nuget.org key or write tags and releases.
 #
 # Authentication uses nuget.org Trusted Publishing (GitHub OIDC), so no long-lived API key is stored.
 # On nuget.org: Account > Trusted Publishing > Add, with
 #   Repository owner: tsmshvenieradze   Repository: Caesar
 #   Workflow file:    release.yml       Environment: nuget.org
-# On GitHub: create the "nuget.org" environment and add NUGET_USER = your nuget.org username (a variable or a secret).
+# On GitHub: create the "nuget.org" environment, limit its deployment branches to main, and add
+# NUGET_USER = your nuget.org username (a variable or a secret). See README.md, "Contributing and releasing".
 
 on:
   push:
@@ -25,36 +32,42 @@ on:
         required: true
         type: string
 
+# A group holds one running and one pending run, and a new pending run cancels the older one. Separate groups per
+# event keep a merge from cancelling a manual release that is waiting for the group.
 concurrency:
-  group: release
+  group: release-${{ github.event_name }}
   cancel-in-progress: false
 
 permissions:
-  contents: write   # create the vX.Y.Z tag and GitHub release
-  id-token: write   # request the OIDC token that nuget.org exchanges for a short-lived API key
+  contents: read
+
+defaults:
+  run:
+    shell: bash
 
 jobs:
-  release:
+  build:
+    name: Build, test and pack
     runs-on: ubuntu-latest
-    environment: nuget.org
+    permissions:
+      contents: read
     outputs:
-      released: ${{ steps.tag.outputs.released }}
       version: ${{ steps.version.outputs.version }}
+      publish: ${{ steps.plan.outputs.publish }}
+      skip-duplicate: ${{ steps.plan.outputs.skip_duplicate }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
-          fetch-depth: 0
-
-      - uses: actions/setup-dotnet@v4
-        with:
-          global-json-file: global.json
+          fetch-depth: 0   # every tag, for the release check below
+          persist-credentials: false
 
       - name: Resolve package version
         id: version
         env:
           INPUT_VERSION: ${{ inputs.version }}
+          LC_ALL: C
         run: |
-          if [ -n "$INPUT_VERSION" ]; then
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
             if [ "$GITHUB_REF" != "refs/heads/main" ]; then
               echo "Manual releases must be run from main (got $GITHUB_REF)." >&2; exit 1
             fi
@@ -64,54 +77,143 @@ jobs:
             VERSION=$(sed -n 's:.*<VersionPrefix>\(.*\)</VersionPrefix>.*:\1:p' Directory.Build.props)
             SOURCE="Directory.Build.props"
           fi
-          if ! printf '%s' "$VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$'; then
-            echo "Invalid version '$VERSION'. Expected MAJOR.MINOR.PATCH with an optional -suffix, e.g. 10.0.1 or 10.1.0-preview.1." >&2; exit 1
+          # The whole value must be a normalized SemVer 2.0 version: no leading zeros, no build metadata. NuGet
+          # normalizes the version it packs, so anything else would be checked, tagged and pushed under different
+          # names. [[ =~ ]] matches the whole string, so a value containing a newline can never pass.
+          IDENT='(0|[1-9][0-9]*|[0-9]*[A-Za-z-][0-9A-Za-z-]*)'
+          SEMVER="^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-$IDENT(\.$IDENT)*)?\$"
+          if ! [[ "$VERSION" =~ $SEMVER ]]; then
+            printf 'Invalid version %q. Expected MAJOR.MINOR.PATCH with an optional -prerelease and no leading zeros, e.g. 10.0.1 or 10.1.0-preview.1.\n' "$VERSION" >&2
+            exit 1
           fi
-          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
-          echo "manual=$([ -n "$INPUT_VERSION" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
+          printf 'version=%s\n' "$VERSION" >> "$GITHUB_OUTPUT"
           echo "Package version: $VERSION (from $SOURCE)"
 
-      - name: Require a changelog entry for a new stable version
-        id: changelog
+      - name: Decide whether to publish
+        id: plan
         env:
           VERSION: ${{ steps.version.outputs.version }}
         run: |
-          if git ls-remote --exit-code --tags origin "v$VERSION" >/dev/null 2>&1; then
-            echo "Tag v$VERSION already exists; no new release, changelog not required."
+          TAG="v$VERSION"
+          MANUAL=false
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then MANUAL=true; fi
+
+          # Exact ref only: a tag such as nightly/v10.2.0 does not count. The checkout above fetched every tag.
+          TAG_COMMIT=$(git rev-parse -q --verify "refs/tags/$TAG^{commit}" || true)
+          if [ -n "$TAG_COMMIT" ] && [ "$TAG_COMMIT" != "$GITHUB_SHA" ]; then
+            if [ "$MANUAL" = true ]; then
+              echo "$TAG already exists on $TAG_COMMIT; pick a higher version." >&2; exit 1
+            fi
+            echo "$TAG already exists on $TAG_COMMIT; nothing to release."
+            echo "publish=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
+
+          # The tag is missing, or points at this commit because an earlier attempt of this release stopped after
+          # tagging. Packages already on nuget.org may be skipped only if they were built from this commit
+          # (SourceLink records it in the nuspec); a manual release must always publish something new.
+          SKIP_DUPLICATE=false
+          if [ "$TAG_COMMIT" = "$GITHUB_SHA" ]; then SKIP_DUPLICATE=true; fi
+          LOWER=$(printf '%s' "$VERSION" | tr '[:upper:]' '[:lower:]')
+          for ID in caesar caesar.abstractions; do
+            NUSPEC="$RUNNER_TEMP/$ID.nuspec"
+            STATUS=$(curl -sS --retry 3 --retry-connrefused -o "$NUSPEC" -w '%{http_code}' \
+              "https://api.nuget.org/v3-flatcontainer/$ID/$LOWER/$ID.nuspec")
+            case "$STATUS" in
+              404) ;;
+              200)
+                if [ "$MANUAL" = true ] && [ "$GITHUB_RUN_ATTEMPT" = "1" ]; then
+                  echo "$ID $VERSION is already published on nuget.org; pick a higher version." >&2; exit 1
+                fi
+                COMMIT=$(grep -o 'commit="[0-9a-f]*"' "$NUSPEC" | head -n 1 | cut -d '"' -f 2 || true)
+                if [ "$COMMIT" != "$GITHUB_SHA" ]; then
+                  echo "$ID $VERSION is already on nuget.org, built from ${COMMIT:-an unknown commit}, not from $GITHUB_SHA." >&2
+                  echo "Re-run the Release run of the commit it was built from ('Re-run all jobs') to finish that release, or bump the version." >&2
+                  exit 1
+                fi
+                echo "$ID $VERSION was already pushed from this commit; finishing the release."
+                SKIP_DUPLICATE=true
+                ;;
+              *) echo "Unexpected HTTP status $STATUS from nuget.org for $ID $VERSION." >&2; exit 1 ;;
+            esac
+          done
+          echo "publish=true" >> "$GITHUB_OUTPUT"
+          echo "skip_duplicate=$SKIP_DUPLICATE" >> "$GITHUB_OUTPUT"
+
+      - name: Require a changelog entry for a new stable version
+        if: steps.plan.outputs.publish == 'true'
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
           case "$VERSION" in
             *-*) echo "Prerelease $VERSION: changelog entry optional, notes are generated."; exit 0 ;;
           esac
-          if ! python3 .github/scripts/changelog_section.py CHANGELOG.md "$VERSION" > "$RUNNER_TEMP/release-notes.md"; then
+          mkdir -p artifacts
+          if ! python3 .github/scripts/changelog_section.py CHANGELOG.md "$VERSION" > artifacts/release-notes.md; then
             echo "CHANGELOG.md needs a '## [$VERSION]' section before $VERSION can be released." >&2
             exit 1
           fi
-          echo "notes=$RUNNER_TEMP/release-notes.md" >> "$GITHUB_OUTPUT"
 
-      - name: Fail if a manual version is already on nuget.org
-        if: steps.version.outputs.manual == 'true'
-        env:
-          VERSION: ${{ steps.version.outputs.version }}
-        run: |
-          for ID in caesar caesar.abstractions; do
-            STATUS=$(curl -s -o /dev/null -w '%{http_code}' "https://api.nuget.org/v3-flatcontainer/$ID/$VERSION/$ID.nuspec")
-            if [ "$STATUS" = "200" ]; then
-              echo "$ID $VERSION is already published on nuget.org; pick a higher version." >&2; exit 1
-            fi
-          done
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
+        with:
+          global-json-file: global.json
 
       - name: Restore
         run: dotnet restore Caesar.slnx
 
       - name: Build
-        run: dotnet build Caesar.slnx --configuration Release --no-restore -p:Version=${{ steps.version.outputs.version }}
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: dotnet build Caesar.slnx --configuration Release --no-restore -p:Version="$VERSION"
 
       - name: Test
         run: dotnet test Caesar.slnx --configuration Release --no-build
 
       - name: Pack
-        run: dotnet pack Caesar.slnx --configuration Release --no-build --output artifacts/packages -p:Version=${{ steps.version.outputs.version }}
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          dotnet pack Caesar.slnx --configuration Release --no-build --output artifacts/packages -p:Version="$VERSION"
+          # The tag and the GitHub Release use $VERSION, so the packages must carry exactly that version.
+          for FILE in "Caesar.$VERSION.nupkg" "Caesar.$VERSION.snupkg" \
+                      "Caesar.Abstractions.$VERSION.nupkg" "Caesar.Abstractions.$VERSION.snupkg"; do
+            if [ ! -f "artifacts/packages/$FILE" ]; then
+              echo "Pack did not produce $FILE:" >&2
+              ls artifacts/packages >&2
+              exit 1
+            fi
+          done
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: packages-${{ steps.version.outputs.version }}
+          path: artifacts   # packages/ and, for a stable release, release-notes.md
+          if-no-files-found: error
+          overwrite: true
+
+  publish:
+    name: Publish to nuget.org
+    needs: build
+    # The nuget.org environment's deployment-branch rule is what enforces "main only" on the server; this condition
+    # keeps other refs, and merges with nothing new to release, from requesting the environment at all.
+    if: needs.build.outputs.publish == 'true' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: nuget.org
+    permissions:
+      contents: write   # create the vX.Y.Z tag and GitHub release
+      id-token: write   # request the OIDC token that nuget.org exchanges for a short-lived API key
+    outputs:
+      released: ${{ steps.release.outputs.released }}
+    steps:
+      # No checkout, restore, build or test: this job only pushes the packages the build job produced.
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: packages-${{ needs.build.outputs.version }}
+          path: artifacts
+
+      - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4.3.1
+        with:
+          dotnet-version: '10.0.x'
 
       - name: Check NUGET_USER is configured
         env:
@@ -124,53 +226,86 @@ jobs:
 
       - name: Log in to nuget.org (Trusted Publishing)
         id: nuget-login
-        uses: NuGet/login@v1
+        uses: NuGet/login@8d196754b4036150537f80ac539e15c2f1028841 # v1.2.0
         with:
           user: ${{ vars.NUGET_USER || secrets.NUGET_USER }}
 
       - name: Push to nuget.org
         env:
           NUGET_API_KEY: ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
+          SKIP_DUPLICATE: ${{ needs.build.outputs.skip-duplicate }}
         run: |
+          # A duplicate is an error unless the build job found this commit's own packages already published, or this is
+          # a re-run: the build job has then checked that nuget.org holds nothing for this version from another commit,
+          # so a duplicate can only be this run's own earlier push, which nuget.org may not have indexed yet.
+          ARGS=()
+          if [ "$SKIP_DUPLICATE" = "true" ] || [ "$GITHUB_RUN_ATTEMPT" != "1" ]; then ARGS+=(--skip-duplicate); fi
           dotnet nuget push "artifacts/packages/*.nupkg" \
             --api-key "$NUGET_API_KEY" \
             --source https://api.nuget.org/v3/index.json \
-            --skip-duplicate
+            "${ARGS[@]}"
 
       - name: Tag and create GitHub release
-        id: tag
+        id: release
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VERSION: ${{ steps.version.outputs.version }}
-          NOTES: ${{ steps.changelog.outputs.notes }}
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          VERSION: ${{ needs.build.outputs.version }}
         run: |
           TAG="v$VERSION"
-          if git rev-parse -q --verify "refs/tags/$TAG" >/dev/null || git ls-remote --exit-code --tags origin "$TAG" >/dev/null 2>&1; then
-            echo "Tag $TAG already exists; skipping release creation."
-            exit 0
+
+          # The commit refs/tags/$TAG points at (exact ref, annotated tags peeled), or nothing if it does not exist.
+          tag_commit() {
+            local object
+            object=$(gh api "repos/$GH_REPO/git/ref/tags/$TAG" --jq '.object.type + " " + .object.sha' 2>/dev/null) || return 0
+            case "$object" in
+              "commit "*) echo "${object#commit }" ;;
+              "tag "*) gh api "repos/$GH_REPO/git/tags/${object#tag }" --jq '.object.sha' ;;
+            esac
+          }
+
+          EXISTING=$(tag_commit)
+          if [ -z "$EXISTING" ]; then
+            TAG_OBJECT=$(gh api "repos/$GH_REPO/git/tags" -f tag="$TAG" -f message="Caesar $VERSION" \
+              -f object="$GITHUB_SHA" -f type=commit --jq '.sha')
+            gh api "repos/$GH_REPO/git/refs" -f ref="refs/tags/$TAG" -f sha="$TAG_OBJECT" >/dev/null || true
+            EXISTING=$(tag_commit)
           fi
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git tag -a "$TAG" -m "Caesar $VERSION"
-          git push origin "$TAG"
-          if [ -n "$NOTES" ]; then NOTES_ARGS=(--notes-file "$NOTES"); else NOTES_ARGS=(--generate-notes); fi
-          gh release create "$TAG" artifacts/packages/*.nupkg artifacts/packages/*.snupkg \
-            --title "Caesar $VERSION" \
-            "${NOTES_ARGS[@]}"
+          if [ "$EXISTING" != "$GITHUB_SHA" ]; then
+            echo "$TAG points at ${EXISTING:-nothing}, not at $GITHUB_SHA; not creating a GitHub release." >&2
+            exit 1
+          fi
+
+          # A prerelease is published as a GitHub prerelease and never marked Latest.
+          PRE_ARGS=()
+          case "$VERSION" in *-*) PRE_ARGS=(--prerelease --latest=false) ;; esac
+
+          # Idempotent: a re-run creates the release if an earlier attempt tagged but did not create it.
+          ASSETS=(artifacts/packages/*.nupkg artifacts/packages/*.snupkg)
+          if IS_DRAFT=$(gh release view "$TAG" --json isDraft --jq '.isDraft' 2>/dev/null); then
+            if [ "$IS_DRAFT" = "true" ]; then
+              gh release upload "$TAG" "${ASSETS[@]}" --clobber
+              gh release edit "$TAG" --draft=false "${PRE_ARGS[@]}"
+            else
+              echo "GitHub release $TAG already exists."
+            fi
+          else
+            if [ -f artifacts/release-notes.md ]; then NOTES_ARGS=(--notes-file artifacts/release-notes.md); else NOTES_ARGS=(--generate-notes); fi
+            gh release create "$TAG" "${ASSETS[@]}" \
+              --verify-tag \
+              --title "Caesar $VERSION" \
+              "${PRE_ARGS[@]}" \
+              "${NOTES_ARGS[@]}"
+          fi
           echo "released=true" >> "$GITHUB_OUTPUT"
 
-      - uses: actions/upload-artifact@v4
-        with:
-          name: packages-${{ steps.version.outputs.version }}
-          path: artifacts/packages
-
   docs:
-    needs: release
-    # A tag pushed with GITHUB_TOKEN does not trigger other workflows, so publish the docs explicitly.
-    if: needs.release.outputs.released == 'true' && !contains(needs.release.outputs.version, '-')
+    needs: [build, publish]
+    # A tag created with GITHUB_TOKEN does not trigger other workflows, so publish the docs explicitly.
+    if: needs.publish.outputs.released == 'true' && !contains(needs.build.outputs.version, '-')
     uses: ./.github/workflows/docs.yml
     with:
-      ref: v${{ needs.release.outputs.version }}
-      version: ${{ needs.release.outputs.version }}
+      ref: v${{ needs.build.outputs.version }}
+      version: ${{ needs.build.outputs.version }}
     permissions:
       contents: write

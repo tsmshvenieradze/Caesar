@@ -6,7 +6,9 @@ namespace Caesar;
 /// <typeparam name="TResponse">The response type.</typeparam>
 /// <param name="cancellationToken">
 /// Optional token that replaces the one flowing through the pipeline for the remainder of the chain.
-/// Leave it at its default to keep the original token.
+/// Leave it at its default to keep the original token. <see cref="CancellationToken.None"/> equals
+/// <see langword="default"/>, so <c>next(CancellationToken.None)</c> also keeps the original token; to detach the rest
+/// of the chain from cancellation, pass the token of a <see cref="CancellationTokenSource"/> that is never cancelled.
 /// </param>
 public delegate Task<TResponse> RequestHandlerDelegate<TResponse>(CancellationToken cancellationToken = default);
 
