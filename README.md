@@ -149,7 +149,10 @@ Publishing authenticates with nuget.org **Trusted Publishing** (GitHub OIDC), so
    whose review threads are resolved and whose **Build & Test** and **Docs** checks, reported by GitHub Actions, pass
    on a branch that is up to date with `main`; force pushes and deleting `main` are blocked. Bring a Dependabot pull
    request up to date by commenting `@dependabot rebase`: *Update branch* adds a commit that makes Dependabot stop
-   maintaining it. Without the ruleset, anyone who can push can publish by pushing straight to `main`; with it, a
+   maintaining it. A pull request containing a commit GitHub cannot attribute to an account (in practice, an author
+   email not linked to any GitHub account) also needs an approval from someone other than its author, so it shows as
+   blocked with every check green; fix the commit's author, or add the email to your GitHub account, instead of
+   waiting. Without the ruleset, anyone who can push can publish by pushing straight to `main`; with it, a
    release still needs only a pull request with passing checks, so the environment's required reviewers (step 2)
    remain the approval gate. Administrators can always edit or disable the ruleset, for example to rename `main`.
 
