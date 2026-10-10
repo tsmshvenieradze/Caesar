@@ -137,10 +137,21 @@ Publishing authenticates with nuget.org **Trusted Publishing** (GitHub OIDC), so
    - **Required reviewers (recommended):** add yourself. Every release, including one triggered by a merge, then
      waits for your approval before anything is pushed; merges with nothing new to release do not ask.
    - Clear *Allow administrators to bypass configured protection rules* if the rules should apply to you as well.
-3. Protect `main` (a branch ruleset that requires a pull request and the **Build & Test** and **Docs** checks, and blocks
-   force pushes and deletion). Without it, anyone who can push can still publish through `main` itself. Requiring an
-   approving review, Code Owners included, needs a second maintainer: GitHub does not let authors approve their own
-   pull requests.
+3. Protect `main` with the ruleset in [.github/rulesets/main.json](.github/rulesets/main.json): Settings, Rules,
+   Rulesets, New ruleset, *Import a ruleset*, pick the file, then *Create*. Or, with a token that has admin rights on
+   the repository:
+
+   ```bash
+   gh api -X POST repos/tsmshvenieradze/Caesar/rulesets --input .github/rulesets/main.json
+   ```
+
+   It applies to everyone, administrators included (no bypass list): changes reach `main` only through a pull request
+   whose review threads are resolved and whose **Build & Test** and **Docs** checks, reported by GitHub Actions, pass
+   on a branch that is up to date with `main`; force pushes and deleting `main` are blocked. Without it, anyone who can
+   push can still publish through `main` itself. The file is not synced: after changing it, edit or re-import the
+   ruleset on GitHub. Requiring an approving review, Code Owners included, needs a second maintainer: GitHub does not
+   let authors approve their own pull requests. Once there is one, set `required_approving_review_count` to `1` and
+   `require_code_owner_review` to `true`.
 
 The workflow requests a short-lived key at run time via `NuGet/login`, in a publish job that only receives the packages
 from the build job and runs none of the build or test code; nothing expires and nothing needs rotating.

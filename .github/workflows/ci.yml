@@ -9,6 +9,8 @@ permissions:
   contents: read
 
 jobs:
+  # The main ruleset (.github/rulesets/main.json) requires the "Build & Test" and "Docs" checks by these job names.
+  # Renaming a job leaves every pull request waiting for a check that never reports; rename it there too.
   build:
     name: Build & Test
     runs-on: ubuntu-latest
