@@ -10,7 +10,9 @@ permissions:
 
 jobs:
   # The main ruleset (.github/rulesets/main.json) requires the "Build & Test" and "Docs" checks by these job names.
-  # Renaming a job leaves every pull request waiting for a check that never reports; rename it there too.
+  # Renaming a job leaves every pull request waiting for a check that never reports: change the live ruleset on GitHub
+  # before merging the rename, then main.json. Path or branch filters on the pull_request trigger leave the checks
+  # pending too, and an `if:` on either job makes a skipped job count as passed.
   build:
     name: Build & Test
     runs-on: ubuntu-latest

@@ -147,11 +147,24 @@ Publishing authenticates with nuget.org **Trusted Publishing** (GitHub OIDC), so
 
    It applies to everyone, administrators included (no bypass list): changes reach `main` only through a pull request
    whose review threads are resolved and whose **Build & Test** and **Docs** checks, reported by GitHub Actions, pass
-   on a branch that is up to date with `main`; force pushes and deleting `main` are blocked. Without it, anyone who can
-   push can still publish through `main` itself. The file is not synced: after changing it, edit or re-import the
-   ruleset on GitHub. Requiring an approving review, Code Owners included, needs a second maintainer: GitHub does not
-   let authors approve their own pull requests. Once there is one, set `required_approving_review_count` to `1` and
-   `require_code_owner_review` to `true`.
+   on a branch that is up to date with `main`; force pushes and deleting `main` are blocked. Bring a Dependabot pull
+   request up to date by commenting `@dependabot rebase`: *Update branch* adds a commit that makes Dependabot stop
+   maintaining it. Without the ruleset, anyone who can push can publish by pushing straight to `main`; with it, a
+   release still needs only a pull request with passing checks, so the environment's required reviewers (step 2)
+   remain the approval gate. Administrators can always edit or disable the ruleset, for example to rename `main`.
+
+   The file is not synced, and importing or POSTing it again creates a second ruleset rather than updating the first.
+   After changing it, edit *Protect main* on GitHub to match, or update it in place:
+
+   ```bash
+   id=$(gh api repos/tsmshvenieradze/Caesar/rulesets --jq '.[] | select(.name == "Protect main") | .id')
+   gh api -X PUT "repos/tsmshvenieradze/Caesar/rulesets/$id" --input .github/rulesets/main.json
+   ```
+
+   Requiring an approving review, Code Owners included, needs a second maintainer: GitHub does not let authors approve
+   their own pull requests. Once there is one, add them to [.github/CODEOWNERS](.github/CODEOWNERS) and merge that
+   first, then set `required_approving_review_count` to `1` and `require_code_owner_review` to `true`. In the other
+   order, your own pull requests can never get a Code Owner approval.
 
 The workflow requests a short-lived key at run time via `NuGet/login`, in a publish job that only receives the packages
 from the build job and runs none of the build or test code; nothing expires and nothing needs rotating.
