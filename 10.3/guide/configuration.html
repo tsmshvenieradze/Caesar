@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Configuration | Caesar </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Configuration | Caesar ">
+      
+      
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/tsmshvenieradze/Caesar/blob/main/docs/guide/configuration.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="Caesar">
+            Caesar
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="configuration">Configuration</h1>
+
+<p>Everything is configured in the <code>AddCaesar</code> callback, through <a class="xref" href="../api/Caesar.DependencyInjection.CaesarServiceConfiguration.html">CaesarServiceConfiguration</a>.</p>
+<h2 id="options">Options</h2>
+<pre><code class="lang-csharp">services.AddCaesar(cfg =&gt;
+{
+    cfg.RegisterServicesFromAssemblyContaining&lt;CreateCustomer&gt;();       // required, at least one assembly
+    cfg.TypeEvaluator = type =&gt; type.Namespace?.StartsWith(&quot;Contoso.Application&quot;, StringComparison.Ordinal) == true;
+
+    cfg.Lifetime = ServiceLifetime.Transient;                            // scanned handlers, processors, exception handlers
+    cfg.MediatorLifetime = ServiceLifetime.Scoped;                       // IMediator, ISender, IPublisher, INotificationPublisher
+    cfg.MediatorImplementationType = typeof(Mediator);
+    cfg.NotificationPublisherType = typeof(ForeachAwaitPublisher);
+    cfg.AutoRegisterRequestProcessors = true;
+    cfg.RequestExceptionActionProcessorStrategy = RequestExceptionActionProcessorStrategy.ApplyForUnhandledExceptions;
+    cfg.BypassExceptionHandlingOnCallerCancellation = false;
+});
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RegisterServicesFromAssembly*</code></td>
+<td>required</td>
+<td>Assemblies to scan for handlers, processors, exception handlers and actions.</td>
+</tr>
+<tr>
+<td><code>TypeEvaluator</code></td>
+<td>accept all</td>
+<td>Filter scanned types.</td>
+</tr>
+<tr>
+<td><code>Lifetime</code></td>
+<td><code>Transient</code></td>
+<td>Lifetime for scanned handlers, processors, exception handlers and actions. An explicitly added processor keeps its own lifetime.</td>
+</tr>
+<tr>
+<td><code>MediatorLifetime</code></td>
+<td><code>Scoped</code></td>
+<td>Lifetime for <code>IMediator</code>, <code>ISender</code>, <code>IPublisher</code> and <code>INotificationPublisher</code>.</td>
+</tr>
+<tr>
+<td><code>MediatorImplementationType</code></td>
+<td><code>Mediator</code></td>
+<td>Subclass <code>Mediator</code> and override <code>PublishCore</code> to intercept publishes.</td>
+</tr>
+<tr>
+<td><code>NotificationPublisherType</code> / <code>NotificationPublisher</code></td>
+<td><code>ForeachAwaitPublisher</code></td>
+<td>Publish strategy by type or instance.</td>
+</tr>
+<tr>
+<td><code>AutoRegisterRequestProcessors</code></td>
+<td><code>true</code></td>
+<td>Register scanned pre/post-processors automatically.</td>
+</tr>
+<tr>
+<td><code>RequestExceptionActionProcessorStrategy</code></td>
+<td><code>ApplyForUnhandledExceptions</code></td>
+<td>Where exception actions sit relative to exception handlers.</td>
+</tr>
+<tr>
+<td><code>BypassExceptionHandlingOnCallerCancellation</code></td>
+<td><code>false</code></td>
+<td>Let the caller's own cancellation skip exception handlers and actions. See <a href="exception-handling.html#cancellation">Cancellation</a>.</td>
+</tr>
+<tr>
+<td><code>AddBehavior</code> / <code>AddOpenBehavior</code> / <code>AddOpenBehaviors</code></td>
+<td></td>
+<td>Request behaviors, in execution order.</td>
+</tr>
+<tr>
+<td><code>AddStreamBehavior</code> / <code>AddOpenStreamBehavior</code></td>
+<td></td>
+<td>Stream behaviors.</td>
+</tr>
+<tr>
+<td><code>AddRequestPreProcessor</code> / <code>AddOpenRequestPreProcessor</code></td>
+<td></td>
+<td>Explicit pre-processors.</td>
+</tr>
+<tr>
+<td><code>AddRequestPostProcessor</code> / <code>AddOpenRequestPostProcessor</code></td>
+<td></td>
+<td>Explicit post-processors.</td>
+</tr>
+</tbody>
+</table>
+<p><code>AddCaesar</code> throws <code>ArgumentException</code> when no assembly was given, or when <code>MediatorImplementationType</code> or
+<code>NotificationPublisherType</code> is not a concrete class the container can create as the expected interface: when it is
+<code>null</code>, an interface, abstract, an open generic, not a class, or does not implement <code>IMediator</code> or
+<code>INotificationPublisher</code>. <code>NotificationPublisherType</code> is not checked when a <code>NotificationPublisher</code> instance is set,
+because the instance is used instead.</p>
+<h2 id="registration-rules">Registration rules</h2>
+<ul>
+<li>Registration is idempotent: calling <code>AddCaesar</code> twice, or adding a processor that scanning also found, does not
+duplicate it. An explicitly added processor that scanning in the same <code>AddCaesar</code> call also finds is registered once,
+with the lifetime you gave it, at the position scanning found it; one an earlier call already registered keeps that
+registration.</li>
+<li>Calling <code>AddCaesar</code> more than once, for example once per module, is safe. The built-in stages are worked out for
+each request type when a container first dispatches it, so neither the number nor the order of the calls changes
+them, and processors, exception handlers, exception actions and notification handlers you register after
+<code>AddCaesar</code> are seen too.</li>
+<li>Caesar works them out from the service collection of the last <code>AddCaesar</code> call and from the container itself, which
+it asks through <code>IServiceProviderIsService</code> for every closed service type. Processors and handlers therefore count
+even when the container was built from a copy of that collection, or when they are registered natively in a
+third-party container such as Autofac. Exception handlers and actions, which are looked up per exception type, count
+when the collection has one for the request, or a catch-all one for <code>Exception</code> that the container reports; in a
+third-party container, whenever the collection has any exception handler or action at all. Notification handlers for
+a notification's base types must be registered in the collection.</li>
+<li><code>MediatorLifetime</code>, <code>MediatorImplementationType</code>, <code>NotificationPublisher</code>, <code>NotificationPublisherType</code>,
+<code>RequestExceptionActionProcessorStrategy</code> and <code>BypassExceptionHandlingOnCallerCancellation</code> apply to the whole
+container, so the first <code>AddCaesar</code> call decides them. A later call that sets one of them to a different value throws
+<code>InvalidOperationException</code> naming the option; leaving it unset, or setting the same value again, is fine. Two
+publishers agree when they are of the same type, whether given as an instance or as a type. Set these options in the
+first call.</li>
+<li>The first scanned closed handler for a request type wins. For open-generic handlers of <code>IRequestHandler&lt;,&gt;</code>,
+<code>IRequestHandler&lt;&gt;</code> or <code>IStreamRequestHandler&lt;,&gt;</code>, the container can only use one, so <code>AddCaesar</code> throws
+<code>InvalidOperationException</code>, naming both types, when scanning finds a second, different one, in the same call or a
+later one. An open-generic handler you registered by hand takes precedence and is not an error.</li>
+<li>Registrations you make <strong>before</strong> <code>AddCaesar</code> take precedence over scanning.</li>
+<li>Nested types are scanned when code in their assembly can name them: a <code>public</code>, <code>internal</code> or <code>protected internal</code>
+handler nested in another class, such as a vertical slice's <code>internal sealed class Handler</code>, is registered. <code>private</code>
+and <code>protected</code> nested types, typically test doubles inside a test class, are not; register them by hand if they are
+meant to run. A non-public nested type that cannot be registered, for example one nested in a generic class, is
+skipped rather than rejected. Compiler-generated types (closures, state machines) are always skipped. Use
+<a href="#filtering-the-scan"><code>TypeEvaluator</code></a> to keep any other type out.</li>
+<li><code>AddCaesar</code> also adds a few internal services of its own, which you see when enumerating the <code>IServiceCollection</code>.
+Do not remove or depend on them.</li>
+</ul>
+<h2 id="lifetimes">Lifetimes</h2>
+<p><code>Lifetime</code> and <code>MediatorLifetime</code> are separate because they answer different questions.</p>
+<p>Handlers default to <code>Transient</code>: they are stateless, and two <code>Send</code> calls in one scope should not share an instance.</p>
+<p>The mediator defaults to <code>Scoped</code>. A transient <code>ISender</code> can be injected into a singleton without the container
+objecting, and the captured mediator then holds the <strong>root</strong> provider. With scope validation on, the first request
+needing a scoped dependency such as a <code>DbContext</code> then fails at runtime, far from the constructor that caused it;
+with it off, that <code>DbContext</code> is silently resolved from the root and lives for the whole application. With a scoped
+mediator, the container reports the capturing singleton at startup instead, provided both <code>ValidateScopes</code> and
+<code>ValidateOnBuild</code> are enabled. ASP.NET Core and the generic host enable both in the Development environment.</p>
+<p>The cost is that <code>ISender</code> is no longer resolvable straight from the root provider. Resolve it inside a scope:</p>
+<pre><code class="lang-csharp">using var scope = host.Services.CreateScope();
+var sender = scope.ServiceProvider.GetRequiredService&lt;ISender&gt;();
+await sender.Send(new DeactivateCustomer(Guid.NewGuid()));
+</code></pre>
+<p>A <code>BackgroundService</code> is a singleton, so inject <code>IServiceScopeFactory</code> and open a scope per unit of work:</p>
+<pre><code class="lang-csharp">// A BackgroundService is a singleton: open a scope per unit of work instead of injecting ISender.
+public sealed class NightlyExport(IServiceScopeFactory scopeFactory) : BackgroundService
+{
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    {
+        while (!stoppingToken.IsCancellationRequested)
+        {
+            await using (var scope = scopeFactory.CreateAsyncScope())
+            {
+                var sender = scope.ServiceProvider.GetRequiredService&lt;ISender&gt;();
+                await foreach (var page in sender.CreateStream(new ExportCustomers(500), stoppingToken))
+                {
+                    Console.WriteLine($&quot;Exported {page.Count}&quot;);
+                }
+            }
+
+            await Task.Delay(TimeSpan.FromHours(24), stoppingToken);
+        }
+    }
+}
+</code></pre>
+<p>If you genuinely need a root-resolvable mediator, for example in a short console app with no scoped dependencies, set
+<code>cfg.MediatorLifetime = ServiceLifetime.Transient</code>. A mediator resolved from the root resolves handlers from the root
+too, and the root provider keeps every disposable transient it creates until it is disposed itself.</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>Avoid <code>ServiceLifetime.Singleton</code> for the mediator in an application that uses scopes, such as a web application. A
+singleton mediator resolves every handler and its dependencies from the root provider, even when <code>ISender</code> is
+injected inside a scope: a scoped <code>DbContext</code>, current user or tenant is then shared by every request and every
+user, and disposable transient handlers pile up in the root provider until the application shuts down. With scope
+validation on, the first request that needs a scoped service fails instead. Inject <code>IServiceScopeFactory</code> into
+singletons, as shown above.</p>
+</div>
+<h2 id="open-generic-handlers">Open-generic handlers</h2>
+<p>An open generic class is registered against the open interface when it implements that interface with its own type
+parameters in declaration order, which is the shape the Microsoft container can close at runtime:</p>
+<pre><code class="lang-csharp">// Registered against INotificationHandler&lt;&gt; and closed by the container for every notification type.
+public sealed class AuditEverything&lt;TNotification&gt; : INotificationHandler&lt;TNotification&gt;
+    where TNotification : INotification
+{
+    public Task Handle(TNotification notification, CancellationToken cancellationToken)
+    {
+        Console.WriteLine($&quot;Published {typeof(TNotification).Name}&quot;);
+        return Task.CompletedTask;
+    }
+}
+</code></pre>
+<p>Generic constraints are honoured. For notification handlers, processors, exception handlers and actions, the container
+skips closings that violate them. For request and stream handlers, dispatch skips an open-generic handler whose
+constraints reject the request: a command falls back to its other handler interface (<code>IRequestHandler&lt;T&gt;</code> or
+<code>IRequestHandler&lt;T, Unit&gt;</code>), and otherwise the request fails with &quot;No handler was found&quot; rather than with the
+container's <code>ArgumentException</code>.</p>
+<p>An open generic that implements one of Caesar's interfaces in any other shape, with a different arity or with type
+parameters out of order, can never be closed by the container. <code>AddCaesar</code> throws <code>InvalidOperationException</code> rather
+than leave a handler that fails on the first request that needs it. This example is intentionally not a working
+registration:</p>
+<pre><code class="lang-csharp">// Throws at AddCaesar: one type parameter, but IRequestHandler&lt;,&gt; takes two.
+public sealed class QueryHandler&lt;T&gt; : IRequestHandler&lt;Query&lt;T&gt;, T&gt; { ... }
+</code></pre>
+<p>Generic types that implement none of Caesar's interfaces are ignored.</p>
+<h2 id="filtering-the-scan">Filtering the scan</h2>
+<p>To keep a type out of the scan, whether a deliberately shaped handler, a nested handler that is not meant to be
+registered, or one you register by hand, exclude it with <code>TypeEvaluator</code>:</p>
+<pre><code class="lang-csharp">services.AddCaesar(cfg =&gt;
+{
+    cfg.RegisterServicesFromAssemblyContaining&lt;CreateCustomer&gt;();
+    cfg.TypeEvaluator = type =&gt; type != typeof(CountCustomers);   // keep this handler out of the scan
+});
+</code></pre>
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/tsmshvenieradze/Caesar/blob/main/docs/guide/configuration.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © Tsezari Mshvenieradze · <a href="https://tsezar.io">tsezar.io</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

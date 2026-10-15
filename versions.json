@@ -1,7 +1,11 @@
 [
   {
-    "version": "10.2",
+    "version": "10.3",
     "latest": true
+  },
+  {
+    "version": "10.2",
+    "latest": false
   },
   {
     "version": "10.1",

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Exception handling | Caesar </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Exception handling | Caesar ">
+      
+      
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/tsmshvenieradze/Caesar/blob/main/docs/guide/exception-handling.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="Caesar">
+            Caesar
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="exception-handling">Exception handling</h1>
+
+<p>Caesar has two ways to react to an exception thrown while handling a request:</p>
+<ul>
+<li>An <strong>exception handler</strong> can recover: it supplies a fallback response and the caller never sees the exception.</li>
+<li>An <strong>exception action</strong> runs side effects, such as logging or metrics, and the exception is always rethrown.</li>
+</ul>
+<p>Both apply to requests sent with <code>Send</code>. They do not run for stream requests: a stream's pipeline has only
+<a href="pipeline-behaviors.html#stream-behaviors">stream behaviors</a>, so handle a stream's errors in an
+<a class="xref" href="../api/Caesar.IStreamPipelineBehavior-2.html">IStreamPipelineBehavior&lt;TRequest, TResponse&gt;</a>. An exception handler or action declared for an <code>IStreamRequest&lt;T&gt;</code> compiles
+and is registered by scanning, but never runs.</p>
+<h2 id="exception-handlers">Exception handlers</h2>
+<p>Implement <a class="xref" href="../api/Caesar.Pipeline.IRequestExceptionHandler-3.html">IRequestExceptionHandler&lt;TRequest, TResponse, TException&gt;</a> for a request, its response and an exception type. Call
+<code>state.SetHandled(response)</code> to recover:</p>
+<pre><code class="lang-csharp">// Recovers from CustomerNotFoundException thrown by the GetCustomer handler with a null result.
+public sealed class CustomerNotFoundHandler : IRequestExceptionHandler&lt;GetCustomer, Customer?, CustomerNotFoundException&gt;
+{
+    public Task Handle(GetCustomer request, CustomerNotFoundException exception,
+        RequestExceptionHandlerState&lt;Customer?&gt; state, CancellationToken cancellationToken)
+    {
+        state.SetHandled(null);
+        return Task.CompletedTask;
+    }
+}
+</code></pre>
+<p>If no handler calls <code>SetHandled</code>, the exception propagates. <a class="xref" href="../api/Caesar.Pipeline.RequestExceptionHandlerState-1.html">RequestExceptionHandlerState&lt;TResponse&gt;</a>
+records whether it was handled and with which response.</p>
+<p>A handler that returns a <code>null</code> task instead of one fails the request with an <code>InvalidOperationException</code> that names
+the handler, with the original exception as its <code>InnerException</code>.</p>
+<h2 id="exception-actions">Exception actions</h2>
+<p>Implement <a class="xref" href="../api/Caesar.Pipeline.IRequestExceptionAction-2.html">IRequestExceptionAction&lt;TRequest, TException&gt;</a>. Actions cannot recover; they observe:</p>
+<pre><code class="lang-csharp">// Runs once for every exception GetCustomer throws. Side effects only: the exception is rethrown afterwards
+// with its original stack trace.
+public sealed class ReportGetCustomerFailures : IRequestExceptionAction&lt;GetCustomer&gt;
+{
+    public Task Execute(GetCustomer request, Exception exception, CancellationToken cancellationToken)
+    {
+        Console.Error.WriteLine($&quot;GetCustomer({request.Id}) failed: {exception.Message}&quot;);
+        return Task.CompletedTask;
+    }
+}
+</code></pre>
+<p>Every matching action runs, even when an earlier one fails. An action that throws, returns a faulted task or returns
+<code>null</code> does not replace the original exception: once all actions have run, the original is rethrown with its original
+stack trace. This differs from MediatR, where the action's exception replaces the original; to translate an exception
+into another one, throw it from an exception handler instead. The actions' own failures are attached to the original
+as an <code>IReadOnlyList&lt;Exception&gt;</code>, in the order the actions ran, after those of a nested <code>Send</code> the same exception
+passed through. The list keeps the 16 most recent failures, so an exception object that is thrown again and again, for
+example a cached initialization failure, does not collect them without bound:</p>
+<pre><code class="lang-csharp">catch (Exception e) when (e.Data[&quot;Caesar.ExceptionActionFailures&quot;] is IReadOnlyList&lt;Exception&gt; actionFailures)
+{
+    // e is the original exception; actionFailures are the exceptions the actions threw.
+}
+</code></pre>
+<p>Handlers and actions are called through typed delegates, so an exception one of them throws surfaces as itself, never
+wrapped in a <code>TargetInvocationException</code>.</p>
+<h2 id="resolution-by-exception-type">Resolution by exception type</h2>
+<p>Handlers and actions are resolved for the thrown exception type first, then for each of its base types. A handler for
+<code>CustomerNotFoundException</code> runs before one for <code>Exception</code>, so a handler for <code>Exception</code> acts as a catch-all.</p>
+<p>A class that implements the interface for several types in the hierarchy, for example for both
+<code>CustomerNotFoundException</code> and <code>Exception</code>, runs once, for the most specific of them, as in MediatR. Several
+registrations of one class for the same exception type, for example two instances configured for different sinks, all
+run.</p>
+<p><code>IRequestExceptionHandler&lt;TRequest, TResponse&gt;</code> and <code>IRequestExceptionAction&lt;TRequest&gt;</code> are shorthands for the
+<code>Exception</code> case. Implement the shorthand on a closed class, like <code>ReportGetCustomerFailures</code> above, when you want an
+action that runs exactly once for any failure of a request.</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>An open generic over the exception type, such as <code>ReportFailures&lt;TRequest, TException&gt; : IRequestExceptionAction&lt;TRequest, TException&gt;</code>,
+is closed by the container for <strong>every</strong> type in the hierarchy, and each closing is a different class. It runs once
+per level: an <code>ArgumentNullException</code> triggers it for <code>ArgumentNullException</code>, <code>ArgumentException</code>,
+<code>SystemException</code> and <code>Exception</code>, so a logger built this way writes four entries for one failure. A one-parameter
+open generic such as <code>ReportAll&lt;TRequest&gt; : IRequestExceptionAction&lt;TRequest&gt;</code> cannot be closed by the container and
+is rejected by <code>AddCaesar</code> (see <a href="configuration.html#open-generic-handlers">Open-generic handlers</a>).</p>
+</div>
+<p>An exception nobody recovers from is rethrown with its original stack trace, so logs point at the line that failed, not
+at Caesar.</p>
+<h2 id="what-reaches-handlers-and-actions">What reaches handlers and actions</h2>
+<p>The exception stages sit outside the processors and your behaviors, so they see every failure thrown while those run:
+the handler's, your behaviors' (authorization and validation failures included), and the processors'. A catch-all
+handler for <code>Exception</code> therefore recovers from all of them; make it check the exception type if some failures must
+still reach the caller. The exceptions are behaviors you registered by hand before the first <code>AddCaesar</code> call, which
+run outside the exception stages (see <a href="pipeline-behaviors.html#order">Order</a>), and a behavior or processor the container
+cannot create, which fails while the pipeline is being built; both still come back through the task <code>Send</code> returns.</p>
+<p>A request with no handler also fails inside the pipeline, with an <code>InvalidOperationException</code> whose message starts
+with &quot;No handler was found&quot;. It reaches exception handlers and actions like any other failure, so a catch-all handler
+turns a missing registration into a fallback response too. The same goes for a handler the container cannot create,
+for example because a dependency is missing; that surfaces as the container's own exception.</p>
+<h3 id="cancellation">Cancellation</h3>
+<p>By default an <code>OperationCanceledException</code> reaches exception handlers and actions like any other exception, as in
+MediatR, including one thrown because the caller's token, the one passed to <code>Send</code>, was cancelled. A catch-all handler
+for <code>Exception</code> then turns a client that disconnects into a fallback response. Every handler receives the caller's
+token, so it can tell the two apart itself:</p>
+<pre><code class="lang-csharp">if (exception is OperationCanceledException &amp;&amp; cancellationToken.IsCancellationRequested)
+{
+    return Task.CompletedTask; // the caller gave up; let the cancellation propagate
+}
+</code></pre>
+<p>To make that the rule for the whole container, set <code>cfg.BypassExceptionHandlingOnCallerCancellation = true</code>. An
+<code>OperationCanceledException</code> thrown while the caller's token is cancelled then goes straight to the caller: no
+exception handler or action sees it. Cancellation from any other token is still an ordinary failure and reaches
+handlers and actions. With the option set, that decides where a timeout belongs:</p>
+<ul>
+<li>To make a timeout behave like the caller giving up, put it on the token you pass to <code>Send</code>, for example with
+<code>CancellationTokenSource.CancelAfter</code>. Handlers and actions are then skipped.</li>
+<li>To turn a timeout into a fallback response, or to have actions record it, apply it inside the pipeline, for example
+in a behavior that calls <code>next(timeoutToken)</code> with a linked token source, and handle <code>OperationCanceledException</code>
+(which <code>TaskCanceledException</code> derives from) in an exception handler.</li>
+</ul>
+<h2 id="when-actions-run">When actions run</h2>
+<p><code>cfg.RequestExceptionActionProcessorStrategy</code> decides where actions sit relative to handlers:</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Actions run for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ApplyForUnhandledExceptions</code> (default)</td>
+<td>exceptions no handler recovered from</td>
+</tr>
+<tr>
+<td><code>ApplyForAllExceptions</code></td>
+<td>every exception, even ones a handler recovers from afterwards</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="lang-csharp">services.AddCaesar(cfg =&gt;
+{
+    cfg.RegisterServicesFromAssemblyContaining&lt;CreateCustomer&gt;();
+
+    // Default: actions run only for exceptions no handler recovered from.
+    cfg.RequestExceptionActionProcessorStrategy = RequestExceptionActionProcessorStrategy.ApplyForAllExceptions;
+});
+</code></pre><h2 id="registration">Registration</h2>
+<p>Exception handlers and actions are found by scanning, and you can also register them by hand, before or after
+<code>AddCaesar</code>. The stage that runs them is added to a request type's pipeline when that request has a closed handler or
+action of its own, whatever its exception type, or when an open-generic one exists, which applies to every request.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/tsmshvenieradze/Caesar/blob/main/docs/guide/exception-handling.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © Tsezari Mshvenieradze · <a href="https://tsezar.io">tsezar.io</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

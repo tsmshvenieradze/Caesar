@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Changelog | Caesar </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Changelog | Caesar ">
+      
+      
+      <link rel="icon" href="images/logo.svg">
+      <link rel="stylesheet" href="public/docfx.min.css">
+      <link rel="stylesheet" href="public/main.css">
+      <meta name="docfx:navrel" content="toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/tsmshvenieradze/Caesar/blob/main/docs/changelog.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="index.html">
+            <img id="logo" class="svg" src="images/logo.svg" alt="Caesar">
+            Caesar
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="changelog">Changelog</h1>
+
+<p>All notable changes to Caesar are documented here. The format follows
+<a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>, and versions follow
+<a href="https://semver.org/">Semantic Versioning</a>, with the major version tracking the targeted .NET version.</p>
+<h2 id="unreleased"><a href="https://github.com/tsmshvenieradze/Caesar/compare/v10.3.0...HEAD">Unreleased</a></h2>
+<h2 id="1030---2026-10-15"><a href="https://github.com/tsmshvenieradze/Caesar/releases/tag/v10.3.0">10.3.0</a> - 2026-10-15</h2>
+<h3 id="changed">Changed</h3>
+<ul>
+<li><strong>Performance.</strong>
+<ul>
+<li>Requests and stream requests with no pipeline behaviors registered skip resolving <code>IEnumerable&lt;IPipelineBehavior&lt;,&gt;&gt;</code>
+and <code>IEnumerable&lt;IStreamPipelineBehavior&lt;,&gt;&gt;</code> from the container, and <code>RequestPipelineShape</code> inspects exception
+actions and handlers in O(1) through indexed sets instead of scanning closed service registrations.</li>
+<li>Commands (<code>IRequest</code>) with no pipeline stages return <code>Unit.Task</code> directly when <code>IRequestHandler&lt;TRequest&gt;.Handle</code>
+completes synchronously, and pass through <code>IRequestHandler&lt;TRequest, Unit&gt;.Handle</code>'s task without an extra <code>async</code>
+state machine.</li>
+<li>Sequential notification publishing with the default <code>ForeachAwaitPublisher</code> and no base-type or interface handlers
+invokes the resolved handler array directly without allocating a <code>List&lt;NotificationHandlerExecutor&gt;</code> or per-handler
+closures; when executors are built for a custom publisher or polymorphic notification hierarchy, <code>CreateExecutor</code>
+binds a static extension method group instead of allocating a closure per handler, and <code>ForeachAwaitPublisher</code>
+completes synchronously when every handler does.</li>
+<li><code>Send&lt;TRequest&gt;(TRequest)</code> and <code>Publish&lt;TNotification&gt;(TNotification)</code> dispatch directly to the static generic
+wrapper when the static type parameter is the runtime type (<code>sealed</code>, value type, or exact match), bypassing the
+<code>ConcurrentDictionary</code> lookup and virtual wrapper call.</li>
+<li><code>PipelineBuilder</code> and stream behavior composition invoke the outermost stage or behavior directly without wrapping
+it in an extra delegate, and allocate an inner token-replacement closure only when a behavior passes a different
+non-default <code>CancellationToken</code>.</li>
+<li><code>RequestPreProcessorBehavior</code>, <code>RequestPostProcessorBehavior</code>, <code>RequestExceptionProcessorBehavior</code> and
+<code>RequestExceptionActionProcessorBehavior</code> index into backing arrays, take synchronous fast paths when processors
+complete synchronously, and lazily allocate <code>RequestExceptionHandlerState&lt;TResponse&gt;</code>.</li>
+<li>Assembly scanning indexes existing service registrations in <code>ScanContext</code> for O(1) <code>TryAdd</code> and <code>TryAddEnumerable</code>
+checks and drops redundant <code>.Distinct()</code> passes over candidate types.</li>
+</ul>
+</li>
+</ul>
+<h2 id="1020---2026-09-25"><a href="https://github.com/tsmshvenieradze/Caesar/releases/tag/v10.2.0">10.2.0</a> - 2026-09-25</h2>
+<h3 id="breaking-changes">Breaking changes</h3>
+<p>These can change what an existing application sees after upgrading; the entries below give the details.</p>
+<ul>
+<li>The built-in stages are no longer <code>IPipelineBehavior&lt;,&gt;</code> registrations. Code that resolves or removes them from the
+service collection, or a custom <code>IMediator</code> that does not derive from <code>Mediator</code> and relied on them, no longer finds
+them.</li>
+<li><code>Send</code>, <code>Publish</code> and <code>CreateStream</code> report failures through the returned task or enumerator instead of throwing
+from the call. A test that wraps the call itself in <code>Assert.Throws</code> must await it instead.</li>
+<li>Notification handlers registered for a base class or interface of a notification, <code>INotification</code> included, now
+run for it.</li>
+<li>Nested <code>internal</code> and <code>protected internal</code> handlers, processors and exception handlers are now scanned and run.</li>
+<li>A later <code>AddCaesar</code> call that sets a global option to a different value throws, as does scanning two different
+open-generic handlers for one request interface.</li>
+<li>A failing exception action no longer replaces the original exception, and an exception handler or action class
+implemented for several exception types runs once.</li>
+<li><code>Send(object)</code> and <code>CreateStream(object)</code> throw <code>ArgumentException</code> for a type that declares several request
+interfaces.</li>
+</ul>
+<h3 id="added">Added</h3>
+<ul>
+<li><p><code>CaesarServiceConfiguration.BypassExceptionHandlingOnCallerCancellation</code> (default <code>false</code>). When set, an
+<code>OperationCanceledException</code> thrown while the token passed to <code>Send</code> is cancelled goes straight to the caller without
+reaching exception handlers or actions, so a catch-all handler cannot turn a client abort into a fallback response.
+Cancellation from any other token, such as a timeout inside the pipeline, is still routed. By default cancellations
+reach handlers and actions like any other exception, as in MediatR.</p>
+</li>
+<li><p>Notification handlers registered for a base class of the published notification, for an interface it implements, or
+for <code>INotification</code> itself now run, through <code>Publish&lt;T&gt;</code> and <code>Publish(object)</code> and with every publisher, custom
+publishers and <code>PublishCore</code> overrides included. Before, they were registered but never ran, with no error.</p>
+<ul>
+<li>Order: the handlers for the runtime type first, in registration order, open-generic ones included; then base
+classes, most derived first; then interfaces, a derived interface before the ones it extends, <code>INotification</code> last.</li>
+<li>A handler class registered for several of these types runs once, for the most specific one. Duplicate
+registrations for one type still run once each.</li>
+<li>For base classes and interfaces only closed registrations count, so an open-generic handler runs once, for the
+runtime type, and never for a base type its constraints accept when they reject the runtime type.</li>
+<li>Requires a container set up with <code>AddCaesar</code>; handlers for base types registered by hand after <code>AddCaesar</code> are
+included. A <code>Mediator</code> over a container without <code>AddCaesar</code> runs only the runtime type's handlers, as before.</li>
+</ul>
+</li>
+<li><p>The exceptions thrown by failing exception actions are recorded on the original exception, in
+<code>exception.Data[&quot;Caesar.ExceptionActionFailures&quot;]</code> as an <code>IReadOnlyList&lt;Exception&gt;</code>, in the order the actions ran and
+after those of a nested <code>Send</code> the exception passed through. The list keeps the 16 most recent failures, so an
+exception object that is thrown again by later sends does not collect them without bound.</p>
+</li>
+<li><p>Dependabot configuration: weekly updates for GitHub Actions and NuGet packages. Major updates of
+<code>Microsoft.Extensions.*</code> and <code>Microsoft.SourceLink.*</code> are ignored, since the major version tracks .NET.</p>
+</li>
+</ul>
+<h3 id="changed-1">Changed</h3>
+<ul>
+<li><strong>Pipeline composition.</strong> The built-in stages (exception actions, exception handlers, pre-processors and
+post-processors) are no longer registered as <code>IPipelineBehavior&lt;,&gt;</code>, so resolving the pipeline behaviors returns only
+your own. The mediator adds each stage per request type, only when something that applies to that request is
+registered (a closed registration for it, or an open-generic one), always in the documented order. Neither the number
+nor the order of <code>AddCaesar</code> calls changes it any more. Behaviors registered by hand before the first <code>AddCaesar</code>
+call still run outside the built-in stages, as before; the others run inside them. A built-in behavior class you
+register yourself as a pipeline behavior by type (<code>AddBehavior</code>, <code>AddOpenBehavior</code> or an implementation-type
+descriptor) makes Caesar leave its own stage out, so it runs once. Caesar creates the stages itself, through their
+public constructors, after your behaviors are resolved. The stages are composed by <code>Mediator</code> (and classes derived
+from it) in a container set up with <code>AddCaesar</code>.</li>
+<li>What a request type needs is worked out from the service collection of the last <code>AddCaesar</code> call and from the
+container itself, asked through <code>IServiceProviderIsService</code>. So processors and handlers count when the container was
+built from a copy of the collection, when the collection changed after the container was built, and when they are
+registered natively in a third-party container such as Autofac. Only Caesar's own service types are indexed.</li>
+<li>The public built-in behaviors (<code>RequestPreProcessorBehavior</code>, <code>RequestPostProcessorBehavior</code>,
+<code>RequestExceptionProcessorBehavior</code>, <code>RequestExceptionActionProcessorBehavior</code>) are no longer <code>async</code> methods: with no
+processors, or when <code>next</code> completes synchronously and successfully, they return <code>next</code>'s task directly.</li>
+<li><strong><code>Send</code> never throws synchronously</strong>, except <code>ArgumentNullException</code> for a <code>null</code> request and <code>ArgumentException</code>
+for a request whose handler cannot be chosen from its type. A missing handler, a throwing handler, behavior or
+processor, and container errors fault the returned task; an <code>OperationCanceledException</code> cancels it.</li>
+<li><strong><code>Publish</code> never throws synchronously</strong> after its argument checks. A handler the container cannot create and a
+publisher or <code>PublishCore</code> override that throws before returning now fault (or, for an <code>OperationCanceledException</code>,
+cancel) the returned task.</li>
+<li><strong><code>CreateStream</code> is fully lazy.</strong> Behaviors and the handler are resolved and run when enumeration starts, so a missing
+handler fails on <code>MoveNextAsync</code>, not at the call. Each enumeration builds its own pipeline, and the token given to
+<code>CreateStream</code> is combined with the enumerator's.</li>
+<li>Handler resolution errors are no longer relabelled: a registered handler with a missing dependency, a scope violation
+or a throwing constructor surfaces the container's own exception. &quot;No handler was found&quot; is reported only when
+nothing that can handle the request resolves (nothing registered, or only an open generic whose constraints reject
+it), and it, like the <code>ArgumentException</code> messages of <code>Send(object)</code> and <code>CreateStream(object)</code>, renders generic
+types as written in source.</li>
+<li><code>Send(object)</code> and <code>CreateStream(object)</code> throw <code>ArgumentException</code> for a type that declares more than one
+<code>IRequest&lt;T&gt;</code> or <code>IStreamRequest&lt;T&gt;</code> (<code>IRequest</code> together with <code>IRequest&lt;int&gt;</code> counts as two) instead of silently
+picking one.</li>
+<li>An exception action that fails, synchronously, with a faulted task or with a <code>null</code> task, no longer replaces the
+original exception or stops the remaining actions: all of them run, then the original is rethrown with its stack
+trace. This differs from MediatR, where the action's exception replaces the original; translate exceptions in an
+exception handler instead.</li>
+<li>An exception handler or action class implemented for several levels of the exception's hierarchy runs once, for the
+most specific level, as in MediatR. Several registrations of one class for the same exception type all run.</li>
+<li>An exception handler that returns a <code>null</code> task fails with an <code>InvalidOperationException</code> naming it, with the original
+exception as <code>InnerException</code>, instead of a <code>NullReferenceException</code>.</li>
+<li>A notification handler that returns a <code>null</code> task fails with an <code>InvalidOperationException</code> naming it under all three
+built-in publishers, instead of a <code>NullReferenceException</code>.</li>
+<li><code>ForeachAwaitContinueOnFailurePublisher</code> invokes no further handler once the token is cancelled, including a token
+cancelled before <code>Publish</code>. With no failures so far the publish is canceled; otherwise those failures are thrown and
+the cancellation is dropped.</li>
+<li><strong>Registration.</strong>
+<ul>
+<li>Scanning registers nested types that code in their assembly can name: <code>public</code>, <code>internal</code> and
+<code>protected internal</code> ones, such as a vertical slice's internal handler. <code>private</code> and <code>protected</code> nested types,
+typically test doubles, are still skipped, and a non-public nested type that cannot be registered (one nested in a
+generic class, say) is skipped rather than rejected. Compiler-generated types are recognised by their names, so a
+partial class a source generator marked <code>[CompilerGenerated]</code> is scanned. Use <code>TypeEvaluator</code> to exclude a type.</li>
+<li>A processor added with <code>AddRequestPreProcessor</code>, <code>AddRequestPostProcessor</code> or their open-generic variants that
+scanning in the same <code>AddCaesar</code> call also finds is registered once, with the explicitly requested lifetime, at its
+scanned position.</li>
+<li>A later <code>AddCaesar</code> call that sets <code>MediatorLifetime</code>, <code>MediatorImplementationType</code>, <code>NotificationPublisher</code>,
+<code>NotificationPublisherType</code>, <code>RequestExceptionActionProcessorStrategy</code> or
+<code>BypassExceptionHandlingOnCallerCancellation</code> to a value other than the first call's throws
+<code>InvalidOperationException</code> naming the option. Before, the value was silently ignored. Publishers are compared by
+the type in effect, so two instances of one publisher, or an instance and its type, agree.</li>
+<li><code>AddCaesar</code> throws <code>InvalidOperationException</code>, naming both types, when scanning finds a second, different
+open-generic implementation of <code>IRequestHandler&lt;,&gt;</code>, <code>IRequestHandler&lt;&gt;</code> or <code>IStreamRequestHandler&lt;,&gt;</code>, in the
+same call or a later one. Before, one of them was silently dropped.</li>
+<li><code>AddCaesar</code> throws <code>ArgumentException</code>, naming the option, when <code>MediatorImplementationType</code> or
+<code>NotificationPublisherType</code> is <code>null</code>, an interface, abstract, an open generic, not a class, or does not implement
+its interface, instead of a <code>NullReferenceException</code> or accepting it.</li>
+<li>The &quot;cannot close&quot; error names nested types with their declaring types (<code>Outer&lt;T&gt;.Handler</code>) and the interface
+actually implemented, and explains when a type is generic only because it is nested in a generic type.</li>
+<li><code>AddCaesar</code> adds internal descriptors that are visible when enumerating the <code>IServiceCollection</code>:
+<code>CaesarRegistrationState</code>, <code>CaesarRegistry</code>, the open-generic singletons <code>RequestPipelineShape&lt;,&gt;</code>,
+<code>StreamRequestShape&lt;,&gt;</code> and <code>NotificationHandlerShape&lt;&gt;</code>, and, when scanning finds an open-generic single handler,
+<code>ScannedOpenGenericHandlers</code>.</li>
+</ul>
+</li>
+<li><strong>Performance.</strong> A request with no behaviors and no built-in stages calls its handler directly, and <code>Send</code> allocates
+nothing of its own for it. Processors, exception handlers and actions registered for other requests no longer add
+stages to a request. The exception stages call handlers and actions through cached typed delegates instead of
+<code>MethodInfo.Invoke</code>. Notification publishing allocates less, and <code>TaskWhenAllPublisher</code> skips <code>Task.WhenAll</code> when
+every handler completed synchronously. A command whose only handler is <code>IRequestHandler&lt;T, Unit&gt;</code> no longer looks up
+<code>IRequestHandler&lt;T&gt;</code> on every <code>Send</code>. A typed <code>CreateStream</code> hands out the pipeline's own enumerator, with no extra
+layer per item. Assembly scanning is about a third faster and allocates far less.</li>
+<li><strong>Release workflow.</strong> It is split into a read-only build job and a publish job that alone gets the <code>nuget.org</code>
+environment, OIDC and <code>contents: write</code>, and only when there is something to release, so a no-op merge mints no NuGet
+key.
+<ul>
+<li>The tag is created through the GitHub API on the workflow's commit (still annotated, &quot;Caesar X.Y.Z&quot;).</li>
+<li>On merge, a version already on nuget.org without its <code>v</code> tag now fails the run (&quot;published but untagged&quot;) instead
+of tagging the merge commit. A manual run also fails when the tag already exists.</li>
+<li>Re-runs are idempotent: when the tag already points at the commit, the GitHub Release is created or completed and
+the docs are published. <code>--skip-duplicate</code> is used only when the packages on nuget.org were built from the same
+commit, or on a re-run of the run that pushed them; any other duplicate fails the push. The &quot;published but
+untagged&quot; error points at re-running the original run.</li>
+<li>A prerelease version is published as a GitHub prerelease and never marked Latest.</li>
+<li>The publish job refuses to run on any ref other than <code>refs/heads/main</code>.</li>
+<li>The nuget.org pre-check fails on any status other than 200 or 404, retries transient errors and uses the
+lowercased version. Pack must produce exactly the two expected packages and their symbol packages.</li>
+<li>The <code>packages-X.Y.Z</code> artifact now holds <code>packages/</code> and <code>release-notes.md</code>. The concurrency group is per event,
+so a merge's run can no longer replace a pending manual run; a push run and a manual run can now run at the same
+time.</li>
+</ul>
+</li>
+<li>The docs workflow builds the site in a read-only job and publishes it from a separate job; refs under <code>refs/pull/</code>
+are rejected.</li>
+<li><code>changelog_section.py</code> accepts linked version headings, ignores version-heading lines inside code fences and keeps
+link references inside a section.</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<ul>
+<li>A typed <code>Send</code> or <code>CreateStream</code> through a covariant view (a request declared as <code>IRequest&lt;Dog&gt;</code>, sent as
+<code>IRequest&lt;Animal&gt;</code> or with <code>TResponse</code> of <code>object</code>) goes to the handler registered for the call site's type when
+there is one, as before, and otherwise to the declared handler and behaviors. Before, a call site without its own
+handler failed with &quot;No handler was found&quot; and then broke that request type for the rest of the process with
+<code>InvalidCastException</code>.</li>
+<li>A type that declares several <code>IRequest&lt;T&gt;</code> interfaces works through every typed <code>Send</code> overload.</li>
+<li>Processors, exception handlers and exception actions registered after <code>AddCaesar</code> now run.</li>
+<li>A constrained open-generic request or stream handler that cannot close for a request no longer throws
+<code>ArgumentException</code>: dispatch skips it and falls back to the command's other handler interface, or reports
+&quot;No handler was found&quot;.</li>
+<li>An exception handler or action that throws synchronously surfaces its own exception instead of
+<code>TargetInvocationException</code>, and an outer exception action sees the real exception type.</li>
+<li><code>TaskWhenAllPublisher</code> and <code>ForeachAwaitContinueOnFailurePublisher</code> rethrow a single failure with its original stack
+trace instead of one that starts in the publisher.</li>
+<li>The static caches (request, stream and notification wrappers, exception type hierarchies and the exception stages'
+per-type delegates) no longer keep a collectible <code>AssemblyLoadContext</code> alive, including when a request fails with
+an exception type from that context.</li>
+<li>Docs and sample: the getting-started registration and the sample use the default sequential publisher, since
+<code>TaskWhenAllPublisher</code> runs handlers from one scope concurrently; the sample's logging behavior no longer logs failed
+requests as handled; the validation behavior examples report failures through the task.</li>
+</ul>
+<h3 id="security">Security</h3>
+<ul>
+<li>The Release workflow validates a manually entered version as strict SemVer 2.0 over the whole string (no leading
+zeros, build metadata, empty identifiers or newlines) before using it, and logs a rejected value escaped.</li>
+<li>Workflow checkouts no longer persist credentials, and every action is pinned to a commit SHA. The jobs that publish
+packages or docs do not build or test the repository.</li>
+</ul>
+<h2 id="1011---2026-09-23"><a href="https://github.com/tsmshvenieradze/Caesar/releases/tag/v10.1.1">10.1.1</a> - 2026-09-23</h2>
+<h3 id="added-1">Added</h3>
+<ul>
+<li><code>CaesarServiceConfiguration.MediatorLifetime</code> (default <code>Scoped</code>) controls the lifetime of <code>IMediator</code>, <code>ISender</code>,
+<code>IPublisher</code> and <code>INotificationPublisher</code>. A singleton that captures <code>ISender</code> is now reported at
+startup by container validation (<code>ValidateScopes</code> + <code>ValidateOnBuild</code>, on by default in Development) instead of
+failing on the first request that needs a scoped dependency.</li>
+<li><code>AddCaesar</code> throws when a scanned open-generic type implements a Caesar interface in a shape the container can
+never close (different arity or reordered type parameters), instead of failing on the first request.</li>
+</ul>
+<h3 id="changed-2">Changed</h3>
+<ul>
+<li><code>Lifetime</code> now applies only to scanned handlers, processors, exception handlers and actions.</li>
+<li><code>ISender</code> / <code>IMediator</code> are no longer resolvable from the root provider by default; resolve them inside a scope,
+or set <code>MediatorLifetime = ServiceLifetime.Transient</code>.</li>
+<li>Package authorship metadata now names Tsezari Mshvenieradze.</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/tsmshvenieradze/Caesar/blob/main/docs/changelog.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © Tsezari Mshvenieradze · <a href="https://tsezar.io">tsezar.io</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

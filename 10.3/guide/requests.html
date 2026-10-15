@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Requests | Caesar </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Requests | Caesar ">
+      
+      
+      <link rel="icon" href="../images/logo.svg">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/tsmshvenieradze/Caesar/blob/main/docs/guide/requests.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo.svg" alt="Caesar">
+            Caesar
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="requests">Requests</h1>
+
+<p>A request is a message that goes to exactly one handler and produces one response. Use requests for commands (change
+state) and queries (read state); Caesar treats both the same way.</p>
+<h2 id="requests-with-a-response">Requests with a response</h2>
+<p>Implement <a class="xref" href="../api/Caesar.IRequest-1.html">IRequest&lt;TResponse&gt;</a> and handle it with <a class="xref" href="../api/Caesar.IRequestHandler-2.html">IRequestHandler&lt;TRequest, TResponse&gt;</a>:</p>
+<pre><code class="lang-csharp">public sealed record GetCustomer(Guid Id) : IRequest&lt;Customer?&gt;;
+
+public sealed class GetCustomerHandler(ICustomerRepository repository) : IRequestHandler&lt;GetCustomer, Customer?&gt;
+{
+    public Task&lt;Customer?&gt; Handle(GetCustomer request, CancellationToken cancellationToken)
+        =&gt; repository.Find(request.Id, cancellationToken);
+}
+</code></pre>
+<p><code>sender.Send(new GetCustomer(id), cancellationToken)</code> returns <code>Task&lt;Customer?&gt;</code>; the response type is inferred from the
+request.</p>
+<h2 id="commands-without-a-response">Commands without a response</h2>
+<p>A command that returns nothing implements <a class="xref" href="../api/Caesar.IRequest.html">IRequest</a>, which is shorthand for <code>IRequest&lt;Unit&gt;</code>. Its handler
+implements <a class="xref" href="../api/Caesar.IRequestHandler-1.html">IRequestHandler&lt;TRequest&gt;</a> and returns a plain <code>Task</code>:</p>
+<pre><code class="lang-csharp">public sealed record DeactivateCustomer(Guid Id) : IRequest;
+
+public sealed class DeactivateCustomerHandler(ICustomerRepository repository) : IRequestHandler&lt;DeactivateCustomer&gt;
+{
+    public Task Handle(DeactivateCustomer request, CancellationToken cancellationToken)
+        =&gt; repository.Deactivate(request.Id, cancellationToken);
+}
+</code></pre>
+<p><a class="xref" href="../api/Caesar.Unit.html">Unit</a> is the &quot;no value&quot; response. You meet it when a behavior or post-processor sees every request,
+including commands: for a command, <code>TResponse</code> is <code>Unit</code>.</p>
+<p>A command can also be handled by an <code>IRequestHandler&lt;TCommand, Unit&gt;</code>. When both are registered,
+<code>IRequestHandler&lt;TCommand&gt;</code> wins.</p>
+<h2 id="one-handler-per-request">One handler per request</h2>
+<p>Each request type resolves exactly one handler. If scanning finds more than one closed handler for the same request, the
+first one found wins. A handler you register yourself <strong>before</strong> calling <code>AddCaesar</code> takes precedence over anything
+scanning finds, which is useful for replacing a handler in tests.</p>
+<p>Two different open-generic handlers for the same interface cannot both be used, so <code>AddCaesar</code> throws when scanning
+finds a second one (see <a href="configuration.html#registration-rules">Registration rules</a>). An open-generic handler whose
+generic constraints reject a request is skipped for that request: a command then falls back to its other handler
+interface, and otherwise the request fails with &quot;No handler was found&quot;.</p>
+<h2 id="failures">Failures</h2>
+<p><code>Send</code> reports every failure through the task it returns. It throws straight away only for invalid arguments:
+<code>ArgumentNullException</code> for a <code>null</code> request, and <code>ArgumentException</code> for a request whose handler cannot be chosen from
+its type (see below). A missing handler, an exception from a handler, behavior or processor, and a container error all
+fault the task; an <code>OperationCanceledException</code> cancels it. So <code>requests.Select(r =&gt; sender.Send(r)).ToList()</code> always
+gets one task per request.</p>
+<p>When nothing is registered for a request, the task fails with an <code>InvalidOperationException</code> that names the request
+and the handler interface it expected, for example <code>IRequestHandler&lt;GetCustomer, Customer&gt;</code>. When a handler is
+registered but the container cannot create it, because a dependency is missing, a scoped service is resolved from the
+root provider, or its constructor throws, the container's own exception comes through unchanged. Both happen inside the
+pipeline, so <a href="exception-handling.html#what-reaches-handlers-and-actions">exception handlers and actions</a> see them.</p>
+<h2 id="sending-through-a-base-response-type">Sending through a base response type</h2>
+<p><a class="xref" href="../api/Caesar.IRequest-1.html">IRequest&lt;TResponse&gt;</a> is covariant, so a request declared as <code>IRequest&lt;Dog&gt;</code> is also an <code>IRequest&lt;Animal&gt;</code>, and it
+can be sent through that view:</p>
+<pre><code class="lang-csharp">public abstract record Animal(string Name);
+
+public sealed record Dog(string Name) : Animal(Name);
+
+public sealed record AdoptDog(string Name) : IRequest&lt;Dog&gt;;
+
+public sealed class AdoptDogHandler : IRequestHandler&lt;AdoptDog, Dog&gt;
+{
+    public Task&lt;Dog&gt; Handle(AdoptDog request, CancellationToken cancellationToken) =&gt; Task.FromResult(new Dog(request.Name));
+}
+
+public static class Shelter
+{
+    // IRequest&lt;out TResponse&gt; is covariant, so an AdoptDog is also an IRequest&lt;Animal&gt;. It still goes to
+    // IRequestHandler&lt;AdoptDog, Dog&gt; and the behaviors for &lt;AdoptDog, Dog&gt;; the Dog comes back as an Animal.
+    public static Task&lt;Animal&gt; Admit(ISender sender, IRequest&lt;Animal&gt; request, CancellationToken cancellationToken)
+        =&gt; sender.Send(request, cancellationToken);
+}
+</code></pre>
+<p>If a handler is registered for the call site's response type, here <code>IRequestHandler&lt;AdoptDog, Animal&gt;</code>, that handler
+and its behaviors run, as in MediatR. Otherwise the request goes to the handler and behaviors for the response type it
+declares, here <code>IRequestHandler&lt;AdoptDog, Dog&gt;</code> and <code>IPipelineBehavior&lt;AdoptDog, Dog&gt;</code>, and the response is returned as
+the type the call site expects. The same applies to streams.</p>
+<p>A request type may declare more than one <code>IRequest&lt;T&gt;</code>. Each typed <code>Send</code> goes to the handler for the response type it
+asks for. If a call site's type fits several of them, <code>Send</code> throws <code>ArgumentException</code>, since the handler to use is
+ambiguous.</p>
+<h2 id="runtime-typed-dispatch">Runtime-typed dispatch</h2>
+<p>When the request type is only known at runtime, for example after deserializing a message from a queue, use
+<code>Send(object)</code>:</p>
+<pre><code class="lang-csharp">// The request type is only known at runtime, e.g. deserialized from a message queue.
+public static async Task&lt;object?&gt; Dispatch(ISender sender, object message, CancellationToken cancellationToken)
+{
+    // Returns the handler's response, or Unit.Value for a command that implements IRequest.
+    return await sender.Send(message, cancellationToken);
+}
+</code></pre>
+<p>It returns the handler's response boxed as <code>object?</code>, or <code>Unit.Value</code> for a command. It throws <code>ArgumentException</code> for
+an object that implements neither <code>IRequest</code> nor <code>IRequest&lt;T&gt;</code>, and for one that declares more than one <code>IRequest&lt;T&gt;</code>,
+because the object alone does not say which response to use; a type that implements both <code>IRequest</code> and
+<code>IRequest&lt;int&gt;</code> counts as two. Send such a request through a typed overload instead. The same pattern exists for
+notifications (<code>Publish(object)</code>) and streams (<code>CreateStream(object)</code>).</p>
+<h2 id="performance">Performance</h2>
+<p>The first <code>Send</code> for a request type builds and caches a small wrapper for it, and the first <code>Send</code> of that type in each
+container works out which built-in stages its pipeline needs. After that, dispatch does no reflection, except that the
+exception stages reflect once for each request type and exception type pair they see. A request with no behaviors and no
+built-in stages calls its handler directly.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/tsmshvenieradze/Caesar/blob/main/docs/guide/requests.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          © Tsezari Mshvenieradze · <a href="https://tsezar.io">tsezar.io</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

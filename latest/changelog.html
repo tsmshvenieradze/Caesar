@@ -76,7 +76,37 @@
 <p>All notable changes to Caesar are documented here. The format follows
 <a href="https://keepachangelog.com/en/1.1.0/">Keep a Changelog</a>, and versions follow
 <a href="https://semver.org/">Semantic Versioning</a>, with the major version tracking the targeted .NET version.</p>
-<h2 id="unreleased"><a href="https://github.com/tsmshvenieradze/Caesar/compare/v10.2.0...HEAD">Unreleased</a></h2>
+<h2 id="unreleased"><a href="https://github.com/tsmshvenieradze/Caesar/compare/v10.3.0...HEAD">Unreleased</a></h2>
+<h2 id="1030---2026-10-15"><a href="https://github.com/tsmshvenieradze/Caesar/releases/tag/v10.3.0">10.3.0</a> - 2026-10-15</h2>
+<h3 id="changed">Changed</h3>
+<ul>
+<li><strong>Performance.</strong>
+<ul>
+<li>Requests and stream requests with no pipeline behaviors registered skip resolving <code>IEnumerable&lt;IPipelineBehavior&lt;,&gt;&gt;</code>
+and <code>IEnumerable&lt;IStreamPipelineBehavior&lt;,&gt;&gt;</code> from the container, and <code>RequestPipelineShape</code> inspects exception
+actions and handlers in O(1) through indexed sets instead of scanning closed service registrations.</li>
+<li>Commands (<code>IRequest</code>) with no pipeline stages return <code>Unit.Task</code> directly when <code>IRequestHandler&lt;TRequest&gt;.Handle</code>
+completes synchronously, and pass through <code>IRequestHandler&lt;TRequest, Unit&gt;.Handle</code>'s task without an extra <code>async</code>
+state machine.</li>
+<li>Sequential notification publishing with the default <code>ForeachAwaitPublisher</code> and no base-type or interface handlers
+invokes the resolved handler array directly without allocating a <code>List&lt;NotificationHandlerExecutor&gt;</code> or per-handler
+closures; when executors are built for a custom publisher or polymorphic notification hierarchy, <code>CreateExecutor</code>
+binds a static extension method group instead of allocating a closure per handler, and <code>ForeachAwaitPublisher</code>
+completes synchronously when every handler does.</li>
+<li><code>Send&lt;TRequest&gt;(TRequest)</code> and <code>Publish&lt;TNotification&gt;(TNotification)</code> dispatch directly to the static generic
+wrapper when the static type parameter is the runtime type (<code>sealed</code>, value type, or exact match), bypassing the
+<code>ConcurrentDictionary</code> lookup and virtual wrapper call.</li>
+<li><code>PipelineBuilder</code> and stream behavior composition invoke the outermost stage or behavior directly without wrapping
+it in an extra delegate, and allocate an inner token-replacement closure only when a behavior passes a different
+non-default <code>CancellationToken</code>.</li>
+<li><code>RequestPreProcessorBehavior</code>, <code>RequestPostProcessorBehavior</code>, <code>RequestExceptionProcessorBehavior</code> and
+<code>RequestExceptionActionProcessorBehavior</code> index into backing arrays, take synchronous fast paths when processors
+complete synchronously, and lazily allocate <code>RequestExceptionHandlerState&lt;TResponse&gt;</code>.</li>
+<li>Assembly scanning indexes existing service registrations in <code>ScanContext</code> for O(1) <code>TryAdd</code> and <code>TryAddEnumerable</code>
+checks and drops redundant <code>.Distinct()</code> passes over candidate types.</li>
+</ul>
+</li>
+</ul>
 <h2 id="1020---2026-09-25"><a href="https://github.com/tsmshvenieradze/Caesar/releases/tag/v10.2.0">10.2.0</a> - 2026-09-25</h2>
 <h3 id="breaking-changes">Breaking changes</h3>
 <p>These can change what an existing application sees after upgrading; the entries below give the details.</p>
@@ -127,7 +157,7 @@ exception object that is thrown again by later sends does not collect them witho
 <code>Microsoft.Extensions.*</code> and <code>Microsoft.SourceLink.*</code> are ignored, since the major version tracks .NET.</p>
 </li>
 </ul>
-<h3 id="changed">Changed</h3>
+<h3 id="changed-1">Changed</h3>
 <ul>
 <li><strong>Pipeline composition.</strong> The built-in stages (exception actions, exception handlers, pre-processors and
 post-processors) are no longer registered as <code>IPipelineBehavior&lt;,&gt;</code>, so resolving the pipeline behaviors returns only
@@ -277,7 +307,7 @@ failing on the first request that needs a scoped dependency.</li>
 <li><code>AddCaesar</code> throws when a scanned open-generic type implements a Caesar interface in a shape the container can
 never close (different arity or reordered type parameters), instead of failing on the first request.</li>
 </ul>
-<h3 id="changed-1">Changed</h3>
+<h3 id="changed-2">Changed</h3>
 <ul>
 <li><code>Lifetime</code> now applies only to scanned handlers, processors, exception handlers and actions.</li>
 <li><code>ISender</code> / <code>IMediator</code> are no longer resolvable from the root provider by default; resolve them inside a scope,
