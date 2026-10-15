@@ -70,8 +70,12 @@ public sealed class StreamRequestHandlerWrapperImpl<TRequest, TResponse> : Strea
 
     private static IAsyncEnumerable<TResponse> BuildPipeline(TRequest request, IServiceProvider serviceProvider, CancellationToken cancellationToken)
     {
-        // Null when the mediator is used without AddCaesar: then the handler lookup is always tried.
+        // Null when the mediator is used without AddCaesar: then the handler and behavior lookups are always tried.
         var shape = serviceProvider.GetService<StreamRequestShape<TRequest, TResponse>>();
+        if (shape is { HasBehaviors: false })
+        {
+            return ResolveHandler(serviceProvider, shape).Handle(request, cancellationToken);
+        }
 
         var behaviors = serviceProvider.GetServices<IStreamPipelineBehavior<TRequest, TResponse>>();
         var list = behaviors as IReadOnlyList<IStreamPipelineBehavior<TRequest, TResponse>> ?? behaviors.ToList();
@@ -91,14 +95,14 @@ public sealed class StreamRequestHandlerWrapperImpl<TRequest, TResponse> : Strea
         IAsyncEnumerable<TResponse> Handler() => ResolveHandler(serviceProvider, shape).Handle(request, cancellationToken);
 
         StreamHandlerDelegate<TResponse> next = Handler;
-        for (var i = behaviors.Count - 1; i >= 0; i--)
+        for (var i = behaviors.Count - 1; i >= 1; i--)
         {
             var behavior = behaviors[i];
             var inner = next;
             next = () => behavior.Handle(request, inner, cancellationToken);
         }
 
-        return next();
+        return behaviors[0].Handle(request, next, cancellationToken);
     }
 
     /// <summary>

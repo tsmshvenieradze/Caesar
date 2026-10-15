@@ -19,6 +19,7 @@ internal sealed class StreamRequestShape<TRequest, TResponse>
         var handler = registry.GetAvailability(typeof(IStreamRequestHandler<TRequest, TResponse>));
         ProbeHandler = handler != ServiceAvailability.ConstraintViolation;
         HasHandler = handler == ServiceAvailability.Registered;
+        HasBehaviors = registry.HasAny(typeof(IStreamPipelineBehavior<TRequest, TResponse>));
     }
 
     /// <summary>
@@ -29,4 +30,7 @@ internal sealed class StreamRequestShape<TRequest, TResponse>
 
     /// <summary><see langword="true"/> when <see cref="IStreamRequestHandler{TRequest, TResponse}"/> itself is registered and can be resolved.</summary>
     public bool HasHandler { get; }
+
+    /// <summary><see langword="true"/> when at least one <see cref="IStreamPipelineBehavior{TRequest, TResponse}"/> applies to this request.</summary>
+    public bool HasBehaviors { get; }
 }

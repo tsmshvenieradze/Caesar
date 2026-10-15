@@ -46,6 +46,7 @@ internal sealed class CaesarRegistry
         typeof(IRequestExceptionHandler<,,>),
         typeof(IRequestExceptionAction<,>),
         typeof(IPipelineBehavior<,>),
+        typeof(IStreamPipelineBehavior<,>),
     ];
 
     private readonly CaesarRegistrationState _state;
@@ -178,35 +179,47 @@ internal sealed class CaesarRegistry
     }
 
     /// <summary>
-    /// <see langword="true"/> when <paramref name="openServiceType"/> has an open-generic registration, or a closed one
-    /// whose leading type arguments are <paramref name="leadingArguments"/>. Used where the remaining argument, such as
-    /// the exception type of an exception handler, is only known at run time, so the container cannot be asked directly.
-    /// It is still asked for <paramref name="catchAllServiceType"/>, the registration for <see cref="Exception"/> itself.
-    /// A third-party container is assumed to have registrations of its own whenever the collection has any of that kind.
+    /// <see langword="true"/> when <see cref="IRequestExceptionAction{TRequest, TException}"/> has an open-generic
+    /// registration, or a closed one for <paramref name="requestType"/>. The thrown exception type is only known at run
+    /// time, so the container cannot be asked directly; it is still asked for <paramref name="catchAllServiceType"/>,
+    /// the registration for <see cref="Exception"/> itself. A third-party container is assumed to have registrations of
+    /// its own whenever the collection has any closed exception action.
     /// </summary>
-    public bool HasAnyStartingWith(Type openServiceType, Type catchAllServiceType, params ReadOnlySpan<Type> leadingArguments)
+    public bool HasExceptionActions(Type requestType, Type catchAllServiceType)
     {
         var lookup = _lookup.Value;
 
-        if (lookup.Descriptors.ContainsKey(openServiceType))
+        if (lookup.Descriptors.ContainsKey(typeof(IRequestExceptionAction<,>)))
         {
             return true;
         }
 
-        if (lookup.ClosedByDefinition.TryGetValue(openServiceType, out var closedTypes))
+        if (lookup.ExceptionActionRequests.Count != 0
+            && (_thirdPartyContainer || lookup.ExceptionActionRequests.Contains(requestType)))
         {
-            if (_thirdPartyContainer)
-            {
-                return true;
-            }
+            return true;
+        }
 
-            foreach (var closedType in closedTypes)
-            {
-                if (StartsWith(closedType.GenericTypeArguments, leadingArguments))
-                {
-                    return true;
-                }
-            }
+        return ContainerHas(catchAllServiceType);
+    }
+
+    /// <summary>
+    /// <see langword="true"/> when <see cref="IRequestExceptionHandler{TRequest, TResponse, TException}"/> has an
+    /// open-generic registration, or a closed one for <paramref name="requestType"/> and <paramref name="responseType"/>.
+    /// </summary>
+    public bool HasExceptionHandlers(Type requestType, Type responseType, Type catchAllServiceType)
+    {
+        var lookup = _lookup.Value;
+
+        if (lookup.Descriptors.ContainsKey(typeof(IRequestExceptionHandler<,,>)))
+        {
+            return true;
+        }
+
+        if (lookup.ExceptionHandlerRequests.Count != 0
+            && (_thirdPartyContainer || lookup.ExceptionHandlerRequests.Contains((requestType, responseType))))
+        {
+            return true;
         }
 
         return ContainerHas(catchAllServiceType);
@@ -241,24 +254,6 @@ internal sealed class CaesarRegistry
     }
 
     private bool ContainerHas(Type closedServiceType) => _container?.IsService(closedServiceType) == true;
-
-    private static bool StartsWith(Type[] arguments, ReadOnlySpan<Type> leading)
-    {
-        if (arguments.Length < leading.Length)
-        {
-            return false;
-        }
-
-        for (var i = 0; i < leading.Length; i++)
-        {
-            if (arguments[i] != leading[i])
-            {
-                return false;
-            }
-        }
-
-        return true;
-    }
 
     /// <summary>
     /// <see langword="true"/> when <paramref name="closedBehaviorImplementation"/>, one of Caesar's built-in behaviors
@@ -350,7 +345,15 @@ internal sealed class CaesarRegistry
 
                 if (closed)
                 {
-                    Add(ClosedByDefinition, definition, serviceType);
+                    if (definition == typeof(IRequestExceptionAction<,>))
+                    {
+                        ExceptionActionRequests.Add(serviceType.GenericTypeArguments[0]);
+                    }
+                    else if (definition == typeof(IRequestExceptionHandler<,,>))
+                    {
+                        var arguments = serviceType.GenericTypeArguments;
+                        ExceptionHandlerRequests.Add((arguments[0], arguments[1]));
+                    }
                 }
 
                 if (definition == typeof(IPipelineBehavior<,>))
@@ -366,8 +369,11 @@ internal sealed class CaesarRegistry
         /// <summary>Descriptors by service type, in registration order. Open generics are keyed by their definition.</summary>
         public Dictionary<Type, List<ServiceDescriptor>> Descriptors { get; } = [];
 
-        /// <summary>Closed generic service types by their generic type definition.</summary>
-        public Dictionary<Type, List<Type>> ClosedByDefinition { get; } = [];
+        /// <summary>Request types that have at least one closed <see cref="IRequestExceptionAction{TRequest, TException}"/> registration.</summary>
+        public HashSet<Type> ExceptionActionRequests { get; } = [];
+
+        /// <summary>Request/response pairs that have at least one closed <see cref="IRequestExceptionHandler{TRequest, TResponse, TException}"/> registration.</summary>
+        public HashSet<(Type Request, Type Response)> ExceptionHandlerRequests { get; } = [];
 
         private static void Add<TValue>(Dictionary<Type, List<TValue>> map, Type key, TValue value)
         {

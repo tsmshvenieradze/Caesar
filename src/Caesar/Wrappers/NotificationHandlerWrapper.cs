@@ -12,6 +12,14 @@ public abstract class NotificationHandlerWrapper
         IServiceProvider serviceProvider,
         Func<IEnumerable<NotificationHandlerExecutor>, INotification, CancellationToken, Task> publish,
         CancellationToken cancellationToken);
+
+    internal virtual Task Handle(
+        INotification notification,
+        IServiceProvider serviceProvider,
+        Func<IEnumerable<NotificationHandlerExecutor>, INotification, CancellationToken, Task> publish,
+        bool canFastPublish,
+        CancellationToken cancellationToken)
+        => Handle(notification, serviceProvider, publish, cancellationToken);
 }
 
 /// <summary>
@@ -43,10 +51,43 @@ public sealed class NotificationHandlerWrapperImpl<TNotification> : Notification
         IServiceProvider serviceProvider,
         Func<IEnumerable<NotificationHandlerExecutor>, INotification, CancellationToken, Task> publish,
         CancellationToken cancellationToken)
+        => Publish((TNotification)notification, serviceProvider, publish, canFastPublish: false, cancellationToken);
+
+    internal override Task Handle(
+        INotification notification,
+        IServiceProvider serviceProvider,
+        Func<IEnumerable<NotificationHandlerExecutor>, INotification, CancellationToken, Task> publish,
+        bool canFastPublish,
+        CancellationToken cancellationToken)
+        => Publish((TNotification)notification, serviceProvider, publish, canFastPublish, cancellationToken);
+
+    internal static Task Publish(
+        TNotification notification,
+        IServiceProvider serviceProvider,
+        Func<IEnumerable<NotificationHandlerExecutor>, INotification, CancellationToken, Task> publish,
+        bool canFastPublish,
+        CancellationToken cancellationToken)
     {
         try
         {
-            return publish(CreateExecutors(serviceProvider), notification, cancellationToken);
+            var resolved = serviceProvider.GetServices<INotificationHandler<TNotification>>();
+
+            // Microsoft.Extensions.DependencyInjection hands back an array; other containers may not.
+            var handlers = resolved as INotificationHandler<TNotification>[] ?? [.. resolved];
+
+            // Null when the mediator is used without AddCaesar: only the handlers for the runtime type run then.
+            if (serviceProvider.GetService<NotificationHandlerShape<TNotification>>() is { HasBaseLevels: true } shape)
+            {
+                return publish(shape.CreateExecutors(handlers, serviceProvider), notification, cancellationToken);
+            }
+
+            // Default ForeachAwaitPublisher with an un-overridden PublishCore needs no executor array or delegates.
+            if (canFastPublish)
+            {
+                return PublishSequential(handlers, notification, cancellationToken);
+            }
+
+            return publish(CreateExecutors(handlers), notification, cancellationToken);
         }
 #pragma warning disable CA1031 // Every failure is reported through the task; Publish validates its arguments before this point.
         catch (Exception e)
@@ -56,19 +97,43 @@ public sealed class NotificationHandlerWrapperImpl<TNotification> : Notification
         }
     }
 
-    private static NotificationHandlerExecutor[] CreateExecutors(IServiceProvider serviceProvider)
+    private static Task PublishSequential(
+        INotificationHandler<TNotification>[] handlers,
+        TNotification notification,
+        CancellationToken cancellationToken)
     {
-        var resolved = serviceProvider.GetServices<INotificationHandler<TNotification>>();
-
-        // Microsoft.Extensions.DependencyInjection hands back an array; other containers may not.
-        var handlers = resolved as INotificationHandler<TNotification>[] ?? [.. resolved];
-
-        // Null when the mediator is used without AddCaesar: only the handlers for the runtime type run then.
-        if (serviceProvider.GetService<NotificationHandlerShape<TNotification>>() is { HasBaseLevels: true } shape)
+        for (var i = 0; i < handlers.Length; i++)
         {
-            return shape.CreateExecutors(handlers, serviceProvider);
+            var handler = handlers[i];
+            var task = handler.Handle(notification, cancellationToken) ?? throw NotificationTasks.NullTask(handler);
+            if (!task.IsCompletedSuccessfully)
+            {
+                return PublishRemainingSequentialAsync(handlers, i, task, notification, cancellationToken);
+            }
         }
 
+        return Task.CompletedTask;
+    }
+
+    private static async Task PublishRemainingSequentialAsync(
+        INotificationHandler<TNotification>[] handlers,
+        int index,
+        Task pending,
+        TNotification notification,
+        CancellationToken cancellationToken)
+    {
+        await pending.ConfigureAwait(false);
+
+        for (var i = index + 1; i < handlers.Length; i++)
+        {
+            var handler = handlers[i];
+            var task = handler.Handle(notification, cancellationToken) ?? throw NotificationTasks.NullTask(handler);
+            await task.ConfigureAwait(false);
+        }
+    }
+
+    private static NotificationHandlerExecutor[] CreateExecutors(INotificationHandler<TNotification>[] handlers)
+    {
         if (handlers.Length == 0)
         {
             return [];
@@ -85,5 +150,13 @@ public sealed class NotificationHandlerWrapperImpl<TNotification> : Notification
 
     /// <summary>An executor that invokes <paramref name="handler"/> with the notification cast to <typeparamref name="TNotification"/>.</summary>
     internal static NotificationHandlerExecutor CreateExecutor(INotificationHandler<TNotification> handler)
-        => new(handler, (n, t) => handler.Handle((TNotification)n, t));
+        => new(handler, handler.Invoke);
+}
+
+internal static class NotificationHandlerCallbacks
+{
+    // Extension method so `handler.Invoke` binds `handler` directly as the delegate's Target without allocating a closure.
+    public static Task Invoke<TNotification>(this INotificationHandler<TNotification> handler, INotification notification, CancellationToken cancellationToken)
+        where TNotification : INotification
+        => handler.Handle((TNotification)notification, cancellationToken);
 }

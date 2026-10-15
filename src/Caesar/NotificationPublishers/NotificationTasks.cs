@@ -17,7 +17,11 @@ internal static class NotificationTasks
 
     /// <summary>The error reported when a handler returns <see langword="null"/> instead of a task.</summary>
     public static InvalidOperationException NullTask(NotificationHandlerExecutor executor)
-        => new($"The notification handler {executor.HandlerInstance?.GetType().FullName ?? "(unknown)"} returned a null Task.");
+        => NullTask(executor.HandlerInstance);
+
+    /// <summary>The error reported when a handler returns <see langword="null"/> instead of a task.</summary>
+    public static InvalidOperationException NullTask(object? handlerInstance)
+        => new($"The notification handler {handlerInstance?.GetType().FullName ?? "(unknown)"} returned a null Task.");
 
 #pragma warning disable CS1998 // No await on purpose: the async builder turns the rethrow into a canceled task.
     private static async Task Rethrow(ExceptionDispatchInfo exception) => exception.Throw();

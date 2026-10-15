@@ -32,9 +32,11 @@ internal sealed class RequestPipelineShape<TRequest, TResponse>
     {
         ArgumentNullException.ThrowIfNull(registry);
 
-        _stages = ComputeStages(registry);
+        var behaviorService = typeof(IPipelineBehavior<TRequest, TResponse>);
+        _stages = ComputeStages(registry, behaviorService);
         _bypassCallerCancellation = registry.BypassExceptionHandlingOnCallerCancellation;
-        OuterBehaviorCount = _stages.Length == 0 ? 0 : registry.CountBehaviorsRegisteredBeforeFirstCall(typeof(IPipelineBehavior<TRequest, TResponse>));
+        HasBehaviors = registry.HasAny(behaviorService);
+        OuterBehaviorCount = _stages.Length == 0 || !HasBehaviors ? 0 : registry.CountBehaviorsRegisteredBeforeFirstCall(behaviorService);
 
         var handler = registry.GetAvailability(typeof(IRequestHandler<TRequest, TResponse>));
         ProbeHandler = handler != ServiceAvailability.ConstraintViolation;
@@ -53,6 +55,12 @@ internal sealed class RequestPipelineShape<TRequest, TResponse>
 
     /// <summary><see langword="true"/> when at least one built-in stage wraps the handler.</summary>
     public bool HasStages => _stages.Length != 0;
+
+    /// <summary><see langword="true"/> when at least one <see cref="IPipelineBehavior{TRequest, TResponse}"/> applies to this request.</summary>
+    public bool HasBehaviors { get; }
+
+    /// <summary><see langword="true"/> when at least one built-in stage or pipeline behavior wraps the handler.</summary>
+    public bool HasPipeline => _stages.Length != 0 || HasBehaviors;
 
     /// <summary>The number of built-in stages.</summary>
     public int StageCount => _stages.Length;
@@ -89,22 +97,25 @@ internal sealed class RequestPipelineShape<TRequest, TResponse>
     /// exception actions and exception handlers (in the order the strategy asks for), pre-processors, post-processors.
     /// A stage whose behavior the user registered as an ordinary pipeline behavior is left out, so it never runs twice.
     /// </summary>
-    private static BuiltInStage[] ComputeStages(CaesarRegistry registry)
+    private static BuiltInStage[] ComputeStages(CaesarRegistry registry, Type behaviorService)
     {
-        var behaviorService = typeof(IPipelineBehavior<TRequest, TResponse>);
-
         bool Applies(bool used, Type builtInBehavior) => used && !registry.IsRegisteredAsPipelineBehavior(behaviorService, builtInBehavior);
 
         // Exception handlers and actions are resolved per thrown exception type, which is unknown here: any closed
         // registration for this request counts, and so does any open-generic one.
         var actions = Applies(
-            registry.HasAnyStartingWith(typeof(IRequestExceptionAction<,>), typeof(IRequestExceptionAction<TRequest, Exception>), typeof(TRequest)),
+            registry.HasExceptionActions(typeof(TRequest), typeof(IRequestExceptionAction<TRequest, Exception>)),
             typeof(RequestExceptionActionProcessorBehavior<TRequest, TResponse>));
         var handlers = Applies(
-            registry.HasAnyStartingWith(typeof(IRequestExceptionHandler<,,>), typeof(IRequestExceptionHandler<TRequest, TResponse, Exception>), typeof(TRequest), typeof(TResponse)),
+            registry.HasExceptionHandlers(typeof(TRequest), typeof(TResponse), typeof(IRequestExceptionHandler<TRequest, TResponse, Exception>)),
             typeof(RequestExceptionProcessorBehavior<TRequest, TResponse>));
         var pre = Applies(registry.HasAny(typeof(IRequestPreProcessor<TRequest>)), typeof(RequestPreProcessorBehavior<TRequest, TResponse>));
         var post = Applies(registry.HasAny(typeof(IRequestPostProcessor<TRequest, TResponse>)), typeof(RequestPostProcessorBehavior<TRequest, TResponse>));
+
+        if (!actions && !handlers && !pre && !post)
+        {
+            return [];
+        }
 
         var stages = new List<BuiltInStage>(4);
         if (registry.RequestExceptionActionProcessorStrategy == RequestExceptionActionProcessorStrategy.ApplyForUnhandledExceptions)

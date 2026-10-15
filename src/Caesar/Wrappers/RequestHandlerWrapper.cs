@@ -51,15 +51,17 @@ public sealed class RequestHandlerWrapperImpl<TRequest, TResponse> : RequestHand
 
         // Null when the mediator is used without AddCaesar: no built-in stages then, and every handler lookup is tried.
         var shape = serviceProvider.GetService<RequestPipelineShape<TRequest, TResponse>>();
-        if (shape is { HasStages: true })
+        if (shape is not null)
         {
-            return WithBehaviors(typedRequest, serviceProvider, shape, behaviors: null, cancellationToken);
+            return shape.HasPipeline
+                ? WithBehaviors(typedRequest, serviceProvider, shape, behaviors: null, cancellationToken)
+                : ResolveHandler(serviceProvider, shape).Handle(typedRequest, cancellationToken);
         }
 
         var behaviors = PipelineBuilder.GetBehaviors<TRequest, TResponse>(serviceProvider);
         return behaviors.Count == 0
-            ? ResolveHandler(serviceProvider, shape).Handle(typedRequest, cancellationToken)
-            : WithBehaviors(typedRequest, serviceProvider, shape, behaviors, cancellationToken);
+            ? ResolveHandler(serviceProvider, shape: null).Handle(typedRequest, cancellationToken)
+            : WithBehaviors(typedRequest, serviceProvider, shape: null, behaviors, cancellationToken);
     }
 
     // Separate from Handle because the compiler allocates the closure for captured parameters when the method that
@@ -74,7 +76,7 @@ public sealed class RequestHandlerWrapperImpl<TRequest, TResponse> : RequestHand
         Task<TResponse> Handler(CancellationToken t = default)
             => ResolveHandler(serviceProvider, shape).Handle(request, t == default ? cancellationToken : t);
 
-        return PipelineBuilder.Build(serviceProvider, request, shape, behaviors, Handler)(cancellationToken);
+        return PipelineBuilder.Execute(serviceProvider, request, shape, behaviors, Handler, cancellationToken);
     }
 
     private static IRequestHandler<TRequest, TResponse> ResolveHandler(IServiceProvider serviceProvider, RequestPipelineShape<TRequest, TResponse>? shape)
@@ -101,19 +103,22 @@ public sealed class RequestHandlerWrapperImpl<TRequest> : RequestHandlerWrapper<
 
     /// <inheritdoc />
     public override Task<Unit> Handle(IRequest<Unit> request, IServiceProvider serviceProvider, CancellationToken cancellationToken)
-    {
-        var typedRequest = (TRequest)request;
+        => Handle((TRequest)request, serviceProvider, cancellationToken);
 
+    internal static Task<Unit> Handle(TRequest typedRequest, IServiceProvider serviceProvider, CancellationToken cancellationToken)
+    {
         var shape = serviceProvider.GetService<RequestPipelineShape<TRequest, Unit>>();
-        if (shape is { HasStages: true })
+        if (shape is not null)
         {
-            return WithBehaviors(typedRequest, serviceProvider, shape, behaviors: null, cancellationToken);
+            return shape.HasPipeline
+                ? WithBehaviors(typedRequest, serviceProvider, shape, behaviors: null, cancellationToken)
+                : HandleCore(typedRequest, serviceProvider, shape, cancellationToken);
         }
 
         var behaviors = PipelineBuilder.GetBehaviors<TRequest, Unit>(serviceProvider);
         return behaviors.Count == 0
-            ? HandleCore(typedRequest, serviceProvider, shape, cancellationToken)
-            : WithBehaviors(typedRequest, serviceProvider, shape, behaviors, cancellationToken);
+            ? HandleCore(typedRequest, serviceProvider, shape: null, cancellationToken)
+            : WithBehaviors(typedRequest, serviceProvider, shape: null, behaviors, cancellationToken);
     }
 
     private static Task<Unit> WithBehaviors(
@@ -126,10 +131,10 @@ public sealed class RequestHandlerWrapperImpl<TRequest> : RequestHandlerWrapper<
         Task<Unit> Handler(CancellationToken t = default)
             => HandleCore(request, serviceProvider, shape, t == default ? cancellationToken : t);
 
-        return PipelineBuilder.Build(serviceProvider, request, shape, behaviors, Handler)(cancellationToken);
+        return PipelineBuilder.Execute(serviceProvider, request, shape, behaviors, Handler, cancellationToken);
     }
 
-    private static async Task<Unit> HandleCore(
+    private static Task<Unit> HandleCore(
         TRequest request,
         IServiceProvider serviceProvider,
         RequestPipelineShape<TRequest, Unit>? shape,
@@ -140,8 +145,8 @@ public sealed class RequestHandlerWrapperImpl<TRequest> : RequestHandlerWrapper<
             var voidHandler = serviceProvider.GetService<IRequestHandler<TRequest>>();
             if (voidHandler is not null)
             {
-                await voidHandler.Handle(request, cancellationToken).ConfigureAwait(false);
-                return Unit.Value;
+                var task = voidHandler.Handle(request, cancellationToken);
+                return task is { IsCompletedSuccessfully: true } ? Unit.Task : AwaitVoidHandler(task);
             }
         }
 
@@ -150,11 +155,17 @@ public sealed class RequestHandlerWrapperImpl<TRequest> : RequestHandlerWrapper<
             var unitHandler = serviceProvider.GetService<IRequestHandler<TRequest, Unit>>();
             if (unitHandler is not null)
             {
-                return await unitHandler.Handle(request, cancellationToken).ConfigureAwait(false);
+                return unitHandler.Handle(request, cancellationToken);
             }
         }
 
         throw HandlerNotFound(typeof(IRequestHandler<TRequest>));
+    }
+
+    private static async Task<Unit> AwaitVoidHandler(Task task)
+    {
+        await task.ConfigureAwait(false);
+        return Unit.Value;
     }
 }
 
@@ -171,52 +182,85 @@ internal static class PipelineBuilder
     }
 
     /// <summary>
-    /// Composes the pipeline around <paramref name="handler"/>, outermost first: the built-in stages the
+    /// Composes and runs the pipeline around <paramref name="handler"/>, outermost first: the built-in stages the
     /// <paramref name="shape"/> lists, then the registered <see cref="IPipelineBehavior{TRequest, TResponse}"/> instances
-    /// in container order (resolved here when <paramref name="behaviors"/> is <see langword="null"/>). A behavior that
-    /// calls <c>next()</c> without a token keeps the token that is currently flowing through the chain; passing a token
-    /// replaces it for the remainder of the chain.
+    /// in container order (resolved here when <paramref name="behaviors"/> is <see langword="null"/> and the shape says
+    /// behaviors exist). A behavior that calls <c>next()</c> without a token keeps the token that is currently flowing
+    /// through the chain; passing a token replaces it for the remainder of the chain.
     /// </summary>
-    public static RequestHandlerDelegate<TResponse> Build<TRequest, TResponse>(
+    public static Task<TResponse> Execute<TRequest, TResponse>(
         IServiceProvider serviceProvider,
         TRequest request,
         RequestPipelineShape<TRequest, TResponse>? shape,
         IReadOnlyList<IPipelineBehavior<TRequest, TResponse>>? behaviors,
-        RequestHandlerDelegate<TResponse> handler)
+        RequestHandlerDelegate<TResponse> handler,
+        CancellationToken cancellationToken)
         where TRequest : IRequest<TResponse>
     {
-        behaviors ??= GetBehaviors<TRequest, TResponse>(serviceProvider);
+        behaviors ??= shape is { HasBehaviors: false }
+            ? []
+            : GetBehaviors<TRequest, TResponse>(serviceProvider);
 
         // Behaviors registered before the first AddCaesar call run outside the built-in stages, the rest inside them.
         var outer = Math.Min(shape?.OuterBehaviorCount ?? 0, behaviors.Count);
 
-        // The chain is built from the inside out.
+        // The chain is built from the inside out; the outermost stage is invoked directly without wrapping it in a delegate.
+        IPipelineBehavior<TRequest, TResponse>? current = null;
         var next = handler;
         for (var i = behaviors.Count - 1; i >= outer; i--)
         {
-            next = Wrap(behaviors[i], request, next);
+            if (current is not null)
+            {
+                next = Wrap(current, request, next, cancellationToken);
+            }
+
+            current = behaviors[i];
         }
 
         for (var i = (shape?.StageCount ?? 0) - 1; i >= 0; i--)
         {
-            next = Wrap(shape!.CreateStage(i, serviceProvider), request, next);
+            if (current is not null)
+            {
+                next = Wrap(current, request, next, cancellationToken);
+            }
+
+            current = shape!.CreateStage(i, serviceProvider);
         }
 
         for (var i = outer - 1; i >= 0; i--)
         {
-            next = Wrap(behaviors[i], request, next);
+            if (current is not null)
+            {
+                next = Wrap(current, request, next, cancellationToken);
+            }
+
+            current = behaviors[i];
         }
 
-        return next;
+        return current is not null
+            ? current.Handle(request, next, cancellationToken)
+            : next(cancellationToken);
     }
 
     private static RequestHandlerDelegate<TResponse> Wrap<TRequest, TResponse>(
         IPipelineBehavior<TRequest, TResponse> behavior,
         TRequest request,
-        RequestHandlerDelegate<TResponse> inner)
+        RequestHandlerDelegate<TResponse> inner,
+        CancellationToken cancellationToken)
         where TRequest : notnull
-        => token => behavior.Handle(
+        => token => token == default || token == cancellationToken
+            ? behavior.Handle(request, inner, cancellationToken)
+            : HandleWithReplacedToken(behavior, request, inner, token);
+
+    // Kept out of Wrap so the outer lambda does not allocate a second closure for token when no replacement token is passed.
+    private static Task<TResponse> HandleWithReplacedToken<TRequest, TResponse>(
+        IPipelineBehavior<TRequest, TResponse> behavior,
+        TRequest request,
+        RequestHandlerDelegate<TResponse> inner,
+        CancellationToken replacedToken)
+        where TRequest : notnull
+        => behavior.Handle(
             request,
-            innerToken => inner(innerToken == default ? token : innerToken),
-            token);
+            innerToken => inner(innerToken == default ? replacedToken : innerToken),
+            replacedToken);
 }

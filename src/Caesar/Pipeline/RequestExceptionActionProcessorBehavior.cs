@@ -139,38 +139,80 @@ public sealed class RequestExceptionActionProcessorBehavior<TRequest, TResponse>
                 return new ActionLevel(typeof(IEnumerable<>).MakeGenericType(service), InvokeActionMethod.MakeGenericMethod(type).CreateDelegate<ActionInvoker>());
             });
 
-            if (_serviceProvider.GetService(level.EnumerableType) is not IEnumerable<object?> actions)
+            var resolved = _serviceProvider.GetService(level.EnumerableType);
+            if (resolved is null)
             {
                 continue;
             }
 
-            ranHere?.Clear();
-            foreach (var action in actions)
+            if (resolved is object?[] array)
             {
-                // Like MediatR, a class registered for several levels of the hierarchy runs once, most specific first.
-                if (action is null || ranBefore?.Contains(action.GetType()) == true)
+                if (array.Length == 0)
                 {
                     continue;
                 }
 
-                (ranHere ??= []).Add(action.GetType());
-
-                try
+                ranHere?.Clear();
+                for (var i = 0; i < array.Length; i++)
                 {
-                    var task = level.Invoke(action, request, exception, cancellationToken)
-                        ?? throw new InvalidOperationException(
-                            $"The exception action '{action.GetType().FullName}' returned a null Task from Execute.");
+                    var action = array[i];
 
-                    await task.ConfigureAwait(false);
-                }
-#pragma warning disable CA1031 // A failing action must neither stop the others nor replace the original exception.
-                catch (Exception failure)
-#pragma warning restore CA1031
-                {
-                    // An action that rethrows the original is not a separate failure; the original is rethrown anyway.
-                    if (!ReferenceEquals(failure, exception))
+                    // Like MediatR, a class registered for several levels of the hierarchy runs once, most specific first.
+                    if (action is null || ranBefore?.Contains(action.GetType()) == true)
                     {
-                        (failures ??= []).Add(failure);
+                        continue;
+                    }
+
+                    (ranHere ??= []).Add(action.GetType());
+
+                    try
+                    {
+                        var task = level.Invoke(action, request, exception, cancellationToken)
+                            ?? throw new InvalidOperationException(
+                                $"The exception action '{action.GetType().FullName}' returned a null Task from Execute.");
+
+                        await task.ConfigureAwait(false);
+                    }
+#pragma warning disable CA1031 // A failing action must neither stop the others nor replace the original exception.
+                    catch (Exception failure)
+#pragma warning restore CA1031
+                    {
+                        // An action that rethrows the original is not a separate failure; the original is rethrown anyway.
+                        if (!ReferenceEquals(failure, exception))
+                        {
+                            (failures ??= []).Add(failure);
+                        }
+                    }
+                }
+            }
+            else if (resolved is IEnumerable<object?> actions)
+            {
+                ranHere?.Clear();
+                foreach (var action in actions)
+                {
+                    if (action is null || ranBefore?.Contains(action.GetType()) == true)
+                    {
+                        continue;
+                    }
+
+                    (ranHere ??= []).Add(action.GetType());
+
+                    try
+                    {
+                        var task = level.Invoke(action, request, exception, cancellationToken)
+                            ?? throw new InvalidOperationException(
+                                $"The exception action '{action.GetType().FullName}' returned a null Task from Execute.");
+
+                        await task.ConfigureAwait(false);
+                    }
+#pragma warning disable CA1031
+                    catch (Exception failure)
+#pragma warning restore CA1031
+                    {
+                        if (!ReferenceEquals(failure, exception))
+                        {
+                            (failures ??= []).Add(failure);
+                        }
                     }
                 }
             }

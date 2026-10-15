@@ -62,12 +62,12 @@ internal static class ServiceRegistrar
 
         foreach (var descriptor in configuration.RequestPreProcessorsToRegister)
         {
-            services.TryAddEnumerable(descriptor);
+            scan.TryAddEnumerable(descriptor);
         }
 
         foreach (var descriptor in configuration.RequestPostProcessorsToRegister)
         {
-            services.TryAddEnumerable(descriptor);
+            scan.TryAddEnumerable(descriptor);
         }
     }
 
@@ -116,14 +116,12 @@ internal static class ServiceRegistrar
 
     private static IEnumerable<Type> GetCandidateTypes(CaesarServiceConfiguration configuration)
         => configuration.AssembliesToRegister
-            .Distinct()
             .SelectMany(GetLoadableTypes)
             // Nested types are scanned when the assembly can see them (public, internal or protected internal), so a
             // vertical slice's internal handler is found. Private and protected nested types, typically test doubles
             // nested in a test class, are left out, as are compiler-generated types (closures, state machines).
             .Where(static t => t.IsConcrete() && t.IsVisibleInAssembly() && !t.IsCompilerGenerated())
-            .Where(configuration.TypeEvaluator)
-            .Distinct();
+            .Where(configuration.TypeEvaluator);
 
     private static IEnumerable<Type> GetLoadableTypes(Assembly assembly)
     {
@@ -187,11 +185,11 @@ internal static class ServiceRegistrar
 
             if (IsSingleHandler(rank))
             {
-                scan.Services.TryAdd(new ServiceDescriptor(serviceType, implementationType, scan.Lifetime));
+                scan.TryAdd(serviceType, implementationType);
             }
             else
             {
-                scan.Services.TryAddEnumerable(scan.ExplicitOrNew(serviceType, implementationType));
+                scan.TryAddEnumerable(serviceType, implementationType);
             }
         }
     }
@@ -241,7 +239,7 @@ internal static class ServiceRegistrar
             }
             else
             {
-                scan.Services.TryAddEnumerable(scan.ExplicitOrNew(openInterface, openImplementation));
+                scan.TryAddEnumerable(openInterface, openImplementation);
             }
 
             start = end;
