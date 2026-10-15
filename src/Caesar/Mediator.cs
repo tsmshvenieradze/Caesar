@@ -21,6 +21,7 @@ public class Mediator : IMediator
     private readonly IServiceProvider _serviceProvider;
     private readonly INotificationPublisher _publisher;
     private readonly Func<IEnumerable<NotificationHandlerExecutor>, INotification, CancellationToken, Task> _publishCore;
+    private readonly bool _canFastPublish;
 
     /// <summary>
     /// Creates a mediator that publishes notifications sequentially (<see cref="NotificationPublishers.ForeachAwaitPublisher"/>).
@@ -41,6 +42,7 @@ public class Mediator : IMediator
         _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
         _publisher = publisher ?? throw new ArgumentNullException(nameof(publisher));
         _publishCore = PublishCore;
+        _canFastPublish = GetType() == typeof(Mediator) && publisher is NotificationPublishers.ForeachAwaitPublisher;
     }
 
     /// <inheritdoc />
@@ -76,12 +78,13 @@ public class Mediator : IMediator
     {
         ArgumentNullException.ThrowIfNull(request);
 
-        // The same wrapper Send<Unit>(IRequest<Unit>) uses, so a command behaves the same through every overload.
-        var handler = RequestWrappers<Unit>.Get(request.GetType());
-
         try
         {
-            return handler.Handle(request, _serviceProvider, cancellationToken);
+            // When TRequest is the runtime type (always true for sealed/value types), dispatch directly without
+            // looking up the wrapper cache or casting through IRequest<Unit>.
+            return typeof(TRequest).IsValueType || typeof(TRequest).IsSealed || request.GetType() == typeof(TRequest)
+                ? RequestHandlerWrapperImpl<TRequest>.Handle(request, _serviceProvider, cancellationToken)
+                : RequestWrappers<Unit>.Get(request.GetType()).Handle(request, _serviceProvider, cancellationToken);
         }
 #pragma warning disable CA1031 // Not handled: every failure is handed to the caller through the returned task.
         catch (Exception exception)
@@ -116,7 +119,10 @@ public class Mediator : IMediator
         where TNotification : INotification
     {
         ArgumentNullException.ThrowIfNull(notification);
-        return PublishNotification(notification, cancellationToken);
+
+        return typeof(TNotification).IsValueType || typeof(TNotification).IsSealed || notification.GetType() == typeof(TNotification)
+            ? NotificationHandlerWrapperImpl<TNotification>.Publish(notification, _serviceProvider, _publishCore, _canFastPublish, cancellationToken)
+            : PublishNotification(notification, cancellationToken);
     }
 
     /// <inheritdoc />
@@ -172,17 +178,22 @@ public class Mediator : IMediator
         var handler = NotificationHandlers.GetOrAdd(notification.GetType(), static notificationType =>
             CreateWrapper<NotificationHandlerWrapper>(typeof(NotificationHandlerWrapperImpl<>).MakeGenericType(notificationType), notificationType));
 
-        return handler.Handle(notification, _serviceProvider, _publishCore, cancellationToken);
+        return handler.Handle(notification, _serviceProvider, _publishCore, _canFastPublish, cancellationToken);
     }
 
     /// <summary>
     /// Completes a task the way an async method completes when it throws <paramref name="exception"/>: faulted, or
     /// canceled for an <see cref="OperationCanceledException"/>, carrying the original exception and stack trace.
     /// </summary>
-#pragma warning disable CS1998 // No await on purpose: the async builder turns the rethrow into a faulted or canceled task.
-    private static async Task<TResponse> FromException<TResponse>(Exception exception)
+    private static Task<TResponse> FromException<TResponse>(Exception exception)
+        => exception is OperationCanceledException
+            ? RethrowCanceled<TResponse>(ExceptionDispatchInfo.Capture(exception))
+            : Task.FromException<TResponse>(exception);
+
+#pragma warning disable CS1998 // No await on purpose: the async builder turns the rethrow into a canceled task.
+    private static async Task<TResponse> RethrowCanceled<TResponse>(ExceptionDispatchInfo exception)
     {
-        ExceptionDispatchInfo.Throw(exception);
+        exception.Throw();
         return default!;
     }
 #pragma warning restore CS1998
@@ -277,7 +288,8 @@ public class Mediator : IMediator
         private static RequestHandlerWrapper<TResponse> Create(Type requestType)
         {
             // The request declares this response type itself (a command declares IRequest<Unit> through IRequest).
-            if (ImplementsExactly(requestType, typeof(IRequest<TResponse>)))
+            // A value-type or sealed response type has no subtypes, so variance cannot apply and GetInterfaces() is skipped.
+            if (typeof(TResponse).IsValueType || typeof(TResponse).IsSealed || ImplementsExactly(requestType, typeof(IRequest<TResponse>)))
             {
                 return (RequestHandlerWrapper<TResponse>)CreateRequestWrapper(requestType, typeof(TResponse));
             }
@@ -304,7 +316,7 @@ public class Mediator : IMediator
 
         private static StreamRequestHandlerWrapper<TResponse> Create(Type requestType)
         {
-            if (ImplementsExactly(requestType, typeof(IStreamRequest<TResponse>)))
+            if (typeof(TResponse).IsValueType || typeof(TResponse).IsSealed || ImplementsExactly(requestType, typeof(IStreamRequest<TResponse>)))
             {
                 return CreateWrapper<StreamRequestHandlerWrapper<TResponse>>(
                     typeof(StreamRequestHandlerWrapperImpl<,>).MakeGenericType(requestType, typeof(TResponse)),

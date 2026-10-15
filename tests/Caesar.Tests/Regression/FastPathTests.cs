@@ -12,6 +12,32 @@ public sealed class PingHandler : IRequestHandler<Ping, int>
     public Task<int> Handle(Ping request, CancellationToken cancellationToken) => Response;
 }
 
+public sealed record PingCommand : IRequest;
+
+public sealed class PingCommandHandler : IRequestHandler<PingCommand>
+{
+    public Task Handle(PingCommand request, CancellationToken cancellationToken) => Task.CompletedTask;
+}
+
+public sealed record PingUnitCommand : IRequest;
+
+public sealed class PingUnitCommandHandler : IRequestHandler<PingUnitCommand, Unit>
+{
+    public Task<Unit> Handle(PingUnitCommand request, CancellationToken cancellationToken) => Unit.Task;
+}
+
+public sealed record PingNotification : INotification;
+
+public sealed class PingNotificationHandlerOne : INotificationHandler<PingNotification>
+{
+    public Task Handle(PingNotification notification, CancellationToken cancellationToken) => Task.CompletedTask;
+}
+
+public sealed class PingNotificationHandlerTwo : INotificationHandler<PingNotification>
+{
+    public Task Handle(PingNotification notification, CancellationToken cancellationToken) => Task.CompletedTask;
+}
+
 public class FastPathTests
 {
     private const int Iterations = 20_000;
@@ -35,11 +61,46 @@ public class FastPathTests
         return (GC.GetAllocatedBytesForCurrentThread() - before) / (double)Iterations;
     }
 
-    private static void Consume(Task<int> task)
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private static double BytesPerCommand<TRequest>(ISender sender, TRequest request)
+        where TRequest : IRequest
+    {
+        for (var i = 0; i < Iterations; i++)
+        {
+            Consume(sender.Send(request));
+        }
+
+        var before = GC.GetAllocatedBytesForCurrentThread();
+        for (var i = 0; i < Iterations; i++)
+        {
+            Consume(sender.Send(request));
+        }
+
+        return (GC.GetAllocatedBytesForCurrentThread() - before) / (double)Iterations;
+    }
+
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    private static double BytesPerPublish(IPublisher publisher, PingNotification notification)
+    {
+        for (var i = 0; i < Iterations; i++)
+        {
+            Consume(publisher.Publish(notification));
+        }
+
+        var before = GC.GetAllocatedBytesForCurrentThread();
+        for (var i = 0; i < Iterations; i++)
+        {
+            Consume(publisher.Publish(notification));
+        }
+
+        return (GC.GetAllocatedBytesForCurrentThread() - before) / (double)Iterations;
+    }
+
+    private static void Consume(Task task)
     {
         if (!task.IsCompletedSuccessfully)
         {
-            throw new InvalidOperationException($"Expected a completed send, got {task.Status}.");
+            throw new InvalidOperationException($"Expected a completed task, got {task.Status}.");
         }
     }
 
@@ -56,5 +117,36 @@ public class FastPathTests
         var perSend = BytesPerSend(provider.Root.GetRequiredService<ISender>(), new Ping());
 
         Assert.True(perSend < 1, $"Expected no allocation per Send, measured {perSend:F1} bytes.");
+    }
+
+    [Fact]
+    public async Task Send_command_with_no_behaviors_allocates_nothing_on_the_mediator_side()
+    {
+        await using var provider = TestHost.Build<FastPathTests>(static cfg =>
+        {
+            cfg.Lifetime = ServiceLifetime.Singleton;
+            cfg.MediatorLifetime = ServiceLifetime.Singleton;
+        });
+
+        var sender = provider.Root.GetRequiredService<ISender>();
+        var perVoidCommand = BytesPerCommand(sender, new PingCommand());
+        var perUnitCommand = BytesPerCommand(sender, new PingUnitCommand());
+
+        Assert.True(perVoidCommand < 1, $"Expected no allocation per void IRequest Send, measured {perVoidCommand:F1} bytes.");
+        Assert.True(perUnitCommand < 1, $"Expected no allocation per Unit IRequest Send, measured {perUnitCommand:F1} bytes.");
+    }
+
+    [Fact]
+    public async Task Publish_with_default_publisher_and_no_base_handlers_allocates_nothing_on_the_mediator_side()
+    {
+        await using var provider = TestHost.Build<FastPathTests>(static cfg =>
+        {
+            cfg.Lifetime = ServiceLifetime.Singleton;
+            cfg.MediatorLifetime = ServiceLifetime.Singleton;
+        });
+
+        var perPublish = BytesPerPublish(provider.Root.GetRequiredService<IPublisher>(), new PingNotification());
+
+        Assert.True(perPublish < 1, $"Expected no allocation per Publish, measured {perPublish:F1} bytes.");
     }
 }

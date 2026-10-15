@@ -1,3 +1,5 @@
+using System.Runtime.ExceptionServices;
+
 namespace Caesar.Pipeline;
 
 /// <summary>
@@ -28,11 +30,93 @@ public sealed class RequestPostProcessorBehavior<TRequest, TResponse> : IPipelin
     {
         ArgumentNullException.ThrowIfNull(next);
 
+        if (_postProcessors is IRequestPostProcessor<TRequest, TResponse>[] array)
+        {
+            if (array.Length == 0)
+            {
+                return next(cancellationToken);
+            }
+
+            Task<TResponse> pending;
+            try
+            {
+                pending = next(cancellationToken);
+            }
+#pragma warning disable CA1031 // A synchronous throw is surfaced through the returned task, as an async method would.
+            catch (Exception exception)
+#pragma warning restore CA1031
+            {
+                return FromException(exception);
+            }
+
+            if (pending is not { IsCompletedSuccessfully: true })
+            {
+                return AwaitAndProcessArrayAsync(array, request, pending, cancellationToken);
+            }
+
+            var response = pending.Result;
+            for (var i = 0; i < array.Length; i++)
+            {
+                Task task;
+                try
+                {
+                    task = array[i].Process(request, response, cancellationToken);
+                }
+#pragma warning disable CA1031 // A synchronous throw is surfaced through the returned task, as an async method would.
+                catch (Exception exception)
+#pragma warning restore CA1031
+                {
+                    return FromException(exception);
+                }
+
+                if (task is not { IsCompletedSuccessfully: true })
+                {
+                    return CompleteArrayAsync(array, i, task, request, response, cancellationToken);
+                }
+            }
+
+            return pending;
+        }
+
         // The mediator only adds this stage when there are post-processors, but a registration as an ordinary pipeline
         // behavior runs for every request, and most requests have none.
         return _postProcessors is ICollection<IRequestPostProcessor<TRequest, TResponse>> { Count: 0 }
             ? next(cancellationToken)
             : HandleAsync(request, next, cancellationToken);
+    }
+
+    private static async Task<TResponse> AwaitAndProcessArrayAsync(
+        IRequestPostProcessor<TRequest, TResponse>[] processors,
+        TRequest request,
+        Task<TResponse> pending,
+        CancellationToken cancellationToken)
+    {
+        var response = await pending.ConfigureAwait(false);
+
+        for (var i = 0; i < processors.Length; i++)
+        {
+            await processors[i].Process(request, response, cancellationToken).ConfigureAwait(false);
+        }
+
+        return response;
+    }
+
+    private static async Task<TResponse> CompleteArrayAsync(
+        IRequestPostProcessor<TRequest, TResponse>[] processors,
+        int index,
+        Task pending,
+        TRequest request,
+        TResponse response,
+        CancellationToken cancellationToken)
+    {
+        await pending.ConfigureAwait(false);
+
+        for (var i = index + 1; i < processors.Length; i++)
+        {
+            await processors[i].Process(request, response, cancellationToken).ConfigureAwait(false);
+        }
+
+        return response;
     }
 
     private async Task<TResponse> HandleAsync(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
@@ -46,4 +130,17 @@ public sealed class RequestPostProcessorBehavior<TRequest, TResponse> : IPipelin
 
         return response;
     }
+
+    private static Task<TResponse> FromException(Exception exception)
+        => exception is OperationCanceledException
+            ? Rethrow(ExceptionDispatchInfo.Capture(exception))
+            : Task.FromException<TResponse>(exception);
+
+#pragma warning disable CS1998 // No await on purpose: the async builder turns the rethrow into a canceled task.
+    private static async Task<TResponse> Rethrow(ExceptionDispatchInfo exception)
+    {
+        exception.Throw();
+        return default!;
+    }
+#pragma warning restore CS1998
 }

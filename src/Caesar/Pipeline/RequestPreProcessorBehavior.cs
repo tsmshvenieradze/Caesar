@@ -1,3 +1,5 @@
+using System.Runtime.ExceptionServices;
+
 namespace Caesar.Pipeline;
 
 /// <summary>
@@ -28,11 +30,54 @@ public sealed class RequestPreProcessorBehavior<TRequest, TResponse> : IPipeline
     {
         ArgumentNullException.ThrowIfNull(next);
 
+        if (_preProcessors is IRequestPreProcessor<TRequest>[] array)
+        {
+            for (var i = 0; i < array.Length; i++)
+            {
+                Task task;
+                try
+                {
+                    task = array[i].Process(request, cancellationToken);
+                }
+#pragma warning disable CA1031 // A synchronous throw is surfaced through the returned task, as an async method would.
+                catch (Exception exception)
+#pragma warning restore CA1031
+                {
+                    return FromException(exception);
+                }
+
+                if (task is not { IsCompletedSuccessfully: true })
+                {
+                    return HandleArrayAsync(array, i, task, request, next, cancellationToken);
+                }
+            }
+
+            return next(cancellationToken);
+        }
+
         // The mediator only adds this stage when there are pre-processors, but a registration as an ordinary pipeline
         // behavior runs for every request, and most requests have none.
         return _preProcessors is ICollection<IRequestPreProcessor<TRequest>> { Count: 0 }
             ? next(cancellationToken)
             : HandleAsync(request, next, cancellationToken);
+    }
+
+    private static async Task<TResponse> HandleArrayAsync(
+        IRequestPreProcessor<TRequest>[] processors,
+        int index,
+        Task pending,
+        TRequest request,
+        RequestHandlerDelegate<TResponse> next,
+        CancellationToken cancellationToken)
+    {
+        await pending.ConfigureAwait(false);
+
+        for (var i = index + 1; i < processors.Length; i++)
+        {
+            await processors[i].Process(request, cancellationToken).ConfigureAwait(false);
+        }
+
+        return await next(cancellationToken).ConfigureAwait(false);
     }
 
     private async Task<TResponse> HandleAsync(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
@@ -44,4 +89,17 @@ public sealed class RequestPreProcessorBehavior<TRequest, TResponse> : IPipeline
 
         return await next(cancellationToken).ConfigureAwait(false);
     }
+
+    private static Task<TResponse> FromException(Exception exception)
+        => exception is OperationCanceledException
+            ? Rethrow(ExceptionDispatchInfo.Capture(exception))
+            : Task.FromException<TResponse>(exception);
+
+#pragma warning disable CS1998 // No await on purpose: the async builder turns the rethrow into a canceled task.
+    private static async Task<TResponse> Rethrow(ExceptionDispatchInfo exception)
+    {
+        exception.Throw();
+        return default!;
+    }
+#pragma warning restore CS1998
 }

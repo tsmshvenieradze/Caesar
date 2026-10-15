@@ -6,6 +6,34 @@ All notable changes to Caesar are documented here. The format follows
 
 ## [Unreleased]
 
+## [10.3.0] - 2026-10-15
+
+### Changed
+
+- **Performance.**
+  - Requests and stream requests with no pipeline behaviors registered skip resolving `IEnumerable<IPipelineBehavior<,>>`
+    and `IEnumerable<IStreamPipelineBehavior<,>>` from the container, and `RequestPipelineShape` inspects exception
+    actions and handlers in O(1) through indexed sets instead of scanning closed service registrations.
+  - Commands (`IRequest`) with no pipeline stages return `Unit.Task` directly when `IRequestHandler<TRequest>.Handle`
+    completes synchronously, and pass through `IRequestHandler<TRequest, Unit>.Handle`'s task without an extra `async`
+    state machine.
+  - Sequential notification publishing with the default `ForeachAwaitPublisher` and no base-type or interface handlers
+    invokes the resolved handler array directly without allocating a `List<NotificationHandlerExecutor>` or per-handler
+    closures; when executors are built for a custom publisher or polymorphic notification hierarchy, `CreateExecutor`
+    binds a static extension method group instead of allocating a closure per handler, and `ForeachAwaitPublisher`
+    completes synchronously when every handler does.
+  - `Send<TRequest>(TRequest)` and `Publish<TNotification>(TNotification)` dispatch directly to the static generic
+    wrapper when the static type parameter is the runtime type (`sealed`, value type, or exact match), bypassing the
+    `ConcurrentDictionary` lookup and virtual wrapper call.
+  - `PipelineBuilder` and stream behavior composition invoke the outermost stage or behavior directly without wrapping
+    it in an extra delegate, and allocate an inner token-replacement closure only when a behavior passes a different
+    non-default `CancellationToken`.
+  - `RequestPreProcessorBehavior`, `RequestPostProcessorBehavior`, `RequestExceptionProcessorBehavior` and
+    `RequestExceptionActionProcessorBehavior` index into backing arrays, take synchronous fast paths when processors
+    complete synchronously, and lazily allocate `RequestExceptionHandlerState<TResponse>`.
+  - Assembly scanning indexes existing service registrations in `ScanContext` for O(1) `TryAdd` and `TryAddEnumerable`
+    checks and drops redundant `.Distinct()` passes over candidate types.
+
 ## [10.2.0] - 2026-09-25
 
 ### Breaking changes
@@ -205,6 +233,7 @@ These can change what an existing application sees after upgrading; the entries 
   or set `MediatorLifetime = ServiceLifetime.Transient`.
 - Package authorship metadata now names Tsezari Mshvenieradze.
 
-[Unreleased]: https://github.com/tsmshvenieradze/Caesar/compare/v10.2.0...HEAD
+[Unreleased]: https://github.com/tsmshvenieradze/Caesar/compare/v10.3.0...HEAD
+[10.3.0]: https://github.com/tsmshvenieradze/Caesar/releases/tag/v10.3.0
 [10.2.0]: https://github.com/tsmshvenieradze/Caesar/releases/tag/v10.2.0
 [10.1.1]: https://github.com/tsmshvenieradze/Caesar/releases/tag/v10.1.1

@@ -91,7 +91,7 @@ public sealed class RequestExceptionProcessorBehavior<TRequest, TResponse> : IPi
 #pragma warning restore CA1031
         {
             var state = await RunHandlersAsync(request, exception, cancellationToken).ConfigureAwait(false);
-            if (state.Handled)
+            if (state is { Handled: true })
             {
                 return state.Response!;
             }
@@ -106,7 +106,7 @@ public sealed class RequestExceptionProcessorBehavior<TRequest, TResponse> : IPi
         if (!IsBypassed(exception, cancellationToken))
         {
             var state = await RunHandlersAsync(request, exception, cancellationToken).ConfigureAwait(false);
-            if (state.Handled)
+            if (state is { Handled: true })
             {
                 return state.Response!;
             }
@@ -119,9 +119,9 @@ public sealed class RequestExceptionProcessorBehavior<TRequest, TResponse> : IPi
     private bool IsBypassed(Exception exception, CancellationToken cancellationToken)
         => _bypassCallerCancellation && ExceptionFilters.IsCallerCancellation(exception, cancellationToken);
 
-    private async Task<RequestExceptionHandlerState<TResponse>> RunHandlersAsync(TRequest request, Exception exception, CancellationToken cancellationToken)
+    private async Task<RequestExceptionHandlerState<TResponse>?> RunHandlersAsync(TRequest request, Exception exception, CancellationToken cancellationToken)
     {
-        var state = new RequestExceptionHandlerState<TResponse>();
+        RequestExceptionHandlerState<TResponse>? state = null;
 
         // Classes that ran for a more specific exception type. Within one level every registration runs.
         HashSet<Type>? ranBefore = null;
@@ -135,31 +135,68 @@ public sealed class RequestExceptionProcessorBehavior<TRequest, TResponse> : IPi
                 return new HandlerLevel(typeof(IEnumerable<>).MakeGenericType(service), InvokeHandlerMethod.MakeGenericMethod(type).CreateDelegate<HandlerInvoker>());
             });
 
-            if (_serviceProvider.GetService(level.EnumerableType) is not IEnumerable<object?> handlers)
+            var resolved = _serviceProvider.GetService(level.EnumerableType);
+            if (resolved is null)
             {
                 continue;
             }
 
-            ranHere?.Clear();
-            foreach (var handler in handlers)
+            if (resolved is object?[] array)
             {
-                // Like MediatR, a class registered for several levels of the hierarchy runs once, most specific first.
-                if (handler is null || ranBefore?.Contains(handler.GetType()) == true)
+                if (array.Length == 0)
                 {
                     continue;
                 }
 
-                (ranHere ??= []).Add(handler.GetType());
-
-                var task = level.Invoke(handler, request, exception, state, cancellationToken)
-                    ?? throw new InvalidOperationException(
-                        $"The exception handler '{handler.GetType().FullName}' returned a null Task from Handle.", exception);
-
-                await task.ConfigureAwait(false);
-
-                if (state.Handled)
+                ranHere?.Clear();
+                for (var i = 0; i < array.Length; i++)
                 {
-                    return state;
+                    var handler = array[i];
+
+                    // Like MediatR, a class registered for several levels of the hierarchy runs once, most specific first.
+                    if (handler is null || ranBefore?.Contains(handler.GetType()) == true)
+                    {
+                        continue;
+                    }
+
+                    (ranHere ??= []).Add(handler.GetType());
+                    state ??= new RequestExceptionHandlerState<TResponse>();
+
+                    var task = level.Invoke(handler, request, exception, state, cancellationToken)
+                        ?? throw new InvalidOperationException(
+                            $"The exception handler '{handler.GetType().FullName}' returned a null Task from Handle.", exception);
+
+                    await task.ConfigureAwait(false);
+
+                    if (state.Handled)
+                    {
+                        return state;
+                    }
+                }
+            }
+            else if (resolved is IEnumerable<object?> handlers)
+            {
+                ranHere?.Clear();
+                foreach (var handler in handlers)
+                {
+                    if (handler is null || ranBefore?.Contains(handler.GetType()) == true)
+                    {
+                        continue;
+                    }
+
+                    (ranHere ??= []).Add(handler.GetType());
+                    state ??= new RequestExceptionHandlerState<TResponse>();
+
+                    var task = level.Invoke(handler, request, exception, state, cancellationToken)
+                        ?? throw new InvalidOperationException(
+                            $"The exception handler '{handler.GetType().FullName}' returned a null Task from Handle.", exception);
+
+                    await task.ConfigureAwait(false);
+
+                    if (state.Handled)
+                    {
+                        return state;
+                    }
                 }
             }
 
