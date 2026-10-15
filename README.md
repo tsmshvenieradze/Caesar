@@ -137,10 +137,37 @@ Publishing authenticates with nuget.org **Trusted Publishing** (GitHub OIDC), so
    - **Required reviewers (recommended):** add yourself. Every release, including one triggered by a merge, then
      waits for your approval before anything is pushed; merges with nothing new to release do not ask.
    - Clear *Allow administrators to bypass configured protection rules* if the rules should apply to you as well.
-3. Protect `main` (a branch ruleset that requires a pull request and the **Build & Test** and **Docs** checks, and blocks
-   force pushes and deletion). Without it, anyone who can push can still publish through `main` itself. Requiring an
-   approving review, Code Owners included, needs a second maintainer: GitHub does not let authors approve their own
-   pull requests.
+3. Protect `main` with the ruleset in [.github/rulesets/main.json](.github/rulesets/main.json): Settings, Rules,
+   Rulesets, New ruleset, *Import a ruleset*, pick the file, then *Create*. Or, with a token that has admin rights on
+   the repository:
+
+   ```bash
+   gh api -X POST repos/tsmshvenieradze/Caesar/rulesets --input .github/rulesets/main.json
+   ```
+
+   It applies to everyone, administrators included (no bypass list): changes reach `main` only through a pull request
+   whose review threads are resolved and whose **Build & Test** and **Docs** checks, reported by GitHub Actions, pass
+   on a branch that is up to date with `main`; force pushes and deleting `main` are blocked. Bring a Dependabot pull
+   request up to date by commenting `@dependabot rebase`: *Update branch* adds a commit that makes Dependabot stop
+   maintaining it. A pull request containing a commit GitHub cannot attribute to an account (in practice, an author
+   email not linked to any GitHub account) also needs an approval from someone other than its author, so it shows as
+   blocked with every check green; fix the commit's author, or add the email to your GitHub account, instead of
+   waiting. Without the ruleset, anyone who can push can publish by pushing straight to `main`; with it, a
+   release still needs only a pull request with passing checks, so the environment's required reviewers (step 2)
+   remain the approval gate. Administrators can always edit or disable the ruleset, for example to rename `main`.
+
+   The file is not synced, and importing or POSTing it again creates a second ruleset rather than updating the first.
+   After changing it, edit *Protect main* on GitHub to match, or update it in place:
+
+   ```bash
+   id=$(gh api repos/tsmshvenieradze/Caesar/rulesets --jq '.[] | select(.name == "Protect main") | .id')
+   gh api -X PUT "repos/tsmshvenieradze/Caesar/rulesets/$id" --input .github/rulesets/main.json
+   ```
+
+   Requiring an approving review, Code Owners included, needs a second maintainer: GitHub does not let authors approve
+   their own pull requests. Once there is one, add them to [.github/CODEOWNERS](.github/CODEOWNERS) and merge that
+   first, then set `required_approving_review_count` to `1` and `require_code_owner_review` to `true`. In the other
+   order, your own pull requests can never get a Code Owner approval.
 
 The workflow requests a short-lived key at run time via `NuGet/login`, in a publish job that only receives the packages
 from the build job and runs none of the build or test code; nothing expires and nothing needs rotating.
